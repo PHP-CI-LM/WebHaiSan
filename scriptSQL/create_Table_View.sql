@@ -1,3 +1,8 @@
+DELIMITER $$
+CREATE DATABASE webhaisan;
+$$
+
+
 -- Create Table 'permission' of account
 CREATE TABLE `permission` (
   `id_permission` int(11) NOT NULL auto_increment,
