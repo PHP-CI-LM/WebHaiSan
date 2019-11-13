@@ -4,26 +4,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Product_Model extends CI_Model {
 
     public function getProductOfCategory($idCategory, $limit = 0) {
-        $str = "SELECT b.MaSach, TenSach, GiaBan, MaTheLoai, MaNXB, MaTacGia, 
-            MoTa, DanhGia, im.DuongDan From Books As b, Image As im 
-            Where MaTheLoai='".$idCategory."' And im.MaSach=b.MaSach";
+        $str = "SELECT p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy 
+                From product As p, category As c 
+                Where p.id_category = c.id_category And p.id_category = " . $idCategory;
         if ($limit !== 0) $str = $str." LIMIT ".$limit;
         $query = $this->db->query($str);
         return $query->result_array();
     }
 
     public function getProductsSelling($limit = 0) {
-        $str = "SELECT b.MaSach, SoLuong, TenSach, GiaBan, MaTheLoai, MaNXB, MaTacGia, MoTa, DanhGia, im.DuongDan
-            FROM Books AS b JOIN (SELECT MaSach, COUNT(MaSach) As SoLuong From CT_HoaDon GROUP BY MaSach) AS c ON b.MaSach = c.MaSach JOIN 
-            Image As im ON b.MaSach=im.MaSach";
+        $str = "SELECT * FROM selling_products";
         if ($limit !== 0) $str = $str." LIMIT ".$limit;
         $query = $this->db->query($str);
         return $query->result_array();
     }
 
-    public function getProductsLiked($limit = 0) {
-        $str = "SELECT b.MaSach, TenSach, GiaBan, MaTheLoai, MaNXB, MaTacGia, MoTa, DanhGia, im.DuongDan 
-            From Books As b JOIN Image As im ON b.MaSach=im.MaSach ORDER BY DanhGia DESC";
+    public function getProductsNew($limit = 0) {
+        $str = "SELECT * FROM new_products";
         if ($limit !== 0) $str = $str." LIMIT ".$limit;
         $query = $this->db->query($str);
         return $query->result_array();

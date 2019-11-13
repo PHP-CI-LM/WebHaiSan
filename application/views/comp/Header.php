@@ -22,7 +22,7 @@
 								else
 									echo "<form action=\"" . base_url() . "Search\" method=\"GET\" class=\"search-bar clearfix\" id=\"search-textbox\">";
 							?>
-                            <input name="strSearch" type="text" id="Search" placeholder="Nhập tên sách..." style="border: 1px solid #dcdcdc; border-radius: 0;"></input> <span><button
+                            <input name="strSearch" type="text" id="Search" placeholder="Nhập thứ muốn tìm ..." style="border: 1px solid #dcdcdc; border-radius: 0;"></input> <span><button
 									type="submit">
 									<i class="fa fa-search" style="margin-top: 0"></i>
 								</button></span>
@@ -100,8 +100,8 @@
                                     <?php
 										if (!$isAdmin) {
 											echo "<li class=\"nav-item nav-item-lv1 active\"><a class=\"nav-link\" href=\"" . base_url() . "\">Trang chủ</a></li>";
-											echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"". base_url() . "products/sach-yeu-thich-00001.html\">Sách yêu thích</a></li>";
-											echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"". base_url() . "products/sach-ban-chay-00002.html\">Sách bán chạy</a></li>";
+											echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"#moi-ve\">Sách yêu thích</a></li>";
+											echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"#ban-chay\">Sách bán chạy</a></li>";
 										} else {
 											echo "<li class=\"nav-item nav-item-lv1 active\"><a class=\"nav-link\" href=\"../Home\">Trang chủ</a></li>";
 											echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"BangTin\">Bảng Tin</a></li>";
@@ -214,7 +214,7 @@
                 var height = $("#btn-toggle").next().css("height");
                 if (height == '0px') {
                     $("#btn-toggle").next().animate({
-                        "height": "40%"
+                        "height": "50%"
                     }, 450);
                 } else {
                     $("#btn-toggle").next().animate({

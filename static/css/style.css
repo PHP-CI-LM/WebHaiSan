@@ -196,6 +196,7 @@ header nav .active a {
 
 .icon-bar.vertical {
     display: block;
+    transition: all 0.5s ease;
 }
 
 .icon-bar.horizontal>ul li {
@@ -513,7 +514,7 @@ header nav .active a {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    width: 50%;
+    width: 75%;
     height: 100%;
     overflow: hidden;
 }
@@ -522,11 +523,11 @@ header nav .active a {
     display: block;
     position: relative;
     width: 100%;
-    transition: all 0.2s ease;
+    transition: all 0.35s ease;
 }
 
 .book div.thumbnail img:hover {
-    transform: scale(1.025, 1.025);
+    transform: scale(1.05, 1.05);
 }
 
 .book .info-book {
@@ -645,7 +646,7 @@ header nav .active a {
     display: block;
     position: fixed;
     left: 0;
-    top: 100px;
+    top: 115px;
     width: 106%;
     height: 0;
     overflow: hidden;

@@ -1,70 +1,35 @@
-###################
-What is CodeIgniter
-###################
+==========================================================
+Project demo cuối kỳ: Nghiên cứu framework PHP CodeIgniter
+==========================================================
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+:Phiên bản dùng: 3.1.1
+:Đề tài: Website bán hải sản trực tuyến
 
-*******************
-Release Information
-*******************
+---------
+Chuẩn bị
+---------
+1. Apache Server 
+2. MySQL Server 8.0
+3. PHP 7.3 trỏ lên
+:Chú ý: Có thể thay thế những lựa chọn trên bằng các phần mềm có chức năng tạo và hỗ trợ chạy local server như: WAMPP, XAMPP,...
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+------------------
+Các bước cài đặt
+------------------
+1. Chạy các file script (nằm ở thư mục scriptSQL) theo thứ tự sau để chuẩn bị cơ sở dữ liệu cho website
+    - create_Table_View.sql
+    - create_Func_Proc.sql
+    - insertData.sql
 
-**************************
-Changelog and New Features
-**************************
+2. Cấu hình project để có thể kết nối đến csdl vừa cài đặt
+    - :Bước 1: Mở project, truy cập đến file có đường dẫn sau: application/config/database.php
+    - :Bước 2: Thay đổi các thông tin như: hostname, username, password dựa theo thông tin cấu hình ở máy mỗi người
+    - :Bước 3: Dùng trình duyệt truy cập đến đường dẫn localhost/<TenProject> để chạy thử
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
 
-*******************
-Server Requirements
-*******************
+-------------------
+Demo ứng dụng
+-------------------
+`<https://demociframework.000webhostapp.com/>`
 
-PHP version 5.6 or newer is recommended.
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
-
-************
-Installation
-************
-
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
-
-*******
-License
-*******
-
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
-
-*********
-Resources
-*********
-
--  `User Guide <https://codeigniter.com/docs>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.

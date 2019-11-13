@@ -7,12 +7,18 @@ class Category extends CI_Controller {
         parent::__construct();
     }
 
-    public function index($name) {
-        $idCategory = substr($name, strlen($name) - 5, 5);
+    public function index($type) {
         $this->load->model("Product_Model");
-        $result = $this->Product_Model->getProductOfCategory("type".$idCategory);
-        // var_dump($result);
-        $this->load->view("ViewFilterCat", ["products" => $result]);
+        switch ($type) {
+            case 1: case 3: case 5: case 4:
+                $result = $this->Product_Model->getProductOfCategory($type);
+                // var_dump($result);
+                $this->load->view("ViewFilterCat", ["products" => $result]);
+                break;
+            default:
+                redirect('home');
+                
+        }
     }
 
 }
