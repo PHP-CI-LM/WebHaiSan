@@ -67,7 +67,7 @@
 			<div class="bookshelf" style="margin: 1em 1em 1em 0em;">
 				<div class="row descrip">
 					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="padding-left: 0;">
-						<div class="title">Danh mục sản phẩm</div>
+						<div class="title">Danh mục</div>
 					</div>
 					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-6"></div>
 				</div>

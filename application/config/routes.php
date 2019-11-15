@@ -59,4 +59,5 @@ $route['category/oc-ngao-so.html'] = 'category/index/5';
 $route['products/(:any).html'] = 'Products/index/$1';
 $route['product/(:any).html'] = 'Products/detail/$1';
 $route['login.html']['GET'] = 'Account/login';
+$route['sign-up.html'] = 'Account/signup';
 $route['gio-hang.html'] = 'Cart';

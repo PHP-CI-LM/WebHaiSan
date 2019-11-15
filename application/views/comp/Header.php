@@ -45,7 +45,7 @@
 													if ($user === null) {
 														echo '<ul>';
 														echo '<li><a href="' . base_url() . 'login.html">Đăng nhập</a>';
-														echo '<li><a class="signup-window" href="#signup-box">Đăng ký tài khoản</a>';
+														echo '<li><a class="signup-window" href="' . base_url() . 'sign-up.html">Đăng ký tài khoản</a>';
 														echo "</ul>";
 													} else {
 														echo '<ul>';
@@ -145,52 +145,6 @@
                 </div>
             </nav>
     </header>
-    <div class="signup-container" id="signup-box">
-        <h1>Đăng ký</h1>
-        <span class="img-close"><i id="size-icon" class="fa fa-close"></i></span>
-        <form class="signup-content">
-            <div class="form-group">
-                <label class="control-label" for="NameSignUp">Tên đăng nhập</label>
-                <input type="text" name="NameSignUp" value="" placeholder="User name" maxlength="10" autocomplete="off" id="NameSignUp" required>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="UserSignUp">Tên người dùng</label>
-                <input type="text" name="UserSignUp" value="" placeholder="Your name" maxlength="50" autocomplete="off" id="UserSignUp" required>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="Sex">Giới tính</label> <select class="form-control" name="Sex" id="Sex">
-					<option>Nam</option>
-					<option>Nữ</option>
-				</select>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="BirthDate">Ngày sinh</label> <input id="typedate" type="date" name="Date" value="" id="BirthDate" required>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="Address">Địa chỉ</label> <input type="text" name="Address" value="" placeholder="Address" maxlength="255" id="Address" required>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="Email">Email</label> <input type="email" name="Email" value="" placeholder="Email" maxlength="50" id="Email" required>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="PhoneNumber">Số điện thoại
-					liên hệ</label> <input type="number" name="PhoneNumber" value="" placeholder=" Your phone number" maxlength="10" id="PhoneNumber" required>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="Password">Mật khẩu đăng
-					nhập</label> <input type="password" name="Password" value="" placeholder=" Your password" id="Password" maxlength="50">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="Confirmpassword">Xác nhận
-					mật khẩu</label> <input type="password" name="Confirmassword" value="" placeholder=" Confirm your password" id="Confirmpassword" maxlength="50">
-            </div>
-            <div style="position: relative; width: 100%; text-align: center">
-                <button class="button submit-button" onclick="dangkytk()">Đăng
-					ký</button>
-            </div>
-            </br>
-        </form>
-    </div>
     <script type="text/javascript">
         $(document).ready(function() {
 
@@ -242,38 +196,6 @@
                 });
             });
         });
-
-        function dangkytk() {
-            var TenDangNhap, TenNguoiDung, GioiTinh, NgaySinh, DiaChi, Email, SDT, MatKhau, XNMatKhau;
-            TenDangNhap = $('#NameSignUp').val();
-            MatKhau = $('#Password').val();
-            TenNguoiDung = $('#UserSignUp').val();
-            GioiTinh = $('#Sex').val();
-            NgaySinh = $('#typedate').val();
-            DiaChi = $('#Address').val();
-            Email = $('#Email').val();
-            SDT = $('#PhoneNumber').val();
-            XNMatKhau = $('#Confirmpassword').val();
-            if (confirmpass(MatKhau, XNMatKhau) == true) {
-                $.post('SignUp', {
-                    TenDangNhap: TenDangNhap,
-                    TenNguoiDung: TenNguoiDung,
-                    GioiTinh: GioiTinh,
-                    NgaySinh: NgaySinh,
-                    DiaChi: DiaChi,
-                    Email: Email,
-                    SDT: SDT,
-                    MatKhau: MatKhau
-                }, function() {
-                    $('.signup-container').fadeOut(100);
-                });
-            }
-        }
-
-        function confirmpass(MatKhau, XNMatKhau) {
-            return (MatKhau == XNMatKhau)
-
-        }
     </script>
 </body>
 

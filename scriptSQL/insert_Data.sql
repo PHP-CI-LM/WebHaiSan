@@ -33,3 +33,6 @@ CALL `webhaisan`.`sp_addProduct`(@id_product, 'Sò Mai Sống', 145000, 'Sò mai
 CALL `webhaisan`.`sp_addProduct`(@id_product, 'Vẹm Xanh Sống', 115000, 'Vẹm xanh Nha Trang thịt ngọt và béo, đặc biệt có nhiều tác dụng tốt cho cơ thể như hỗ trợ về xương khớp nên phù hợp cho cả người già.', '11/12/2019', 'https://product.hstatic.net/1000030244/product/img_2534_-_copy_85895517b89049f7b6235eb314501d2f_grande.jpg', 'Ngao-Sò-Ốc');
 CALL `webhaisan`.`sp_addProduct`(@id_product, 'Ốc Nhảy sống (Kg)', 180000, 'Ốc nhảy săn dai, vị ngọt với hương ốc đặc biệt mang lại cho thực khách cảm giác như được nếm một hương vị ngon mới lạ.', '11/12/2019', 'https://product.hstatic.net/1000030244/product/oc_-_2019-08-26t162634.574_2b0841a2a1b34b5f98e0029638824c5c_grande.png', 'Ngao-Sò-Ốc');
 CALL `webhaisan`.`sp_addProduct`(@id_product, 'Ốc Chip Chip ( Sò Lụa ) Kg', 150000, 'Ốc Chip Chip hay còn gọi là Sò Lụa , ốc Chip Chip thuộc loại ốc nổi tiếng ở vùng biển Phan Thiết, Phú Yên. Ốc Chip Chip sống shop nhận sống mỗi ngày, thả hồ nước biển chạy oxi liên tục đảm bảo ốc sống mạnh. Cam kết giao sống tận nơi. ', '11/12/2019', 'https://product.hstatic.net/1000030244/product/f915457f56ffb3a1eaee_9adfc748398e4e28b9750e9bcf6b0383_grande.jpg', 'Ngao-Sò-Ốc');
+
+INSERT INTO webhaisan.permission VALUES(1, 'admin');
+INSERT INTO webhaisan.permission VALUES(2, 'customer');

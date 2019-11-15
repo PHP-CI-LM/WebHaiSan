@@ -62,9 +62,8 @@ $(document).ready(function(){
 									<span> <strong>Tại sao không đăng kí thành
 											viên?</strong>
 									</span> <br> <span>Thành viên có thể trải nghiệm và được
-										thông báo một cách sớm nhất những chương trình khuyến mãi cũng
-										như những đầu sách đang hot hiện nay.</span> <br>
-									<br> <a class="signup-window btn btn-primary" href="#signup-box" style="color: #eee !important;">Đăng ký ngay!</a>
+										thông báo một cách sớm nhất những chương trình khuyến mãi có 1-0-2.</span> <br>
+									<br> <a class="signup-window btn btn-primary" href="<?php echo base_url()?>sign-up.html" style="color: #eee !important;">Đăng ký ngay!</a>
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -78,7 +77,7 @@ $(document).ready(function(){
 											out.print("<p>Sai mật khẩu!</p>");
 										}
 									%> -->
-									<form action="login" method="POST">
+									<form action="login.html" method="POST">
 										<div class="form-group">
 											<label class="control-label" for="nameLogin">Tên đăng
 												nhập</label> <input type="text" name="nameLogin" value=""
