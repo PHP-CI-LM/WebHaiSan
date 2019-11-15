@@ -100,8 +100,6 @@
                                     <?php
 										if (!$isAdmin) {
 											echo "<li class=\"nav-item nav-item-lv1 active\"><a class=\"nav-link\" href=\"" . base_url() . "\">Trang chủ</a></li>";
-											echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"#moi-ve\">Sách yêu thích</a></li>";
-											echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"#ban-chay\">Sách bán chạy</a></li>";
 										} else {
 											echo "<li class=\"nav-item nav-item-lv1 active\"><a class=\"nav-link\" href=\"../Home\">Trang chủ</a></li>";
 											echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"BangTin\">Bảng Tin</a></li>";
@@ -120,10 +118,6 @@
 											if (!$isAdmin) {
 												echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
 												echo "onclick=\"gotoPage('Home')\"><a href=\"Home\">Trang chủ</a></span> ";
-												echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
-												echo "onclick=\"gotoPage('Categories?danhMuc=yeuthich')\"><a href=\"Categories?danhMuc=yeuthich\">Sách yêu thích</a></span>";
-												echo"<span class=\"toggle-item\" style=\"cursor: pointer;\"";
-												echo "onclick=\"gotoPage('Categories?danhMuc=banchay')\"><a href=\"Categories?danhMuc=banchay\">Sách bán chạy</a></span>";
 											} else {
 												echo"<span class=\"toggle-item\" style=\"cursor: pointer;\"";
 												echo "onclick=\"gotoPage('../Home')\"><a href=\"./Home\">Trang chủ</a></span> ";
