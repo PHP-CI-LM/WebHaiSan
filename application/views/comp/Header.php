@@ -41,11 +41,11 @@
                                             <i class="fa fa-user"></i>
                                             <div class="right-dropdown-content">
                                                 <?php
-													$user = $this->session->userdata('user');
+													$user = $this->session->tempdata('user');
 													if ($user === null) {
 														echo '<ul>';
-														echo '<li><a href="' . base_url() . 'login.html">Đăng nhập</a>';
-														echo '<li><a class="signup-window" href="' . base_url() . 'sign-up.html">Đăng ký tài khoản</a>';
+														echo '<li><a href="' . base_url() . 'dang-nhap.html">Đăng nhập</a>';
+														echo '<li><a class="signup-window" href="' . base_url() . 'dang-ky-thanh-vien.html">Đăng ký tài khoản</a>';
 														echo "</ul>";
 													} else {
 														echo '<ul>';
@@ -53,7 +53,7 @@
                                                             echo '<li><a href="Manager/BangTin">Trang quản lý</a>';
                                                         }
 														echo '<li><a href="ViewInfo">Thông tin tài khoản</a>';
-														echo '<li><a href="logout">Đăng xuất</a>';
+														echo '<li><a href="'. base_url() .'dang-xuat.html">Đăng xuất</a>';
 														echo "</ul>";
 													}
 												?>
@@ -117,10 +117,10 @@
                                         <?php
 											if (!$isAdmin) {
 												echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
-												echo "onclick=\"gotoPage('Home')\"><a href=\"Home\">Trang chủ</a></span> ";
+												echo "onclick=\"gotoPage('". base_url()."')\"><a href=\"Home\">Trang chủ</a></span> ";
 											} else {
 												echo"<span class=\"toggle-item\" style=\"cursor: pointer;\"";
-												echo "onclick=\"gotoPage('../Home')\"><a href=\"./Home\">Trang chủ</a></span> ";
+												echo "onclick=\"gotoPage('". base_url()."')\"><a href=\"". base_url() ."\">Trang chủ</a></span> ";
 												echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
 												echo "onclick=\"gotoPage('BangTin')\"><a href=\"BangTin\">Bảng tin</a></span>";
 												echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";

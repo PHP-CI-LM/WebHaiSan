@@ -2,10 +2,40 @@ Drop Procedure If Exists sp_addCategory;
 Drop Procedure If Exists sp_addProduct;
 Drop Procedure If Exists sp_addAccount;
 Drop Procedure If Exists sp_addCustomer;
+Drop Function If Exists fc_login;
+
 
 
 DELIMITER $$
-Create Procedure sp_addAccount(OUT id int(11), IN UserName varchar(30), IN Pass text, IN id_permission int(11))
+Create Function fc_login(
+	username varchar(30) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci, 
+    pass varchar(255) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci
+)
+Returns varchar(30)
+READS SQL DATA
+DETERMINISTIC
+Begin
+	Set @isExist = Exists(Select 1 From `account` Where `account`.UserName = UserName And `account`.`Password` = pass);
+    If (@isExist = 0) Then
+		Return '-1';
+	Else
+		Begin
+			Select UserName From `account` Where `account`.UserName = UserName Into @Id;
+            Return @Id;
+        End;
+	End If;
+End;
+$$
+
+
+
+DELIMITER $$
+Create Procedure sp_addAccount(
+	OUT id int(11), 
+    IN UserName varchar(30) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci, 
+    IN Pass varchar(255) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci, 
+    IN id_permission int(11)
+)
 Begin
 	Set @isExist = Exists(Select 1 From `account` Where `account`.UserName = UserName);
     If (@isExist = 0) Then

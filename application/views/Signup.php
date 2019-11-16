@@ -57,12 +57,12 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="board">
-									<?php echo form_open('sign-up.html'); ?>
+									<?php echo form_open('dang-ky-thanh-vien.html'); ?>
 									<?php echo validation_errors(); ?>
 									<form action="#" method="POST">
 										<div class="form-group">
 											<label class="control-label" for="NameSignUp">Tên đăng nhập</label>
-											<input type="text" class="form-control" name="username" value="" placeholder="User name" maxlength="20" autocomplete="off" id="NameSignUp" required>
+											<input type="text" class="form-control" name="username" value="" placeholder="User name" maxlength="30" autocomplete="on" id="NameSignUp" required>
 										</div>
 										<div class="form-group">
 											<label class="control-label" for="Password">Mật khẩu</label> 

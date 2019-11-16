@@ -69,31 +69,28 @@ $(document).ready(function(){
 							<div class="col-sm-6">
 								<div class="board">
 									<h3>Đã có tài khoản</h3>
-									<!-- <%
-										String err = request.getParameter("err");
-										if ("1".equals(err)) {
-											out.print("<p>Tên đăng nhập không tồn tại!</p>");
-										} else if ("0".equals(err)) {
-											out.print("<p>Sai mật khẩu!</p>");
-										}
-									%> -->
-									<form action="login.html" method="POST">
+									<?php echo form_open('dang-nhap.html'); ?>
+									<?php echo validation_errors(); ?>
+									<?php 
+										if (isset($error)	)
+											echo '<p style="color: red;">'. $error .'</p>';
+									?>
+									<form action="#" method="POST">
 										<div class="form-group">
-											<label class="control-label" for="nameLogin">Tên đăng
-												nhập</label> <input type="text" name="nameLogin" value=""
-												placeholder="Username" id="nameLogin" class="form-control">
+											<label class="control-label" for="username">Tên đăng
+												nhập</label> <input type="text" name="username" value=""
+												placeholder="Username" id="username" class="form-control" max-length="30">
 										</div>
 										<div class="form-group">
-											<label class="control-label" for="passLogin">Mật khẩu</label>
-											<input type="password" name="passLogin" value=""
-												maxlength="10" placeholder="Password" id="passLogin"
+											<label class="control-label" for="password">Mật khẩu</label>
+											<input type="password" name="password" value=""
+												maxlength="10" placeholder="Password" id="password"
 												class="form-control">
 										</div>
 										<input type="submit" value="Đăng nhập" class="btn btn-primary"
 											id="btn-search" style="width: max-content !important">
 										<a class="forget-password" href="#form"><i class="fa fa-question-circle" id="QuenMK"></i></a>
 									</form>
-									
 								</div>
 							</div>
 						</div>
