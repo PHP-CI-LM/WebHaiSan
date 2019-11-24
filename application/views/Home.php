@@ -212,7 +212,7 @@
 
 	<!-- Phần footer cho trang Web -->
 	<!-- <%@ include file="../comp/Footer.jsp"%> -->
-	<?php require_once('comp/Footer.php') ?>
+	<!-- <?php require_once('comp/Footer.php') ?> -->
 
 	<script type="text/javascript">
 		$(document).ready(function() {

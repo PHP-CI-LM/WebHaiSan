@@ -107,12 +107,12 @@ CREATE TABLE `orders_detail` (
 
 -- Create View 'new_product'
 Create Or Replace View new_products As
-	Select p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy 
-    From products As p, categories As c 
-    Where p.id_category = c.id_category Order By importDate DESC;
+	Select p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy, o.name_origin, p.size, u.name_unit 
+    From products As p, categories As c, origins As o, units As u 
+    Where p.id_category = c.id_category And p.id_orgin = o.id And p.id_unit = u.id_unit Order By importDate DESC;
 
 -- Create View 'selling_product'
 Create Or Replace View selling_products As
-	Select p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy 
-    From products As p, categories As c 
-    Where p.id_category = c.id_category Order By count_buy DESC;
+	Select p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy, o.name_origin, p.size, u.name_unit 
+    From products As p, categories As c, origins As o, units As u 
+    Where p.id_category = c.id_category And p.id_orgin = o.id And p.id_unit = u.id_unit Order By count_buy DESC;

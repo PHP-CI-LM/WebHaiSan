@@ -126,7 +126,7 @@
 		</div>
 	</div>
 
-	<?php require_once("comp/Footer.php")?>
+	<!-- <?php require_once("comp/Footer.php")?> -->
 	<script type="text/javascript" src="lib/js/Cookies.js"></script>
 	<script type="text/javascript" src="lib/js/ActionCart.js"></script>
 </body>

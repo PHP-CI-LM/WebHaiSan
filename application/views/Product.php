@@ -252,7 +252,7 @@
 	</div>
 
 	<!-- Phần footer cho trang Web -->
-	<?php require_once "comp/Footer.php" ?>
+	<!-- <?php require_once "comp/Footer.php" ?> -->
 
 	<script type="text/javascript">
 		$(document).ready(function() {

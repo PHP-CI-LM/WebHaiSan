@@ -66,7 +66,7 @@
 	</div>
 
 	<!-- Phần footer cho trang Web -->
-	<?php require_once("comp/Footer.php") ?>
+	<!-- <?php require_once("comp/Footer.php") ?> -->
 </body>
 
 </html>
