@@ -3,8 +3,17 @@ CREATE DATABASE webhaisan;
 $$
 
 
+
+-- Create Table 'banner'
+create table banner(
+	id int auto_increment not null,
+    path varchar(255),
+    primary key(id)
+);
+
+
 -- Create Table 'permission' of account
-CREATE TABLE `permission` (
+CREATE TABLE `permissions` (
   `id_permission` int(11) NOT NULL auto_increment,
   `name_permission` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id_permission`)
@@ -13,7 +22,7 @@ CREATE TABLE `permission` (
 
 
 -- Create Table 'account'
-CREATE TABLE `account` (
+CREATE TABLE `accounts` (
   `AccountID` int(11) NOT NULL auto_increment,
   `UserName` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `Password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -38,7 +47,7 @@ CREATE TABLE `customers` (
 
 
 -- Create Table 'category'
-CREATE TABLE `category` (
+CREATE TABLE `categories` (
   `id_category` int(11) NOT NULL AUTO_INCREMENT,
   `name_category` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_category`)
@@ -48,7 +57,7 @@ CREATE TABLE `category` (
 
 
 -- Create Table 'product'
-CREATE TABLE `product` (
+CREATE TABLE `products` (
   `id_product` int(11) NOT NULL AUTO_INCREMENT,
   `name_product` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` float DEFAULT NULL,
@@ -99,11 +108,11 @@ CREATE TABLE `orders_detail` (
 -- Create View 'new_product'
 Create Or Replace View new_products As
 	Select p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy 
-    From product As p, category As c 
+    From products As p, categories As c 
     Where p.id_category = c.id_category Order By importDate DESC;
 
 -- Create View 'selling_product'
 Create Or Replace View selling_products As
 	Select p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy 
-    From product As p, category As c 
+    From products As p, categories As c 
     Where p.id_category = c.id_category Order By count_buy DESC;

@@ -12,12 +12,12 @@ class Home extends CI_Controller {
 	{
 		$this->load->model('BangTin_Model');
 		$this->load->model('Product_Model');
-		// $result = $this->BangTin_Model->getAllBangTin();
+		$result = $this->BangTin_Model->getAllBangTin();
 		$newProducts = $this->Product_Model->getProductsNew(4);
 		$sellingProduct = $this->Product_Model->getProductsSelling(4);
 		// var_dump($newProducts);
 		$this->load->view('Home', [
-			// 'bangTin' => $result, 
+			'bangTin' => $result, 
 			'newProducts' => $newProducts,
 			'sellingProducts' => $sellingProduct
 		]);

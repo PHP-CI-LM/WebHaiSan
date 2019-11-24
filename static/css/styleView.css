@@ -1,38 +1,38 @@
-.thumbnail{
-	text-align: center;
+.thumbnail {
+    text-align: center;
 }
 
-.thumbnail img{
-	max-width: 300px;
+.thumbnail img {
+    max-width: 300px;
     max-height: 300px;
 }
 
-.thumbnail.small img{
-	max-width: 150px;
+.thumbnail.small img {
+    max-width: 150px;
     max-height: 150px;
 }
 
-.board{
-	display: inline-block;
+.board {
+    display: inline-block;
     position: relative;
     width: 100%;
     padding: 19px 0px !important;
 }
 
 .table-modify {
-	min-height: 20px;
-	padding: 5px 19px;
-	margin-bottom: 20px;
-	margin-top: 5px;
-	background-color: #FFFFFF;
-	border: 1px solid #E3E3E3;
-	border-radius: 4px;
-	overflow: hidden;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05)
+    min-height: 20px;
+    padding: 5px 19px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    background-color: #FFFFFF;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+    overflow: hidden;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05)
 }
 
-.row-table{
+.row-table {
     display: block;
     position: relative;
     margin: 10px 0px;
@@ -40,71 +40,70 @@
     border-bottom: 1px groove;
 }
 
-#info{
-	display: block;
-	text-align: left;
-	margin-top: 10px;
+#info {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 5rem;
 }
 
-#info .error{
-	color: red;
+#info .error {
+    color: red;
 }
 
-#info ul li{
-	display: block;
+#info ul li {
+    display: block;
     max-width: 600px;
 }
 
-#info ul li p{
-	display: inline-block;
-	margin: 10px 0px;
+#info ul li p {
+    display: inline-block;
+    margin: 10px 0px;
 }
 
-#info ul li span{
-	display: inline-block;
+#info ul li span {
+    display: inline-block;
     position: relative;
     padding: 0px;
     margin: 7px 0px;
 }
 
-.mini-image-bar{
-	
-}
+.mini-image-bar {}
 
-.mini-image-bar .mini-image{
-	display: block;
+.mini-image-bar .mini-image {
+    display: block;
     width: 85%;
     height: 85%;
     opacity: 0.75;
 }
 
-.mini-image-bar .mini-image:hover{
-	cursor: pointer;
+.mini-image-bar .mini-image:hover {
+    cursor: pointer;
 }
 
-.mini-image.active{
-	opacity: 1.0;
+.mini-image.active {
+    opacity: 1.0;
 }
 
-.mini-image.active img{
-	border: 1px solid gray;
+.mini-image.active img {
+    border: 1px solid gray;
 }
 
-.mini-image-bar .mini-image img{
-	width: inherit;
+.mini-image-bar .mini-image img {
+    width: inherit;
     height: inherit;
 }
 
-.table-modify input[type=number]{
-	display: inline-block;
+.table-modify input[type=number] {
+    display: inline-block;
     position: relative;
     margin: 5px 0px;
     max-width: 40px;
     padding: 0px;
-    line-height: 25px; 
+    line-height: 25px;
 }
 
-.deleteBook{
+.deleteBook {
     display: block;
     position: absolute;
     top: 0px;
@@ -116,34 +115,36 @@
     text-align: center;
 }
 
-.deleteBook i{
+.deleteBook i {
     margin: 3px 0px;
 }
 
-#number{
-	width: 100%;
+#number {
+    width: 100%;
 }
 
-@media (max-width:499px){
-	#number{
-		text-align: center;
-	}
+@media (max-width:499px) {
+    #number {
+        text-align: center;
+    }
 }
 
 @media ( max-width :991px) {
-	#countInput{
-		text-align: center;
-	}
-	
-	.button-modify{
-		text-align: center;
-		margin: 0.5em 0em;
-	}
+    #countInput {
+        text-align: center;
+        margin-left: 0 !important;
+    }
+    input#count {
+        width: auto !important;
+    }
+    .button-modify {
+        text-align: center;
+        margin: 0.5em 0em;
+    }
 }
 
-@media ( min-width :1200px){
-	input#count{
-		margin-top: 10px;
-	}
+@media ( min-width :1200px) {
+    input#count {
+        margin-top: 10px;
+    }
 }
-  

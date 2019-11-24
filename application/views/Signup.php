@@ -34,7 +34,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<ul class="breadcrumb" itemtype="http://schema.org/BreadcrumbList">
-							<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="http://localhost:8080/Web_Ban_Sach/"> <span itemprop="name"> <i class="fa fa-home"></i> Trang chủ
+							<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="<?php echo base_url()?>"> <span itemprop="name"> <i class="fa fa-home"></i> Trang chủ
 									</span>
 								</a> <span><i class="fa fa-angle-right"></i></span>
 								<meta itemprop="position" content="1">

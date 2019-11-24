@@ -23,7 +23,7 @@ if (!function_exists("vn_to_str")) {
         foreach($unicode as $nonUnicode=>$uni) {
             $str = preg_replace("/($uni)/i", $nonUnicode, $str);
         }
-        $str = str_replace(' ','_',$str);
+        $str = str_replace(' ','-',$str);
          
         return $str; 
         }

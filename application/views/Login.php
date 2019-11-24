@@ -34,7 +34,7 @@ $(document).ready(function(){
 						<ul class="breadcrumb" itemtype="http://schema.org/BreadcrumbList">
 							<li itemprop="itemListElement"
 								itemtype="http://schema.org/ListItem"><a itemprop="item"
-								href="http://localhost:8080/Web_Ban_Sach/"> <span
+								href="<?php echo base_url()?>"> <span
 									itemprop="name"> <i class="fa fa-home"></i> Trang chủ
 								</span>
 							</a> <span><i class="fa fa-angle-right"></i></span>
@@ -63,7 +63,7 @@ $(document).ready(function(){
 											viên?</strong>
 									</span> <br> <span>Thành viên có thể trải nghiệm và được
 										thông báo một cách sớm nhất những chương trình khuyến mãi có 1-0-2.</span> <br>
-									<br> <a class="signup-window btn btn-primary" href="<?php echo base_url()?>sign-up.html" style="color: #eee !important;">Đăng ký ngay!</a>
+									<br> <a class="signup-window btn btn-primary" href="<?php echo base_url()?>dang-ky-thanh-vien.html" style="color: #eee !important;">Đăng ký ngay!</a>
 								</div>
 							</div>
 							<div class="col-sm-6">

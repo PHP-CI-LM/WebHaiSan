@@ -13,7 +13,7 @@ class Category extends CI_Controller {
             case 1: case 3: case 5: case 4:
                 $result = $this->Product_Model->getProductOfCategory($type);
                 // var_dump($result);
-                $this->load->view("ViewFilterCat", ["products" => $result]);
+                $this->load->view("Category", ["products" => $result]);
                 break;
             default:
                 redirect('home');
