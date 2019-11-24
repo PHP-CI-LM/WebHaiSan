@@ -1,7 +1,7 @@
 <html>
 
 <body>
-    <footer class="footer">
+    <!-- <footer class="footer">
         <div class="content">
             <div class="site-footer">
                 <div class="copyright clearfix">
@@ -13,12 +13,12 @@
                                         <div class="col-sm-12 col-md-12 col-xs-12 footer-static-title">
                                             <div class="col-sm-4 col-md-4" style="padding-right: 10px;">
                                                 <div class="col-sm-12 col-md-12 col-xs-12 icon-footer" style="margin-bottom: 10px;">
-                                                    <!-- <% 
+                                                    <% 
 														if (request.getRequestURI().indexOf("Manager") == -1)
 															out.println("<img alt=\"logo\" src=\"image/logo.jpg\" style=\"width: 75px; margin-left: 8px;\">");
 														else
 															out.println("<img alt=\"logo\" src=\"../image/logo.jpg\" style=\"width: 75px; margin-left: 8px;\">");
-													%> -->
+													%>
 
                                                 </div>
                                                 <div class="col-sm-12 col-md-12 col-xs-12 address-footer" style="font-size: 13px; float: left;">Số 1, đường Võ Văn Ngân, phường Linh Chiểu, quận Thủ Đức, Tp.Hcm</div>
@@ -71,28 +71,9 @@
                     </div>
                 </div>
             </div>
-    </footer>
+    </footer> -->
 
     <script>
-        $(document).ready(function() {
-            $('a.signup-window').click(function() {
-                //lấy giá trị thuộc tính href - chính là phần tử "#signup-box"
-                var signupBox = $(this).attr('href');
-                //cho hiện hộp đăng nhập trong 300ms
-                $(signupBox).fadeIn(400);
-                // thêm phần tử id="over" vào sau body
-                $('body').append('<div id="over">');
-                $('#over').fadeIn(400);
-                return false;
-            });
-            // khi click đóng hộp thoại
-            $(document).on('click', "span.img-close, #over", function() {
-                $('#over, .signup-container').fadeOut(200, function() {
-                    $('#over').remove();
-                });
-                return false;
-            });
-        });
 
         function addCart() {
             var url = 'ViewCart?action=add'
