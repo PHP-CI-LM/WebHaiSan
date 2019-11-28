@@ -66,16 +66,10 @@
 												style="color: #92929D"></i></a>
                                             <div class="cart-count">
                                                 <?php
-													$count = 0;
-													// Cookie[] arg_Cookies = request.getCookies();
-													// if (arg_Cookies != null) {
-													// 	for (int i = 0; i < arg_Cookies.length; i++) {
-													// 		Cookie cookie = arg_Cookies[i];
-													// 		if (arg_Cookies[i].getName().equalsIgnoreCase("countBook")) {
-													// 			count = Integer.parseInt(cookie.getValue());
-													// 		}
-													// 	}
-													// }
+                                                    $count = 0;
+                                                    if (get_cookie("countProduct") != null) {
+                                                        $count = get_cookie("countProduct");
+                                                    }
 													echo "<span id=\"number\">". $count ."</span>";
 												?>
                                             </div>
@@ -117,7 +111,7 @@
                                         <?php
 											if (!$isAdmin) {
 												echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
-												echo "onclick=\"gotoPage('". base_url()."')\"><a href=\"Home\">Trang chủ</a></span> ";
+												echo "onclick=\"gotoPage('". base_url()."')\"><a href=\"" . base_url() . "\">Trang chủ</a></span> ";
 											} else {
 												echo"<span class=\"toggle-item\" style=\"cursor: pointer;\"";
 												echo "onclick=\"gotoPage('". base_url()."')\"><a href=\"". base_url() ."\">Trang chủ</a></span> ";

@@ -108,24 +108,6 @@
             $('#over').fadeIn(300);
         }
 
-        function addBookToCart(id, soluong) {
-            var count = getCookie("countBook");
-            if (count.length == 0)
-                count = 1;
-            else
-                count++;
-
-            setCookie("book" + count, "id:" + id + "-count:" + soluong); //Thêm sách đã mua vào cookie
-            setCookie("countBook", count);
-            $(".cart-count").load(document.URL + " #number");
-            $("#countInput").load(document.URL + " #count");
-        }
-
-        //Goto url
-        function gotoPage(url) {
-            document.location.href = url;
-        }
-
         //Use in ViewBook.jsp
         function getNumberBuy() {
             var inputNumber = document.getElementById("count");

@@ -78,12 +78,16 @@
 										echo "<li>";
 										echo "<div class=\"row\">";
 										echo "<div class=\"col-xs-12\">";
-										echo "<span style=\"color: #d83808; font-size: 2.2rem; line-height: 1.5rem; margin-top: 15px;\">" . number_format($product["price"]) . "đ";
-										echo "<p style=\"display: block;color: #333; font-size: 1.35rem; margin-top: 15px;\">Giá gốc: <span style=\"font-weight: 700; text-decoration: line-through;\">" . number_format(175000) . "đ</span></p>";
-										echo "<p style=\"display: block;color: #333; font-size: 1.35rem; margin-top: 0px;\">Khuyến mãi: <span style=\"color: #00c4ff; font-weight: 700\">" . number_format(0) . "đ (0%)</span></p>";
+										echo "<span style=\"color: #d83808; font-size: 2.2rem; line-height: 1.5rem; margin-top: 15px;\">" . number_format((int)(($product["price"]*(100 - $product["discount"]))/100)) . "đ";
+										echo "<p style=\"display: block;color: #333; font-size: 1.35rem; margin-top: 15px;\">Giá gốc: <span style=\"font-weight: 700; text-decoration: line-through;\">" . number_format($product["price"]) . "đ</span></p>";
+										echo "<p style=\"display: block;color: #333; font-size: 1.35rem; margin-top: 0px;\">Khuyến mãi: <span style=\"color: #00c4ff; font-weight: 700\">" . number_format((int)(($product["price"]*$product["discount"])/100)) . "đ (" . $product["discount"] . "%)</span></p>";
 										echo "</span></div></div></li>";
 										echo "<li>";
 										echo "<div class=\"row\">";
+										echo "<div class=\"col-xs-12\">";
+										echo "<span>";
+										echo "Nguồn gốc: ". $product["name_origin"];
+										echo "</span></div>";
 										echo "<div class=\"col-xs-12\">";
 										echo "<span>";
 										if (strlen($product["descript"]) > 0)
@@ -93,7 +97,7 @@
 										echo "</span></div>";
 										echo "<div class=\"col-xs-12\">";
 										echo "<span>";
-										echo "Kích thước: 2 - 3 con/kg";
+										echo "Trọng lượng: " . $product["size"] . " " . $product["name_unit"];
 										echo "</span></div></div></li>";
 									}
 									?>
@@ -218,67 +222,11 @@
 		</div>
 	</div>
 
-	<div>
-		<div class="dialog" id="confirm-form" style="width: 60%;">
-			<div class="header">
-				<div class="title">Thanh toán</div>
-				<a class="f-right close" href="#"><i class="fa fa-close"></i></a>
-			</div>
-			<ul class="content">
-				<li class="item" style="height: 100px;"><span class="title">Tên
-						người mua</span>
-					<div class="detail">
-						<input id="username" type="text" autocomplete="on" name="username" placeholder="Name..." value="" />
-					</div>
-				</li>
-				<li class="item" style="height: 100px;"><span class="title">Địa
-						chỉ giao hàng</span>
-					<div class="detail">
-						<input id="address" type="text" name="address" placeholder="Address..." value="" />
-					</div>
-				</li>
-				<li class="item" style="height: 100px;"><span class="title">Số
-						điện thoại</span>
-					<div class="detail">
-						<input id="phone" type="text" name="phone" placeholder="Phone..." value="" />
-					</div>
-				</li>
-				<li class="item">
-					<button class="button submit-button" onclick="addCart()">Đặt
-						hàng</button>
-				</li>
-			</ul>
-		</div>
-	</div>
-
 	<!-- Phần footer cho trang Web -->
-	<!-- <?php require_once "comp/Footer.php" ?> -->
+	<?php require_once "comp/Footer.php" ?>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			// khi click đóng hộp thoại
-			$(document).on('click', "a.close, #over", function() {
-				$('#over, .dialog').fadeOut(300, function() {
-					$('#over').remove();
-					var url = location.href;
-					if (url.indexOf('ViewCart') == -1) {
-						deleteAllCookie();
-
-						var button = $('.cart-count')[0];
-						$(button).find('#number').text(0);
-					}
-				});
-				return false;
-			});
-
-			$(document).on('click', "button.submit-button", function() {
-				$('#over, .dialog').fadeOut(300, function() {
-					$('#over').remove();
-					deleteAllCookie();
-				});
-				return false;
-			});
-
 			let max_height = $('.board').height() - 2 * $('.board .title').height();
 			$('.board ul.content').css({
 				"max-height": max_height

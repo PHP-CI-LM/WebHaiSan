@@ -13,7 +13,7 @@ class Product extends CI_Controller {
         $id_product = (int)substr($uri_product, strlen($uri_product) - 5, 5);
         $product = (array)($this->Product_Model->getProductOfId($id_product));
         $similarProducts = $this->Product_Model->getSimilarProductWithoutId($id_product, 5);
-        // var_dump($similarProducts);
+        // var_dump($product);
         $this->load->view("Product", [
             "product" => $product,
             "similarProducts" => $similarProducts

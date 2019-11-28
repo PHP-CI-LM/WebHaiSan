@@ -14,7 +14,6 @@
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
@@ -98,6 +97,7 @@
 				</div>
 			</div>
 		</section>
+		<div class="waiting"><div class="lds-roller"><div></div><div></div><div></div><div></div></div>
 		<article class="container">
 			<div class="bookshelf" style="margin: 1rem 2.85rem 1rem 1.05rem;" id="moi-ve">
 				<div class="row descrip">
@@ -122,7 +122,7 @@
 							echo "<i class=\"fa fa-info-circle\" onclick=\"gotoPage('product/". vn_to_str($product["name_product"] . "-" . substr("00000". $product["id_product"], strlen("00000". $product["id_product"]) - 5, 5)) . ".html')\"></i>";
 							echo "<div class=\"content content-right\"><span>Thông tin chi tiết</span></div></div></div></li>";
 							echo "<li><div class=\"button-modify\"><div class=\"button-arc cool right\" style=\"transform: translateY(150%)\">";
-							echo "<i class=\"fa fa-cart-plus\" onclick=\"addBookToCart('" . $product["id_product"] . "', 1)\"></i>";
+							echo "<i class=\"fa fa-cart-plus\" onclick=\"addToCart(" . $product["id_product"] . ", 1, " . $product["price"] .")\"></i>";
 							echo "<div class=\"content content-right\"><span>Cho vào giỏ hàng</span></div></div></div></li>";
 							echo "<li><div class=\"button-modify\"><div class=\"button-arc danger right\" style=\"transform: translateY(300%)\">";
 							echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1)\"></i>";
@@ -160,7 +160,7 @@
 							echo "<i class=\"fa fa-info-circle\" onclick=\"gotoPage('ViewBook?id=" . $product["id_product"] . "')\"></i>";
 							echo "<div class=\"content content-right\"><span>Thông tin chi tiết</span></div></div></div></li>";
 							echo "<li><div class=\"button-modify\"><div class=\"button-arc cool right\" style=\"transform: translateY(150%)\">";
-							echo "<i class=\"fa fa-cart-plus\" onclick=\"addBookToCart('" . $product["id_product"] . "', 1)\"></i>";
+							echo "<i class=\"fa fa-cart-plus\" onclick=\"addToCart(" . $product["id_product"] . ", 1, " . $product["price"] . ")\"></i>";
 							echo "<div class=\"content content-right\"><span>Cho vào giỏ hàng</span></div></div></div></li>";
 							echo "<li><div class=\"button-modify\"><div class=\"button-arc danger right\" style=\"transform: translateY(300%)\">";
 							echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1)\"></i>";
@@ -168,7 +168,7 @@
 							echo "<div class=\"thumbnail\">";
 							echo "<img onclick=\"gotoPage('product/". vn_to_str($product["name_product"] . "-" . substr("00000". $product["id_product"], strlen("00000". $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . $product["DuongDan"] . "\"></div>";
 							echo "<div class=\"info-book\"><div class=\"title\">" . $product["name_product"] . "</div>";
-							echo "<div class=\"price\">" . $product["price"] . "</div></div></div></div>";
+							echo "<div class=\"price\">" . number_format($product["price"]) . "đ/kg</div></div></div></div>";
 						}
 					}
 					?>
@@ -177,73 +177,18 @@
 		</article>
 	</div>
 
-	<div>
-		<div class="dialog" id="confirm-form" style="width: 60%;">
-			<div class="header">
-				<div class="title">Thanh toán</div>
-				<a class="f-right close" href="#"><i class="fa fa-close"></i></a>
-			</div>
-			<ul class="content">
-				<li class="item" style="height: 100px;"><span class="title">Tên
-						người mua</span>
-					<div class="detail">
-						<input id="username" type="text" autocomplete="on" name="username" placeholder="Name..." value="" />
-					</div>
-				</li>
-				<li class="item" style="height: 100px;"><span class="title">Địa
-						chỉ giao hàng</span>
-					<div class="detail">
-						<input id="address" type="text" name="address" placeholder="Address..." value="" />
-					</div>
-				</li>
-				<li class="item" style="height: 100px;"><span class="title">Số
-						điện thoại</span>
-					<div class="detail">
-						<input id="phone" type="text" name="phone" placeholder="Phone..." value="" />
-					</div>
-				</li>
-				<li class="item">
-					<button class="button submit-button" onclick="addCart()">Đặt
-						hàng</button>
-				</li>
-			</ul>
-		</div>
-	</div>
-
 	<!-- Phần footer cho trang Web -->
-	<!-- <%@ include file="../comp/Footer.jsp"%> -->
-	<!-- <?php require_once('comp/Footer.php') ?> -->
+	<?php require_once('comp/Footer.php') ?>
 
+
+	
+	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.js"></script>
+	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			// khi click đóng hộp thoại
-			$(document).on('click', "a.close, #over", function() {
-				$('#over, .dialog').fadeOut(300, function() {
-					$('#over').remove();
-					var url = location.href;
-					if (url.indexOf('ViewCart') == -1) {
-						deleteAllCookie();
-
-						var button = $('.cart-count')[0];
-						$(button).find('#number').text(0);
-					}
-				});
-				return false;
-			});
-
-			$(document).on('click', "button.submit-button", function() {
-				$('#over, .dialog').fadeOut(300, function() {
-					$('#over').remove();
-					deleteAllCookie();
-				});
-				return false;
-			});
-		});
-
 		function openNewTab(url) {
 			window.open(url, '_blank');
 		}
-
+		
 		function changeStateOrder(maHD, bool) {
 			if (bool) {
 				var url = window.location.href;

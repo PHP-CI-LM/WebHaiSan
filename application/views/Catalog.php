@@ -43,23 +43,21 @@
 						for ($i = 0; $i < sizeof($product); $i++) {
 							$product = $products[$i];
 							echo "<div class=\"col-lg-3 col-md-4 col-sm-6 col-xs-12\">";
-							echo "<div class=\"book\" id=\"" . $product["MaSach"] . "\"><div class=\"icon-bar vertical\">";
+							echo "<div class=\"book\" id=\"" . $product["id_product"] . "\"><div class=\"icon-bar vertical\">";
 							echo "<ul><li><div class=\"button-modify\">";
-							echo "<div class=\"button-arc forest right\" onclick=\"gotoPage('" . base_url() . "product/" . str_replace("_", "-", vn_to_str($product["TenSach"]). "-" . substr($product["MaSach"], 1, strlen($product["TenSach"]))) . ".html')\">";
-							echo "<i class=\"fa fa-info-circle\" onclick=\"gotoPage('" . base_url() . "product/" . str_replace("_", "-", vn_to_str($product["TenSach"]). "-" . substr($product["MaSach"], 1, strlen($product["TenSach"]))) . ".html')\"></i>";
+							echo "<div class=\"button-arc forest right\" onclick=\"gotoPage('product/". vn_to_str($product["name_product"] . "-" . substr("00000". $product["id_product"], strlen("00000". $product["id_product"]) - 5, 5)) . ".html')\">";
+							echo "<i class=\"fa fa-info-circle\" onclick=\"gotoPage('product/". vn_to_str($product["name_product"] . "-" . substr("00000". $product["id_product"], strlen("00000". $product["id_product"]) - 5, 5)) . ".html')\"></i>";
 							echo "<div class=\"content content-right\"><span>Thông tin chi tiết</span></div></div></div></li>";
 							echo "<li><div class=\"button-modify\"><div class=\"button-arc cool right\" style=\"transform: translateY(150%)\">";
-							echo "<i class=\"fa fa-cart-plus\" onclick=\"addBookToCart('" . $product["MaSach"] . "', 1)\"></i>";
+							echo "<i class=\"fa fa-cart-plus\" onclick=\"addToCart(" . $product["id_product"] . ", 1, " . $product["price"] .")\"></i>";
 							echo "<div class=\"content content-right\"><span>Cho vào giỏ hàng</span></div></div></div></li>";
 							echo "<li><div class=\"button-modify\"><div class=\"button-arc danger right\" style=\"transform: translateY(300%)\">";
-							echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["MaSach"] . "', 1)\"></i>";
+							echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1)\"></i>";
 							echo "<div class=\"content content-right\"><span>Mua ngay</span></div></div></div></li></ul></div>";
 							echo "<div class=\"thumbnail\">";
-							echo "<img onclick=\"gotoPage('" . base_url() . "product/" . str_replace("_", "-", vn_to_str($product["TenSach"]). "-" . substr($product["MaSach"], 1, strlen($product["TenSach"]))) . ".html')\" 
-								style=\"cursor:pointer\" alt=\"s00001\" src=\"lib/image/"
-									. $product["DuongDan"] + "\"></div>";
-							echo "<div class=\"info-book\"><div class=\"title\">" . $product["TenSach"] . "</div>";
-							echo "<div class=\"price\">" . $product["GiaBan"] . "</div></div></div></div>";
+							echo "<img onclick=\"gotoPage('product/". vn_to_str($product["name_product"] . "-" . substr("00000". $product["id_product"], strlen("00000". $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . $product["DuongDan"] . "\"></div>";
+							echo "<div class=\"info-book\"><div class=\"title\">" . $product["name_product"] . "</div>";
+							echo "<div class=\"price\">" . number_format($product["price"]) . "đ/kg</div></div></div></div>";
 						}
 					}
 				?>
@@ -101,33 +99,9 @@
 	</div>
 
 	<!-- Phần footer cho trang Web -->
-	<!-- <?php require_once "comp/Footer.php"?> -->
+	<?php require_once "comp/Footer.php"?>
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-			// khi click đóng hộp thoại
-			$(document).on('click', "a.close, #over", function() {
-				$('#over, .dialog').fadeOut(300, function() {
-					$('#over').remove();
-					var url = location.href;
-					if (url.indexOf('ViewCart') == -1) {
-						deleteAllCookie();
-
-						var button = $('.cart-count')[0];
-						$(button).find('#number').text(0);
-					}
-				});
-				return false;
-			});
-
-			$(document).on('click', "button.submit-button", function() {
-				$('#over, .dialog').fadeOut(300, function() {
-					$('#over').remove();
-					deleteAllCookie();
-				});
-				return false;
-			});
-		});
 	</script>
 </body>
 </html>

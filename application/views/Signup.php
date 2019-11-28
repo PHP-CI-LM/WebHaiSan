@@ -104,31 +104,10 @@
 		</section>
 	</div>
 
-	<!-- <?php require_once('comp/Footer.php') ?> -->
+	<?php require_once('comp/Footer.php') ?>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('a.forget-password').click(function() {
-				//lấy giá trị thuộc tính href - chính là phần tử "#login-box"
-				var loginBox = $(this).attr('href');
-
-				//cho hiện hộp đăng nhập trong 300ms
-				$(loginBox).fadeIn(300);
-
-				// thêm phần tử id="over" vào sau body
-				$('body').append('<div id="over">');
-				$('#over').fadeIn(300);
-
-				return false;
-			});
-
-			// khi click đóng hộp thoại
-			$(document).on('click', "a.close, #over, button.submit-button", function() {
-				$('#over, .dialog').fadeOut(300, function() {
-					$('#over').remove();
-				});
-				return false;
-			});
 		});
 
 		function check_pass() {
