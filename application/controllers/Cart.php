@@ -23,6 +23,7 @@ class Cart extends CI_Controller
                     $slg =  explode(":", explode("-", get_cookie($cookieName . $i))[1])[1];
                     $product = (array) $this->Product_Model->getProductOfId($id, 1);
                     if ($product != null) {
+                        $product["cookie_name"] = $cookieName.$i;
                         $product["count"] = $slg;
                         array_push($products, $product);
                     }

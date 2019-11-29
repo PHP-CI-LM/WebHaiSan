@@ -29,24 +29,32 @@ function gotoPage(url) {
     document.location.href = url;
 }
 
+
+//Remove product from cart
 function removeProductFromCart(row) {
-    //Thực hiện xóa sách
-    var index = $(row).attr('id');
-    $(row).parent().remove(); //Xóa sách hiện trên màn hình
-    deleteCookie(getNameCookieAt(index));
+    //Thực hiện xóa sản phẩm
+    var id_product = $($(row).parents('tr')[0]).attr('id'); //Lấy ra cookie_name của sản phẩm đó
+    var c_name = $($(row).parents('tr')[0]).attr('c-name'); //Lấy ra cookie_name của sản phẩm đó
     var soLuong = getCookie('countProduct') - 1; //Giảm số lượng lần mua trong biến đếm
+    var inputQuantity = $($(row).parents('tr')[0]).find('input[type="number"]')[0];
+
+    $($(row).parents('tr')[0]).remove(); //Xóa sản phẩm hiện trên màn hình
+    deleteCookie(c_name);
     setCookie('countProduct', soLuong);
 
     //Cập nhật lại bảng sách
     refreshTableProduct();
 
     //Cập nhật lại bảng giá
-    refreshTablePrice();
+    refreshTotalPrice();
 
     //Cập nhật header giỏ hàng
     refreshHeaderButtonCart(soLuong)
 }
 
+
+
+//Refresh list product in cart
 function refreshTableProduct() {
     var rowTables = $('.row-table');
     if (rowTables.length > 0) {
@@ -61,11 +69,10 @@ function refreshTableProduct() {
     }
 }
 
-function refreshTablePrice(inputQuantity) {
-    var row = $($($(inputQuantity)).parent()).parent();
-    var id_product = $(row).attr('id');
+
+//Refresh total price of cart
+function refreshTotalPrice() {
     var totalPrice = getTotalPrice();
-    setProductCount(id_product, inputQuantity);
     if (totalPrice == 0) {
         $('#button-confirm').find('a').remove();
         $('#button-confirm').append('<a><i class=\"fa fa-money\"></i> <span class=\"content-inner\">Thanh toán</span></a>');
@@ -73,16 +80,34 @@ function refreshTablePrice(inputQuantity) {
     $("#bill").load(document.URL + " #label, #totalPrice");
 }
 
+
+//Refresh one product row in list products of cart
+function refreshRowProduct(inputQuantity) {
+    var row = $(inputQuantity).parents('tr')[0];
+    var cookie_name = $(row).attr('c-name');
+    var id_product = $(row).attr('id');
+    var amount = $(inputQuantity).val();
+    setProductCount(cookie_name, id_product, amount);
+    $($(row).parents('.cart-info')).load(document.URL + " table.table");
+}
+
+
+//Refresh amount number in cart icon header bar
 function refreshHeaderButtonCart(count) {
     var button = $('.cart-count')[0];
     $(button).find('#number').text(count);
 }
 
-function updateProductInCart(index, input) {
-    setProductCount(index, input);
-    refreshTablePrice();
+
+//Event after change input quantity
+function changeQuantity(input) {
+    refreshRowProduct(input);
+    refreshTotalPrice();
 }
 
+
+
+//Calculate and return total price of all product in cart
 function getTotalPrice() {
     var rowTables = $('tbody tr');
     var totalPrice = 0;
@@ -94,6 +119,8 @@ function getTotalPrice() {
     return totalPrice;
 }
 
+
+//Get price of product in row of list product
 function getPrice(row) {
     var input = $(row).find('.quantity input').val();
     var gia = $(row).find('.price').text();
@@ -101,7 +128,9 @@ function getPrice(row) {
     return input * gia;
 }
 
-function findIndexOfCookie(maSanPham) {
+
+//Finding index of cookie name with product have maSanPham
+function findIndexWithIDProduct(maSanPham) {
     var cookies = getListCookie();
     for (let i = 0; i < cookies.length; i++) {
         let cookie = cookies[i];
@@ -111,12 +140,26 @@ function findIndexOfCookie(maSanPham) {
     return false;
 }
 
-//Lấy thông tin của cuốn sách nằm ở vị trí index
+
+//Finding index of cookie name with product have cookie_name
+function findIndexWithCookieName(cookie_name) {
+    var cookies = getListCookie();
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i];
+        let c_name = cookie.split("=")[0].trim();
+        if (c_name == cookie_name) return i;
+    }
+    return false;
+}
+
+
+//Get info of product in cookie by index in cookie
 function getProductInfo(index) {
     return getCookieAt(index);
 }
 
-//Lấy mã của sản phẩm nằm ở vị trí index
+
+//Get id of product in cookie by index in cookie
 function getProductId(index) {
     var info = getProductInfo(index);
     if (info != null) {
@@ -124,7 +167,8 @@ function getProductId(index) {
     }
 }
 
-//Lấy số lượng của cuốn sách nằm ở vị trí index
+
+//Get count of product in cookie by index in cookie
 function getProductCount(index) {
     var info = getProductInfo(index);
     if (info != null) {
@@ -132,18 +176,21 @@ function getProductCount(index) {
     }
 }
 
-//Cập nhật lại thông tin sản phẩm ở vị trí index
+
+//Update info of product in cookie by index of it in cookie
 function setProductInfo(index, info) {
     var cname = getNameCookieAt(index);
     insertCookieAt(cname, info, index);
 }
 
-//Cập nhật lại số lượng sản phẩm ở vị trí index
-function setProductCount(maSanPham, input) {
-    var soLuong = input.value;
+
+//Update amount of product in cookie by index of it in cookie
+function setProductCount(cookie_name, maSanPham, soLuong) {
     var newInfo = "id:" + maSanPham + "-" + "count:" + soLuong;
     var count = getCookie("countProduct");
+
+    // alert(cookie_name);
     deleteCookie("countProduct");
-    setProductInfo(findIndexOfCookie(maSanPham), newInfo);
+    setProductInfo(findIndexWithCookieName(cookie_name), newInfo);
     setCookie("countProduct", count);
 }
