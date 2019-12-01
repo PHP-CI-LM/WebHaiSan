@@ -106,7 +106,7 @@
 					</div>
 					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
 						<div class="view-detail">
-							<a href="<?php echo base_url() ?>products/sach-yeu-thich-00001.html">Xem chi tiết >></a>
+							<a href="<?php echo base_url() ?>catalog/san-pham-moi-00001.html">Xem chi tiết >></a>
 						</div>
 					</div>
 				</div>
@@ -144,7 +144,7 @@
 					</div>
 					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
 						<div class="view-detail">
-							<a href="<?php echo base_url() ?>products/sach-ban-chay-00002.html">Xem chi tiết >></a>
+							<a href="<?php echo base_url() ?>catalog/san-pham-hot-00002.html">Xem chi tiết >></a>
 						</div>
 					</div>
 				</div>
