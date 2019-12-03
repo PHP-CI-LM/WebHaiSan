@@ -4,11 +4,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Cảng hải sản tươi ngon<?php echo ' -' . $products[0]['name_category'] ?></title>
+	<title>Cảng hải sản tươi ngon</title>
 	<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleProduct.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/sheet.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
@@ -22,7 +23,7 @@
 
 
 	<div class="container" id="content">
-		<div class="bookshelf">
+		<div class="col-md-9 bookshelf">
 			<div class="row descrip">
 				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="padding-left: 0;">
 					<div class="title" style="text-transform: capitalize">
@@ -42,30 +43,43 @@
 					for ($i = 0; $i < sizeof($products); $i++) {
 						$product = $products[$i];
 						echo "<div class=\"col-lg-3 col-md-4 col-sm-6 col-xs-12\">";
-							echo "<div class=\"book\" id=\"" . $product["id_product"] . "\"><div class=\"icon-bar vertical\">";
-							echo "<ul><li><div class=\"button-modify\">";
-							echo "<div class=\"button-arc forest right\" onclick=\"gotoPage('product/". vn_to_str($product["name_product"] . "-" . substr("00000". $product["id_product"], strlen("00000". $product["id_product"]) - 5, 5)) . ".html')\">";
-							echo "<i class=\"fa fa-info-circle\" onclick=\"gotoPage('product/". vn_to_str($product["name_product"] . "-" . substr("00000". $product["id_product"], strlen("00000". $product["id_product"]) - 5, 5)) . ".html')\"></i>";
-							echo "<div class=\"content content-right\"><span>Thông tin chi tiết</span></div></div></div></li>";
-							echo "<li><div class=\"button-modify\"><div class=\"button-arc cool right\" style=\"transform: translateY(150%)\">";
-							echo "<i class=\"fa fa-cart-plus\" onclick=\"addToCart(" . $product["id_product"] . ", 1, " . $product["price"] .")\"></i>";
-							echo "<div class=\"content content-right\"><span>Cho vào giỏ hàng</span></div></div></div></li>";
-							echo "<li><div class=\"button-modify\"><div class=\"button-arc danger right\" style=\"transform: translateY(300%)\">";
-							echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1)\"></i>";
-							echo "<div class=\"content content-right\"><span>Mua ngay</span></div></div></div></li></ul></div>";
-							echo "<div class=\"thumbnail\">";
-							echo "<img onclick=\"gotoPage('product/". vn_to_str($product["name_product"] . "-" . substr("00000". $product["id_product"], strlen("00000". $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . $product["DuongDan"] . "\"></div>";
-							echo "<div class=\"info-book\"><div class=\"title\">" . $product["name_product"] . "</div>";
-							echo "<div class=\"price\">" . number_format($product["price"]) . "đ/kg</div></div></div></div>";
+						echo "<div class=\"book\" id=\"" . $product["id_product"] . "\"><div class=\"icon-bar vertical\">";
+						echo "<ul><li><div class=\"button-modify\">";
+						echo "<div class=\"button-arc forest right\" onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\">";
+						echo "<i class=\"fa fa-info-circle\" onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\"></i>";
+						echo "<div class=\"content content-right\"><span>Thông tin chi tiết</span></div></div></div></li>";
+						echo "<li><div class=\"button-modify\"><div class=\"button-arc cool right\" style=\"transform: translateY(150%)\">";
+						echo "<i class=\"fa fa-cart-plus\" onclick=\"addToCart(" . $product["id_product"] . ", 1, " . $product["price"] . ")\"></i>";
+						echo "<div class=\"content content-right\"><span>Cho vào giỏ hàng</span></div></div></div></li>";
+						echo "<li><div class=\"button-modify\"><div class=\"button-arc danger right\" style=\"transform: translateY(300%)\">";
+						echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1)\"></i>";
+						echo "<div class=\"content content-right\"><span>Mua ngay</span></div></div></div></li></ul></div>";
+						echo "<div class=\"thumbnail\">";
+						echo "<img onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . $product["DuongDan"] . "\"></div>";
+						echo "<div class=\"info-book\"><div class=\"title\">" . $product["name_product"] . "</div>";
+						echo "<div class=\"price\">" . number_format($product["price"]) . "đ/kg</div></div></div></div>";
 					}
 				}
 				?>
 			</div>
 		</div>
+		<div class="col-md-3">
+			<div class="menu-product">
+				<h3>
+					<span>
+						Sản phẩm
+					</span>
+				</h3>
+				<ul class="level0">
+					<li><span><a href="<?php echo base_url() ?>category/ca-bien.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Cá biển</a></span></li>
+					<li><span><a href="<?php echo base_url() ?>category/tom.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Tôm</a></span></li>
+					<li><span><a href="<?php echo base_url() ?>category/muc.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Mực</a></span></li>
+					<li><span><a href="<?php echo base_url() ?>category/ngao-so.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Ngao - sò</a></span></li>
+					<li><span><a href="<?php echo base_url() ?>category/oc.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Các loại ốc</a></span></li>
+				</ul>
+			</div>
+		</div>
 	</div>
-
-	<!-- Phần footer cho trang Web -->
-	<!-- <?php require_once("comp/Footer.php") ?> -->
 </body>
 
 </html>

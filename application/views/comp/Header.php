@@ -1,7 +1,3 @@
-<html>
-
-<body>
-
     <header>
         <!-- Thanh topbar -->
         <div class="container-fluid">
@@ -11,24 +7,21 @@
                 <div class="container">
                     <div class="row">
                         <?php
-							$isAdmin = false;
+                            $isAdmin = false;
+                            $strSearch ="";
 							if (strpos(uri_string(), "Manager") !== false)
-								$isAdmin = true;
+                                $isAdmin = true;
+                            if (isset($query) == true) {
+                                $strSearch = $query;
+                            }
 						?>
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-ms-8">
-                            <?php
-								if ($isAdmin)
-									echo "<form action=\"" . base_url() . "Search\" method=\"GET\" class=\"search-bar clearfix\" id=\"search-textbox\">";
-								else
-									echo "<form action=\"" . base_url() . "Search\" method=\"GET\" class=\"search-bar clearfix\" id=\"search-textbox\">";
-							?>
-                            <input name="strSearch" type="text" id="Search" placeholder="Nhập thứ muốn tìm ..." style="border: 1px solid #dcdcdc; border-radius: 0;"></input> <span><button
+						    <form action="<?php echo base_url()?>tim-kiem.html" method="GET" class="search-bar clearfix" id="search-textbox\">
+                            <input name="query" type="text" id="Search" value="<?php echo $strSearch?>" placeholder="Nhập thứ muốn tìm ..." style="border: 1px solid #dcdcdc; border-radius: 0;"></input> <span><button
 									type="submit">
 									<i class="fa fa-search" style="margin-top: 0"></i>
 								</button></span>
-                            <?php
-								echo "</form>";
-							?>
+							</form>
                             <div id="zoom-btn">
                                 <i class="fa fa-search"></i>
                             </div>
@@ -166,7 +159,7 @@
             });
         });
 
-        $(document).on("mouseover", ".dropdown", function() {
+        $(document).on("click", ".dropdown", function() {
             $(".dropdown .right-dropdown-content").css({
                 "display": "block"
             });
@@ -185,6 +178,3 @@
             });
         });
     </script>
-</body>
-
-</html>

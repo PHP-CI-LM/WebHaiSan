@@ -39,7 +39,7 @@
 								</a> <span><i class="fa fa-angle-right"></i></span>
 								<meta itemprop="position" content="1">
 							</li>
-							<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="Login"> <strong itemprop="name">Đăng ký</strong>
+							<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name">Đăng ký</strong>
 								</a>
 								<meta itemprop="position" content="3">
 							</li>
@@ -60,34 +60,34 @@
 									<?php echo form_open('dang-ky-thanh-vien.html'); ?>
 									<?php echo validation_errors(); ?>
 									<form action="#" method="POST">
-										<div class="form-group">
+										<div class="form-group" style="display:block;">
 											<label class="control-label" for="NameSignUp">Tên đăng nhập</label>
 											<input type="text" class="form-control" name="username" value="" placeholder="User name" maxlength="30" autocomplete="on" id="NameSignUp" required>
 										</div>
-										<div class="form-group">
+										<div class="form-group" style="display:block;">
 											<label class="control-label" for="Password">Mật khẩu</label> 
 											<input type="password" class="form-control" name="password" value="" placeholder=" Your password" id="password" maxlength="50" onchange='check_pass();'> 
 										</div>
-										<div class="form-group">
+										<div class="form-group" style="display:block;">
 											<label class="control-label" for="Confirmpassword">Xác nhận mật khẩu</label> 
 											<input type="password" class="form-control" name="confirm" value="" placeholder=" Confirm your password" id="confirm_password" maxlength="50"  onchange='check_pass();'>
 										</div>
-										<div class="form-group">
+										<div class="form-group" style="display:block;">
 											<label class="control-label" for="UserSignUp">Tên người dùng</label>
 											<input type="text" class="form-control" name="customername" value="" placeholder="Your name" maxlength="50" autocomplete="off" id="UserSignUp" required>
 										</div>
-										<div class="form-group">
+										<div class="form-group" style="display:block;">
 											<label class="control-label" for="Sex">Giới tính</label> 
 											<select class="form-control" name="sex" id="Sex">
 												<option>Nam</option>
 												<option>Nữ</option>
 											</select>
 										</div>
-										<div class="form-group">
+										<div class="form-group" style="display:block;">
 											<label class="control-label" for="Address">Địa chỉ</label> 
 											<input type="text" class="form-control" name="address" value="" placeholder="Address" maxlength="255" id="Address" required>
 										</div>
-										<div class="form-group">
+										<div class="form-group" style="display:block;">
 											<label class="control-label" for="PhoneNumber">Số điện thoại</label> 
 											<input type="number" class="form-control" name="phone" value="" placeholder=" Your phone number" maxlength="10" id="PhoneNumber" required>
 										</div>
@@ -103,9 +103,7 @@
 			</div>
 		</section>
 	</div>
-
-	<?php require_once('comp/Footer.php') ?>
-
+	
 	<script type="text/javascript">
 		$(document).ready(function() {
 		});

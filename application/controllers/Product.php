@@ -19,4 +19,17 @@ class Product extends CI_Controller {
             "similarProducts" => $similarProducts
         ]);
     }
+
+    public function find() {
+        $products = array();
+        if ($this->input->get("query") !== null) {
+            $query = $this->security->xss_clean($this->input->get("query"));
+            $this->load->model("Product_Model");
+            $products = $this->Product_Model->getProductsWithName($query);
+        }
+        $this->load->view("Search", [
+            "query" => $query,
+            "products" => $products
+        ]);
+    }
 }

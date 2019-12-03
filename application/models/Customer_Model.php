@@ -9,4 +9,12 @@ class Customer_Model extends CI_Model {
                 '". $sex ."', '". $phone ."', '". $address ."');
         ");
     }
+
+    public function getInfoCustomer($id_customer) {
+        $result = $this->db->query("
+            SELECT CustomerID, CustomerName, Sex, Phone, Address 
+            FROM customers WHERE CustomerID = ". $id_customer
+        );
+        return $result->row();
+    }
 }

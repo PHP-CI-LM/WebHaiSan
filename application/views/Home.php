@@ -36,38 +36,32 @@
 								<ul class="nav_verticalmenu">
 									<li class="level0">
 										<a href="<?php echo base_url() ?>category/ca-bien.html">
-											<img class="icon-menu" src="<?php echo base_url()?>static/image/icon/fish.png" alt="Nghao - Sò - Ốc"> 
+											<img class="icon-menu" src="<?php echo base_url() ?>static/image/icon/fish.png" alt="Nghao - Sò - Ốc">
 											<span>Cá biển</span>
 										</a>
 									</li>
 									<li class="level0">
-										<a href="<?php echo base_url() ?>category/tomtom.html">
-											<img class="icon-menu" src="<?php echo base_url()?>static/image/icon/shrimp.png" alt="Tôm"> 
+										<a href="<?php echo base_url() ?>category/tom.html">
+											<img class="icon-menu" src="<?php echo base_url() ?>static/image/icon/shrimp.png" alt="Tôm">
 											<span>Tôm</span>
 										</a>
 									</li>
 									<li class="level0">
-										<a href="<?php echo base_url() ?>category/muc.html" >
-											<img class="icon-menu" src="<?php echo base_url()?>static/image/icon/cuttle.png" alt="Mực"> 
+										<a href="<?php echo base_url() ?>category/muc.html">
+											<img class="icon-menu" src="<?php echo base_url() ?>static/image/icon/cuttle.png" alt="Mực">
 											<span>Mực</span>
 										</a>
 									</li>
 									<li class="level0">
-										<a href="<?php echo base_url() ?>category/bach-tuoc.html">
-											<img class="icon-menu" src="<?php echo base_url()?>static/image/icon/octopus.png" alt="Bạch tuộc"> 
-											<span>Bạch tuộc</span>
-										</a>
-									</li>
-									<li class="level0">
-										<a href="<?php echo base_url() ?>category/ngao-so.html">
-											<img class="icon-menu" src="<?php echo base_url()?>static/image/icon/scallop.png" alt="Ngao - Sò"> 
+										<a href="<?php echo base_url() ?>category/so.html">
+											<img class="icon-menu" src="<?php echo base_url() ?>static/image/icon/scallop.png" alt="Ngao - Sò">
 											<span>Ngao - Sò</span>
 										</a>
 									</li>
 									<li class="level0">
 										<a href="<?php echo base_url() ?>category/oc.html">
-											<img class="icon-menu" src="<?php echo base_url()?>static/image/icon/snail.png" alt="Ốc"> 
-											<span>Ốc</span>
+											<img class="icon-menu" src="<?php echo base_url() ?>static/image/icon/snail.png" alt="Ốc">
+											<span>Các loại ốc</span>
 										</a>
 									</li>
 								</ul>
@@ -97,47 +91,61 @@
 				</div>
 			</div>
 		</section>
-		<div class="waiting"><div class="lds-roller"><div></div><div></div><div></div><div></div></div>
-		<article class="container">
-			<div class="bookshelf" style="margin: 1rem 2.85rem 1rem 1.05rem;" id="moi-ve">
-				<div class="row descrip">
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="padding-left: 0;">
-						<div class="title">Sản phẩm mới về</div>
-					</div>
-					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
-						<div class="view-detail">
-							<a href="<?php echo base_url() ?>catalog/san-pham-moi-00001.html">Xem chi tiết >></a>
+		<section id="service">
+			<div class="container m-b-30">
+				<div class="row">
+					<div id="service_home" class="clearfix">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-xxs-12 text-center m-b-xs-10">
+							<div class="service_item">
+								<div class="icon icon_product">
+									<img src="<?php echo base_url() ?>static/image/icon/icon_1.png" alt="">
+								</div>
+								<div class="description_icon">
+									<span class="large-text">
+										Miễn phí giao hàng
+									</span>
+									<span class="small-text">
+										Cho hóa đơn từ 450,000đ
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-xxs-12 text-center m-b-xs-10">
+							<div class="service_item">
+								<div class="icon icon_product">
+									<img src="<?php echo base_url() ?>static/image/icon/icon_2.png" alt="">
+								</div>
+								<div class="description_icon">
+									<span class="large-text">
+										Giao hàng trong ngày
+									</span>
+									<span class="small-text">
+										Với tất cả đơn hàng
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center m-b-xs-10">
+							<div class="service_item">
+								<div class="icon icon_product">
+									<img src="<?php echo base_url() ?>static/image/icon/icon_3.png" alt="">
+								</div>
+								<div class="description_icon">
+									<span class="large-text">
+										Sản phẩm an toàn
+									</span>
+									<span class="small-text">
+										Cam kết chất lượng
+									</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="row content">
-					<?php
-					if ($newProducts !== null && sizeof($newProducts) > 0) {
-						for ($i = 0; $i < sizeof($newProducts); $i++) {
-							$product = $newProducts[$i];
-							echo "<div class=\"col-lg-3 col-md-4 col-sm-6 col-xs-12\">";
-							echo "<div class=\"book\" id=\"" . $product["id_product"] . "\"><div class=\"icon-bar vertical\">";
-							echo "<ul><li><div class=\"button-modify\">";
-							echo "<div class=\"button-arc forest right\" onclick=\"gotoPage('product/". vn_to_str($product["name_product"] . "-" . substr("00000". $product["id_product"], strlen("00000". $product["id_product"]) - 5, 5)) . ".html')\">";
-							echo "<i class=\"fa fa-info-circle\" onclick=\"gotoPage('product/". vn_to_str($product["name_product"] . "-" . substr("00000". $product["id_product"], strlen("00000". $product["id_product"]) - 5, 5)) . ".html')\"></i>";
-							echo "<div class=\"content content-right\"><span>Thông tin chi tiết</span></div></div></div></li>";
-							echo "<li><div class=\"button-modify\"><div class=\"button-arc cool right\" style=\"transform: translateY(150%)\">";
-							echo "<i class=\"fa fa-cart-plus\" onclick=\"addToCart(" . $product["id_product"] . ", 1, " . $product["price"] .")\"></i>";
-							echo "<div class=\"content content-right\"><span>Cho vào giỏ hàng</span></div></div></div></li>";
-							echo "<li><div class=\"button-modify\"><div class=\"button-arc danger right\" style=\"transform: translateY(300%)\">";
-							echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1)\"></i>";
-							echo "<div class=\"content content-right\"><span>Mua ngay</span></div></div></div></li></ul></div>";
-							echo "<div class=\"thumbnail\">";
-							echo "<img onclick=\"gotoPage('product/". vn_to_str($product["name_product"] . "-" . substr("00000". $product["id_product"], strlen("00000". $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . $product["DuongDan"] . "\"></div>";
-							echo "<div class=\"info-book\"><div class=\"title\">" . $product["name_product"] . "</div>";
-							echo "<div class=\"price\">" . number_format($product["price"]) . "đ/kg</div></div></div></div>";
-						}
-					}
-					?>
-				</div>
 			</div>
-
-			<div class="bookshelf" style="margin: 1rem 2.85rem 1rem 1.05rem;" id="ban-chay">
+		</section>
+		<article class="container">
+			<div class="bookshelf" style="margin: 1rem 2.85rem 1rem 1.05rem;">
 				<div class="row descrip">
 					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="padding-left: 0;">
 						<div class="title">Sản phẩm bán chạy</div>
@@ -156,7 +164,7 @@
 							echo "<div class=\"col-lg-3 col-md-4 col-sm-6 col-xs-12\">";
 							echo "<div class=\"book\" id=\"" . $product["id_product"] . "\"><div class=\"icon-bar vertical\">";
 							echo "<ul><li><div class=\"button-modify\">";
-							echo "<div class=\"button-arc forest right\" onclick=\"gotoPage('product/". vn_to_str($product["name_product"] . "-" . substr("00000". $product["id_product"], strlen("00000". $product["id_product"]) - 5, 5)) . ".html')\">";
+							echo "<div class=\"button-arc forest right\" onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\">";
 							echo "<i class=\"fa fa-info-circle\" onclick=\"gotoPage('ViewBook?id=" . $product["id_product"] . "')\"></i>";
 							echo "<div class=\"content content-right\"><span>Thông tin chi tiết</span></div></div></div></li>";
 							echo "<li><div class=\"button-modify\"><div class=\"button-arc cool right\" style=\"transform: translateY(150%)\">";
@@ -166,7 +174,7 @@
 							echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1)\"></i>";
 							echo "<div class=\"content content-right\"><span>Mua ngay</span></div></div></div></li></ul></div>";
 							echo "<div class=\"thumbnail\">";
-							echo "<img onclick=\"gotoPage('product/". vn_to_str($product["name_product"] . "-" . substr("00000". $product["id_product"], strlen("00000". $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . $product["DuongDan"] . "\"></div>";
+							echo "<img onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . $product["DuongDan"] . "\"></div>";
 							echo "<div class=\"info-book\"><div class=\"title\">" . $product["name_product"] . "</div>";
 							echo "<div class=\"price\">" . number_format($product["price"]) . "đ/kg</div></div></div></div>";
 						}
@@ -174,39 +182,83 @@
 					?>
 				</div>
 			</div>
+			<?php
+			foreach ($products as $classifiedProducts) {
+				//Check size of list item in every classified products
+				if (sizeof($classifiedProducts["items"]) > 0) {
+					echo "<div class=\"bookshelf\" style=\"margin: 1rem 2.85rem 1rem 1.05rem;\">";
+					echo "<div class=\"row descrip\">";
+					echo "<div class=\"col-lg-4 col-md-4 col-sm-6 col-xs-6\" style=\"padding-left: 0;\">";
+					echo "<div class=\"title\">" . $classifiedProducts["name_category"] . "</div>";
+					echo "</div>";
+					echo "<div class=\"col-lg-8 col-md-8 col-sm-6 col-xs-6\">";
+					echo "<div class=\"view-detail\">";
+					echo "<a href=\"" . base_url() . "category/" . vn_to_str($classifiedProducts["name_category"]) . ".html" . "\">Xem chi tiết >></a>\"";
+					echo "</div></div></div>";
+					echo "<div class=\"row content\">";
+					for ($i = 0; $i < sizeof($classifiedProducts["items"]); $i++) {
+						$product = $classifiedProducts["items"][$i];
+						echo "<div class=\"col-lg-3 col-md-4 col-sm-6 col-xs-12\">";
+						echo "<div class=\"book\" id=\"" . $product["id_product"] . "\">";
+						echo "<div class=\"icon-bar vertical\">";
+						echo "<ul>";
+						echo "<li>";
+						echo "<div class=\"button-modify\">";
+						echo "<div class=\"button-arc forest right\" onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\">";
+						echo "<i class=\"fa fa-info-circle\" onclick=\"gotoPage('ViewBook?id=" . $product["id_product"] . "')\"></i>";
+						echo "<div class=\"content content-right\">";
+						echo "<span>Thông tin chi tiết</span>";
+						echo "</div>";
+						echo "</div>";
+						echo "</div>";
+						echo "</li>";
+						echo "<li>";
+						echo "<div class=\"button-modify\">";
+						echo "<div class=\"button-arc cool right\" style=\"transform: translateY(150%)\">";
+						echo "<i class=\"fa fa-cart-plus\" onclick=\"addToCart(" . $product["id_product"] . ", 1, " . $product["price"] . ")\"></i>";
+						echo "<div class=\"content content-right\">";
+						echo "<span>Cho vào giỏ hàng</span>";
+						echo "</div>";
+						echo "</div>";
+						echo "</div>";
+						echo "</li>";
+						echo "<li>";
+						echo "<div class=\"button-modify\">";
+						echo "<div class=\"button-arc danger right\" style=\"transform: translateY(300%)\">";
+						echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1)\"></i>";
+						echo "<div class=\"content content-right\">";
+						echo "<span>Mua ngay</span>";
+						echo "</div>";
+						echo "</div>";
+						echo "</div>";
+						echo "</li>";
+						echo "</ul>";
+						echo "</div>";
+						echo "<div class=\"thumbnail\">";
+						echo "<img onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . $product["DuongDan"] . "\"></div>";
+						echo "<div class=\"info-book\">";
+						echo "<div class=\"title\">" . $product["name_product"] . "</div>";
+						echo "<div class=\"price\">" . number_format($product["price"]) . "đ/kg</div>";
+						echo "</div>";
+						echo "</div>";
+						echo "</div>";
+					}
+					echo "</div>";
+					echo "</div>";
+				}
+			}
+			?>
 		</article>
 	</div>
 
-	<!-- Phần footer cho trang Web -->
-	<?php require_once('comp/Footer.php') ?>
 
 
-	
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.js"></script>
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.js"></script>
+
 	<script type="text/javascript">
-		function openNewTab(url) {
-			window.open(url, '_blank');
-		}
-		
-		function changeStateOrder(maHD, bool) {
-			if (bool) {
-				var url = window.location.href;
-				$(".QLDH_tbDonHang").load(url + " #table", {
-					maHD: maHD
-				});
-			}
-		}
-
-		function reloadKH() {
-			var URL = window.location.href;
-			var searchU = document.getElementById("btnSearch").value;
-			document.getElementById("btnSearch").value = searchU;
-
-		}
-
-		function refreshPage() {
-			window.location.href = window.location.href
+		function gotoPage(url) {
+			window.location.href = "<?php echo base_url() ?>" + url;
 		}
 	</script>
 </body>

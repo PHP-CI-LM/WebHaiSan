@@ -10,14 +10,14 @@ String.prototype.replaceAll = function(search, replacement) {
 
 
 //Add product to cart
-function addToCart(id, soluong, gia) {
+function addToCart(id, soluong, gia=0) {
     var count = getCookie("countProduct");
     if (count.length == 0)
         count = 1;
     else
         count++;
 
-    setCookie("product" + count, "id:" + id + "-count:" + soluong); //Thêm sp đã mua vào cookie
+    setCookie("product" + count, "id:" + id + "-count:" + soluong + "-price:" + gia); //Thêm sp đã mua vào cookie
     setCookie("countProduct", count);
     $(".cart-count").load(document.URL + " #number");
     $("#countInput").load(document.URL + " #count");
@@ -36,7 +36,6 @@ function removeProductFromCart(row) {
     var id_product = $($(row).parents('tr')[0]).attr('id'); //Lấy ra cookie_name của sản phẩm đó
     var c_name = $($(row).parents('tr')[0]).attr('c-name'); //Lấy ra cookie_name của sản phẩm đó
     var soLuong = getCookie('countProduct') - 1; //Giảm số lượng lần mua trong biến đếm
-    var inputQuantity = $($(row).parents('tr')[0]).find('input[type="number"]')[0];
 
     $($(row).parents('tr')[0]).remove(); //Xóa sản phẩm hiện trên màn hình
     deleteCookie(c_name);
@@ -87,7 +86,8 @@ function refreshRowProduct(inputQuantity) {
     var cookie_name = $(row).attr('c-name');
     var id_product = $(row).attr('id');
     var amount = $(inputQuantity).val();
-    setProductCount(cookie_name, id_product, amount);
+    var price = getPrice(row);
+    setProductCount(cookie_name, id_product, amount, price);
     $($(row).parents('.cart-info')).load(document.URL + " table.table");
 }
 
@@ -112,7 +112,7 @@ function getTotalPrice() {
     var rowTables = $('tbody tr');
     var totalPrice = 0;
     if (rowTables.length > 0) {
-        for (var i = 1; i < rowTables.length; i++) {
+        for (var i = 0; i < rowTables.length; i++) {
             totalPrice = totalPrice + getPrice(rowTables[i]);
         }
     }
@@ -127,6 +127,7 @@ function getPrice(row) {
     gia = parseInt(gia.substring(0, gia.length - 4).replaceAll(',', ''));
     return input * gia;
 }
+
 
 
 //Finding index of cookie name with product have maSanPham
@@ -185,8 +186,8 @@ function setProductInfo(index, info) {
 
 
 //Update amount of product in cookie by index of it in cookie
-function setProductCount(cookie_name, maSanPham, soLuong) {
-    var newInfo = "id:" + maSanPham + "-" + "count:" + soLuong;
+function setProductCount(cookie_name, maSanPham, soLuong, gia=0) {
+    var newInfo = "id:" + maSanPham + "-" + "count:" + soLuong + "price:" + gia;
     var count = getCookie("countProduct");
 
     // alert(cookie_name);

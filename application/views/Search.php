@@ -1,30 +1,28 @@
 <!DOCTYPE html>
+<html>
 
 <head>
-	<meta charset="UTF-8" />
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Cảng hải sản tươi ngon</title>
+	<title>Trang tìm kiếm - Cảng hải sản tươi ngon</title>
 	<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleProduct.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/sheet.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleDialog.css">
-	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 
-<body class="common-home">
-
+<body>
 	<!-- Phần header cho trang Web -->
-	<?php require_once "comp/Header.php" ?>
+	<?php require_once("comp/Header.php") ?>
 
-	<div class="container-fluid" id="content">
+
+	<div class="container" id="content">
 		<div class="row">
 			<div class="col-sm-12">
 				<ul class="breadcrumb" itemtype="http://schema.org/BreadcrumbList">
@@ -33,28 +31,32 @@
 						</a> <span><i class="fa fa-angle-right"></i></span>
 						<meta itemprop="position" content="1">
 					</li>
-					<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name">
-								<?php
-								echo $name;
-								?>
-							</strong></a>
+					<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name">Tìm kiếm</strong></a>
 						<meta itemprop="position" content="3">
 					</li>
 				</ul>
 			</div>
 		</div>
-		<div class="bookshelf">
+		<div class="col-md-9 bookshelf" style="padding: 10px 20px;">
 			<div class="row descrip">
-				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-					<div class="title">
-						<?php echo $name; ?>
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="padding-left: 0;">
+					<div class="title none-bg large-text inline" style="text-transform: capitalize; padding-right: 0; clip-path: none;">
+						<?php
+						echo "Kết quả tìm kiếm cho: ";
+						echo "<span style=\"font-weight: 400; padding-left: 5px\">";
+						if ($products !== null) {
+							$product = $products[0];
+							echo $product["name_category"];
+						}
+						echo "</span>";
+						?>
 					</div>
 				</div>
 				<div class="col-lg-8 col-md-8 col-sm-6 col-xs-6"></div>
 			</div>
 			<div class="row content">
 				<?php
-				if ($products !== null && sizeof($products) > 0) {
+				if ($products !== null) {
 					for ($i = 0; $i < sizeof($products); $i++) {
 						$product = $products[$i];
 						echo "<div class=\"col-lg-3 col-md-4 col-sm-6 col-xs-12\">";
@@ -76,6 +78,22 @@
 					}
 				}
 				?>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="menu-product">
+				<h3>
+					<span>
+						Sản phẩm
+					</span>
+				</h3>
+				<ul class="level0">
+					<li><span><a href="<?php echo base_url() ?>category/ca-bien.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Cá biển</a></span></li>
+					<li><span><a href="<?php echo base_url() ?>category/tom.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Tôm</a></span></li>
+					<li><span><a href="<?php echo base_url() ?>category/muc.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Mực</a></span></li>
+					<li><span><a href="<?php echo base_url() ?>category/ngao-so.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Ngao - sò</a></span></li>
+					<li><span><a href="<?php echo base_url() ?>category/oc.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Các loại ốc</a></span></li>
+				</ul>
 			</div>
 		</div>
 	</div>

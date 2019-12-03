@@ -10,7 +10,7 @@ class Category extends CI_Controller {
     public function index($type) {
         $this->load->model("Product_Model");
         switch ($type) {
-            case 1: case 3: case 5: case 4:
+            case 1: case 3: case 7: case 4: case 8:
                 $result = $this->Product_Model->getProductOfCategory($type);
                 // var_dump($result);
                 $this->load->view("Category", ["products" => $result]);

@@ -30,7 +30,7 @@
 								</a> <span><i class="fa fa-angle-right"></i></span>
 								<meta itemprop="position" content="1">
 							</li>
-							<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="Login"> <strong itemprop="name">Giỏ hàng</strong></a>
+							<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name">Giỏ hàng</strong></a>
 								<meta itemprop="position" content="3">
 							</li>
 						</ul>
@@ -65,18 +65,18 @@
 												$product = (array) $carts[$i];
 												echo "<tr id=\"" . $product["id_product"] . "\" c-name=\"" . $product["cookie_name"] . "\">";
 												echo "<td class=\"image\">";
-												echo "<a href=\"/san-pham/so-diep.html\"> <img class=\"img-responsive\" src=\"" . $product["DuongDan"] . "\"></a>";
+												echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\"> <img class=\"img-responsive\" src=\"" . $product["DuongDan"] . "\"></a>";
 												echo "</td>";
 												echo "<td class=\"des\">";
-												echo "<a href=\"/san-pham/so-diep.html\">" . $product["name_product"] . "</a>";
+												echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">" . $product["name_product"] . "</a>";
 												echo "<span></span>";
 												echo "</td>";
-												echo "<td class=\"price\">" . number_format($product["price"]) . "đ/kg</td>";
+												echo "<td class=\"price\">" . number_format((int)($product["price"]*(100 - $product["discount"])/100)) . "đ/kg</td>";
 												echo "<td class=\"quantity\">";
 												echo "<input type=\"number\" value=\"" . $product["count"] . "\" step=\"0.1\" min=\"0.5\" max=\"100\" class=\"text\" oninput=\"changeQuantity(this)\">";
 												echo "</td>";
 												echo "<td class=\"amount\">";
-												echo number_format($product["price"] * $product["count"]) . "đ";
+												echo number_format((int)(($product["price"] * $product["count"])*(100 - $product["discount"])/100)) . "đ";
 												echo "</td>";
 												echo "<td class=\"text-center\">";
 												echo "<a onclick=\"removeProductFromCart(this)\" href=\"javascript:void(0)\">";
@@ -105,13 +105,9 @@
 							</div>
 							<div class="button-modify" style="text-align: right;">
 								<div class="button-rect forest" id="button-confirm">
-									<?php
-									$sum = 0;
-									if ($sum == 0)
-										echo "<a><i class=\"fa fa-money\"></i> <span class=\"content-inner\">Thanh toán</span></a>";
-									else
-										echo "<a class=\"login-window\" href=\"#confirm-form\"><i class=\"fa fa-money\"></i> <span class=\"content-inner\">Thanh toán</span></a>";
-									?>
+									<a href="<?php echo base_url().'thanh-toan.html'?>">
+										<i class="fa fa-money"></i> <span class="content-inner">Thanh toán</span>
+									</a>
 								</div>
 							</div>
 						</div>
@@ -120,7 +116,6 @@
 			</article>
 		</div>
 
-		<?php require_once("comp/Footer.php") ?>
 		<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.js"></script>
 		<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.js"></script>
 

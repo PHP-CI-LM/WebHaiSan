@@ -95,7 +95,7 @@
         }
 
         function buyNow(id, soluong) {
-            addBookToCart(id, soluong);
+            addToCart(id, soluong);
             showPayDialog();
         }
 
@@ -108,13 +108,11 @@
             $('#over').fadeIn(300);
         }
 
-        //Use in ViewBook.jsp
         function getNumberBuy() {
             var inputNumber = document.getElementById("count");
             return inputNumber.value;
         }
 
-        //Use in ViewBook.jsp
         function zoomImage(mini_image, zoom_image, name) {
             var url = "url" + "(lib/image/" + name + ")";
             var image = document.getElementById(zoom_image);
@@ -128,7 +126,6 @@
             mini_image.className = "mini-image active"; //Kích hoạt trạng thía active mới
         }
 
-        //Use in ViewBook.jsp
         function mouseHoverImage(img) {
             if (img.className == "mini-image") {
                 img.style.opacity = 1.0;
@@ -136,14 +133,13 @@
             }
         }
 
-        //Use in ViewBook.jsp
         function mouseOutImage(img) {
             if (img.className == "mini-image") {
                 img.style.opacity = 0.75;
                 img.children[0].border = "none";
             }
         }
-        //
+
         function sendSearch() {
             var temp = document.getElementById("Search").value;
             window.location.href = "Search?strSearch=" + temp;

@@ -12,11 +12,7 @@ class Catalog extends CI_Controller {
         $idFilterType = substr($name, strlen($name) - 5, 5); //Tách id của kiểu fillter từ chuỗi
         $data = null; //Dữ liệu gửi về view
         $this->load->model("Product_Model"); //Gọi lớp model để lấy dữ liệu
-        if ($idFilterType === "00001") {
-            $data = $this->Product_Model->getProductsNew();
-            $this->load->view("Catalog", ["name" => "Hàng mới về", "products" => $data]);
-        }
-        else if ($idFilterType === "00002") {
+        if ($idFilterType === "00002") {
             $data = $this->Product_Model->getProductsSelling();
             $this->load->view("Catalog", ["name" => "Hàng bán chạy", "products" => $data]);
         }

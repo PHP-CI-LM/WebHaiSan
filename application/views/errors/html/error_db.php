@@ -59,7 +59,7 @@ p {
 	<div id="container">
 		<h1><?php echo $heading; ?></h1>
 		<?php echo "<p>Lỗi khi thao tác với cơ sở dữ liệu</p>"; ?>
-		<!-- <?php echo $message?> -->
+		<?php echo $message?>
 	</div>
 </body>
 </html>

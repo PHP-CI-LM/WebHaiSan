@@ -41,7 +41,7 @@ $(document).ready(function(){
 								<meta itemprop="position" content="1"></li>
 							<li itemprop="itemListElement"
 								itemtype="http://schema.org/ListItem"><a itemprop="item"
-								href="Login"> <strong itemprop="name">Đăng nhập</strong>
+								href="javascript:void(0)"> <strong itemprop="name">Đăng nhập</strong>
 							</a>
 								<meta itemprop="position" content="3"></li>
 						</ul>
@@ -56,17 +56,7 @@ $(document).ready(function(){
 					<div class="clearfix"></div>
 					<div class="col-sm-12 col-xs-12 col-md-12">
 						<div class="row">
-							<div class="col-sm-6">
-								<div class="board">
-									<h3>Khách hàng mới?</h3>
-									<span> <strong>Tại sao không đăng kí thành
-											viên?</strong>
-									</span> <br> <span>Thành viên có thể trải nghiệm và được
-										thông báo một cách sớm nhất những chương trình khuyến mãi có 1-0-2.</span> <br>
-									<br> <a class="signup-window btn btn-primary" href="<?php echo base_url()?>dang-ky-thanh-vien.html" style="color: #eee !important;">Đăng ký ngay!</a>
-								</div>
-							</div>
-							<div class="col-sm-6">
+						<div class="col-sm-6">
 								<div class="board">
 									<h3>Đã có tài khoản</h3>
 									<?php echo form_open('dang-nhap.html'); ?>
@@ -76,12 +66,12 @@ $(document).ready(function(){
 											echo '<p style="color: red;">'. $error .'</p>';
 									?>
 									<form action="#" method="POST">
-										<div class="form-group">
+										<div class="form-group" style="display:block;">
 											<label class="control-label" for="username">Tên đăng
 												nhập</label> <input type="text" name="username" value=""
 												placeholder="Username" id="username" class="form-control" max-length="30">
 										</div>
-										<div class="form-group">
+										<div class="form-group" style="display:block;">
 											<label class="control-label" for="password">Mật khẩu</label>
 											<input type="password" name="password" value=""
 												maxlength="10" placeholder="Password" id="password"
@@ -93,39 +83,20 @@ $(document).ready(function(){
 									</form>
 								</div>
 							</div>
+							<div class="col-sm-6">
+								<div class="board">
+									<h3>Khách hàng mới?</h3>
+									<span> <strong>Tại sao không đăng kí thành
+											viên?</strong>
+									</span> <br> <span>Thành viên có thể trải nghiệm và được
+										thông báo một cách sớm nhất những chương trình khuyến mãi có 1-0-2.</span> <br>
+									<br> <a class="signup-window btn btn-primary" href="<?php echo base_url()?>dang-ky-thanh-vien.html" style="color: #eee !important;">Đăng ký ngay!</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		
-		<div>
-			<div class="dialog" id="form" style="width: 40%;">
-				<div class="header">
-					<div class="title">Quên mật khẩu</div>
-						<a class="f-right close" href="#"><i
-							class="fa fa-close"></i></a>
-				</div>
-				<ul class="content">
-					<li class="item" style="height: 100px;">
-						<span class="title">Tên đăng nhập</span>
-						<div class="detail">
-							<input id="username" type="text" autocomplete="on" name="username" placeholder="Name..." value="" />
-						</div>
-					</li>
-					<li class="item">
-						<button class="button submit-button" onclick="">Khôi phục</button>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
-	<?php require_once('comp/Footer.php')?>
-	
-	<script type="text/javascript">
-		$(document).ready(function() {
-		});
-	</script>
 </body>
 </html>

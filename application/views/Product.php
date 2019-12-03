@@ -17,6 +17,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.js"></script>
+	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.js"></script>
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionBook.js"></script>
 
 </head>
@@ -39,7 +40,7 @@
 						</a> <span><i class="fa fa-angle-right"></i></span>
 						<meta itemprop="position" content="1">
 					</li>
-					<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="Login"> <strong itemprop="name">
+					<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name">
 								<?php
 								if ($product != null) {
 									echo $product["name_product"];
@@ -114,7 +115,7 @@
 										<div class="button-modify">
 											<?php
 											if ($product != null) {
-												echo "<div class=\"button-rect forest\" style=\"width: 100%\" onclick='addBookToCart(\"" . $product["id_product"] . "\", getNumberBuy());'>";
+												echo "<div class=\"button-rect forest\" style=\"width: 100%\" onclick='addToCart(\"" . $product["id_product"] . "\", getNumberBuy());'>";
 												echo "<i class=\"fa fa-cart-plus\"></i>";
 												echo "<span class=\"content content-inner\">Cho vào giỏ</span></div>";
 											}
@@ -221,9 +222,6 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- Phần footer cho trang Web -->
-	<?php require_once "comp/Footer.php" ?>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
