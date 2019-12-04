@@ -11,12 +11,19 @@ class Account_Model extends CI_Model {
         return $result->id;
     }
 
+    public function getAccount($accountID) {
+        $query = $this->db->query(
+            "SELECT UserName FROM accounts WHERE AccountID=" . $accountID . ";"
+        );
+        return $query->result_array();
+    }
+
     public function createNewAccount($username, $password) {
         $this->db->trans_start();
-        $this->db->query("
-            CALL sp_addAccount(@id, '". $username ."', 
-                '".  $password ."', 1);
-            ");
+        $this->db->query(
+            "CALL sp_addAccount(@id, '". $username ."', 
+                '".  $password ."', 1);"
+        );
         $result = $this->db->query("SELECT @id As AccountID");
         $this->db->trans_complete();
         $row = $result->row();

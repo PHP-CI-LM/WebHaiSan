@@ -9,6 +9,25 @@ class Account extends CI_Controller
         parent::__construct();
     }
 
+    public function index()
+    {
+        //Check if user is login
+        if ($this->session->tempdata('user') !== null) {
+            $id_account = $this->session->tempdata('user');
+            $this->load->model('Account_Model');
+            $this->load->model('Customer_Model');
+            $accountData = $this->Account_Model->getAccount($id_account);
+            $customerData = $this->Customer_Model->getCustomer($id_account);
+            // var_dump(array_merge($accountData[0], $customerData[0]));
+            $this->load->view('AccountInfo', [
+                'data' => array_merge($accountData[0], $customerData[0])
+            ]);
+        }
+        else {
+            redirect(base_url(), 'auto');
+        }
+    }
+
     public function login()
     {
         if ($this->session->tempdata("user") !== null) {

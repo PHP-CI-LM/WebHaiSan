@@ -49,7 +49,7 @@
 			</div>
 		</section>
 
-		<section>
+		<article style="padding-left: 50px; padding-right: 50px;">
 			<div class="container">
 				<div class="row">
 					<div class="clearfix"></div>
@@ -60,39 +60,42 @@
 									<?php echo form_open('dang-ky-thanh-vien.html'); ?>
 									<?php echo validation_errors(); ?>
 									<form action="#" method="POST">
-										<div class="form-group" style="display:block;">
-											<label class="control-label" for="NameSignUp">Tên đăng nhập</label>
-											<input type="text" class="form-control" name="username" value="" placeholder="User name" maxlength="30" autocomplete="on" id="NameSignUp" required>
+										<h2>Thông tin tài khoản</h2>
+										<div class="form-group" style="display:flex;">
+											<label class="control-label" for="NameSignUp" style="flex-basis: 15%; text-align: right;">Tên đăng nhập (*)</label>
+											<input type="text" class="form-control" name="username" value="" placeholder="User name" maxlength="30" autocomplete="on" id="NameSignUp" required style="flex-basis: 85%; max-width: 60%; margin-left: 3rem;">
 										</div>
-										<div class="form-group" style="display:block;">
-											<label class="control-label" for="Password">Mật khẩu</label> 
-											<input type="password" class="form-control" name="password" value="" placeholder=" Your password" id="password" maxlength="50" onchange='check_pass();'> 
+										<div class="form-group" style="display:flex">
+											<label class="control-label" for="Password" style="flex-basis: 15%; text-align: right;">Mật khẩu (*)</label> 
+											<input type="password" class="form-control" name="password" value="" placeholder=" Your password" id="password" maxlength="50" onchange='check_pass();' style="min-width: 250px; max-width: 300px; margin-left: 3rem; flex-basis: 85%;"> 
 										</div>
-										<div class="form-group" style="display:block;">
-											<label class="control-label" for="Confirmpassword">Xác nhận mật khẩu</label> 
-											<input type="password" class="form-control" name="confirm" value="" placeholder=" Confirm your password" id="confirm_password" maxlength="50"  onchange='check_pass();'>
+										<div class="form-group" style="display:flex;">
+											<label class="control-label" for="Confirmpassword" style="flex-basis: 15%; text-align: right;">Xác nhận (*)</label> 
+											<input type="password" class="form-control" name="confirm" value="" placeholder=" Confirm your password" id="confirm_password" maxlength="50"  onchange='check_pass();' style="min-width: 250px; max-width: 300px; margin-left: 3rem; flex-basis: 85%;">
 										</div>
-										<div class="form-group" style="display:block;">
-											<label class="control-label" for="UserSignUp">Tên người dùng</label>
-											<input type="text" class="form-control" name="customername" value="" placeholder="Your name" maxlength="50" autocomplete="off" id="UserSignUp" required>
+										<h2>Thông tin cá nhân</h2>
+										<div class="form-group" style="display:flex;">
+											<label class="control-label" for="UserSignUp" style="flex-basis: 15%; text-align: right;">Tên người dùng (*)</label>
+											<input type="text" class="form-control" name="customername" value="" placeholder="Your name" maxlength="50" autocomplete="off" id="UserSignUp" required style="max-width: 60%; margin-left: 3rem; flex-basis: 85%;">
 										</div>
-										<div class="form-group" style="display:block;">
-											<label class="control-label" for="Sex">Giới tính</label> 
-											<select class="form-control" name="sex" id="Sex">
+										<div class="form-group" style="display:flex;">
+											<label class="control-label" for="Sex" style="flex-basis: 15%; text-align: right;">Giới tính (*)</label> 
+											<select class="form-control" name="sex" id="Sex" style="max-width: 60%; flex-basis: 85%; margin-left: 3rem;">
 												<option>Nam</option>
 												<option>Nữ</option>
 											</select>
 										</div>
-										<div class="form-group" style="display:block;">
-											<label class="control-label" for="Address">Địa chỉ</label> 
-											<input type="text" class="form-control" name="address" value="" placeholder="Address" maxlength="255" id="Address" required>
+										<div class="form-group" style="display:flex;">
+											<label class="control-label" for="Address" style="flex-basis: 15%; text-align: right;">Địa chỉ (*)</label> 
+											<input type="text" class="form-control" name="address" value="" placeholder="Address" maxlength="255" id="Address" required style="max-width: 60%; flex-basis: 85%; margin-left: 3rem;">
 										</div>
-										<div class="form-group" style="display:block;">
-											<label class="control-label" for="PhoneNumber">Số điện thoại</label> 
-											<input type="number" class="form-control" name="phone" value="" placeholder=" Your phone number" maxlength="10" id="PhoneNumber" required>
+										<div class="form-group" style="display:flex;">
+											<label class="control-label" for="PhoneNumber" style="flex-basis: 15%; text-align: right;">Số điện thoại (*)</label> 
+											<input type="text" class="form-control" name="phone" value="" placeholder=" Your phone number" maxlength="10" id="PhoneNumber" required style="max-width: 60%; flex-basis: 85%; margin-left: 3rem;">
 										</div>
-										<input type="submit" id="submit" value="Đăng ký" class="btn btn-primary" id="btn-search" style="width: max-content !important" disabled>
-										<a class="forget-password" href="#form"><i class="fa fa-question-circle" id="QuenMK"></i></a>
+										<div style="display: block; text-align: center;">
+											<input type="submit" id="submit" value="Đăng ký" class="btn btn-primary" id="btn-search" style="width: max-content !important; margin-right: 10%;" disabled>
+										</div>
 									</form>
 
 								</div>
@@ -101,7 +104,7 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</a>
 	</div>
 	
 	<script type="text/javascript">
