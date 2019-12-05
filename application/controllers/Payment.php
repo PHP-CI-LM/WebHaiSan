@@ -72,7 +72,7 @@ class Payment extends CI_Controller
                     $status = false;
                 } else {
                     //Get order detail from cookie
-                    $products = $this->cookie_cart->getProducts();
+                    $products = $this->getProducts();
                     //Add price of product into product array and update count_buy of product in database
                     foreach ($products as $key => $product) {
                         $price = $this->Product_Model->getPrice($product["id"]);
@@ -108,5 +108,24 @@ class Payment extends CI_Controller
             $result[$key] = $tempValue;
         }
         return $result;
+    }
+
+    private function getProducts()
+    {
+        $count = get_cookie("countProduct");
+        $cookieName = "product";
+        $products = array();
+        for ($i = 1; $count > 0; $i++) {
+            $product = get_cookie($cookieName . $i);
+            if ($product !== null) {
+                $product = array();
+                $product["id"] = explode(":", explode("-", get_cookie($cookieName . $i))[0])[1];
+                $product["amount"] =  explode(":", explode("-", get_cookie($cookieName . $i))[1])[1];
+                array_push($products, $product);
+                $count--;
+            }
+        }
+        if (sizeof($products) == 0) return null;
+        return $products;
     }
 }
