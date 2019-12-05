@@ -24,12 +24,13 @@ Các bước cài đặt
 2. Cấu hình project để có thể kết nối đến csdl vừa cài đặt
     - :Bước 1: Mở project, truy cập đến file có đường dẫn sau: application/config/database.php
     - :Bước 2: Thay đổi các thông tin như: hostname, username, password dựa theo thông tin cấu hình ở máy mỗi người
-    - :Bước 3: Dùng trình duyệt truy cập đến đường dẫn localhost/<TenProject> để chạy thử
+    - :Bước 3: Thay đổi base_url thành locahost ở file application/config/config.php
+    - :Bước 4: Dùng trình duyệt truy cập đến đường dẫn localhost/<TenProject> để chạy thử
 
 
 -------------------
 Demo ứng dụng
 -------------------
-`<https://demociframework.000webhostapp.com/>`
+`<https://chohaisan.herokuapp.com/>`
 
 
