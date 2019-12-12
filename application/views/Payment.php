@@ -241,8 +241,8 @@
 						if (data["status"] == true) {
 							alert("Đơn hàng của bạn đã được tiếp nhận. Chúng tôi sẽ liên hệ lại ngay cho bạn để xác nhận đơn hàng");
 							deleteAllCookie();
-							//Back to home after success
-							window.location.replace("<?php echo base_url() ?>");
+							//Go to page check detail order
+							window.location.replace('<?php echo base_url() . "kiem-tra-don-hang.html?oid=" ?>' + data["data"]["oid"]);
 						} else {
 							enableCloseButton();
 							changeModalLabel("Quá trình đặt hàng có trục trặc. Làm phiền quý khách thực hiện lại thao tác")
@@ -309,7 +309,9 @@
 				if (selected.split(":")[1] !== 0) {
 					idProvince = selected.split(":")[1];
 					nameProvince = $($('select option:selected')[0]).text();
-					$($('img.wait')[0]).css({"display":"block"});
+					$($('img.wait')[0]).css({
+						"display": "block"
+					});
 					$.ajax({
 						url: "https://forwardapi.herokuapp.com/",
 						method: "post",
@@ -317,7 +319,9 @@
 							idProvince: idProvince
 						},
 						success: result => {
-							$($('img.wait')[0]).css({"display":"none"});
+							$($('img.wait')[0]).css({
+								"display": "none"
+							});
 							let districts = JSON.parse(result);
 							$($("select")[1]).empty();
 							$($("select")[1]).append(new Option("Vui lòng chọn huyện", "number:0"));
@@ -343,7 +347,9 @@
 				if (selected.split(":")[1] !== 0) {
 					idDistrict = selected.split(":")[1];
 					nameDistrict = $($('select option:selected')[1]).text();
-					$($('img.wait')[1]).css({"display":"block"});
+					$($('img.wait')[1]).css({
+						"display": "block"
+					});
 					$.ajax({
 						url: "https://forwardapi.herokuapp.com/",
 						method: "post",
@@ -351,7 +357,9 @@
 							idDistrict: idDistrict
 						},
 						success: result => {
-							$($('img.wait')[1]).css({"display":"none"});
+							$($('img.wait')[1]).css({
+								"display": "none"
+							});
 							let wards = JSON.parse(result);
 							$($("select")[2]).empty();
 							$($("select")[2]).append(new Option("Vui lòng chọn xã/phường", "number:0"));

@@ -40,7 +40,7 @@ class Payment extends CI_Controller
             }
             $this->load->view('Payment', [
                 "products" => $products,
-                "info" => $data,
+                "info" => $data
             ]);
         } else $this->load->view('Payment');
     }
@@ -48,6 +48,7 @@ class Payment extends CI_Controller
     public function confirm()
     {
         $status = false;
+        $oid = null;
         if ($this->input->post("data") !== null) {
             $data = (array)json_decode($this->input->post("data"));
             if (
@@ -89,6 +90,7 @@ class Payment extends CI_Controller
                     }
                     else {
                         $status = true;
+                        $oid = str_replace("/", "", $data["OrderDate"]).$id;
                     }
                 }
             } else {
@@ -97,7 +99,12 @@ class Payment extends CI_Controller
         }
         //Set content type in header and echo result
         header("Content-Type: Application/Json");
-        echo json_encode(array("status" => $status));
+        echo json_encode(array(
+            "status" => $status, 
+            "data" => [
+                "oid" => $oid
+            ]
+        ));
     }
 
     private function cleanInput($array)

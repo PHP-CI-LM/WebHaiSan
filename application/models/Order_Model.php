@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Order_Model extends CI_Model {
 
+    public function getOrder($id, $orderDate) {
+        $query = $this->db->query(
+            "SELECT * FROM orders WHERE OrderID = ".$id." And OrderDate = '".$orderDate."';"
+        );
+        return $query->result_array();
+    }
+
     public function saveOrder($data = array()) {
         if ($data == null || sizeof($data) == 0) return false;
         else {

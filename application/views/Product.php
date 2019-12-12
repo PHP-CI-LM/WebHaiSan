@@ -230,6 +230,10 @@
 				"max-height": max_height
 			});
 		});
+
+		function getNumberBuy() {
+			return $('input[type="number"]').val();
+		}
 	</script>
 </body>
 

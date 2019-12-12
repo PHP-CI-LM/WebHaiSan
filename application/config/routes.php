@@ -67,3 +67,4 @@ $route['thanh-toan.html'] = 'Payment/index';
 $route['xac-nhan-thanh-toan.html']['POST'] = 'Payment/confirm';
 $route['tim-kiem.html'] = 'Product/find';
 $route['user/thong-tin-tai-khoan.html'] = 'Account/index';
+$route['kiem-tra-don-hang.html'] = 'Order/index';
