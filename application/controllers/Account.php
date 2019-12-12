@@ -48,7 +48,7 @@ class Account extends CI_Controller
                 );
                 if ($result != -1) {
                     $this->session->set_tempdata("user", $result, 3600); //Phiên đăng nhập 60 phút
-                    redirect(base_url(), "auto");
+                    redirect($_SERVER['HTTP_REFERER'], "auto");
                 } else {
                     $this->load->view('Login', ["error" => "Sai tên đăng nhập hoặc mật khẩu!"]);
                 }
@@ -94,7 +94,7 @@ class Account extends CI_Controller
                     $this->input->post('phone'),
                     $this->input->post('address')
                 );
-                redirect(base_url() . "login.html", "auto");
+                redirect(base_url() . "dang-nhap.html", "auto");
             }
         }
     }

@@ -39,7 +39,7 @@ Begin
 	Set @isExist = Exists(Select 1 From `accounts` Where `accounts`.UserName = UserName);
     If (@isExist = 0) Then
 		Begin
-			Insert Into account(UserName, Password, id_permission) Values(UserName, Pass, id_permission);
+			Insert Into accounts(UserName, Password, id_permission) Values(UserName, Pass, id_permission);
             Select AccountID From `accounts` Where `accounts`.UserName = UserName 
 				Into id;
         End;
