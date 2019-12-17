@@ -48,7 +48,9 @@ class Account extends CI_Controller
                 );
                 if ($result != -1) {
                     $this->session->set_tempdata("user", $result, 3600); //Phiên đăng nhập 60 phút
-                    redirect($_SERVER['HTTP_REFERER'], "auto");
+                    $backUrl = urldecode($this->input->get("backUrl"));
+                    if ($backUrl === null) $backUrl = base_url();
+                    redirect($backUrl, "auto");
                 } else {
                     $this->load->view('Login', ["error" => "Sai tên đăng nhập hoặc mật khẩu!"]);
                 }

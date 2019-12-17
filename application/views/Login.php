@@ -59,7 +59,7 @@ $(document).ready(function(){
 						<div class="col-sm-6">
 								<div class="board">
 									<h3>Đã có tài khoản</h3>
-									<?php echo form_open('dang-nhap.html'); ?>
+									<?php echo form_open('dang-nhap.html?backUrl='.urlencode($this->input->get("backUrl"))); ?>
 									<?php echo validation_errors(); ?>
 									<?php 
 										if (isset($error)	)

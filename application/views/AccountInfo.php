@@ -96,7 +96,7 @@
                             <span style="flex-basis: 80%;">
                                 <?php
                                 if (isset($data) === true) {
-                                    echo $data["Phone"];
+                                    echo $data["Address"];
                                 }
                                 ?>
                             </span>
@@ -106,7 +106,7 @@
                             <span style="flex-basis: 80%;">
                                 <?php
                                 if (isset($data) === true) {
-                                echo $data["Address"];
+                                echo $data["Phone"];
                                 }
                                 ?>
                             </span>
