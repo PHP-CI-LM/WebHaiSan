@@ -41,20 +41,22 @@
 						<div class="order-tracking-block">
 							<?php
 							if ($status === false) {
-								echo "<div class=\"alert alert-danger\">";
-								echo "Không tìm thấy đơn hàng trong hệ thống. Vui lòng kiểm tra lại mã đơn hàng của bạn.";
-								echo "</div>";
+								if ($oid !== null) {
+									echo "<div class=\"alert alert-danger\">";
+									echo "Không tìm thấy đơn hàng trong hệ thống. Vui lòng kiểm tra lại mã đơn hàng của bạn.";
+									echo "</div>";
+								}
 							}
 							?>
-							<form class="form-inline order-input ng-pristine ng-invalid ng-invalid-required" ng-submit="searchOrder()">
+							<form class="form-inline order-input">
 								<div class="form-group">
 									<label>Nhập mã đơn hàng</label>
 									<?php
 									if ($status === true){
-										echo "<input type=\"text\" class=\"form-control\" placeholder=\"Mã số đơn hàng (VD:123456789)\" value=\"". $oid ."\" required>";
+										echo "<input type=\"text\" class=\"form-control\" placeholder=\"Mã số đơn hàng (VD:123456789)\" value=\"". $oid ."\" name=\"oid\" required>";
 									}
 									else {
-										echo "<input type=\"text\" class=\"form-control\" placeholder=\"Mã số đơn hàng (VD:123456789)\" required>";
+										echo "<input type=\"text\" class=\"form-control\" placeholder=\"Mã số đơn hàng (VD:123456789)\" name=\"oid\" required>";
 									}
 									?>
 									<button class="btn btn-primary">Xem ngay</button>

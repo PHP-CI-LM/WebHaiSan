@@ -1,18 +1,34 @@
     <header>
+        <div class="container toplink">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="phone">
+                        <i class="fa fa-phone"></i>
+                        Liên hệ: 
+                        <?php echo preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "$1-$2-$3", "0123456789") ?>
+                    </span>
+                    <span class="checkOrder f-right">
+                        <a href="<?php echo base_url()?>kiem-tra-don-hang.html">
+                            <i class="fa fa-bullseye"></i>
+                            Tra cứu đơn hàng
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
         <!-- Thanh topbar -->
         <div class="container-fluid">
-
-            <!-- Thanh tiêu để trên cùng dành cho màn hình trung bình và hẹp -->
             <div class="container topbar">
                 <div class="row">
                     <?php
-                    $isAdmin = false;
-                    $strSearch = "";
-                    if (strpos(uri_string(), "Manager") !== false)
-                        $isAdmin = true;
-                    if (isset($query) == true) {
-                        $strSearch = $query;
-                    }
+                        $isAdmin = false;
+                        $strSearch = "";
+                        if (strpos(uri_string(), "Manager") !== false)
+                            $isAdmin = true;
+                        if (isset($query) == true) {
+                            $strSearch = $query;
+                        }
                     ?>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-ms-8">
                         <form action="<?php echo base_url() ?>tim-kiem.html" method="GET" class="search-bar clearfix" id="search-textbox\">
@@ -39,17 +55,17 @@
                                 </span>
                                 <div class="right-dropdown-content">
                                     <?php
-                                    $user = $this->session->tempdata('user');
-                                    if ($user === null) {
-                                        echo '<a class="item" href="' . base_url() . 'dang-nhap.html?backUrl=' . urlencode(current_url()) . '">Đăng nhập</a>';
-                                        echo '<a class="item" href="' . base_url() . 'dang-ky-thanh-vien.html">Đăng ký tài khoản</a>';
-                                    } else {
-                                        if ($isAdmin) {
-                                            echo '<li><a href="Manager/BangTin">Trang quản lý</a>';
-                                        }
-                                        echo '<a class="item" href="' . base_url() . 'user/thong-tin-tai-khoan.html' . '">Thông tin tài khoản</a>';
-                                        echo '<a class="item" href="' . base_url() . 'dang-xuat.html">Đăng xuất</a>';
-                                    }
+                                                                                $user = $this->session->tempdata('user');
+                                                                                if ($user === null) {
+                                                                                    echo '<a class="item" href="' . base_url() . 'dang-nhap.html?backUrl=' . urlencode(current_url()) . '">Đăng nhập</a>';
+                                                                                    echo '<a class="item" href="' . base_url() . 'dang-ky-thanh-vien.html">Đăng ký tài khoản</a>';
+                                                                                } else {
+                                                                                    if ($isAdmin) {
+                                                                                        echo '<li><a href="Manager/BangTin">Trang quản lý</a>';
+                                                                                    }
+                                                                                    echo '<a class="item" href="' . base_url() . 'user/thong-tin-tai-khoan.html' . '">Thông tin tài khoản</a>';
+                                                                                    echo '<a class="item" href="' . base_url() . 'dang-xuat.html">Đăng xuất</a>';
+                                                                                }
                                     ?>
                                 </div>
                             </li>
@@ -62,11 +78,11 @@
                                 </span>
                                 <span class="cart-count">
                                     <?php
-                                    $count = 0;
-                                    if (get_cookie("countProduct") != null) {
-                                        $count = get_cookie("countProduct");
-                                    }
-                                    echo "<span id=\"number\">" . $count . "</span>";
+                                                                                $count = 0;
+                                                                                if (get_cookie("countProduct") != null) {
+                                                                                    $count = get_cookie("countProduct");
+                                                                                }
+                                                                                echo "<span id=\"number\">" . $count . "</span>";
                                     ?>
                                 </span>
                             </li>
@@ -84,15 +100,15 @@
                         <ul class="nav nav-left">
 
                             <?php
-                            if (!$isAdmin) {
-                                echo "<li class=\"nav-item nav-item-lv1 active\"><a class=\"nav-link\" href=\"" . base_url() . "\">Trang chủ</a></li>";
-                            } else {
-                                echo "<li class=\"nav-item nav-item-lv1 active\"><a class=\"nav-link\" href=\"../Home\">Trang chủ</a></li>";
-                                echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"BangTin\">Bảng Tin</a></li>";
-                                echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"DonHang\">Đơn hàng</a></li>";
-                                echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"KhachHang\">Khách hàng</a></li>";
-                                echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"KhoSach\">Kho sách</a></li>";
-                            }
+                                                                                if (!$isAdmin) {
+                                                                                    echo "<li class=\"nav-item nav-item-lv1 active\"><a class=\"nav-link\" href=\"" . base_url() . "\">Trang chủ</a></li>";
+                                                                                } else {
+                                                                                    echo "<li class=\"nav-item nav-item-lv1 active\"><a class=\"nav-link\" href=\"../Home\">Trang chủ</a></li>";
+                                                                                    echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"BangTin\">Bảng Tin</a></li>";
+                                                                                    echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"DonHang\">Đơn hàng</a></li>";
+                                                                                    echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"KhachHang\">Khách hàng</a></li>";
+                                                                                    echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"KhoSach\">Kho sách</a></li>";
+                                                                                }
                             ?>
                         </ul>
                         <div class="nav nav-toggle">
@@ -101,21 +117,21 @@
                             </button>
                             <div class="toggle-content">
                                 <?php
-                                if (!$isAdmin) {
-                                    echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
-                                    echo "onclick=\"gotoPage('" . base_url() . "')\"><a href=\"" . base_url() . "\">Trang chủ</a></span> ";
-                                } else {
-                                    echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
-                                    echo "onclick=\"gotoPage('" . base_url() . "')\"><a href=\"" . base_url() . "\">Trang chủ</a></span> ";
-                                    echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
-                                    echo "onclick=\"gotoPage('BangTin')\"><a href=\"BangTin\">Bảng tin</a></span>";
-                                    echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
-                                    echo "onclick=\"gotoPage('DonHang')\"><a href=\"DonHang\">Đơn hàng</a></span>";
-                                    echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
-                                    echo "onclick=\"gotoPage('KhachHang')\"><a href=\"KhachHang\">Khách hàng</a></span>";
-                                    echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
-                                    echo "onclick=\"gotoPage('KhoSach')\"><a href=\"KhoSach\">Kho sách</a></span>";
-                                }
+                                                                                if (!$isAdmin) {
+                                                                                    echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
+                                                                                    echo "onclick=\"gotoPage('" . base_url() . "')\"><a href=\"" . base_url() . "\">Trang chủ</a></span> ";
+                                                                                } else {
+                                                                                    echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
+                                                                                    echo "onclick=\"gotoPage('" . base_url() . "')\"><a href=\"" . base_url() . "\">Trang chủ</a></span> ";
+                                                                                    echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
+                                                                                    echo "onclick=\"gotoPage('BangTin')\"><a href=\"BangTin\">Bảng tin</a></span>";
+                                                                                    echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
+                                                                                    echo "onclick=\"gotoPage('DonHang')\"><a href=\"DonHang\">Đơn hàng</a></span>";
+                                                                                    echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
+                                                                                    echo "onclick=\"gotoPage('KhachHang')\"><a href=\"KhachHang\">Khách hàng</a></span>";
+                                                                                    echo "<span class=\"toggle-item\" style=\"cursor: pointer;\"";
+                                                                                    echo "onclick=\"gotoPage('KhoSach')\"><a href=\"KhoSach\">Kho sách</a></span>";
+                                                                                }
                                 ?>
                             </div>
                         </div>
@@ -166,8 +182,7 @@
                 $(".dropdown .right-dropdown-content").animate({
                     "opacity": "1.0"
                 }, 100);
-            } 
-            else {
+            } else {
                 $(".dropdown .right-dropdown-content").css({
                     "display": "none"
                 });
