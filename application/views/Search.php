@@ -69,7 +69,7 @@
 						echo "<i class=\"fa fa-cart-plus\" onclick=\"addToCart(" . $product["id_product"] . ", 1, " . $product["price"] . ")\"></i>";
 						echo "<div class=\"content content-right\"><span>Cho vào giỏ hàng</span></div></div></div></li>";
 						echo "<li><div class=\"button-modify\"><div class=\"button-arc danger right\" style=\"transform: translateY(300%)\">";
-						echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1)\"></i>";
+						echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1, ". (int)(($product["price"]*(100 - $product["discount"]))/100) .")\"></i>";
 						echo "<div class=\"content content-right\"><span>Mua ngay</span></div></div></div></li></ul></div>";
 						echo "<div class=\"thumbnail\">";
 						echo "<img onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . $product["DuongDan"] . "\"></div>";
@@ -97,6 +97,8 @@
 			</div>
 		</div>
 	</div>
+
+	<?php require_once("comp/Footer.php")?>
 </body>
 
 </html>

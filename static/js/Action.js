@@ -10,7 +10,7 @@ String.prototype.replaceAll = function(search, replacement) {
 
 
 //Add product to cart
-function addToCart(id, soluong, gia=0) {
+function addToCart(id, soluong, gia=0, callback=null) {
     var count = getCookie("countProduct");
     if (count.length == 0)
         count = 1;
@@ -21,6 +21,7 @@ function addToCart(id, soluong, gia=0) {
     setCookie("countProduct", count);
     $(".cart-count").load(document.URL + " #number");
     $("#countInput").load(document.URL + " #count");
+    if (callback != null) callback();
 }
 
 
