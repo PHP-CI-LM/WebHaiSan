@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['chinh-sach.html'] = 'Home/policy';
 $route['product/(:any).html'] = 'Product/index/$1';
 $route['category/ca-bien.html'] = 'category/index/1';
 $route['category/tom.html'] = 'category/index/3';

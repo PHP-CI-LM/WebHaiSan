@@ -343,7 +343,7 @@ header nav .active a {
 }
 
 .breadcrumb {
-	margin-top: 15px;
+	margin-top: 30px;
 	margin-bottom: 5px;
 	margin-left: 25px;
 	font-size: 1.14286em;
@@ -833,7 +833,7 @@ header nav .active a {
 	display: block;
 	position: fixed;
 	left: 0;
-	top: 115px;
+	top: 155px;
 	width: 106%;
 	height: 0;
 	overflow: hidden;
@@ -847,6 +847,7 @@ header nav .active a {
 	background: #fbfbfb;
 	padding: 12px 20px;
 	text-align: center;
+	font-weight: 700;
 }
 
 .nav-toggle .toggle-content .toggle-item:hover {

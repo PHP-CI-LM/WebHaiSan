@@ -18,8 +18,13 @@ class Home extends CI_Controller {
 		$this->load->view('Home', [
 			'bangTin' => $result, 
 			'sellingProducts' => $sellingProducts,
-			'products' => $classifiedProducts
+			'products' => $classifiedProducts,
+			'page' => 'Home'
 		]);
+	}
+
+	public function policy() {
+		$this->load->view('Policy', ["page" => "Policy"]);
 	}
 
 	private function listAllProduct($limitItem = 4) {
