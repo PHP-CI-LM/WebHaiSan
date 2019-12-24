@@ -9,4 +9,11 @@ class Category_Model extends CI_Model {
         );
         return $query->result_array();
     }
+
+    public function getAllCategory()
+    {
+        $str="SELECT *from categories";
+        $query=$this->db->query($str);
+        return $query->result_array();
+    }
 }
