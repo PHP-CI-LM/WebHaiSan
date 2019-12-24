@@ -226,7 +226,7 @@
 							</a></li>
 
 						<!-- Logout -->
-						<li><a href="home/logout.html">
+						<li><a href="<?php echo base_url()?>admin/logout.html">
 								<img src="<?php echo public_url() ?>/images/icons/topnav/logout.png" alt="" />
 								<span>Đăng xuất</span>
 							</a></li>

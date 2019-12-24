@@ -11,6 +11,13 @@ class Account_Model extends CI_Model {
         return $result->id;
     }
 
+    public function loginAdmin($username, $password) {
+        $query = "SELECT UserName FROM accounts WHERE UserName = '" . $username . "' && password = '" . $password . "' && id_permission = 1;";
+        $result = $this->db->query($query);
+        if (sizeof($result->result_array()) === 0) return false;
+        return $result->result_array()[0]["UserName"]; 
+    }
+
     public function getAccount($accountID) {
         $query = $this->db->query(
             "SELECT UserName FROM accounts WHERE AccountID=" . $accountID . ";"
