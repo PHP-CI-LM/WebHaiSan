@@ -242,7 +242,7 @@
 							alert("Đơn hàng của bạn đã được tiếp nhận. Chúng tôi sẽ liên hệ lại ngay cho bạn để xác nhận đơn hàng");
 							deleteAllCookie();
 							//Go to page check detail order
-							window.location.replace('<?php echo base_url() . "kiem-tra-don-hang.html?oid=" ?>' + data["data"]["oid"]);
+							window.location.replace('<?php echo base_url() . "ket-qua-dat-hang.html?oid=" ?>' + data["data"]["oid"]);
 						} else {
 							enableCloseButton();
 							changeModalLabel("Quá trình đặt hàng có trục trặc. Làm phiền quý khách thực hiện lại thao tác")

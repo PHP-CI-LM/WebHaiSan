@@ -25,7 +25,7 @@
 	<div class="container" id="content">
 		<div class="row">
 			<div class="col-sm-12">
-				<ul class="breadcrumb" itemtype="http://schema.org/BreadcrumbList">
+				<ul class="breadcrumb" itemtype="http://schema.org/BreadcrumbList" style="margin-top: 30px; margin-bottom: 5px;">
 					<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="<?php echo base_url() ?>"> <span itemprop="name"> <i class="fa fa-home"></i> Trang chủ
 							</span>
 						</a> <span><i class="fa fa-angle-right"></i></span>
@@ -43,11 +43,8 @@
 					<div class="title none-bg large-text inline" style="text-transform: capitalize; padding-right: 0; clip-path: none;">
 						<?php
 						echo "Kết quả tìm kiếm cho: ";
-						echo "<span style=\"font-weight: 400; padding-left: 5px\">";
-						if ($products !== null) {
-							$product = $products[0];
-							echo $product["name_category"];
-						}
+						echo "<span style=\"font-weight: 400; text-transform: none;\">";
+						echo $query;
 						echo "</span>";
 						?>
 					</div>

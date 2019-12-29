@@ -68,6 +68,7 @@ $route['thanh-toan.html'] = 'Payment/index';
 $route['xac-nhan-thanh-toan.html']['POST'] = 'Payment/confirm';
 $route['tim-kiem.html'] = 'Product/find';
 $route['user/thong-tin-tai-khoan.html'] = 'Account/index';
+$route['ket-qua-dat-hang.html'] = 'Payment/result';
 $route['kiem-tra-don-hang.html'] = 'Order/index';
 $route['admin'] = 'admin_controller/admin/index';
 $route['admin/login.html']['get'] = 'admin_controller/admin/index';

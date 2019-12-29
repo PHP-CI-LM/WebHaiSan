@@ -30,16 +30,21 @@
 								</a> <span><i class="fa fa-angle-right"></i></span>
 								<meta itemprop="position" content="1">
 							</li>
-							<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name">Kiểm tra đơn hàng</strong></a>
-								<meta itemprop="position" content="3">
-							</li>
+							<?php
+							if (isset($stage) && $stage === 'CheckOrder') {
+								echo "<li itemprop=\"itemListElement\" itemtype=\"http://schema.org/ListItem\"><a itemprop=\"item\" href=\"javascript:void(0)\"> <strong itemprop=\"name\">Kiểm tra đơn hàng</strong></a><meta itemprop=\"position\" content=\"3\"></li>";
+							} else {
+								echo "<li itemprop=\"itemListElement\" itemtype=\"http://schema.org/ListItem\"><a itemprop=\"item\" href=\"javascript:void(0)\"> <strong itemprop=\"name\">Kết quả đặt hàng</strong></a><meta itemprop=\"position\" content=\"3\"></li>";
+							}
+							?>
 						</ul>
 					</div>
 
 					<div class="cart-content ng-scope">
-						<h1 style="font-size: 24px;"><span>Kiểm tra đơn hàng</span></h1>
-						<div class="order-tracking-block">
-							<?php
+						<?php
+						if (isset($stage) && $stage === 'CheckOrder') {
+							echo "<h1 style=\"font-size: 24px;\"><span>Kiểm tra đơn hàng</span></h1>";
+							echo "<div class=\"order-tracking-block\">";
 							if ($status === false) {
 								if ($oid !== null) {
 									echo "<div class=\"alert alert-danger\">";
@@ -47,22 +52,31 @@
 									echo "</div>";
 								}
 							}
-							?>
-							<form class="form-inline order-input">
-								<div class="form-group">
-									<label>Nhập mã đơn hàng</label>
-									<?php
-									if ($status === true){
-										echo "<input type=\"text\" class=\"form-control\" placeholder=\"Mã số đơn hàng (VD:123456789)\" value=\"". $oid ."\" name=\"oid\" required>";
-									}
-									else {
-										echo "<input type=\"text\" class=\"form-control\" placeholder=\"Mã số đơn hàng (VD:123456789)\" name=\"oid\" required>";
-									}
-									?>
-									<button class="btn btn-primary">Xem ngay</button>
-								</div>
-							</form>
-						</div>
+							echo "<form class=\"form-inline order-input\">";
+							echo "<div class=\"form-group\">";
+							echo "<label>Nhập mã đơn hàng</label>";
+							if ($status === true) {
+								echo "<input type=\"text\" class=\"form-control\" placeholder=\"Mã số đơn hàng (VD:123456789)\" value=\"" . $oid . "\" name=\"oid\" required>";
+							} else {
+								echo "<input type=\"text\" class=\"form-control\" placeholder=\"Mã số đơn hàng (VD:123456789)\" name=\"oid\" required>";
+							}
+							echo "<button class=\"btn btn-primary\">Xem ngay</button></div></form></div>";
+						} else {
+							echo "<h1 style=\"font-size: 24px;\"><span>Kết quả đặt hàng</span></h1>";
+							echo "<div class=\"order-tracking-block\">";
+							if ($status === true) {
+								echo "<p>Đơn hàng của quý khách đã đặt thành công</p>";
+								if ($oid !== null) {
+									echo "<p>Mã đơn hàng của quý khách là: <strong style=\"font-size: large; color: red;\">". $oid . "</strong></p>";
+									echo "<p>Quý khách vui lòng lưu giữ lại mã đơn hàng nếu như muốn theo dõi tình hình đơn hàng của mình. </p>";
+								}
+							} else {
+								echo "<p>Đơn hàng của quý khách đã đặt không thành công</p>";
+								echo "<p>Quý khách vui lòng thử lại</p>";
+							}
+							echo "</div>";
+						}
+						?>
 						<div class="cart-block">
 							<div class="cart-info table-responsive">
 								<table class="table product-list">
@@ -97,8 +111,11 @@
 												echo number_format((int) (($product["price"] * $product["count"]) * (100 - $product["discount"]) / 100)) . "đ";
 												echo "</td>";
 												echo "<td class=\"text-center\">";
-												echo "<a onclick=\"removeProductFromCart(this)\" href=\"javascript:void(0)\">";
-												echo "<i class=\"fa fa-trash\"></i>";
+												echo "<a href=\"javascript:void(0)\">";
+												if ($product["stage"] == "1")
+													echo "<i class=\"fa fa-bus\"></i>";
+												else
+													echo "<i class=\"fa fa-check-circle\"></i>";
 												echo "</a></td></tr>";
 											}
 										}

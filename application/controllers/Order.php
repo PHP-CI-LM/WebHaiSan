@@ -31,25 +31,30 @@ class Order extends CI_Controller
                         $product = (array) $this->Product_Model->getProductOfId($item["id"], 1);
                         $product["price"] = $item["price"];
                         $product["count"] = $item["amount"];
+                        $product["stage"] = $order[0]["Status"];
                         array_push($products, $product);
                     }
                     $this->load->view("CheckOrder", [
                         "status" => true,
+                        "stage" => "CheckOrder",
                         "oid" => $oid,
                         "products" => $products
                     ]);
                 } else {
                     $this->load->view("CheckOrder", [
                         "status" => false,
+                        "stage" => "CheckOrder",
                         "oid" => $oid
                     ]);
                 }
             } else $this->load->view("CheckOrder", [
                 "status" => false,
+                "stage" => "CheckOrder",
                 "oid" => $oid
             ]);
         } else $this->load->view("CheckOrder", [
             "status" => false,
+            "stage" => "CheckOrder",
             "oid" => null
         ]);
     }

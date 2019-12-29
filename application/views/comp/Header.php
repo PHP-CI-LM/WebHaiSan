@@ -136,7 +136,7 @@
             });
         });
 
-        $('.dropdown').click(function(e) {
+        $('.dropdown span').click(function(e) {
             e.preventDefault();
             if ($(".dropdown .right-dropdown-content").css("display") === "none") {
                 $(".dropdown .right-dropdown-content").css({

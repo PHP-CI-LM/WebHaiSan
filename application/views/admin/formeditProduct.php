@@ -81,7 +81,7 @@
 
 				<li class="home">
 
-					<a href="home.html" class="">
+					<a href="<?php echo base_url()?>admin" class="">
 						<span>Bảng điều khiển</span>
 						<strong></strong>
 					</a>
@@ -101,7 +101,7 @@
 								Giao dịch </a>
 						</li> -->
 						<li>
-							<a href="order.html">
+							<a href="<?php echo base_url()?>admin/order.html">
 								Đơn hàng sản phẩm </a>
 						</li>
 					</ul>
@@ -116,7 +116,7 @@
 
 					<ul class="sub">
 						<li class="this">
-							<a href="product.html">
+							<a href="<?php echo base_url()?>admin/product.html">
 								Sản phẩm </a>
 						</li>
 						<!-- <li>
@@ -147,7 +147,7 @@
 								Nhóm quản trị </a>
 						</li> -->
 						<li>
-							<a href="user.html">
+							<a href="<?php echo base_url()?>admin/user.html">
 								Thành viên </a>
 						</li>
 					</ul>

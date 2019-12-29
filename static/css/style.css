@@ -343,8 +343,8 @@ header nav .active a {
 }
 
 .breadcrumb {
-	margin-top: 30px;
-	margin-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 20px;
 	margin-left: 25px;
 	font-size: 1.14286em;
 	padding: 0;

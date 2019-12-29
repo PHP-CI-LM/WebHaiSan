@@ -105,7 +105,7 @@
 										Miễn phí giao hàng
 									</span>
 									<span class="small-text">
-										Cho hóa đơn từ 450,000đ
+										Cho hóa đơn từ 500.000đ trở lên
 									</span>
 								</div>
 							</div>
@@ -117,7 +117,7 @@
 								</div>
 								<div class="description_icon">
 									<span class="large-text">
-										Giao hàng trong ngày
+										Giao hàng từ 1-2 ngày
 									</span>
 									<span class="small-text">
 										Với tất cả đơn hàng
