@@ -69,7 +69,7 @@
 						echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1, ". (int)(($product["price"]*(100 - $product["discount"]))/100) .")\"></i>";
 						echo "<div class=\"content content-right\"><span>Mua ngay</span></div></div></div></li></ul></div>";
 						echo "<div class=\"thumbnail\">";
-						echo "<img onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . $product["DuongDan"] . "\"></div>";
+						echo "<img onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . base_url() . "images/" . $product["DuongDan"] . "\"></div>";
 						echo "<div class=\"info-book\"><div class=\"title\">" . $product["name_product"] . "</div>";
 						echo "<div class=\"price\">" . number_format($product["price"]) . "đ/kg</div></div></div></div>";
 					}

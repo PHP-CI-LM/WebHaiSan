@@ -406,7 +406,7 @@
 								echo "<tr class='row_9'>";
 								echo "<td><input type=\"checkbox\" name=\"id[]\" value=\"" . $row["id_product"] . "\" /></td>";
 								echo "<td class=\"textC\">" . $row["id_product"] . "</td>";
-								echo "<td><div class=\"image_thumb\"><img src=\"" . $row["image_link"] . "\" height=\"50\"><div class=\"clear\"></div></div>";
+								echo "<td><div class=\"image_thumb\"><img src=\"" . base_url() . "images/" . $row['image_link'] . "\" height=\"50\"><div class=\"clear\"></div></div>";
 								echo "<a href=\"" . base_url() . "admin/update-product.html/" . $row["id_product"] . "\" class=\"tipS\" title=\"\" target=\"_blank\"><b>" . $row["name_product"] . "</b></a>";
 								echo "<div class=\"f11\">Đã bán: " . $row["count_buy"] . " | Xem: " . $row["count_view"] . " </div></td>";
 								echo "<td class=\"textR\">" . number_format($row["price"]) . " đ</td>";

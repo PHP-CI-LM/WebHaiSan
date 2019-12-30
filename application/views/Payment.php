@@ -141,7 +141,7 @@
 													echo "<div class=\"cart-item clearfix\">";
 													echo "<span class=\"image pull-left\" style=\"margin-right:10px;\">";
 													echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">";
-													echo "<img src=\"" . $product["DuongDan"] . "\" class=\"img-responsive\">";
+													echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" class=\"img-responsive\">";
 													echo "</a></span>";
 													echo "<div class=\"product-info pull-left\">";
 													echo "<span class=\"product-name\">";

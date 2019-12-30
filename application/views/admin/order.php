@@ -374,7 +374,7 @@
 									<td class="textC"><?php echo $row["OrderID"] ?></td>
 									<td>
 										<div class="<?php echo public_url() ?>/image_thumb">
-									<img src="<?php echo $row['image_link'] ?>" height="50">
+									<img src="<?php echo base_url() . "images/" . $row['image_link'] ?>" height="50">
 									<div class="clear"></div>
 								</div> 
 										<a href="product/view/8.html" class="tipS" title="" target="_blank">
