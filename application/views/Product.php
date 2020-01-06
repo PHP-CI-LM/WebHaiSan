@@ -61,7 +61,7 @@
 								<div class="thumbnail">
 									<?php
 									if ($product != null) {
-										echo "<img src=\"" . base_url() . "images/" . base_url() . "images/" . base_url() . "images/" . base_url() . "images/" . base_url() . "images/" . base_url() . "images/" . $product["DuongDan"] . "\" id=\"zoom-image\" style=\"content: url('" . base_url() . "images/" . base_url() . "images/" . base_url() . "images/" . base_url() . "images/" . base_url() . "images/" . base_url() . "images/" . $product["DuongDan"] . "');\">";
+										echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" id=\"zoom-image\" style=\"content: url('" . base_url() . "images/" . $product["DuongDan"] . "');\">";
 									}
 									?>
 								</div>
@@ -149,7 +149,7 @@
 							$length = sizeof($similarProducts);
 							foreach ($similarProducts as $product) {
 								echo '<a href="' . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">";
-								echo "<li class=\"item\"><img src=\"" . base_url() . "images/" . base_url() . "images/" . base_url() . "images/" . base_url() . "images/" . base_url() . "images/" . $product["DuongDan"] . "\"></img> <span>" . $product["name_product"];
+								echo "<li class=\"item\"><img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\"></img> <span>" . $product["name_product"];
 								echo "</span></li></a>";
 							}
 						}

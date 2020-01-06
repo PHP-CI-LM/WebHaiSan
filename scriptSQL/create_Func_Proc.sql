@@ -56,7 +56,7 @@ $$
 
 
 DELIMITER $$
-Create Procedure sp_addCustomer(IN AccountID int(11), IN CustomerName varchar(50) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci, IN Sex bit(1), IN Phone varchar(12), IN Addr varchar(4096) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci)
+Create Procedure sp_addCustomer(IN AccountID int(11), IN CustomerName varchar(50) CHARSET utf8 COLLATE utf8_unicode_ci, IN Sex bit(1), IN Phone varchar(12), IN Addr varchar(4096) CHARSET utf8 COLLATE utf8_unicode_ci)
 Begin
 	Set @isExist = Exists(Select 1 From `customers` Where `customers`.CustomerID = AccountID);
     If (@isExist = 0) Then
