@@ -28,8 +28,7 @@ class Account_Model extends CI_Model {
     public function createNewAccount($username, $password) {
         $this->db->trans_start();
         $this->db->query(
-            "CALL sp_addAccount(@id, '". $username ."', 
-                '".  $password ."', 2);"
+            "CALL sp_addAccount(@id, '". $username ."', '".  $password ."', 2);"
         );
         $result = $this->db->query("SELECT @id As AccountID");
         $this->db->trans_complete();
