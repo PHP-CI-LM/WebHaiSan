@@ -29,7 +29,7 @@ class Account_Model extends CI_Model {
         $this->db->trans_start();
         $this->db->query(
             "CALL sp_addAccount(@id, '". $username ."', 
-                '".  $password ."', 1);"
+                '".  $password ."', 2);"
         );
         $result = $this->db->query("SELECT @id As AccountID");
         $this->db->trans_complete();
