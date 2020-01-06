@@ -83,5 +83,4 @@
 
 	<?php require_once("comp/Footer.php")?>
 </body>
-
 </html>
