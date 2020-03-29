@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'SG-mysqlserver-1736-master.servers.mongodirector.com',
+	'hostname' => 'localhost',
 	'username' => 'admin',
-	'password' => '3Yi!WpMN9feEgjj',
+	'password' => '1234',
 	'database' => 'webhaisan',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
