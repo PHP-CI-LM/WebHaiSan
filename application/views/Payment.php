@@ -148,7 +148,7 @@
 													echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">" . $product["name_product"] . "</a> x <span>1</span>";
 													echo "</span></div>";
 													echo "<span class=\"price\">" . number_format((int) ($product["price"] * (100 - $product["discount"]) / 100)) . "₫</span></div>";
-													$totalPrice += (int) (($product["price"] * $product["count"]) * (100 - $product["discount"]) / 100);
+													$totalPrice += (int) ($product["price"] * $product["count"] * (100 - $product["discount"])) / 100;
 												}
 											}
 											?>
