@@ -96,7 +96,7 @@
 									if (isset($carts) == true && sizeof($carts) > 0) {
 										for ($i = 0; $i < sizeof($carts); $i++) {
 											$product = $carts[$i];
-											$sum = $sum + ($product["price"] * $product["count"]);
+											$sum = $sum + (int)($product["price"] * $product["count"] * (100 - $product["discount"]))/100;
 										}
 									}
 									echo number_format($sum) . "đ";
