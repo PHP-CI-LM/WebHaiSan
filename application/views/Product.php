@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/sheet.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/BEM_Style.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/comment.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
@@ -79,15 +80,15 @@
 										echo "<li>";
 										echo "<div class=\"row\">";
 										echo "<div class=\"col-xs-12\">";
-										echo "<span style=\"color: #d83808; font-size: 2.2rem; line-height: 1.5rem; margin-top: 15px;\">" . number_format((int)(($product["price"]*(100 - $product["discount"]))/100)) . "đ";
+										echo "<span style=\"color: #d83808; font-size: 2.2rem; line-height: 1.5rem; margin-top: 15px;\">" . number_format((int) (($product["price"] * (100 - $product["discount"])) / 100)) . "đ";
 										echo "<p style=\"display: block;color: #333; font-size: 1.35rem; margin-top: 15px;\">Giá gốc: <span style=\"font-weight: 700; text-decoration: line-through;\">" . number_format($product["price"]) . "đ</span></p>";
-										echo "<p style=\"display: block;color: #333; font-size: 1.35rem; margin-top: 0px;\">Khuyến mãi: <span style=\"color: #00c4ff; font-weight: 700\">" . number_format((int)(($product["price"]*$product["discount"])/100)) . "đ (" . $product["discount"] . "%)</span></p>";
+										echo "<p style=\"display: block;color: #333; font-size: 1.35rem; margin-top: 0px;\">Khuyến mãi: <span style=\"color: #00c4ff; font-weight: 700\">" . number_format((int) (($product["price"] * $product["discount"]) / 100)) . "đ (" . $product["discount"] . "%)</span></p>";
 										echo "</span></div></div></li>";
 										echo "<li>";
 										echo "<div class=\"row\">";
 										echo "<div class=\"col-xs-12\">";
 										echo "<span>";
-										echo "Nguồn gốc: ". $product["name_origin"];
+										echo "Nguồn gốc: " . $product["name_origin"];
 										echo "</span></div>";
 										echo "<div class=\"col-xs-12\">";
 										echo "<span>";
@@ -163,28 +164,84 @@
 			<div class="row">
 				<div class="board" id="board_comment">
 					<p class="board__title">Đánh giá</p>
-					<!-- <%
-						Object comments = request.getAttribute("comment");
-						if (comments != null) {
-							Comment[] c = (Comment[]) comments;
-							int danhGia = Integer.parseInt(request.getAttribute("rate").toString());
-							for (int i = 0; i < c.length; i++) {
-								Comment comment = c[c.length - 1 - i];
+					<!-- Contenedor Principal -->
+					<div class="comments-container">
+						<ul id="comments-list" class="comments-list">
+							<li>
+								<div class="comment-main-level">
+									<!-- Avatar -->
+									<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+									<!-- Contenedor del Comentario -->
+									<div class="comment-box">
+										<div class="comment-head">
+											<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
+											<span>hace 20 minutos</span>
+											<i class="fa fa-reply"></i>
+											<i class="fa fa-heart"></i>
+										</div>
+										<div class="comment-content">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+										</div>
+									</div>
+								</div>
+								<!-- Respuestas de los comentarios -->
+								<ul class="comments-list reply-list">
+									<li>
+										<!-- Avatar -->
+										<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+										<!-- Contenedor del Comentario -->
+										<div class="comment-box">
+											<div class="comment-head">
+												<h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+												<span>hace 10 minutos</span>
+												<i class="fa fa-reply"></i>
+												<i class="fa fa-heart"></i>
+											</div>
+											<div class="comment-content">
+												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+											</div>
+										</div>
+									</li>
 
-								echo "<ul class=\"comment\">");
-								echo "<li class=\"comment__item\">");
-								echo 
-										"<span class=\"comment__item__icon\"><i class=\"fa fa-user\" style=\"cursor: default;\"></i></span>");
-								echo "<span class=\"comment__item__name\">" + comment.getTenNguoiDung() + "</span>");
-								echo "<span class=\"comment__item__time\">" + comment.getThoiGian() + "</span>");
-								echo "<span class=\"comment__item__rate\">Đã đánh giá: " + comment.getDanhGia()
-										+ "/5 sao</span>");
-								echo "<span class=\"comment__item__content\">" + comment.getNoiDung() + "</span>");
-								echo "</li>");
-								echo "</ul>");
-							}
-						}
-					%> -->
+									<li>
+										<!-- Avatar -->
+										<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+										<!-- Contenedor del Comentario -->
+										<div class="comment-box">
+											<div class="comment-head">
+												<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
+												<span>hace 10 minutos</span>
+												<i class="fa fa-reply"></i>
+												<i class="fa fa-heart"></i>
+											</div>
+											<div class="comment-content">
+												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+											</div>
+										</div>
+									</li>
+								</ul>
+							</li>
+
+							<li>
+								<div class="comment-main-level">
+									<!-- Avatar -->
+									<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+									<!-- Contenedor del Comentario -->
+									<div class="comment-box">
+										<div class="comment-head">
+											<h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+											<span>hace 10 minutos</span>
+											<i class="fa fa-reply"></i>
+											<i class="fa fa-heart"></i>
+										</div>
+										<div class="comment-content">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</div>
 
 				<div class="board">
@@ -223,7 +280,7 @@
 		</div>
 	</div>
 
-	<?php require_once("comp/Footer.php")?>
+	<?php require_once("comp/Footer.php") ?>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
