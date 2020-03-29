@@ -53,86 +53,83 @@
 				</ul>
 			</div>
 		</div>
+
 		<div class="row" style="padding-left: 3rem; padding-right: 3rem;">
 			<div class="col-md-9 col-sm-8 col-xs-12">
 				<article>
-					<div class="row">
-						<div class="board">
-							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-								<div class="thumbnail">
-									<?php
-									if ($product != null) {
-										echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" id=\"zoom-image\" style=\"content: url('" . base_url() . "images/" . $product["DuongDan"] . "');\">";
-									}
-									?>
+					<div class="board flex-board flex-lg-row flex-md-column flex-sm-column flex-xs-column">
+							<div class="thumbnail">
+								<?php
+								if ($product != null) {
+									echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" id=\"zoom-image\" style=\"content: url('" . base_url() . "images/" . $product["DuongDan"] . "');\">";
+								}
+								?>
+							</div>
+						<div style="padding-left: 2rem">
+							<div id="info">
+								<?php
+								if ($product == null) {
+									echo "<p class=\"error\">Sản phẩm không tồn tại</p>";
+								} else {
+									echo "<ul>";
+									echo "<li>";
+									echo "<div class=\"row\">";
+									echo "<div class=\"col-xs-12\"><span style=\"font-size: 1.85rem; font-weight: 600\">" . $product["name_product"] . "</span></div></div></li>";
+									echo "<li>";
+									echo "<div class=\"row\">";
+									echo "<div class=\"col-xs-12\">";
+									echo "<span style=\"color: #d83808; font-size: 2.2rem; line-height: 1.5rem; margin-top: 15px;\">" . number_format((int) (($product["price"] * (100 - $product["discount"])) / 100)) . "đ";
+									echo "<p style=\"display: block;color: #333; font-size: 1.35rem; margin-top: 15px;\">Giá gốc: <span style=\"font-weight: 700; text-decoration: line-through;\">" . number_format($product["price"]) . "đ</span></p>";
+									echo "<p style=\"display: block;color: #333; font-size: 1.35rem; margin-top: 0px;\">Khuyến mãi: <span style=\"color: #00c4ff; font-weight: 700\">" . number_format((int) (($product["price"] * $product["discount"]) / 100)) . "đ (" . $product["discount"] . "%)</span></p>";
+									echo "</span></div></div></li>";
+									echo "<li>";
+									echo "<div class=\"row\">";
+									echo "<div class=\"col-xs-12\">";
+									echo "<span>";
+									echo "Nguồn gốc: " . $product["name_origin"];
+									echo "</span></div>";
+									echo "<div class=\"col-xs-12\">";
+									echo "<span>";
+									if (strlen($product["descript"]) > 0)
+										echo $product["descript"];
+									else
+										echo "Đang cập nhật nội dung";
+									echo "</span></div>";
+									echo "<div class=\"col-xs-12\">";
+									echo "<span>";
+									echo "Trọng lượng: " . $product["size"] . " " . $product["name_unit"];
+									echo "</span></div></div></li>";
+								}
+								?>
+							</div>
+
+							<div class="row" style="margin-top: 20px; margin-left: 6.5rem;">
+								<span style="font-weight: 500; margin-right: 2rem;">Khối lượng (kg): </span>
+								<div id="countInput" style="text-align: center;display: inline-block;">
+									<input type="number" name="quantity" min="0.5" max="100" value="1" id="count" step="0.1" style="font-size: 1.5rem;padding: 0.6rem;">
 								</div>
 							</div>
-							<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12" style="padding-left: 2rem">
-								<div id="info">
-									<?php
-									if ($product == null) {
-										echo "<p class=\"error\">Sản phẩm không tồn tại</p>";
-									} else {
-										echo "<ul>";
-										echo "<li>";
-										echo "<div class=\"row\">";
-										echo "<div class=\"col-xs-12\"><span style=\"font-size: 1.85rem; font-weight: 600\">" . $product["name_product"] . "</span></div></div></li>";
-										echo "<li>";
-										echo "<div class=\"row\">";
-										echo "<div class=\"col-xs-12\">";
-										echo "<span style=\"color: #d83808; font-size: 2.2rem; line-height: 1.5rem; margin-top: 15px;\">" . number_format((int) (($product["price"] * (100 - $product["discount"])) / 100)) . "đ";
-										echo "<p style=\"display: block;color: #333; font-size: 1.35rem; margin-top: 15px;\">Giá gốc: <span style=\"font-weight: 700; text-decoration: line-through;\">" . number_format($product["price"]) . "đ</span></p>";
-										echo "<p style=\"display: block;color: #333; font-size: 1.35rem; margin-top: 0px;\">Khuyến mãi: <span style=\"color: #00c4ff; font-weight: 700\">" . number_format((int) (($product["price"] * $product["discount"]) / 100)) . "đ (" . $product["discount"] . "%)</span></p>";
-										echo "</span></div></div></li>";
-										echo "<li>";
-										echo "<div class=\"row\">";
-										echo "<div class=\"col-xs-12\">";
-										echo "<span>";
-										echo "Nguồn gốc: " . $product["name_origin"];
-										echo "</span></div>";
-										echo "<div class=\"col-xs-12\">";
-										echo "<span>";
-										if (strlen($product["descript"]) > 0)
-											echo $product["descript"];
-										else
-											echo "Đang cập nhật nội dung";
-										echo "</span></div>";
-										echo "<div class=\"col-xs-12\">";
-										echo "<span>";
-										echo "Trọng lượng: " . $product["size"] . " " . $product["name_unit"];
-										echo "</span></div></div></li>";
-									}
-									?>
-								</div>
-
-								<div class="row" style="margin-top: 20px; margin-left: 6.5rem;">
-									<span style="font-weight: 500; margin-right: 2rem;">Khối lượng (kg): </span>
-									<div id="countInput" style="text-align: center;display: inline-block;">
-										<input type="number" name="quantity" min="0.5" max="100" value="1" id="count" step="0.1" style="font-size: 1.5rem;padding: 0.6rem;">
+							<div class="row" style="padding: 1rem 2rem;">
+								<div class="col-xs-6" style="text-align: center">
+									<div class="button-modify">
+										<?php
+										if ($product != null) {
+											echo "<div class=\"button-rect forest\" style=\"width: 100%\" onclick='addToCart(\"" . $product["id_product"] . "\", getNumberBuy());'>";
+											echo "<i class=\"fa fa-cart-plus\"></i>";
+											echo "<span class=\"content content-inner\">Cho vào giỏ</span></div>";
+										}
+										?>
 									</div>
 								</div>
-								<div class="row" style="padding: 1rem 2rem;">
-									<div class="col-xs-6" style="text-align: center">
-										<div class="button-modify">
-											<?php
-											if ($product != null) {
-												echo "<div class=\"button-rect forest\" style=\"width: 100%\" onclick='addToCart(\"" . $product["id_product"] . "\", getNumberBuy());'>";
-												echo "<i class=\"fa fa-cart-plus\"></i>";
-												echo "<span class=\"content content-inner\">Cho vào giỏ</span></div>";
-											}
-											?>
-										</div>
-									</div>
-									<div class="col-xs-6" style="text-align: center">
-										<div class="button-modify">
-											<?php
-											if ($product != null) {
-												echo "<div class=\"button-rect danger\" style=\"width: 100%\" onclick='buyNow(\"" . $product["id_product"] . "\", getNumberBuy());'>";
-												echo "<i class=\"fa fa-money\"></i>";
-												echo "<span class=\"content content-inner\">Mua ngay</span></div>";
-											}
-											?>
-										</div>
+								<div class="col-xs-6" style="text-align: center">
+									<div class="button-modify">
+										<?php
+										if ($product != null) {
+											echo "<div class=\"button-rect danger\" style=\"width: 100%\" onclick='buyNow(\"" . $product["id_product"] . "\", getNumberBuy());'>";
+											echo "<i class=\"fa fa-money\"></i>";
+											echo "<span class=\"content content-inner\">Mua ngay</span></div>";
+										}
+										?>
 									</div>
 								</div>
 							</div>

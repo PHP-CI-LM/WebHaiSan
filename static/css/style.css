@@ -592,6 +592,10 @@ header nav .active a {
 	font-size: medium;
 }
 
+.flex-board {
+	display: flex;
+}
+
 .search-bar {
 	display: block;
 	position: relative;
