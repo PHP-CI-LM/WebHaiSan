@@ -1,9 +1,8 @@
 ==========================================================
-Project demo cuối kỳ: Nghiên cứu framework PHP CodeIgniter
+Project: Website bán hải sản trực tuyến
 ==========================================================
 
-:Phiên bản dùng: 3.1.1
-:Đề tài: Website bán hải sản trực tuyến
+:Phiên bản dùng: CodeIgniter 3.1.1
 
 ---------
 Chuẩn bị
@@ -17,8 +16,7 @@ Chuẩn bị
 Các bước cài đặt
 ------------------
 1. Chạy các file script (nằm ở thư mục scriptSQL) theo thứ tự sau để chuẩn bị cơ sở dữ liệu cho website
-    - create_Table_View.sql
-    - create_Func_Proc.sql
+    - generateDB.sql
     - insertData.sql
 
 2. Cấu hình project để có thể kết nối đến csdl vừa cài đặt
