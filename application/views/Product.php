@@ -1,3 +1,28 @@
+<?php
+function randomColor()
+{
+	$backgrounds = [
+		'f44336',
+		'E91E63',
+		'9C27B0',
+		'673AB7',
+		'3F51B5',
+		'2196F3',
+		'03A9F4',
+		'00BCD4',
+		'009688',
+		'4CAF50',
+		'8BC34A',
+		'CDDC39',
+		'FFC107',
+		'FF9800',
+		'FF5722',
+	];
+	$index = rand(0, 50) % sizeof($backgrounds);
+	return $backgrounds[$index];
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -58,13 +83,13 @@
 			<div class="col-md-9 col-sm-8 col-xs-12">
 				<article>
 					<div class="board flex-board flex-lg-row flex-md-column flex-sm-column flex-xs-column">
-							<div class="thumbnail">
-								<?php
-								if ($product != null) {
-									echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" id=\"zoom-image\" style=\"content: url('" . base_url() . "images/" . $product["DuongDan"] . "');\">";
-								}
-								?>
-							</div>
+						<div class="thumbnail">
+							<?php
+							if ($product != null) {
+								echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" id=\"zoom-image\" style=\"content: url('" . base_url() . "images/" . $product["DuongDan"] . "');\">";
+							}
+							?>
+						</div>
 						<div style="padding-left: 2rem">
 							<div id="info">
 								<?php
@@ -159,111 +184,179 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="board" id="board_comment">
-					<p class="board__title">Đánh giá</p>
-					<!-- Contenedor Principal -->
-					<div class="comments-container">
-						<ul id="comments-list" class="comments-list">
-							<li>
-								<div class="comment-main-level">
-									<!-- Avatar -->
-									<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
-									<!-- Contenedor del Comentario -->
-									<div class="comment-box">
-										<div class="comment-head">
-											<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
-											<span>hace 20 minutos</span>
-											<i class="fa fa-reply"></i>
-											<i class="fa fa-heart"></i>
-										</div>
-										<div class="comment-content">
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-										</div>
-									</div>
-								</div>
-								<!-- Respuestas de los comentarios -->
-								<ul class="comments-list reply-list">
-									<li>
-										<!-- Avatar -->
-										<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-										<!-- Contenedor del Comentario -->
-										<div class="comment-box">
-											<div class="comment-head">
-												<h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
-												<span>hace 10 minutos</span>
-												<i class="fa fa-reply"></i>
-												<i class="fa fa-heart"></i>
-											</div>
-											<div class="comment-content">
-												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-											</div>
+				<div class="col-md-9 col-sm-8 col-xs-12">
+					<div class="board" id="board_comment" style="width: 98%; margin-left: 5px;">
+						<p class="board__title">Đánh giá</p>
+						<form action="#">
+							<div class="comments-container">
+								<ul class="comments-list">
+									<li class="comment" user-id="1">
+										<div class="comment-info">
+											<span class="avatar">
+												<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
+											</span>
+											<span class="content">
+												<span class="info">
+													<span class="name">Hoàng An</span>
+													<span class="time">10 phút trước</span>
+												</span>
+												<span class="comment-content">
+													AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA BBB BBBB BBBBB B BBB BB CCC CCCCC C
+												</span>
+												<span class="feedback">
+													<span class="reply"><a href="#">Trả lời</a></span>
+													<span class="like"><a href="#">Thích</a></span>
+													<span class="dislike"><a href="#">Không thích</a></span>
+												</span>
+												<input type="text" placeholder="Nhập bình luận..." name="content" value="" product-id="1" class="hidden"/>
+											</span>
 										</div>
 									</li>
+									<li class="comment" user-id="1">
+										<div class="comment-info">
+											<span class="avatar">
+												<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
+											</span>
+											<span class="content">
+												<span class="info">
+													<span class="name">Thiên Minh</span>
+													<span class="time">8 phút trước</span>
+												</span>
+												<span class="comment-content">
+													AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA
+												</span>
+												<span class="feedback">
+													<span class="reply"><a href="#">Trả lời</a></span>
+													<span class="like"><a href="#">Thích</a></span>
+													<span class="dislike"><a href="#">Không thích</a></span>
+												</span>
+												<input type="text" placeholder="Nhập bình luận..." name="content" value="" product-id="1" class="hidden"/>
+											</span>
+										</div>
 
-									<li>
-										<!-- Avatar -->
-										<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
-										<!-- Contenedor del Comentario -->
-										<div class="comment-box">
-											<div class="comment-head">
-												<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
-												<span>hace 10 minutos</span>
-												<i class="fa fa-reply"></i>
-												<i class="fa fa-heart"></i>
-											</div>
-											<div class="comment-content">
-												Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-											</div>
+										<ul class="comments-list comment-reply">
+											<li class="comment" user-id="1">
+												<div class="comment-info">
+													<span class="avatar">
+														<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
+													</span>
+													<span class="content">
+														<span class="info">
+															<span class="name">Thu Hồng</span>
+															<span class="time">8 phút trước</span>
+														</span>
+														<span class="comment-content">
+															AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA
+														</span>
+														<span class="feedback">
+															<span class="reply"><a href="#">Trả lời</a></span>
+															<span class="like"><a href="#">Thích</a></span>
+															<span class="dislike"><a href="#">Không thích</a></span>
+														</span>
+														<input type="text" placeholder="Nhập bình luận..." name="content" value="" product-id="1" class="hidden"/>
+													</span>
+												</div>
+											</li>
+											<li class="comment" user-id="1">
+												<div class="comment-info">
+													<span class="avatar">
+														<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
+													</span>
+													<span class="content">
+														<span class="info">
+															<span class="name">Xuân Tín</span>
+															<span class="time">7 phút trước</span>
+														</span>
+														<span class="comment-content">
+															AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA
+														</span>
+														<span class="feedback">
+															<span class="reply"><a href="#">Trả lời</a></span>
+															<span class="like"><a href="#">Thích</a></span>
+															<span class="dislike"><a href="#">Không thích</a></span>
+														</span>
+														<input type="text" placeholder="Nhập bình luận..." name="content" value="" product-id="1" class="hidden"/>
+													</span>
+												</div>
+												<ul class="comments-list comment-reply">
+													<li class="comment" user-id="1">
+														<div class="comment-info">
+															<span class="avatar">
+																<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
+															</span>
+															<span class="content">
+																<span class="info">
+																	<span class="name">Bảo Bảo</span>
+																	<span class="time">5 phút trước</span>
+																</span>
+																<span class="comment-content">
+																	AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA
+																</span>
+																<span class="feedback">
+																	<span class="reply"><a href="#">Trả lời</a></span>
+																	<span class="like"><a href="#">Thích</a></span>
+																	<span class="dislike"><a href="#">Không thích</a></span>
+																</span>
+																<input type="text" placeholder="Nhập bình luận..." name="content" value="" product-id="1" class="hidden"/>
+															</span>
+														</div>
+													</li>
+													<li class="comment" user-id="1">
+														<div class="comment-info">
+															<span class="avatar">
+																<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
+															</span>
+															<span class="content">
+																<span class="info">
+																	<span class="name">Hồng Thanh</span>
+																	<span class="time">3 phút trước</span>
+																</span>
+																<span class="comment-content">
+																	AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA
+																</span>
+																<span class="feedback">
+																	<span class="reply"><a href="#">Trả lời</a></span>
+																	<span class="like"><a href="#">Thích</a></span>
+																	<span class="dislike"><a href="#">Không thích</a></span>
+																</span>
+																<input type="text" placeholder="Nhập bình luận..." name="content" value="" product-id="1" class="hidden"/>
+															</span>
+														</div>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li class="comment" user-id="1">
+										<div class="comment-info">
+											<span class="avatar">
+												<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
+											</span>
+											<span class="content">
+												<span class="info">
+													<span class="name">Gia Minh</span>
+													<span class="time">6 phút trước</span>
+												</span>
+												<span class="comment-content">
+													AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA
+												</span>
+												<span class="feedback">
+													<span class="reply"><a href="#">Trả lời</a></span>
+													<span class="like"><a href="#">Thích</a></span>
+													<span class="dislike"><a href="#">Không thích</a></span>
+												</span>
+												<input type="text" placeholder="Nhập bình luận..." name="content" value="" product-id="1" class="hidden"/>
+											</span>
 										</div>
 									</li>
 								</ul>
-							</li>
+							</div>
+							<input type="submit" class="hidden" />
+						</form>
 
-							<li>
-								<div class="comment-main-level">
-									<!-- Avatar -->
-									<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-									<!-- Contenedor del Comentario -->
-									<div class="comment-box">
-										<div class="comment-head">
-											<h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
-											<span>hace 10 minutos</span>
-											<i class="fa fa-reply"></i>
-											<i class="fa fa-heart"></i>
-										</div>
-										<div class="comment-content">
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-										</div>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="board">
+						<!-- <form class="board">
 					<p class="board__title">Thêm đánh giá</p>
 					<div class="comment__new">
-						<!-- <%
-							Account account = null;
-							if ((account = (Account) request.getSession().getAttribute("User")) != null) {
-								echo "<input type=\"text\" value=\"" + account.getTenTaiKhoan()
-										+ "\" placeholder=\"Tên của bạn...\" class=\"comment__new__name\" id=\"name\" disabled=\"disabled\"></input>");
-							} else {
-								echo 
-										"<input type=\"text\" value=\"\" placeholder=\"Tên của bạn...\" class=\"comment__new__name\" id=\"name\"></input>");
-							}
-
-							echo "<div class=\"comment__new__rate\">");
-							echo "<span style=\" margin: 0em 1em; font-weight: bold;\">  Đánh giá của bạn:</span>");
-							echo "<span id=\"danhGia\" style=\"margin: 5px 0px;\">");
-							for (int i = 0; i < 5; i++) {
-								echo 
-										"<i class=\"fa fa-star\" style=\"display: inline-block; color:gold; cursor:default;\" onclick=\"setUserRate("
-												+ (i + 1) + ")\"></i>");
-							}
-							echo "</span></div>");
-						%> -->
 						<textarea rows="5" placeholder="Nội dung bình luận..." class="comment__new__content" id="comment"></textarea>
 						<div class="comment__new__button button-modify">
 							<div class="button-rect cool" style="cursor: pointer;" onclick="sendCommentOfUser(false)">
@@ -272,25 +365,26 @@
 							</div>
 						</div>
 					</div>
+				</form> -->
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<?php require_once("comp/Footer.php") ?>
+		<?php require_once("comp/Footer.php") ?>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			let max_height = $('.board').height() - 2 * $('.board .title').height();
-			$('.board ul.content').css({
-				"max-height": max_height
+		<script type="text/javascript">
+			$(document).ready(function() {
+				let max_height = $('.board').height() - 2 * $('.board .title').height();
+				$('.board ul.content').css({
+					"max-height": max_height
+				});
 			});
-		});
 
-		function getNumberBuy() {
-			return $('input[type="number"]').val();
-		}
-	</script>
+			function getNumberBuy() {
+				return $('input[type="number"]').val();
+			}
+		</script>
 </body>
 
 </html>
