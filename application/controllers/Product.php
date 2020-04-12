@@ -10,13 +10,21 @@ class Product extends CI_Controller {
 
     public function index($uri_product) {
         $this->load->model('Product_Model');
+        $this->load->model('Comment_Model');
         $id_product = (int)substr($uri_product, strlen($uri_product) - 5, 5);
         $product = (array)($this->Product_Model->getProductOfId($id_product));
         $similarProducts = $this->Product_Model->getSimilarProductWithoutId($id_product, 5);
+        $comments = $this->Comment_Model->getComment($id_product);
+        // Analys time in comment before send to user
+        $sizeComments = sizeof($comments);
+        for ($i = 0; $i < $sizeComments; $i++) {
+            $comments[$i]['time'] = diff_time($comments[$i]['time']);
+        }
         // var_dump($product);
         $this->load->view("Product", [
-            "product" => $product,
-            "similarProducts" => $similarProducts
+            "product"           => $product,
+            "similarProducts"   => $similarProducts,
+            "comments"          => $comments
         ]);
     }
 

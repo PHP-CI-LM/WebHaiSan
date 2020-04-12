@@ -31,13 +31,13 @@
 .comment-info {
 	display: flex;
 	position: relative;
-   width: 100%;
-   padding-bottom: 5px;
+	width: 100%;
+	padding-bottom: 5px;
 }
 
 .comment-info .avatar {
 	min-width: 60px;
-    width: 60px;
+	width: 60px;
 }
 
 .comment-info .info {
@@ -94,7 +94,8 @@
 	margin-right: 15px;
 }
 
-.feedback .like a:focus, .feedback .dislike a:focus {
+.feedback .like a:focus,
+.feedback .dislike a:focus {
 	color: blue !important;
 	text-decoration: none;
 }
@@ -103,4 +104,29 @@
 	padding: 0.25rem 1rem;
 	margin-right: 2rem;
 	margin-top: 1rem;
+}
+
+.comment-all {
+	margin: 0 1rem;
+	padding-top: 2rem;
+	padding-left: 2rem;
+	width: 97%;
+	border-top: 2px solid #e3e3e3;
+}
+
+.comment-all input[type="text"] {
+	width: 96%;
+    padding: 0.5rem 1rem;
+	margin: 0.25rem;
+	box-shadow: none !important;}
+
+.comment-all input[type="submit"] {
+	position: absolute;
+    height: 34px;
+    transform: translate(-39px, 3px);
+    background: #0295d0;
+    color: #DDD;
+    font-weight: 600;
+	border: none;
+	cursor: pointer;
 }

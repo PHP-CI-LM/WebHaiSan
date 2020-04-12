@@ -143,11 +143,12 @@ COLLATE = utf8_unicode_ci;
 -- Table `webhaisan`.`comments`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `webhaisan`.`comments` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) AUTO_INCREMENT NOT NULL,
   `id_account` INT(11) NOT NULL,
   `id_product` INT(11) NOT NULL,
   `comment_time` VARCHAR(20) NULL DEFAULT '2000-01-01 00:00:00',
   `content` TEXT NULL DEFAULT NULL,
+  `id_reply` INT(11),
   PRIMARY KEY (`id`),
   INDEX `id_account_idx` (`id_account` ASC) VISIBLE,
   INDEX `id_product_idx` (`id_product` ASC) VISIBLE,
