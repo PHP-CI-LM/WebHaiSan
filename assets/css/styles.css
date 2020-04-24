@@ -1,0 +1,102 @@
+#phone {
+  color: #0094d0;
+  padding-left: 0px;
+}
+
+#phone {
+  cursor: default;
+  color: #0094d0;
+  padding-left: 0px;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #eaeaea;
+}
+
+.topbar {
+  font-size: 12px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+#tracking a {
+  color: #777777;
+  text-decoration: none;
+}
+
+i.fa {
+  font-size: 18px;
+}
+
+.dropdown-item {
+  font-weight: 600;
+}
+
+.dropdown-item:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: #007bff;
+}
+
+.dropdown-item {
+  color: #777;
+  padding: 5px 15px;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+.cart .count {
+  display: inline-block;
+  margin-left: 5px;
+  text-align: center;
+  background: #037fb180;
+  color: white;
+  min-width: 25px;
+  min-height: 25px;
+  border-radius: 1000rem;
+}
+
+.midbar i.fa {
+  width: 40px;
+  font-size: 25px;
+}
+
+.search input {
+  width: 100%;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+.search i {
+  position: absolute;
+  left: calc(100% - 39px);
+  top: 4px;
+  font-size: 31px !important;
+}
+
+.nav-link {
+  font-weight: 600;
+  padding: 10px 15px !important;
+}
+
+.nav-link.active {
+  border-bottom: 3px solid #1E3D5A !important;
+  color: #eee !important;
+  background: #007bad;
+}
+
+.header {
+  background: #fcfcfc;
+  border-bottom: 1px solid #d6cbdc;
+  box-shadow: 0px 1px gainsboro;
+}
+
+.breadcrumb-item span {
+  color: #333333;
+}
+
