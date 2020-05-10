@@ -1,5 +1,6 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -53,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // Client pages route
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['translate_uri_dashes'] = false;
 $route['chinh-sach.html'] = 'Home/policy';
 $route['product/(:any).html'] = 'Product/index/$1';
 $route['category/ca-bien.html'] = 'category/index/1';
@@ -73,6 +74,7 @@ $route['user/thong-tin-tai-khoan.html'] = 'Account/index';
 $route['ket-qua-dat-hang.html'] = 'Payment/result';
 $route['kiem-tra-don-hang.html'] = 'Order/index';
 $route['comment.html']['POST'] = 'Comment/add';
+$route['fblogin'] = 'User_authentication/index';
 
 // Admin pages route
 $route['admin'] = 'admin_controller/admin/index';
