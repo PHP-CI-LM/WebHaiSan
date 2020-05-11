@@ -79,7 +79,7 @@
 
 									<div class="social-login row" style="margin-top: 20px;">
 										<div class="col-sm-6" style="padding-left: 0px;">
-											<a href="<?php echo $data['authURL']; ?>">
+											<a href="<?php echo $data['fb']['authURL']; ?>">
 												<button class="loginBtn loginBtn--facebook">
 													Login with Facebook
 												</button>

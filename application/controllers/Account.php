@@ -36,8 +36,9 @@ class Account extends CI_Controller
 
     public function login()
     {
-        // Get social account data if login
-        $socialAccountData = $this->social_authenticate();
+        // Generate oauth url
+        $fbAccountData = $this->fb_authenticate();
+        
 
         if ($this->session->tempdata("user") !== null) {
             redirect(base_url(), "auto");
@@ -46,11 +47,15 @@ class Account extends CI_Controller
             $this->form_validation->set_rules('password', 'Password', 'required');
             if ($this->input->post('username') === null) {
                 $this->load->view('Login', [
-                    'data'  => $socialAccountData
+                    'data'  => [
+                        'fb'    => $fbAccountData
+                    ]
                 ]);
             } else if ($this->form_validation->run() === false) {
                 $this->load->view('Login', [
-                    'data'  => $socialAccountData
+                    'data'  => [
+                        'fb'    => $fbAccountData
+                    ]
                 ]);
             } else {
                 $newPassword = md5($this->input->post('password'));
@@ -67,7 +72,9 @@ class Account extends CI_Controller
                 } else {
                     $this->load->view('Login', [
                         "error" => "Sai tên đăng nhập hoặc mật khẩu!",
-                        'data'  => $socialAccountData
+                        'data'  => [
+                            'fb'    => $fbAccountData
+                        ]
                     ]);
                 }
             }
@@ -117,7 +124,7 @@ class Account extends CI_Controller
         }
     }
 
-    private function social_logout()
+    private function fb_logout()
     {
         // Remove local Facebook session
         $this->facebook->destroy_session();
@@ -127,7 +134,7 @@ class Account extends CI_Controller
         redirect('user_authentication');
     }
 
-    private function social_authenticate()
+    private function fb_authenticate()
     {
         $userData = array();
 
