@@ -171,7 +171,7 @@
 							echo "<i class=\"fa fa-cart-plus\" onclick=\"addToCart(" . $product["id_product"] . ", 1, " . $product["price"] . ")\"></i>";
 							echo "<div class=\"content content-right\"><span>Cho vào giỏ hàng</span></div></div></div></li>";
 							echo "<li><div class=\"button-modify\"><div class=\"button-arc danger right\" style=\"transform: translateY(300%)\">";
-							echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1, ". (int)(($product["price"]*(100 - $product["discount"]))/100) .")\"></i>";
+							echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1, " . (int) (($product["price"] * (100 - $product["discount"])) / 100) . ")\"></i>";
 							echo "<div class=\"content content-right\"><span>Mua ngay</span></div></div></div></li></ul></div>";
 							echo "<div class=\"thumbnail\">";
 							echo "<img onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . base_url() . "images/" . $product["DuongDan"] . "\"></div>";
@@ -251,7 +251,31 @@
 		</article>
 	</div>
 
-	<?php require_once("comp/Footer.php")?>
+	<!-- Load Facebook SDK for JavaScript -->
+	<div id="fb-root"></div>
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				xfbml: true,
+				version: 'v6.0'
+			});
+		};
+
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<!-- Your customer chat code -->
+	<div class="fb-customerchat" attribution=setup_tool page_id="100722644961244" theme_color="#ffc300" logged_in_greeting="Hi! How can we help you?" logged_out_greeting="Hi! How can we help you?">
+	</div>
+
+	<?php require_once("comp/Footer.php") ?>
 
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.js"></script>
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.js"></script>
