@@ -7,6 +7,12 @@ class Account extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
+        // Load facebook oauth library
+        $this->load->library('facebook');
+
+        // Load user model
+        $this->load->model('user');
     }
 
     public function index()
@@ -30,15 +36,22 @@ class Account extends CI_Controller
 
     public function login()
     {
+        // Get social account data if login
+        $socialAccountData = $this->social_authenticate();
+
         if ($this->session->tempdata("user") !== null) {
             redirect(base_url(), "auto");
         } else {
             $this->form_validation->set_rules('username', 'Username', 'required|max_length[20]');
             $this->form_validation->set_rules('password', 'Password', 'required');
             if ($this->input->post('username') === null) {
-                $this->load->view('Login');
+                $this->load->view('Login', [
+                    'data'  => $socialAccountData
+                ]);
             } else if ($this->form_validation->run() === false) {
-                $this->load->view('Login');
+                $this->load->view('Login', [
+                    'data'  => $socialAccountData
+                ]);
             } else {
                 $newPassword = md5($this->input->post('password'));
                 $this->load->model('Account_Model');
@@ -52,7 +65,10 @@ class Account extends CI_Controller
                     if ($backUrl === null) $backUrl = base_url();
                     redirect($backUrl, "auto");
                 } else {
-                    $this->load->view('Login', ["error" => "Sai tên đăng nhập hoặc mật khẩu!"]);
+                    $this->load->view('Login', [
+                        "error" => "Sai tên đăng nhập hoặc mật khẩu!",
+                        'data'  => $socialAccountData
+                    ]);
                 }
             }
         }
@@ -99,5 +115,57 @@ class Account extends CI_Controller
                 redirect(base_url() . "dang-nhap.html", "auto");
             }
         }
+    }
+
+    private function social_logout()
+    {
+        // Remove local Facebook session
+        $this->facebook->destroy_session();
+        // Remove user data from session
+        $this->session->unset_userdata('userData');
+        // Redirect to login page
+        redirect('user_authentication');
+    }
+
+    private function social_authenticate()
+    {
+        $userData = array();
+
+        // Authenticate user with facebook
+        if ($this->facebook->is_authenticated()) {
+            // Get user info from facebook
+            $fbUser = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,link,gender,picture');
+
+            // Preparing data for database insertion
+            $userData['oauth_provider'] = 'facebook';
+            $userData['oauth_uid'] = !empty($fbUser['id']) ? $fbUser['id'] : '';
+            $userData['first_name'] = !empty($fbUser['first_name']) ? $fbUser['first_name'] : '';
+            $userData['last_name'] = !empty($fbUser['last_name']) ? $fbUser['last_name'] : '';
+            $userData['email'] = !empty($fbUser['email']) ? $fbUser['email'] : '';
+            $userData['gender'] = !empty($fbUser['gender']) ? $fbUser['gender'] : '';
+            $userData['picture'] = !empty($fbUser['picture']['data']['url']) ? $fbUser['picture']['data']['url'] : '';
+            $userData['link'] = !empty($fbUser['link']) ? $fbUser['link'] : 'https://www.facebook.com/';
+
+            // Insert or update user data to the database
+            $userID = $this->user->checkUser($userData);
+
+            // Check user data insert or update status
+            if (!empty($userID)) {
+                $data['userData'] = $userData;
+
+                // Store the user profile info into session
+                $this->session->set_userdata('userData', $userData);
+            } else {
+                $data['userData'] = array();
+            }
+
+            // Facebook logout URL
+            $data['logoutURL'] = $this->facebook->logout_url();
+        } else {
+            // Facebook authentication url
+            $data['authURL'] = $this->facebook->login_url();
+        }
+
+        return $data;
     }
 }
