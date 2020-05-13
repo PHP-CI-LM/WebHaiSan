@@ -67,7 +67,13 @@ class Product_Model extends CI_Model
 
     public function getProductsSelling($limit = 0)
     {
-        $str = "SELECT * FROM selling_products";
+        $str = "SELECT `p`.`id_product` AS `id_product`, `p`.`name_product` AS `name_product`, `p`.`price` AS `price`,"
+                ." `p`.`descript` AS `descript`, `p`.`importDate` AS `importDate`, `p`.`count_view` AS `count_view`,"
+                ." `p`.`image_link` AS `DuongDan`, `c`.`name_category` AS `name_category`, `p`.`discount` AS `discount`,"
+                ." `p`.`count_buy` AS `count_buy`, `o`.`name_origin` AS `name_origin`, `p`.`size` AS `size`, `u`.`name_unit` AS `name_unit`"
+                ." FROM (((`products` `p` JOIN `categories` `c`) JOIN `origins` `o`) JOIN `units` `u`)"
+                ." WHERE ((`p`.`id_category` = `c`.`id_category`) AND (`p`.`id_origin` = `o`.`id`) AND (`p`.`id_unit` = `u`.`id_unit`))"
+                ." ORDER BY `p`.`count_buy` DESC , `p`.`count_view` DESC";
         if ($limit !== 0) $str = $str . " LIMIT " . $limit;
         $query = $this->db->query($str);
         return $query->result_array();
@@ -86,7 +92,7 @@ class Product_Model extends CI_Model
     public function getAllProduct($input = array())
     {
         $this->get_list_set_input($input = array());
-        $str = "SELECT *from products";
+        $str = "SELECT * from products";
         $query = $this->db->query($str);
         return $query->result_array();
     }
