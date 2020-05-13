@@ -68,12 +68,12 @@ class Product_Model extends CI_Model
     public function getProductsSelling($limit = 0)
     {
         $str = "SELECT `p`.`id_product` AS `id_product`, `p`.`name_product` AS `name_product`, `p`.`price` AS `price`,"
-                ." `p`.`descript` AS `descript`, `p`.`importDate` AS `importDate`, `p`.`count_view` AS `count_view`,"
-                ." `p`.`image_link` AS `DuongDan`, `c`.`name_category` AS `name_category`, `p`.`discount` AS `discount`,"
-                ." `p`.`count_buy` AS `count_buy`, `o`.`name_origin` AS `name_origin`, `p`.`size` AS `size`, `u`.`name_unit` AS `name_unit`"
-                ." FROM (((`products` `p` JOIN `categories` `c`) JOIN `origins` `o`) JOIN `units` `u`)"
-                ." WHERE ((`p`.`id_category` = `c`.`id_category`) AND (`p`.`id_origin` = `o`.`id`) AND (`p`.`id_unit` = `u`.`id_unit`))"
-                ." ORDER BY `p`.`count_buy` DESC , `p`.`count_view` DESC";
+            . " `p`.`descript` AS `descript`, `p`.`importDate` AS `importDate`, `p`.`count_view` AS `count_view`,"
+            . " `p`.`image_link` AS `DuongDan`, `c`.`name_category` AS `name_category`, `p`.`discount` AS `discount`,"
+            . " `p`.`count_buy` AS `count_buy`, `o`.`name_origin` AS `name_origin`, `p`.`size` AS `size`, `u`.`name_unit` AS `name_unit`"
+            . " FROM (((`products` `p` JOIN `categories` `c`) JOIN `origins` `o`) JOIN `units` `u`)"
+            . " WHERE ((`p`.`id_category` = `c`.`id_category`) AND (`p`.`id_origin` = `o`.`id`) AND (`p`.`id_unit` = `u`.`id_unit`))"
+            . " ORDER BY `p`.`count_buy` DESC , `p`.`count_view` DESC";
         if ($limit !== 0) $str = $str . " LIMIT " . $limit;
         $query = $this->db->query($str);
         return $query->result_array();
@@ -89,11 +89,17 @@ class Product_Model extends CI_Model
         return $result->result_array();
     }
 
-    public function getAllProduct($input = array())
+    /**
+     * Get all products within a limited range
+     * 
+     * @return array
+     */
+    public function getAllProducts($limit = -1, $start = 0)
     {
-        $this->get_list_set_input($input = array());
-        $str = "SELECT * from products";
-        $query = $this->db->query($str);
+        if (-1 !== $limit) {
+            $this->db->limit($limit, $start);
+        }
+        $query = $this->db->get('products');
         return $query->result_array();
     }
 
@@ -123,47 +129,9 @@ class Product_Model extends CI_Model
         $this->db->query($strdelete);
     }
 
-    public function GetTotal($input = array())
+    public function getTotal($input = array())
     {
-        $this->get_list_set_input($input = array());
-        $str = "SELECT *from products";
-        $query = $this->db->query($str);
-        return $query->num_rows();
-    }
-
-    protected function get_list_set_input($input = array())
-    {
-
-        // Thêm điều kiện cho câu truy vấn truyền qua biến $input['where'] 
-        //(vi du: $input['where'] = array('email' => 'hocphp@gmail.com'))
-        if ((isset($input['where'])) && $input['where']) {
-            $this->db->where($input['where']);
-        }
-
-        //tim kiem like
-        // $input['like'] = array('name' => 'abc');
-        if ((isset($input['like'])) && $input['like']) {
-            $this->db->like($input['like'][0], $input['like'][1]);
-        }
-
-        // Thêm sắp xếp dữ liệu thông qua biến $input['order'] 
-        //(ví dụ $input['order'] = array('id','DESC'))
-        // if (isset($input['order'][0]) && isset($input['order'][1]))
-        // {
-        // 	$this->db->order_by($input['order'][0], $input['order'][1]);
-        // }
-        // else
-        // {
-        // 	//mặc định sẽ sắp xếp theo id giảm dần 
-        // 	$order = ($this->order == '') ? array($this->table.'.'.$this->key, 'desc') : $this->order;
-        // 	$this->db->order_by($order[0], $order[1]);
-        // }
-
-        // Thêm điều kiện limit cho câu truy vấn thông qua biến $input['limit'] 
-        //(ví dụ $input['limit'] = array('10' ,'0')) 
-        if (isset($input['limit'][0]) && isset($input['limit'][1])) {
-            $this->db->limit($input['limit'][0], $input['limit'][1]);
-        }
+        return $this->db->count_all("products");
     }
 
     public function FindProduct($id, $name, $theloai)

@@ -8,50 +8,41 @@ class product extends CI_Controller
     {
         parent::__construct();
     }
-    public function index()
+
+    public function index($page_num = 1)
     {
-        if ($this->session->tempdata('admin') == null) {
-            redirect(base_url().'admin/login.html', 'auto');
+        if ($this->session->tempdata('admin') == null || 1 > $page_num) {
+            redirect(base_url() . 'admin/login.html', 'auto');
         } else {
             $this->load->model('Product_Model');
-            //$data = $this->Product_Model->getAllProduct();
+            //$data = $this->Product_Model->getAllProducts();
             $this->load->model('Category_Model');
             $data_category = $this->Category_Model->getAllCategory();
-            $data2 = $this->Product_Model->GetTotal();
-            $this->data['data2'] = $data2;
-            //echo $data2;
-            // $this->load->view('admin\product', ["data" => $data,"data_category" => $data_category,"data2" => $data2,"list" => $list]);
-            $this->load->library('pagination');
-            $config = array();
-            $config['data2'] = $data2;
-            $config['base_url'] = public_url('admin/product.html');
-            $config['per_page'] = 10;
-            $config['uri_segment'] = 4;
-            $config['next_link'] = 'Trang kế tiếp';
-            $config['prev_link'] = 'Trang trước';
-            $this->pagination->initialize($config);
-            $input = array();
-            $segment = $this->uri->segment(4);
-            $segment = intval($segment);
+            $count = $this->Product_Model->getTotal();
 
-            $input['limit'] = array($config['per_page'], $segment);
-            //Kiểm tra có lọc hay không
-            $id = $this->input->get('id');
-            $input['where'] = array();
-            if ($id > 0) {
-                $input['where']['id'] = $id;
-            }
+            // Paginate page
+            $this->load->library('pagination');
+            $limit_per_page = 8;
+            $config = $this->generateConfigPagination($count, $limit_per_page);
+            $this->pagination->initialize($config);
+            $paging_links = $this->pagination->create_links();
+
             // Lấy danh sách sp
-            $data = $this->Product_Model->getAllProduct($input);
-            //$this->data['data']=$data;    
-            $this->load->view('admin\product', ["data" => $data, "data_category" => $data_category, "data2" => $data2]);
-            //var_dump($data);
+            $start = ($page_num - 1)*$limit_per_page;
+            $data = $this->Product_Model->getAllProducts($limit_per_page, $start);
+            $this->load->view('admin\product', [
+                "data"          => $data, 
+                "data_category" => $data_category, 
+                "nums_row"      => $count,
+                "paging_links"  => $paging_links
+            ]);
         }
     }
+
     public function loadviewform($id = null)
     {
         if ($this->session->tempdata('admin') == null) {
-            redirect(base_url().'admin/login.html', 'auto');
+            redirect(base_url() . 'admin/login.html', 'auto');
         } else {
             $data_product = array();
             if ($id !== null) {
@@ -86,46 +77,42 @@ class product extends CI_Controller
             }
         }
     }
+
     public function addProduct()
     {
         if ($this->session->tempdata('admin') == null) {
-            redirect(base_url().'admin/login.html', 'auto');
+            redirect(base_url() . 'admin/login.html', 'auto');
         } else {
             $name_product = $this->security->xss_clean($this->input->post('name'));
             $id_origin = $this->security->xss_clean($this->input->post('origin'));
-            $image_link = $this->input->post('linkanh');
             $price = $this->security->xss_clean($this->input->post('price'));
             $discount = $this->security->xss_clean($this->input->post('discount'));
             $id_category = $this->security->xss_clean($this->input->post('cat'));
             $size = $this->security->xss_clean($this->input->post('size'));
             $id_unit = $this->security->xss_clean($this->input->post('unit'));
             $descript = $this->security->xss_clean($this->input->post('content'));
-            echo $name_product . "<br>";
-            echo $id_origin . "<br>";
-            echo $image_link . "<br>";
-            echo  $price . "<br>";
-            echo  $size . "<br>";
-            echo $id_unit . "<br>";
-            echo $descript . "<br>";
-
 
             if (
-                $name_product !== null && $id_origin !== null &&  $image_link !== null && $price !== null &&
+                $name_product !== null && $id_origin !== null && $price !== null &&
                 $discount !== null &&  $id_category !== null && $size !== null && $id_unit !== null
             ) {
 
                 $importDate = date("Y-m-d");
                 $price = str_replace(",", "", $price);
-                $this->load->model('Product_Model');
-                $data = $this->Product_Model->SaveProduct($name_product, $price, $descript, $importDate, $image_link, $id_category, $discount, $id_origin, $size, $id_unit);
-                redirect(base_url() . "admin/product.html", "auto");
+                $image_link = $this->uploadImageOfProduct();
+                if (true === $image_link) {
+                    $this->load->model('Product_Model');
+                    $data = $this->Product_Model->SaveProduct($name_product, $price, $descript, $importDate, $image_link, $id_category, $discount, $id_origin, $size, $id_unit);
+                    redirect(base_url() . "admin/product.html", "auto");
+                }
             }
         }
     }
+
     public function UpdateProduct($id_product)
     {
         if ($this->session->tempdata('admin') == null) {
-            redirect(base_url().'admin/login.html', 'auto');
+            redirect(base_url() . 'admin/login.html', 'auto');
         } else {
             $id_product = $this->security->xss_clean($id_product);
             $name_product = $this->security->xss_clean($this->input->post('name'));
@@ -150,6 +137,7 @@ class product extends CI_Controller
             }
         }
     }
+
     public function DeleteProduct()
     {
         $result = ["status" => false];
@@ -165,6 +153,7 @@ class product extends CI_Controller
         }
         echo json_encode($result);
     }
+
     public function FillProduct()
     {
         if ($this->session->tempdata('admin') != null) {
@@ -182,7 +171,62 @@ class product extends CI_Controller
                     "products"      => $str
                 ]
             ]);
-            // var_dump($str);
+        }
+    }
+
+    /**
+     * Generate configration for paginate method of products page
+     * 
+     * @param int $total_rows
+     * @param int $limit_per_page
+     * 
+     * @return array
+     */
+    private function generateConfigPagination($total_rows, $limit_per_page = 10)
+    {
+        $config['total_rows'] = $total_rows;
+        $config['base_url'] = base_url('admin');
+        $config['per_page'] = $limit_per_page;
+        $config['next_link'] = 'Next';
+        $config['prev_link'] = 'Prev';
+        $config['num_links'] = 2;
+        $config['prefix'] = 'product_';
+        $config['suffix'] = '.html';
+        $config['use_page_numbers'] = true;
+        $config['full_tag_open'] = '<div class="pagination">';
+        $config['full_tag_close'] = '</div>';
+        $config['cur_tag_open'] = '<a href="javascript:void(0)" class="active_link">';
+        $config['cur_tag_close'] = '</a>';
+        $config['next_tag_open'] = '<span class="next_link">';
+        $config['next_tag_close'] = '</span>';
+        $config['prev_tag_open'] = '<span class="prev_link">';
+        $config['prev_tag_close'] = '</span>';
+        $config['last_tag_open'] = '<span class="last_link">';
+        $config['last_tag_close'] = '</span>';
+        $config['attributes'] = [
+            'class'     => 'page_link'
+        ];
+        return $config;
+    }
+
+    /**
+     * Upload image of product
+     * 
+     * @return string|bool
+     * 
+     */
+    private function uploadImageOfProduct()
+    {
+        // Load library to upload thumbnail of product
+        $config['upload_path'] = './images';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size']     = '10240';
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('img')) {
+            return $this->upload->data()['file_name'];
+        } else {
+            return false;
         }
     }
 }
