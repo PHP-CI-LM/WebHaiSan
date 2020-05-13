@@ -10,6 +10,7 @@ class Account extends CI_Controller
 
         // Load facebook oauth library
         $this->load->library('facebook');
+        // $this->load->library('google');
 
         // Load user model
         $this->load->model('user');
@@ -64,8 +65,8 @@ class Account extends CI_Controller
                     $this->input->post("username"),
                     $newPassword
                 );
-                if ($result != -1) {
-                    $this->session->set_tempdata("user", $result, 3600); //Phiên đăng nhập 60 phút
+                if (0 < sizeof($result)) {
+                    $this->session->set_tempdata("user", $result[0]['AccountID'], 3600); //Phiên đăng nhập 60 phút
                     $backUrl = urldecode($this->input->get("backUrl"));
                     if ($backUrl === null) $backUrl = base_url();
                     redirect($backUrl, "auto");
