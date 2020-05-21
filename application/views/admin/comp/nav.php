@@ -77,11 +77,11 @@
 
                 <ul class="sub">
                     <li>
-                        <a href="<?php echo base_url() ?>/admin/comment.html">
+                        <a href="<?php echo base_url() ?>admin/comment.html">
                             Bình luận </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url() ?>/admin/comment/filter.html">
+                        <a href="<?php echo base_url() ?>admin/comment/filter.html">
                             Lọc bình luận</a>
                     </li>
                 </ul>
