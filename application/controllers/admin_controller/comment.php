@@ -14,7 +14,29 @@ class comment extends CI_Controller
         if ($this->session->tempdata('admin') == null) {
             redirect(base_url() . 'admin/login.html', 'auto');
         } else {
-            $this->load->view('admin/comment');
+            $this->load->model('Product_Model', 'product');
+            $data = [];
+            $paging_links = '';
+            $products = $this->product->getAllProducts();
+            $this->load->view('admin/comment', [
+                'data'          => $data,
+                'paging_links'  => $paging_links,
+                'products'      => $products
+            ]);
+        }
+    }
+
+    public function filter()
+    {
+        if ($this->session->tempdata('admin') == null) {
+            redirect(base_url() . 'admin/login.html', 'auto');
+        } else {
+            $data = [];
+            $paging_links = '';
+            $this->load->view('admin/comment', [
+                'data'          => $data,
+                'paging_links'  => $paging_links
+            ]);
         }
     }
 }

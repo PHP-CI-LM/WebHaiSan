@@ -95,3 +95,4 @@ $route['admin/update-product.html/(:any)/save'] = 'admin_controller/product/Upda
 $route['admin/delete-product.html/save']['post'] = 'admin_controller/product/DeleteProduct';
 $route['admin/fill-product.html']['post'] = 'admin_controller/product/FillProduct';
 $route['admin/comment.html'] = 'admin_controller/comment';
+$route['admin/comment/filter.html']['get'] = 'admin_controller/comment/filter';

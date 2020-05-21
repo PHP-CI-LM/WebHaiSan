@@ -62,7 +62,7 @@
 
                 <ul class="sub">
                     <li>
-                        <a href="user.html">
+                        <a href="<?php echo base_url() ?>admin/user.html">
                             Thành viên </a>
                     </li>
                 </ul>
@@ -70,15 +70,19 @@
             </li>
             <li class="product">
 
-                <a href="<?php echo base_url() ?>admin/comment.html" class=" exp">
+                <a href="javascript:void(0)" class=" exp">
                     <span>Bình luận</span>
-                    <strong>1</strong>
+                    <strong>2</strong>
                 </a>
 
                 <ul class="sub">
                     <li>
-                        <a href="comment.html">
+                        <a href="<?php echo base_url() ?>/admin/comment.html">
                             Bình luận </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url() ?>/admin/comment/filter.html">
+                            Lọc bình luận</a>
                     </li>
                 </ul>
 
