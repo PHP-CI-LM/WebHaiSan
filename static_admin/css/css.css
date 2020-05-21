@@ -569,3 +569,7 @@ a.active_link {
     padding: 0 10px;
     text-decoration: none;
 }
+
+option::hover {
+	background-color: red !important;
+}

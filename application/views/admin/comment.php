@@ -84,7 +84,7 @@
 							</a></li>
 
 						<!-- Logout -->
-						<li><a href="<?php echo base_url()?>admin/logout.html">
+						<li><a href="<?php echo base_url() ?>admin/logout.html">
 								<img src="<?php echo public_url() ?>/images/icons/topnav/logout.png" alt="" />
 								<span>Đăng xuất</span>
 							</a></li>
@@ -147,31 +147,19 @@
 		<div class="titleArea">
 			<div class="wrapper">
 				<div class="pageTitle">
-					<h5>Sản phẩm</h5>
-					<span>Quản lý sản phẩm</span>
+					<h5>Bình luận</h5>
+					<span>Quản lý bình luận</span>
 				</div>
 
-				<div class="horControlB menu_action">
+				<!-- <div class="horControlB menu_action">
 					<ul>
 						<li><a href="<?php echo base_url() ?>admin/add-product.html">
 								<img src="<?php echo public_url() ?>images/icons/control/16/add.png" />
 								<span>Thêm mới</span>
-							</a></li>
-
-						<!-- <li>
-							<a href="admin/product/?feature=1.html">
-								<img src="<?php echo public_url() ?>/images/icons/control/16/feature.png" />
-								<span>Tiêu biểu</span>
 							</a>
-						</li> -->
-
-						<!-- <li><a href="admin/product.html">
-								<img src="<?php echo public_url() ?>/images/icons/control/16/list.png" />
-								<span>Danh sách</span>
-							</a></li> -->
-
+						</li>
 					</ul>
-				</div>
+				</div> -->
 
 				<div class="clear"></div>
 			</div>
@@ -188,8 +176,8 @@
 				<div class="title">
 					<span class="titleIcon"><input type="checkbox" id="titleCheck" name="titleCheck" /></span>
 					<h6>
-						Danh sách sản phẩm </h6>
-					<div class="num f12">Số lượng: <b><?php echo $nums_row; ?></b></div>
+						Danh sách bình luận </h6>
+					<!-- <div class="num f12">Số lượng: <b><?php echo $nums_row; ?></b></div> -->
 				</div>
 
 				<table cellpadding="0" cellspacing="0" width="100%" class="sTable mTable myTable" id="checkAll">
@@ -202,24 +190,16 @@
 										<tbody>
 
 											<tr>
-												<td class="label" style="width:40px;"><label for="filter_id">Mã số</label></td>
-												<td class="item"><input name="id" value="" id="filter_id" type="text" style="width:55px;" /></td>
-
-												<td class="label" style="width:40px;"><label for="filter_id">Tên</label></td>
-												<td class="item" style="width:155px;"><input name="name" value="" id="filter_iname" type="text" style="width:155px;" /></td>
-
-												<td class="label" style="width:60px;"><label for="filter_status">Thể loại</label></td>
+												<td class="label" style="width:55px;"><label for="filter_type">Sản phẩm</label></td>
 												<td class="item">
-													<select name="catalog">
-														<option value="0" selected>Chọn thể loại</option>
-														<?php foreach ($data_category as $row) { ?>
-																<option value="<?php echo $row['id_category'] ?>" style="text-transform: capitalize;">
-																	<?php echo $row['name_category'] ?> </option>
-														<?php } ?>
+													<select name="status" style="width: 150px;">
+														<option value=""></option>
+														<option value='0'>Người dùng 1</option>
+														<option value='1'>Người dùng 2</option>
+														<option value='2'>Người dùng 3</option>
 													</select>
 												</td>
-
-												<td style='width:150px; float: right'>
+												<td style='width:300px; float: right'>
 													<a href="javascript:void(0)" class="button blueB" style="padding: 7px 18px 8px 18px;color: black" onclick='fillterProduct(this)' ;>LỌC</a>
 													<!-- <input type="reset" class="basic" value="Reset" onclick="window.location.href = 'index.php/admin/product.html'; "> -->
 												</td>
@@ -236,10 +216,10 @@
 						<tr>
 							<td style="width:21px;"><img src="<?php echo public_url() ?>/images/icons/tableArrows.png" /></td>
 							<td style="width:60px;">Mã số</td>
-							<td>Tên</td>
-							<td>Giá</td>
+							<td>Người bình luận</td>
+							<td>Tên sản phẩm</td>
 							<td style="width:75px;">Ngày tạo</td>
-							<td style="width:120px;">Hành động</td>
+							<td style="width:120px;">Nội dung</td>
 						</tr>
 					</thead>
 
@@ -251,12 +231,12 @@
 										<span style='color:white;'>Xóa hết</span>
 									</a> -->
 								</div>
-								<?php echo $paging_links ?>
+								<!-- <?php echo $paging_links ?> -->
 							</td>
 						</tr>
 					</tfoot>
 
-					<tbody class="list_item">
+					<!-- <tbody class="list_item">
 						<?php
 						if ($data !== null && isset($data) && sizeof($data) > 0) {
 							foreach ($data as $row) {
@@ -269,14 +249,12 @@
 								echo "<td class=\"textR\">" . number_format($row["price"]) . " đ</td>";
 								echo "<td class=\"textC\">" . $row["importDate"] . "</td>";
 								echo "<td class=\"option textC\">";
-								//echo "<a href=\"\" title=\"Gán là nhạc tiêu biểu\" class=\"tipE\"><img src=\"" . public_url() . "/images/icons/color/star.png" . "\" /></a>";
-								//echo "<a href=\"product/view/9.html\" target='_blank' class='tipS' title=\"Xem chi tiết sản phẩm\"><img src=\"" . public_url() . "/images/icons/color/view.png" . "\" /></a>";
 								echo "<a href=\"" . base_url() . "admin/update-product.html/" . $row["id_product"] . "\" title=\"Chỉnh sửa\" class=\"tipS\"><img src=\"" . public_url() . "/images/icons/color/edit.png" . "\" /></a>";
 								echo "<a href=\"javascript:void(0)\" title=\"Xóa\" class=\"tipS\" onclick='deleteProduct(this)'><img src=\"" . public_url() . "/images/icons/color/delete.png" . "\" /></a></td></tr>";
 							}
 						}
 						?>
-					</tbody>
+					</tbody> -->
 
 				</table>
 			</div>
@@ -348,7 +326,7 @@
 								'<tr class="row_9">' +
 								'<td><div class="checker" id="uniform-undefined"><span><input type="checkbox" name="id[]" value="' + product["id_product"] + '" style="opacity: 0;"></span></div></td>' +
 								'<td class="textC">' + product["id_product"] + '</td>' +
-								'<td><div class="image_thumb"><img src="<?php echo base_url()."images/"?>' + product["image_link"] + '" height="50"><div class="clear"></div></div><a href="http://localhost/WebHaiSan-master/WebHaiSan-master/admin/update-product.html/' + product["id_product"] + '" class="tipS" target="_blank" original-title=""><b>' + product["name_product"] + '</b></a><div class="f11">Đã bán: ' + product["count_buy"] + ' | Xem: ' + product["count_view"] + ' </div></td>' +
+								'<td><div class="image_thumb"><img src="<?php echo base_url() . "images/" ?>' + product["image_link"] + '" height="50"><div class="clear"></div></div><a href="http://localhost/WebHaiSan-master/WebHaiSan-master/admin/update-product.html/' + product["id_product"] + '" class="tipS" target="_blank" original-title=""><b>' + product["name_product"] + '</b></a><div class="f11">Đã bán: ' + product["count_buy"] + ' | Xem: ' + product["count_view"] + ' </div></td>' +
 								'<td class="textR">265,000 đ</td><td class="textC">' + product["importDate"] + '</td>' +
 								'<td class="option textC">' +
 								'<a href="<?php echo base_url() ?>admin/update-product.html/' + product["id_product"] + '" title="Chỉnh sửa" class="tipS">' +
