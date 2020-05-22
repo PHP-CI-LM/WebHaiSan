@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Demo Database</title>
+    <title>Chợ Hải Sản - Admin page</title>
     <link rel="stylesheet" href="<?php echo base_url(); ?>/static_admin/css/login.css" />
 </head>
 

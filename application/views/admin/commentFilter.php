@@ -147,8 +147,8 @@
 		<div class="titleArea">
 			<div class="wrapper">
 				<div class="pageTitle">
-					<h5>Bình luận</h5>
-					<span>Quản lý bình luận</span>
+					<h5>Lọc bình luận</h5>
+					<span>Quản lý danh sách tự vựng</span>
 				</div>
 
 				<!-- <div class="horControlB menu_action">
@@ -176,7 +176,7 @@
 				<div class="title">
 					<span class="titleIcon"><input type="checkbox" id="titleCheck" name="titleCheck" /></span>
 					<h6>
-						Danh sách bình luận </h6>
+						Danh sách từ vựng </h6>
 					<!-- <div class="num f12">Số lượng: <b><?php echo $nums_row; ?></b></div> -->
 				</div>
 
@@ -184,27 +184,19 @@
 
 					<thead class="filter">
 						<tr>
-							<td colspan="6">
+							<td colspan="4">
 								<form class="list_filter form" action="admin/product.html" method="get">
 									<table cellpadding="0" cellspacing="0" width="80%">
 										<tbody>
 
 											<tr>
-												<td class="label" style="width:55px;"><label for="filter_type">Sản phẩm</label></td>
+												<td class="label" style="width:55px;"><label for="filter_type">Từ vựng</label></td>
 												<td class="item">
-													<select name="product" style="width: 150px;">
-														<option value="-1">Tên sản phẩm</option>
-														<?php if (true === isset($products) && 0 < sizeof($products)) { ?>
-															<?php $size = sizeof($products);?>
-															<?php for ($i = 0; $i < $size; $i++) {?>
-																<?php $product = $products[$i];?>
-																<option value='<?php echo $product['id_product']?>'><?php echo $product['name_product'] ?></option>
-															<?php } ?>
-														<?php } ?>
-													</select>
+													<input type="text" name="product" style="width: 150px;">
+													</input>
 												</td>
 												<td style='width:300px; float: right'>
-													<a href="javascript:void(0)" class="button blueB" style="padding: 7px 18px 8px 18px;color: black" onclick='fillterComment()' ;>LỌC</a>
+													<a href="javascript:void(0)" class="button blueB" style="padding: 7px 18px 8px 18px;color: black" onclick='fillterComment()' ;>Thêm</a>
 													<!-- <input type="reset" class="basic" value="Reset" onclick="window.location.href = 'index.php/admin/product.html'; "> -->
 												</td>
 
@@ -219,17 +211,15 @@
 					<thead>
 						<tr>
 							<td style="width: 5%;"><img src="<?php echo public_url() ?>/images/icons/tableArrows.png" /></td>
-							<td style="width: 5%;">Mã số</td>
-							<td>Người bình luận</td>
-							<td>Tên sản phẩm</td>
-							<td style="width: 15%;">Ngày tạo</td>
-							<td style="width: 35%;">Nội dung</td>
+							<td style="width: 10%;">Mã số</td>
+							<td style="width: 60%;">Nội dung</td>
+							<td style="width: 20%">Hành động</td>
 						</tr>
 					</thead>
 
 					<tfoot class="auto_check_pages">
 						<tr>
-							<td colspan="6">
+							<td colspan="4">
 								<div class="list_action itemActions">
 									<!-- <a href="#submit" id="submit" class="button blueB" url="admin/product/del_all.html">
 										<span style='color:white;'>Xóa hết</span>

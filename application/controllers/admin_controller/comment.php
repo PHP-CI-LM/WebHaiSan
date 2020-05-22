@@ -33,7 +33,7 @@ class comment extends CI_Controller
         } else {
             $data = [];
             $paging_links = '';
-            $this->load->view('admin/comment', [
+            $this->load->view('admin/commentFilter', [
                 'data'          => $data,
                 'paging_links'  => $paging_links
             ]);
