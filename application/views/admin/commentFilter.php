@@ -192,7 +192,7 @@
 											<tr>
 												<td class="label" style="width:55px;"><label for="filter_type">Sản phẩm</label></td>
 												<td class="item">
-													<select name="status" style="width: 150px;">
+													<select name="product" style="width: 150px;">
 														<option value="-1">Tên sản phẩm</option>
 														<?php if (true === isset($products) && 0 < sizeof($products)) { ?>
 															<?php $size = sizeof($products);?>
@@ -204,7 +204,7 @@
 													</select>
 												</td>
 												<td style='width:300px; float: right'>
-													<a href="javascript:void(0)" class="button blueB" style="padding: 7px 18px 8px 18px;color: black" onclick='fillterProduct(this)' ;>LỌC</a>
+													<a href="javascript:void(0)" class="button blueB" style="padding: 7px 18px 8px 18px;color: black" onclick='fillterComment()' ;>LỌC</a>
 													<!-- <input type="reset" class="basic" value="Reset" onclick="window.location.href = 'index.php/admin/product.html'; "> -->
 												</td>
 
@@ -276,76 +276,6 @@
 	<div class="clear"></div>
 
 	<script type="text/javascript">
-		function deleteProduct(selector) {
-			//Xác thực xóa dữ liệu
-			$.ajax({
-				url: "<?php echo base_url() ?>admin/delete-product.html/save",
-				type: "post",
-				dataType: "text",
-				data: {
-					id: $($($(selector).parents("tr")).find("td")[1]).text()
-				},
-				success: function(result) {
-					let data = JSON.parse(result);
-					if (data["status"] == true) {
-						alert("Xóa sản phẩm thành công");
-						$("table#checkAll").load(document.URL + " thead, tfoot.auto_check_pages, tbody.list_item");
-					} else {
-						alert("Xóa sản phẩm thất bại");
-					}
-				}
-			});
-		}
-
-
-		function fillterProduct(selector) {
-			var id = $('#filter_id').val();
-			var name = $('#filter_iname').val();
-			var theloai = $('select').val();
-
-
-			$.ajax({
-				url: "<?php echo base_url() ?>admin/fill-product.html",
-				type: "post",
-				dataType: "text",
-				data: {
-					id: id,
-					name: name,
-					theloai: theloai
-
-				},
-				success: function(res) {
-					let result = JSON.parse(res);
-					if (result["status"] == true) {
-						//Set value input fillter
-						let optionSelector = "option[value='" + result["data"]["id_category"] + "']";
-						$("#filter_id").val(result["data"]["id_product"]);
-						$("#filter_iname").val(result["data"]["name_product"]);
-						$("option[seleted]").removeAttr("selected");
-						$(optionSelector).attr("selected", "");
-						//Set result into table
-						$("tbody.list_item tr").remove();
-						result["data"]["products"].forEach(product => {
-							$("tbody.list_item").append(
-								'<tr class="row_9">' +
-								'<td><div class="checker" id="uniform-undefined"><span><input type="checkbox" name="id[]" value="' + product["id_product"] + '" style="opacity: 0;"></span></div></td>' +
-								'<td class="textC">' + product["id_product"] + '</td>' +
-								'<td><div class="image_thumb"><img src="<?php echo base_url() . "images/" ?>' + product["image_link"] + '" height="50"><div class="clear"></div></div><a href="http://localhost/WebHaiSan-master/WebHaiSan-master/admin/update-product.html/' + product["id_product"] + '" class="tipS" target="_blank" original-title=""><b>' + product["name_product"] + '</b></a><div class="f11">Đã bán: ' + product["count_buy"] + ' | Xem: ' + product["count_view"] + ' </div></td>' +
-								'<td class="textR">265,000 đ</td><td class="textC">' + product["importDate"] + '</td>' +
-								'<td class="option textC">' +
-								'<a href="<?php echo base_url() ?>admin/update-product.html/' + product["id_product"] + '" title="Chỉnh sửa" class="tipS">' +
-								'<img src="<?php echo public_url() ?>/images/icons/color/edit.png" />' +
-								'</a>' +
-								'<a href="javascript:void(0)" class="tipS" onclick="deleteProduct(this)" original-title="Xóa">' +
-								'<img src="<?php echo public_url() ?>/images/icons/color/delete.png" />' +
-								'</a>' +
-								'</td></tr>'
-							);
-						});
-					}
-				}
-			});
-		}
 	</script>
 </body>
 
