@@ -41,8 +41,8 @@ function drawTree($comments, $comment, $product, $isReply)
 	echo '<span class="like"><a href="#">Thích</a></span>';
 	echo '<span class="dislike"><a href="#">Không thích</a></span>';
 	echo '</span>';
+	echo '<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" class="hidden" autocomplete="off"/>';
 	echo '</span>';
-	echo '<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" class="hidden" />';
 	echo '</div>';
 	// Draw children
 	$children = findChildren($comments, $comment['id']);
@@ -232,7 +232,14 @@ function drawTree($comments, $comment, $product, $isReply)
 								?>
 							</div>
 							<span class="comment-all">
-								<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" />
+								<?php 
+								if (null !== $this->session->tempdata("user")) {
+									$accountID = $this->session->tempdata("user");
+									echo '<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="'. $accountID .'" autocomplete="off"/>';
+								} else {
+									echo '<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="-1" autocomplete="off"/>';
+								}
+								?>
 								<input type="submit" value="Gửi" />
 							</span>
 						</form>

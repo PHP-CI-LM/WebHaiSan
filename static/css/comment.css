@@ -107,23 +107,25 @@
 }
 
 .comment-all {
+	display: flex;
 	margin: 0 1rem;
 	padding-top: 2rem;
 	padding-left: 2rem;
+	padding-right: 1rem;
 	width: 97%;
 	border-top: 2px solid #e3e3e3;
+	flex-direction: row-reverse;
+	align-items: center;
 }
 
 .comment-all input[type="text"] {
 	width: 96%;
     padding: 0.5rem 1rem;
-	margin: 0.25rem;
 	box-shadow: none !important;}
 
 .comment-all input[type="submit"] {
 	position: absolute;
     height: 34px;
-    transform: translate(-40px, 3px);
     background: #0295d0;
     color: #DDD;
     font-weight: 600;
