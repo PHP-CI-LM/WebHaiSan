@@ -123,7 +123,7 @@
 .comment-all input[type="submit"] {
 	position: absolute;
     height: 34px;
-    transform: translate(-39px, 3px);
+    transform: translate(-40px, 3px);
     background: #0295d0;
     color: #DDD;
     font-weight: 600;
