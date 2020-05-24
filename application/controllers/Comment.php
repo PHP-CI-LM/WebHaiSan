@@ -10,7 +10,7 @@ class Comment extends CI_Controller
     }
 
     // Function check comment before write comment to database, return true is allow write and else
-    public function filter_comment($comment = 'son cay 1998 cc')
+    public function filter_comment($comment)
     {
         $this->load->model('Filter_Comment');
         $array_filter = $this->Filter_Comment->get_filter_comment();
@@ -30,7 +30,11 @@ class Comment extends CI_Controller
     // function get all comment and subcomment for id_product, return json. in data json contain id, id_account, id_product, comment_time, content, id_reply, subComment of comment. subCommant contain list comments
     public function getListcomment($id_product = 1)
     {
+        $this->load->model('Product_Model');
+
+        $name_procduct = $this->Product_Model->getProductName($id_product);
         $this->load->model('Comment_Model');
+        //print_r($name_procduct[0]['name_product']);
         // $listSubComment = $this->Comment_Model->getListSubComment(1, $id_product);
         // print_r($listSubComment);
         $fullCommetForProduceId = array();
@@ -41,6 +45,7 @@ class Comment extends CI_Controller
 
             array_push($fullCommetForProduceId, $row);
         }
+        $fullCommetForProduceId['name_product'] = $name_procduct[0]['name_product'];
         print_r(json_encode($fullCommetForProduceId));
     }
 

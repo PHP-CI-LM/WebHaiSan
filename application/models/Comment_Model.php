@@ -23,7 +23,7 @@ class Comment_Model extends CI_Model
 
     public function getListCommentForProcduct($idProduct)
     {
-        $srt = 'SELECT * from comments where id_reply IS NULL and id_product = '.$idProduct.' ORDER BY comment_time ASC';
+        $srt = 'SELECT comments.id,comments.id_account,comments.id_product, comments.comment_time, comments.content,accounts.UserName  from comments, accounts where accounts.AccountID = id_account and id_reply IS NULL and id_product = '.$idProduct.' ORDER BY comment_time ASC';
         $result = $this->db->query($srt);
 
         return $result->result_array();
@@ -31,7 +31,7 @@ class Comment_Model extends CI_Model
 
     public function getListSubComment($id_Comment, $id_product)
     {
-        $srt = 'SELECT * from comments where id_reply ='.$id_Comment.' and id_product = '.$id_product.' ORDER BY comment_time ASC';
+        $srt = 'SELECT comments.id,comments.id_account,comments.id_product, comments.comment_time, comments.content,comments.id_reply,accounts.UserName  from comments, accounts where accounts.AccountID = id_account and id_reply ='.$id_Comment.' and id_product = '.$id_product.' ORDER BY comment_time ASC';
         $result = $this->db->query($srt);
 
         return $result->result_array();
