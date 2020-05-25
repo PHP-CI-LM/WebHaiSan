@@ -30,8 +30,10 @@ class Comment extends CI_Controller
     // function get all comment and subcomment for id_product, return json. in data json contain id, id_account, id_product, comment_time, content, id_reply, subComment of comment. subCommant contain list comments
     public function getListcomment($id_product = 1)
     {
-        header('Content-Type: application/json');
+        $this->load->model('Product_Model');
+        $name_procduct = $this->Product_Model->getProductName($id_product);
         $this->load->model('Comment_Model');
+        //print_r($name_procduct[0]['name_product']);
         // $listSubComment = $this->Comment_Model->getListSubComment(1, $id_product);
         // print_r($listSubComment);
         $fullCommetForProduceId = array();
@@ -42,7 +44,8 @@ class Comment extends CI_Controller
 
             array_push($fullCommetForProduceId, $row);
         }
-        echo json_encode($fullCommetForProduceId);
+        $fullCommetForProduceId['name_product'] = $name_procduct[0]['name_product'];
+        print_r(json_encode($fullCommetForProduceId));
     }
 
     public function add()
