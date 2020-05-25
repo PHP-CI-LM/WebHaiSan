@@ -41,7 +41,6 @@ function drawTree($comments, $comment, $product, $isReply)
 	echo '<span class="like"><a href="#">Thích</a></span>';
 	echo '<span class="dislike"><a href="#">Không thích</a></span>';
 	echo '</span>';
-	echo '<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" class="hidden" autocomplete="off"/>';
 	echo '</span>';
 	echo '</div>';
 	// Draw children
@@ -52,6 +51,10 @@ function drawTree($comments, $comment, $product, $isReply)
 	}
 	// End tree
 	echo '</li>';
+	echo '<span class="reply-input hidden">';
+	echo '<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="' . $comment['id'] . '" autocomplete="off"/>';
+	echo '<input type="submit" value="Gửi" />';
+	echo '</span>';
 	echo '</ul>';
 }
 ?>
@@ -232,14 +235,7 @@ function drawTree($comments, $comment, $product, $isReply)
 								?>
 							</div>
 							<span class="comment-all">
-								<?php 
-								if (null !== $this->session->tempdata("user")) {
-									$accountID = $this->session->tempdata("user");
-									echo '<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="'. $accountID .'" autocomplete="off"/>';
-								} else {
-									echo '<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="-1" autocomplete="off"/>';
-								}
-								?>
+								<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="-1" autocomplete="off" />
 								<input type="submit" value="Gửi" />
 							</span>
 						</form>
@@ -260,23 +256,25 @@ function drawTree($comments, $comment, $product, $isReply)
 				$('.comment-form').submit(function(event) {
 					event.preventDefault();
 					// List all input in comment box
-					let inputs = $(".comment-form input[class!='hidden']");
-					if (inputs.length > 0) {
-						$.ajax($('.base_url').val() + '/comment.html', {
+					var id = $($('form')[1]).attr('product-id');
+					var content = $('span.focus input[type="text"]').val();
+					var replyId = $('span.focus input[type="text"]').attr('reply-id');
+					if (content == undefined) {
+						content = $('.comment-all input[type="text"]').val();
+						replyId = $('.comment-all input[type="text"]').attr('reply-id');
+					}
+					if (content.length > 0) {
+						$.ajax($('.base_url').val() + '/comment', {
 							type: 'post',
 							data: {
-								'content': $(inputs[0]).val(),
-								'product-id': $(inputs[0]).parents('form').attr('product-id'),
-								'reply-id': $(inputs[0]).attr('reply-id')
+								'content': content,
+								'product-id': id,
+								'reply-id': replyId
 							},
-							success: function(data, textStatus, xhr) {
+							success: function(res, textStatus, xhr) {
 								if (xhr.status == 200) { // Request success
-									addComment(data.avatar, data.name, data.time, data.content);
-									$(inputs[0]).val('');
-									if ($(inputs[0]).parents('.comment-all').length == 0) {
-										$(inputs[0]).toggleClass('hidden');
-										$('li.reply').toggleClass('reply');
-									}
+									alert(res.message);
+									$('.comment-form').load(window.location.href + ' .comments-container, .comment-all');
 								}
 							}
 						});
@@ -289,32 +287,16 @@ function drawTree($comments, $comment, $product, $isReply)
 			}
 
 			function showInput(element) {
-				$($(element).parents('.comment')[0]).toggleClass('reply');
-				$(element).parents('.content').children('input').toggleClass('hidden');
-			}
-
-			function addComment(avatar, name, time, content) {
-				let element = $('li.reply');
-				if (element.length == 0) {
-					parent = $('.comments-list')[0];
-				} else {
-					console.log(element[0]);
-					let html = '<ul class="comments-list comment-reply"></ul>';
-					let comments_list = $(element).find('.comments-list');
-					if (comments_list.length == 0) {
-						$(element[0]).append(html);
-					}
-					parent = $(element[0]).find('.comments-list')[0];
+				if ($('span.focus').length > 0) {
+					$('span.focus').removeClass('focus');
 				}
-				let html =
-					'<li class="comment" product-id="<?php echo $product['id_product'] ?>"><div class="comment-info">' +
-					'<span class="avatar"><img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar"></span>' +
-					'<span class="content"><span class="info"><span class="name">' + name + '</span><span class="time">' + time + '</span></span>' +
-					'<span class="comment-content">' + content + '</span>' +
-					'<span class="feedback"><span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>' +
-					'<span class="like"><a href="#">Thích</a></span><span class="dislike"><a href="#">Không thích</a></span></span>' +
-					'<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" class="hidden"/></span></div></li>';
-				$(parent).append(html);
+				$($($(element).parents('li.comment')[0]).siblings('.reply-input')[0]).addClass('focus');
+				if ($('span.focus').hasClass('hidden')) {
+					$('.comments-container li.comment').siblings('.reply-input').addClass('hidden');
+					$('span.focus').removeClass('hidden');
+				} else {
+					$('.comments-container li.comment').siblings('.reply-input').addClass('hidden');
+				}
 			}
 		</script>
 		</ul>

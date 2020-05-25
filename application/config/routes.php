@@ -76,9 +76,9 @@ $route['tim-kiem.html'] = 'Product/find';
 $route['user/thong-tin-tai-khoan.html'] = 'Account/index';
 $route['ket-qua-dat-hang.html'] = 'Payment/result';
 $route['kiem-tra-don-hang.html'] = 'Order/index';
-$route['comment.html']['POST'] = 'Comment/add';
+$route['comment']['POST'] = 'Comment/add';
 $route['fblogin'] = 'User_authentication/index';
-$route['getListcomment']['get'] = 'Comment/getListcomment';
+$route['comments']['get'] = 'Comment/getListcomment';
 
 // Admin pages route
 $route['admin'] = 'admin_controller/admin/index';

@@ -10,7 +10,7 @@ class Comment extends CI_Controller
     }
 
     // Function check comment before write comment to database, return true is allow write and else
-    public function filter_comment($comment = 'son cay 1998 cc')
+    public function filter_comment($comment)
     {
         $this->load->model('Filter_Comment');
         $array_filter = $this->Filter_Comment->get_filter_comment();
@@ -30,6 +30,7 @@ class Comment extends CI_Controller
     // function get all comment and subcomment for id_product, return json. in data json contain id, id_account, id_product, comment_time, content, id_reply, subComment of comment. subCommant contain list comments
     public function getListcomment($id_product = 1)
     {
+        header('Content-Type: application/json');
         $this->load->model('Comment_Model');
         // $listSubComment = $this->Comment_Model->getListSubComment(1, $id_product);
         // print_r($listSubComment);
@@ -41,49 +42,66 @@ class Comment extends CI_Controller
 
             array_push($fullCommetForProduceId, $row);
         }
-        print_r(json_encode($fullCommetForProduceId));
+        echo json_encode($fullCommetForProduceId);
     }
 
     public function add()
     {
         header('Content-Type: application/json');
-        // Check if request is valid
-        if (
-            $this->input->post('product-id') == null || $this->input->post('content') == null &&
-            $this->session->tempdata('user') == null
-        ) {
-            echo json_encode(['status' => false]);
-        }
-
-        $idProduct = $this->security->xss_clean($this->input->post('product-id'));
-        $idAccount = $this->session->tempdata('user');
-        $content = $this->security->xss_clean($this->input->post('content'));
+        $result = [];
         $time = date('Y-m-d h:i:s');
-        $idReply = -1;
-        if ($this->input->get('reply-id') !== null) {
-            $idReply = $this->security->xss_clean($this->input->post('reply-id'));
+
+        // Check if user is login
+        if ($this->session->tempdata('user') !== null) {
+            // Check if request is valid
+            if (!($this->input->post('product-id') == null || $this->input->post('content') == null)) {
+                // Checking xss cross exploit in data request to server
+                $idProduct = $this->security->xss_clean($this->input->post('product-id'));
+                $idAccount = $this->session->tempdata('user');
+                $content = $this->security->xss_clean($this->input->post('content'));
+                $idReply = 'null';
+                if ($this->input->post('reply-id') !== null) {
+                    $idReply = $this->security->xss_clean($this->input->post('reply-id'));
+                    if (-1 == $idReply) {
+                        $idReply = 'null';
+                    }
+                }
+
+                // Filter comment before saving into database
+                if (true === $this->filter_comment($this->input->post('content'))) {
+                    // Load model and save data
+                    $this->load->model('Comment_Model');
+                    $this->Comment_Model->addComment($idProduct, $idAccount, $content, $time, $idReply);
+                    $result = $this->generateNotifyResult(true, CREATE_SUCCESS);
+                } else {
+                    $result = $this->generateNotifyResult(false, CONTENT_RESTRICTED);
+                }
+            } else {
+                $result = $this->generateNotifyResult(false, INPUT_REQUIRED);
+            }
+        } else {
+            $result = $this->generateNotifyResult(false, USER_REQUIRED);
         }
-
-        // Load model and save data
-        $this->load->model('Comment_Model');
-        $this->Comment_Model->addComment($idProduct, $idAccount, $content, $time, $idReply);
-
-        // Get info of account comment
-        $this->load->model('Account_Model');
-        $this->load->model('Customer_Model');
-        $name = $this->Customer_Model->getCustomer($idAccount)[0]['CustomerName'];
-        $avatar = $this->Account_Model->getAccount($idAccount)[0]['avatar'];
-
-        // Analys time comment
-        $time = diff_time($time);
 
         // Return result
-        echo json_encode([
-            'status' => true,
-            'name' => $name,
-            'avatar' => $avatar,
-            'time' => $time,
-            'content' => $content,
-        ]);
+        echo json_encode($result);
+    }
+
+    /**
+     * Generate notify result 
+     * 
+     * @param bool $status
+     * @param string $message
+     * @param array $data
+     * 
+     * @return string
+     */
+    private function generateNotifyResult($status, $message, $data = [])
+    {
+        return [
+            'status'    => $status,
+            'message'   => $message,
+            'data'      => $data
+        ];
     }
 }
