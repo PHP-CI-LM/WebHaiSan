@@ -1,76 +1,62 @@
 <?php
-	function findChildren($comments, $nodeId = null)
-	{
-		$size = sizeof($comments);
-		$children = [];
-		for ($i = 0; $i < $size; $i++) {
-			if ($comments[$i]['id_reply'] == $nodeId) {
-				array_push($children, $comments[$i]);
-			}
+function findChildren($comments, $nodeId = null)
+{
+	$size = sizeof($comments);
+	$children = [];
+	for ($i = 0; $i < $size; $i++) {
+		if ($comments[$i]['id_reply'] == $nodeId) {
+			array_push($children, $comments[$i]);
 		}
-		return $children;
 	}
-	
-	function findParent($categories, $idParent) {
-		$parent = [
-			'id'        => -1,
-			'name'      => '-',
-			'idParent'    => null
-		];
-		$size = sizeof($categories);
-		for ($i = 0; $i < $size; $i++) {
-			$category = $categories[$i];
-			if ($category['id'] == $idParent) {
-				$parent = $category;
-				break;
-			}
-		}
-		return $parent;
+	return $children;
+}
+
+function drawTree($comments, $comment, $product, $isReply)
+{
+	// Start tree
+	if ($isReply == false) {
+		echo '<ul class="comments-list">';
+	} else {
+		echo '<ul class="comments-list comment-reply">';
 	}
-	
-	function drawTree($comments, $comment, $product, $isReply)
-	{
-		// Start tree
-		if ($isReply == false) {
-			echo '<ul class="comments-list">';
-		} else {
-			echo '<ul class="comments-list comment-reply">';
-		}
-		echo '<li class="comment" product-id="'. $product['id_product'] . '">';
-		echo '<div class="comment-info">';
-		echo '<span class="avatar">';
-		if ($comment['avatar'] == null) {
-			echo '<img src="'. base_url() . 'static/image/others/icon.svg" alt="Avatar">';
-		} else {
-			// Hiển thị avatar
-		}
-		echo '</span>';
-		echo '<span class="content">';
-		echo '<span class="info">';
-		echo '<span class="name">' . $comment['name'] . '</span>';
-		echo '<span class="time">' . $comment['time'] . '</span>';
-		echo '</span>';
-		echo '<span class="comment-content">';
-		echo $comment['content'];
-		echo '</span>';
-		echo '<span class="feedback">';
-		echo '<span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>';
-		echo '<span class="like"><a href="#">Thích</a></span>';
-		echo '<span class="dislike"><a href="#">Không thích</a></span>';
-		echo '</span>';
-		echo '</span>';
-		echo '<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" class="hidden" />';
-		echo '</div>';
-		// Draw children
-		$children = findChildren($comments, $comment['id']);
-		$sizeChildren = sizeof($children);
-		for ($i = 0; $i < $sizeChildren; $i++) {
-			drawTree($comments, $children[$i], $product, true);
-		}
-		// End tree
-		echo '</li>';
-		echo '</ul>';
+	echo '<li class="comment" product-id="' . $product['id_product'] . '">';
+	echo '<div class="comment-info">';
+	echo '<span class="avatar">';
+	if ($comment['avatar'] == null) {
+		echo '<img src="' . base_url() . 'static/image/others/icon.svg" alt="Avatar">';
+	} else {
+		// Hiển thị avatar
 	}
+	echo '</span>';
+	echo '<span class="content">';
+	echo '<span class="info">';
+	echo '<span class="name">' . $comment['name'] . '</span>';
+	echo '<span class="time">' . $comment['time'] . '</span>';
+	echo '</span>';
+	echo '<span class="comment-content">';
+	echo $comment['content'];
+	echo '</span>';
+	echo '<span class="feedback">';
+	echo '<span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>';
+	echo '<span class="like"><a href="#">Thích</a></span>';
+	echo '<span class="dislike"><a href="#">Không thích</a></span>';
+	echo '</span>';
+	echo '</span>';
+	echo '</div>';
+	// Draw children
+	$children = findChildren($comments, $comment['id']);
+	$sizeChildren = sizeof($children);
+	for ($i = 0; $i < $sizeChildren; $i++) {
+		drawTree($comments, $children[$i], $product, true);
+	}
+	// End tree
+	echo '</li>';
+	echo '<span class="reply-input hidden">';
+	echo '<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="' . $comment['id'] . '" autocomplete="off"/>';
+	echo '<input type="submit" value="Gửi" />';
+	echo '</span>';
+	echo '</ul>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -240,174 +226,16 @@
 						<form action="<?php echo base_url(); ?>/comment.html" class="comment-form" product-id="<?php echo $product['id_product'] ?>">
 							<div class="comments-container">
 								<?php
-									if (sizeof($comments) > 0 && $product != null) {
-										drawTree($comments, $comments[0], $product, false);
+								if (sizeof($comments) > 0 && $product != null) {
+									$parentNodes = findChildren($comments);
+									foreach ($parentNodes as $node) {
+										drawTree($comments, $node, $product, false);
 									}
+								}
 								?>
-								<!-- <ul class="comments-list">
-									<li class="comment" product-id="1">
-										<div class="comment-info">
-											<span class="avatar">
-												<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
-											</span>
-											<span class="content">
-												<span class="info">
-													<span class="name">Hoàng An</span>
-													<span class="time">10 phút trước</span>
-												</span>
-												<span class="comment-content">
-													AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA BBB BBBB BBBBB B BBB BB CCC CCCCC C
-												</span>
-												<span class="feedback">
-													<span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>
-													<span class="like"><a href="#">Thích</a></span>
-													<span class="dislike"><a href="#">Không thích</a></span>
-												</span>
-												<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" class="hidden" />
-											</span>
-										</div>
-									</li>
-									<li class="comment" product-id="1">
-										<div class="comment-info">
-											<span class="avatar">
-												<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
-											</span>
-											<span class="content">
-												<span class="info">
-													<span class="name">Thiên Minh</span>
-													<span class="time">8 phút trước</span>
-												</span>
-												<span class="comment-content">
-													AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA
-												</span>
-												<span class="feedback">
-													<span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>
-													<span class="like"><a href="#">Thích</a></span>
-													<span class="dislike"><a href="#">Không thích</a></span>
-												</span>
-												<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" class="hidden" />
-											</span>
-										</div>
-
-										<ul class="comments-list comment-reply">
-											<li class="comment" product-id="1">
-												<div class="comment-info">
-													<span class="avatar">
-														<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
-													</span>
-													<span class="content">
-														<span class="info">
-															<span class="name">Thu Hồng</span>
-															<span class="time">8 phút trước</span>
-														</span>
-														<span class="comment-content">
-															AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA
-														</span>
-														<span class="feedback">
-															<span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>
-															<span class="like"><a href="#">Thích</a></span>
-															<span class="dislike"><a href="#">Không thích</a></span>
-														</span>
-														<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" class="hidden" />
-													</span>
-												</div>
-											</li>
-											<li class="comment" product-id="1">
-												<div class="comment-info">
-													<span class="avatar">
-														<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
-													</span>
-													<span class="content">
-														<span class="info">
-															<span class="name">Xuân Tín</span>
-															<span class="time">7 phút trước</span>
-														</span>
-														<span class="comment-content">
-															AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA
-														</span>
-														<span class="feedback">
-															<span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>
-															<span class="like"><a href="#">Thích</a></span>
-															<span class="dislike"><a href="#">Không thích</a></span>
-														</span>
-														<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" class="hidden" />
-													</span>
-												</div>
-												<ul class="comments-list comment-reply">
-													<li class="comment" product-id="1">
-														<div class="comment-info">
-															<span class="avatar">
-																<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
-															</span>
-															<span class="content">
-																<span class="info">
-																	<span class="name">Bảo Bảo</span>
-																	<span class="time">5 phút trước</span>
-																</span>
-																<span class="comment-content">
-																	AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA
-																</span>
-																<span class="feedback">
-																	<span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>
-																	<span class="like"><a href="#">Thích</a></span>
-																	<span class="dislike"><a href="#">Không thích</a></span>
-																</span>
-																<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" class="hidden" />
-															</span>
-														</div>
-													</li>
-													<li class="comment" product-id="1">
-														<div class="comment-info">
-															<span class="avatar">
-																<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
-															</span>
-															<span class="content">
-																<span class="info">
-																	<span class="name">Hồng Thanh</span>
-																	<span class="time">3 phút trước</span>
-																</span>
-																<span class="comment-content">
-																	AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA
-																</span>
-																<span class="feedback">
-																	<span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>
-																	<span class="like"><a href="#">Thích</a></span>
-																	<span class="dislike"><a href="#">Không thích</a></span>
-																</span>
-																<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" class="hidden" />
-															</span>
-														</div>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</li>
-									<li class="comment" product-id="1">
-										<div class="comment-info">
-											<span class="avatar">
-												<img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar">
-											</span>
-											<span class="content">
-												<span class="info">
-													<span class="name">Gia Minh</span>
-													<span class="time">6 phút trước</span>
-												</span>
-												<span class="comment-content">
-													AAA AAAA AA AAAAAA AAA AA AAAAAAAA AAA
-												</span>
-												<span class="feedback">
-													<span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>
-													<span class="like"><a href="#">Thích</a></span>
-													<span class="dislike"><a href="#">Không thích</a></span>
-												</span>
-												<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" class="hidden" />
-											</span>
-										</div>
-									</li>
-								</ul> -->
 							</div>
 							<span class="comment-all">
-								<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" />
+								<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="-1" autocomplete="off" />
 								<input type="submit" value="Gửi" />
 							</span>
 						</form>
@@ -428,23 +256,25 @@
 				$('.comment-form').submit(function(event) {
 					event.preventDefault();
 					// List all input in comment box
-					let inputs = $(".comment-form input[class!='hidden']");
-					if (inputs.length > 0) {
-						$.ajax($('.base_url').val() + '/comment.html', {
+					var id = $($('form')[1]).attr('product-id');
+					var content = $('span.focus input[type="text"]').val();
+					var replyId = $('span.focus input[type="text"]').attr('reply-id');
+					if (content == undefined) {
+						content = $('.comment-all input[type="text"]').val();
+						replyId = $('.comment-all input[type="text"]').attr('reply-id');
+					}
+					if (content.length > 0) {
+						$.ajax($('.base_url').val() + '/comment', {
 							type: 'post',
 							data: {
-								'content': $(inputs[0]).val(),
-								'product-id': $(inputs[0]).parents('form').attr('product-id'),
-								'reply-id': $(inputs[0]).attr('reply-id')
+								'content': content,
+								'product-id': id,
+								'reply-id': replyId
 							},
-							success: function(data, textStatus, xhr) {
+							success: function(res, textStatus, xhr) {
 								if (xhr.status == 200) { // Request success
-									addComment(data.avatar, data.name, data.time, data.content);
-									$(inputs[0]).val('');
-									if ($(inputs[0]).parents('.comment-all').length == 0) {
-										$(inputs[0]).toggleClass('hidden');
-										$('li.reply').toggleClass('reply');
-									}
+									alert(res.message);
+									$('.comment-form').load(window.location.href + ' .comments-container, .comment-all');
 								}
 							}
 						});
@@ -457,32 +287,16 @@
 			}
 
 			function showInput(element) {
-				$($(element).parents('.comment')[0]).toggleClass('reply');
-				$(element).parents('.content').children('input').toggleClass('hidden');
-			}
-
-			function addComment(avatar, name, time, content) {
-				let element = $('li.reply');
-				if (element.length == 0) {
-					parent = $('.comments-list')[0];
-				} else {
-					console.log(element[0]);
-					let html = '<ul class="comments-list comment-reply"></ul>';
-					let comments_list = $(element).find('.comments-list');
-					if (comments_list.length == 0) {
-						$(element[0]).append(html);
-					}
-					parent = $(element[0]).find('.comments-list')[0];
+				if ($('span.focus').length > 0) {
+					$('span.focus').removeClass('focus');
 				}
-				let html =
-					'<li class="comment" product-id="<?php echo $product['id_product'] ?>"><div class="comment-info">' +
-					'<span class="avatar"><img src="<?php echo base_url() . 'static/image/others/icon.svg' ?>" alt="Avatar"></span>' +
-					'<span class="content"><span class="info"><span class="name">' + name + '</span><span class="time">' + time + '</span></span>' +
-					'<span class="comment-content">' + content + '</span>' +
-					'<span class="feedback"><span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>' +
-					'<span class="like"><a href="#">Thích</a></span><span class="dislike"><a href="#">Không thích</a></span></span>' +
-					'<input type="text" placeholder="Nhập bình luận..." name="content" value="" reply-id="1" class="hidden"/></span></div></li>';
-				$(parent).append(html);
+				$($($(element).parents('li.comment')[0]).siblings('.reply-input')[0]).addClass('focus');
+				if ($('span.focus').hasClass('hidden')) {
+					$('.comments-container li.comment').siblings('.reply-input').addClass('hidden');
+					$('span.focus').removeClass('hidden');
+				} else {
+					$('.comments-container li.comment').siblings('.reply-input').addClass('hidden');
+				}
 			}
 		</script>
 		</ul>

@@ -82,4 +82,14 @@ defined('EXIT_UNKNOWN_METHOD') OR define('EXIT_UNKNOWN_METHOD', 6); // unknown c
 defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user input
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
-defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code4
+
+
+/**
+ * Define some constant status message after request
+ * 
+ */
+define('CREATE_SUCCESS', 'Thêm bình luận thành công');
+define('INPUT_REQUIRED', 'Thiếu đối số đầu vào');
+define('USER_REQUIRED', 'Cần đăng nhập để bình luận');
+define('CONTENT_RESTRICTED', 'Nội dung bình luận có từ ngữ không cho phép');

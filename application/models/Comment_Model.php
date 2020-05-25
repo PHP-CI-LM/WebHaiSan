@@ -37,7 +37,7 @@ class Comment_Model extends CI_Model
         return $result->result_array();
     }
 
-    public function addComment($idProduct, $idAccount = -1, $content, $time, $idReply = -1)
+    public function addComment($idProduct, $idAccount = -1, $content, $time, $idReply = 'null')
     {
         $this->db->query(
             'INSERT INTO comments(id_account, id_product, comment_time, content, id_reply)'.

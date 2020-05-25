@@ -70,6 +70,7 @@
 
 .content {
 	display: flex;
+	width: 90%;
 	padding-top: 5px;
 	flex-direction: column;
 }
@@ -100,33 +101,71 @@
 	text-decoration: none;
 }
 
-.content input {
+.comments-list input {
+	margin-left: 60px;
+	height: 36px;
+	width: 75%;
 	padding: 0.25rem 1rem;
 	margin-right: 2rem;
 	margin-top: 1rem;
 }
 
-.comment-all {
-	margin: 0 1rem;
-	padding-top: 2rem;
-	padding-left: 2rem;
-	width: 97%;
-	border-top: 2px solid #e3e3e3;
+.comment-all, .reply-input {
+	text-align: right;
+    margin: 0 1rem;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    border-top: 2px solid #e3e3e3;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.reply-input {
+	position: relative;
+    border-top: none;
+    width: 100%;
+    margin-left: 0;
+    padding-top: 0;
+    padding-bottom: 8px;
+    padding-left: 0;
 }
 
 .comment-all input[type="text"] {
-	width: 96%;
+	width: 90%;
+    margin-right: 40px;
     padding: 0.5rem 1rem;
-	margin: 0.25rem;
-	box-shadow: none !important;}
+    box-shadow: none !important;
+}
+
+.reply-input input[type="text"] {
+	margin-right: 15%;
+}
 
 .comment-all input[type="submit"] {
-	position: absolute;
+	right: 41px;
+    position: absolute;
+    margin: 1px 0;
+    padding: 0 1.5rem;
     height: 34px;
-    transform: translate(-39px, 3px);
     background: #0295d0;
     color: #DDD;
     font-weight: 600;
-	border: none;
-	cursor: pointer;
+    border: none;
+    cursor: pointer;
+}
+
+.reply-input input[type="submit"] {
+    position: absolute;
+    width: 55px;
+    top: 0;
+    right: 0;
+    margin-right: 10%;
+    border: none;
+    background: #0295d0;
+    color: #DDD;
+    font-weight: 600;
+    padding-left: 0;
+    padding-right: 0;
 }
