@@ -21,9 +21,28 @@ class Comment_Model extends CI_Model
         return $result->result_array();
     }
 
+    /**
+     * Get all comment within a limited range.
+     *
+     * @return array
+     */
+    public function getAllComments($limit = -1, $start = 0)
+    {
+        $this->db->select('comments.id, comments.id_account, comments.id_product, comments.comment_time, comments.content, comments.id_reply, accounts.UserName, products.name_product');
+        $this->db->from('comments');
+        $this->db->join('accounts' , 'accounts.AccountID = comments.id_account');
+        $this->db->join('products', 'products.id_product = comments.id_product');
+        $this->db->order_by('comments.id');
+        if (-1 !== $limit) {
+            $this->db->limit($limit, $start);
+        }
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function getListCommentForProcduct($idProduct)
     {
-        $srt = 'SELECT comments.id,comments.id_account,comments.id_product, comments.comment_time, comments.content,accounts.UserName  from comments, accounts where accounts.AccountID = id_account and id_reply IS NULL and id_product = '.$idProduct.' ORDER BY comment_time ASC';
+        $srt = 'SELECT comments.id, comments.id_account, comments.id_product, comments.comment_time, comments.content, comments.id_reply, accounts.UserName, products.name_product from comments, accounts, products where accounts.AccountID = id_account and id_reply IS NULL and id_product = '.$idProduct.' ORDER BY comment_time ASC';
         $result = $this->db->query($srt);
 
         return $result->result_array();
@@ -31,7 +50,7 @@ class Comment_Model extends CI_Model
 
     public function getListSubComment($id_Comment, $id_product)
     {
-        $srt = 'SELECT comments.id,comments.id_account,comments.id_product, comments.comment_time, comments.content,comments.id_reply,accounts.UserName  from comments, accounts where accounts.AccountID = id_account and id_reply ='.$id_Comment.' and id_product = '.$id_product.' ORDER BY comment_time ASC';
+        $srt = 'SELECT comments.id, comments.id_account, comments.id_product, comments.comment_time, comments.content, comments.id_reply, accounts.UserName, products.name_product from comments, accounts, products where accounts.AccountID = id_account and id_reply = '.$id_Comment.' and id_product = '.$id_product.' and id_product = products.id_product ORDER BY comment_time ASC';
         $result = $this->db->query($srt);
 
         return $result->result_array();
