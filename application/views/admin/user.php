@@ -84,7 +84,7 @@
 							</a></li>
 
 						<!-- Logout -->
-						<li><a href="<?php echo base_url()?>admin/logout.html">
+						<li><a href="<?php echo base_url()?>ci-admin/logout.html">
 								<img src="images/icons/topnav/logout.png" alt="" />
 								<span>Đăng xuất</span>
 							</a></li>

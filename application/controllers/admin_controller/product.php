@@ -204,7 +204,7 @@ class product extends CI_Controller
     private function generateConfigPagination($total_rows, $limit_per_page = 10)
     {
         $config['total_rows'] = $total_rows;
-        $config['base_url'] = base_url('admin');
+        $config['base_url'] = base_url('ci-admin');
         $config['per_page'] = $limit_per_page;
         $config['next_link'] = 'Next';
         $config['prev_link'] = 'Prev';
