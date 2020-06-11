@@ -153,7 +153,7 @@
 
 				<div class="horControlB menu_action">
 					<ul>
-						<li><a href="<?php echo base_url() ?>admin-ci/add-product.html">
+						<li><a href="<?php echo base_url() ?>ci-admin/add-product.html">
 								<img src="<?php echo public_url() ?>images/icons/control/16/add.png" />
 								<span>Thêm mới</span>
 							</a></li>

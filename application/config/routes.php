@@ -80,7 +80,7 @@ $route['comment']['POST'] = 'Comment/add';
 $route['fblogin'] = 'User_authentication/index';
 $route['comments']['get'] = 'Comment/getListcomment';
 
-// ci-admin pages route
+// admin pages route
 $route['ci-admin'] = 'admin_controller/admin/index';
 $route['ci-admin/login.html']['get'] = 'admin_controller/admin/index';
 $route['ci-admin/logout.html']['get'] = 'admin_controller/admin/logout';
