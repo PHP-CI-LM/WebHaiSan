@@ -84,7 +84,7 @@
 							</a></li>
 
 						<!-- Logout -->
-						<li><a href="<?php echo base_url()?>admin/logout.html">
+						<li><a href="<?php echo base_url()?>ci-admin/logout.html">
 								<img src="<?php echo public_url() ?>/images/icons/topnav/logout.png" alt="" />
 								<span>Đăng xuất</span>
 							</a></li>
@@ -153,7 +153,7 @@
 
 				<div class="horControlB menu_action">
 					<ul>
-						<li><a href="<?php echo base_url() ?>admin/add-product.html">
+						<li><a href="<?php echo base_url() ?>ci-admin/add-product.html">
 								<img src="<?php echo public_url() ?>images/icons/control/16/add.png" />
 								<span>Thêm mới</span>
 							</a></li>
@@ -297,7 +297,7 @@
 		function deleteProduct(selector) {
 			//Xác thực xóa dữ liệu
 			$.ajax({
-				url: "<?php echo base_url() ?>admin/delete-product.html/save",
+				url: "<?php echo base_url() ?>ci-admin/delete-product.html/save",
 				type: "post",
 				dataType: "text",
 				data: {
@@ -323,7 +323,7 @@
 
 
 			$.ajax({
-				url: "<?php echo base_url() ?>admin/fill-product.html",
+				url: "<?php echo base_url() ?>ci-admin/fill-product.html",
 				type: "post",
 				dataType: "text",
 				data: {

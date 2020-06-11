@@ -12,7 +12,7 @@ class product extends CI_Controller
     public function index($page_num = 1)
     {
         if ($this->session->tempdata('admin') == null || 1 > $page_num) {
-            redirect(base_url() . 'admin/login.html', 'auto');
+            redirect(base_url() . 'ci-admin/login.html', 'auto');
         } else {
             $this->load->model('Product_Model');
             //$data = $this->Product_Model->getAllProducts();
@@ -30,7 +30,7 @@ class product extends CI_Controller
             // Lấy danh sách sp
             $start = ($page_num - 1)*$limit_per_page;
             $data = $this->Product_Model->getAllProducts($limit_per_page, $start);
-            $this->load->view('admin\product', [
+            $this->load->view('admin/product', [
                 "data"          => $data, 
                 "data_category" => $data_category, 
                 "nums_row"      => $count,
@@ -42,7 +42,7 @@ class product extends CI_Controller
     public function loadviewform($id = null)
     {
         if ($this->session->tempdata('admin') == null) {
-            redirect(base_url() . 'admin/login.html', 'auto');
+            redirect(base_url() . 'ci-admin/login.html', 'auto');
         } else {
             $data_product = array();
             if ($id !== null) {
@@ -62,13 +62,13 @@ class product extends CI_Controller
 
             //var_dump((array)$data_product);
             if ($id === null) {
-                $this->load->view('admin\formaddProduct', [
+                $this->load->view('admin/formaddProduct', [
                     "data_category" => $data_category,
                     "data_unit" => $data_unit,
                     "data_origin" => $data_origin
                 ]);
             } else {
-                $this->load->view('admin\formeditProduct', [
+                $this->load->view('admin/formeditProduct', [
                     "data_category" => $data_category,
                     "data_unit" => $data_unit,
                     "data_origin" => $data_origin,
@@ -81,7 +81,7 @@ class product extends CI_Controller
     public function addProduct()
     {
         if ($this->session->tempdata('admin') == null) {
-            redirect(base_url() . 'admin/login.html', 'auto');
+            redirect(base_url() . 'ci-admin/login.html', 'auto');
         } else {
             $name_product = $this->security->xss_clean($this->input->post('name'));
             $id_origin = $this->security->xss_clean($this->input->post('origin'));
@@ -122,7 +122,7 @@ class product extends CI_Controller
                 if (false !== $image_link) {
                     $this->load->model('Product_Model');
                     $data = $this->Product_Model->SaveProduct($name_product, $price, $descript, $importDate, $image_link, $id_category, $discount, $id_origin, $size, $id_unit);
-                    redirect(base_url() . "admin/product.html", "auto");
+                    redirect(base_url() . "ci-admin/product.html", "auto");
                 }
             }
         }
@@ -131,7 +131,7 @@ class product extends CI_Controller
     public function UpdateProduct($id_product)
     {
         if ($this->session->tempdata('admin') == null) {
-            redirect(base_url() . 'admin/login.html', 'auto');
+            redirect(base_url() . 'ci-admin/login.html', 'auto');
         } else {
             $id_product = $this->security->xss_clean($id_product);
             $name_product = $this->security->xss_clean($this->input->post('name'));
@@ -152,7 +152,7 @@ class product extends CI_Controller
                 $price = str_replace(",", "", $price);
                 $this->load->model('Product_Model');
                 $data = $this->Product_Model->UpdateProduct($id_product, $name_product, $price, $descript, $image_link, $id_category, $discount, $id_origin, $size, $id_unit);
-                redirect(base_url() . "admin/product.html", "auto");
+                redirect(base_url() . "ci-admin/product.html", "auto");
             }
         }
     }
@@ -204,7 +204,7 @@ class product extends CI_Controller
     private function generateConfigPagination($total_rows, $limit_per_page = 10)
     {
         $config['total_rows'] = $total_rows;
-        $config['base_url'] = base_url('admin');
+        $config['base_url'] = base_url('ci-admin');
         $config['per_page'] = $limit_per_page;
         $config['next_link'] = 'Next';
         $config['prev_link'] = 'Prev';

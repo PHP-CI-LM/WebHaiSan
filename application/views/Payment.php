@@ -237,7 +237,7 @@
 						data: packData()
 					},
 					success: res => {
-						let data = JSON.parse(res);
+						let data = JSON.parse(JSON.stringify(res));
 						if (data["status"] == true) {
 							alert("Đơn hàng của bạn đã được tiếp nhận. Chúng tôi sẽ liên hệ lại ngay cho bạn để xác nhận đơn hàng");
 							deleteAllCookie();

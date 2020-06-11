@@ -80,20 +80,20 @@ $route['comment']['POST'] = 'Comment/add';
 $route['fblogin'] = 'User_authentication/index';
 $route['comments']['get'] = 'Comment/getListcomment';
 
-// Admin pages route
-$route['admin'] = 'admin_controller/admin/index';
-$route['admin/login.html']['get'] = 'admin_controller/admin/index';
-$route['admin/logout.html']['get'] = 'admin_controller/admin/logout';
-$route['admin/login.html']['post'] = 'admin_controller/admin/login';
-$route['admin/product.html']['get'] = 'admin_controller/product';
-$route['admin/product_(:num).html']['get'] = 'admin_controller/product/index/$1';
-$route['admin/order.html'] = 'admin_controller/order';
-$route['admin/user.html'] = 'admin_controller/user';
-$route['admin/add-product.html']['get'] = 'admin_controller/product/loadviewform';
-$route['admin/add-product.html']['post'] = 'admin_controller/product/addProduct';
-$route['admin/update-product.html/(:any)'] = 'admin_controller/product/loadviewform/$1';
-$route['admin/update-product.html/(:any)/save'] = 'admin_controller/product/UpdateProduct/$1';
-$route['admin/delete-product.html/save']['post'] = 'admin_controller/product/DeleteProduct';
-$route['admin/fill-product.html']['post'] = 'admin_controller/product/FillProduct';
-$route['admin/comment.html'] = 'admin_controller/comment';
-$route['admin/comment/filter.html']['get'] = 'admin_controller/comment/filter';
+// admin pages route
+$route['ci-admin'] = 'admin_controller/admin/index';
+$route['ci-admin/login.html']['get'] = 'admin_controller/admin/index';
+$route['ci-admin/logout.html']['get'] = 'admin_controller/admin/logout';
+$route['ci-admin/login.html']['post'] = 'admin_controller/admin/login';
+$route['ci-admin/product.html']['get'] = 'admin_controller/product';
+$route['ci-admin/product_(:num).html']['get'] = 'admin_controller/product/index/$1';
+$route['ci-admin/order.html'] = 'admin_controller/order';
+$route['ci-admin/user.html'] = 'admin_controller/user';
+$route['ci-admin/add-product.html']['get'] = 'admin_controller/product/loadviewform';
+$route['ci-admin/add-product.html']['post'] = 'admin_controller/product/addProduct';
+$route['ci-admin/update-product.html/(:any)'] = 'admin_controller/product/loadviewform/$1';
+$route['ci-admin/update-product.html/(:any)/save'] = 'admin_controller/product/UpdateProduct/$1';
+$route['ci-admin/delete-product.html/save']['post'] = 'admin_controller/product/DeleteProduct';
+$route['ci-admin/fill-product.html']['post'] = 'admin_controller/product/FillProduct';
+$route['ci-admin/comment.html'] = 'admin_controller/comment';
+$route['ci-admin/comment/filter.html']['get'] = 'admin_controller/comment/filter';

@@ -84,7 +84,7 @@
 							</a></li>
 
 						<!-- Logout -->
-						<li><a href="<?php echo base_url()?>admin/logout.html">
+						<li><a href="<?php echo base_url()?>ci-admin/logout.html">
 								<img src="<?php echo public_url() ?>/images/icons/topnav/logout.png" alt="" />
 								<span>Đăng xuất</span>
 							</a></li>
@@ -222,7 +222,7 @@
 							<td colspan="9">
 
 								<div class='pagination'>
-									&nbsp;<strong>1</strong>&nbsp;<a href="admin/product_order/index/10">2</a>&nbsp;<a href="admin/product_order/index/10">Trang kế tiếp</a>&nbsp; </div>
+									&nbsp;<strong>1</strong>&nbsp;<a href="ci-admin/product_order/index/10">2</a>&nbsp;<a href="admin/product_order/index/10">Trang kế tiếp</a>&nbsp; </div>
 							</td>
 						</tr>
 					</tfoot>

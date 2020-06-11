@@ -1,4 +1,7 @@
 <?php
+
+defined('BASEPATH') or exit('No direct script access allowed');
+
 class Admin extends CI_Controller
 {
 
@@ -7,7 +10,7 @@ class Admin extends CI_Controller
         if ($this->session->tempdata('admin') == null) {
             $this->load->view('admin/login');
         } else {
-            redirect(base_url() . 'admin/product.html', 'auto');
+            redirect(base_url() . 'ci-admin/product.html', 'auto');
         }
     }
 
@@ -26,7 +29,7 @@ class Admin extends CI_Controller
             $user = $this->Account_Model->loginAdmin($username, $password);
             if ($user != false) {
                 $this->session->set_tempdata("admin", $user, 3600);
-                redirect(base_url() . 'admin/product.html', 'auto');
+                redirect(base_url() . 'ci-admin/product.html', 'auto');
             }
             $this->load->view('admin/login');
         }
@@ -35,31 +38,6 @@ class Admin extends CI_Controller
     public function logout()
     {
         $this->session->sess_destroy();
-        redirect(base_url().'admin/login.html', "auto");
+        redirect(base_url().'ci-admin/login.html', "auto");
     }
-    // public function loadview()
-    // {
-    //     $this->load->helper('url');
-    //     $this->load->view('admin\admin');
-    // }
-    // public function loadviewUser(){
-    //     $this->load->view('admin\user');
-    // }
-    // public function loadviewCatalog()
-    // {
-    //     $this->load->view('admin\Catalog');
-
-    // }
-    // public function loadvieworder()
-    // {
-    //     $this->load->view('admin\order');
-    // }
-    // public function loadviewproduct()
-    // {
-    //     $this->load->view('admin\product');
-    // }
-    // public function loadviewform()
-    // {
-    //     $this->load->view('admin\formadd_product');
-    // }
 }
