@@ -3,31 +3,20 @@
 <div class="custom-footer">
   <div class="contact">
     <div class="logo">
-      <img src="" />
+      <img src="<?php echo base_url() ?>static/image/logo.png" />
     </div>
     <ul class="list-info">
       <li class="item name">Hải sản Bình Minh
-        <span>Chân trời hải sản tươi sống</span>
       </li>
-      <li class="item phone">0123456789</li>
+      <li class="item phone">Liên hệ: 0123456789</li>
+      <li class="item address">Địa chỉ: 1 Võ Văn Ngân, Thủ Đức, Tp. Hồ Chí Minh</li>
     </ul>
   </div>
   <div class="info">
-    <div class="title">Danh mục sản phẩm</div>
+    <div class="title">Về chúng tôi</div>
     <ul class="list-info">
-      <li class="item"></li>
-      <li class="item"></li>
-      <li class="item"></li>
-      <li class="item"></li>
-    </ul>
-  </div>
-  <div class="info">
-    <div class="title"></div>
-    <ul class="list-info">
-      <li class="item"></li>
-      <li class="item"></li>
-      <li class="item"></li>
-      <li class="item"></li>
+      <li class="item">Chính sách giao nhận hàng</li>
+      <li class="item">Chính sách đổi trả</li>
     </ul>
   </div>
 </div> 

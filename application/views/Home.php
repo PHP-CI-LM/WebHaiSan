@@ -260,6 +260,10 @@
 		function gotoPage(url) {
 			window.location.href = "<?php echo base_url() ?>" + url;
 		}
+		$('#my-carousel').carousel({
+			interval: 3000,
+			cycle: true
+		});
 	</script>
 </body>
 
