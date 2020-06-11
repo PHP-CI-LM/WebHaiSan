@@ -63,7 +63,7 @@ table thead td span {
 .formRow .checker, .formRow .radio {
 	margin-right: 8px;
 }
-.form input[type="text"], .form input[type="password"], .form textarea {
+.form input[type="text"], .form input[type="password"], .form textarea, .form input[type="number"] {
 	font-size: 12px;
 }
 .formRow label.formLeft {
@@ -572,4 +572,8 @@ a.active_link {
 
 option::hover {
 	background-color: red !important;
+}
+
+.hidden {
+	display: none !important;
 }

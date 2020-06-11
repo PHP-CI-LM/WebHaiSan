@@ -15,7 +15,8 @@ class comment extends CI_Controller
             redirect(base_url() . 'admin/login.html', 'auto');
         } else {
             $this->load->model('Product_Model', 'product');
-            $data = [];
+            $this->load->model('Comment_Model', 'comment');
+            $data = $this->comment->getAllComments();
             $paging_links = '';
             $products = $this->product->getAllProducts();
             $this->load->view('admin/comment', [

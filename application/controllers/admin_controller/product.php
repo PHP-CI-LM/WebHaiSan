@@ -85,9 +85,11 @@ class product extends CI_Controller
         } else {
             $name_product = $this->security->xss_clean($this->input->post('name'));
             $id_origin = $this->security->xss_clean($this->input->post('origin'));
+            $new_origin = $this->security->xss_clean($this->input->post('new_origin'));
             $price = $this->security->xss_clean($this->input->post('price'));
             $discount = $this->security->xss_clean($this->input->post('discount'));
             $id_category = $this->security->xss_clean($this->input->post('cat'));
+            $new_category = $this->security->xss_clean($this->input->post('new_category'));
             $size = $this->security->xss_clean($this->input->post('size'));
             $id_unit = $this->security->xss_clean($this->input->post('unit'));
             $descript = $this->security->xss_clean($this->input->post('content'));
@@ -96,11 +98,28 @@ class product extends CI_Controller
                 $name_product !== null && $id_origin !== null && $price !== null &&
                 $discount !== null &&  $id_category !== null && $size !== null && $id_unit !== null
             ) {
+                // Validate new category
+                if (-1 == $id_category) {
+                    $this->load->model('Category_Model');
+                    if (true === $this->Category_Model->validateCategory($new_category)) {
+                        $result = $this->Category_Model->addCategory($new_category);
+                        $id_category = $result[0]["id_category"];
+                    }
+                }
+
+                // Validate new origin
+                if (-1 == $id_origin) {
+                    $this->load->model('Origin_Model');
+                    if (true === $this->Origin_Model->validateOrigin($new_origin)) {
+                        $result = $this->Origin_Model->addOrigin($new_origin);
+                        $id_origin = $result[0]["id"];
+                    }
+                }
 
                 $importDate = date("Y-m-d");
                 $price = str_replace(",", "", $price);
                 $image_link = $this->uploadImageOfProduct();
-                if (true === $image_link) {
+                if (false !== $image_link) {
                     $this->load->model('Product_Model');
                     $data = $this->Product_Model->SaveProduct($name_product, $price, $descript, $importDate, $image_link, $id_category, $discount, $id_origin, $size, $id_unit);
                     redirect(base_url() . "admin/product.html", "auto");
@@ -220,7 +239,8 @@ class product extends CI_Controller
         // Load library to upload thumbnail of product
         $config['upload_path'] = './images';
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size']     = '10240';
+        $config['max_size'] = '10240';
+        $config['override'] = false;
         $this->load->library('upload', $config);
 
         if ($this->upload->do_upload('img')) {

@@ -151,7 +151,7 @@
 		<div class="wrapper">
 
 			<!-- Form -->
-			<form class="form" id="form" action="<?php echo base_url() ?>admin/add-product.html/save" method="post" enctype="multipart/form-data">
+			<form class="form" id="form" action="<?php echo base_url() ?>admin/add-product.html" method="post" enctype="multipart/form-data">
 				<fieldset>
 					<div class="widget">
 						<div class="title">
@@ -185,9 +185,7 @@
 								<div class="formRow">
 									<label class="formLeft" for="param_name">Nguồn gốc:<span class="req">*</span></label>
 									<div class="formRight">
-										<select name="origin" _autocheck="true" id='param_cat' class="left">
-
-											<!-- kiem tra danh muc co danh muc con hay khong -->
+										<select name="origin" _autocheck="true" id='param_cat' class="left input-origin">
 											<?php
 											if ($data_origin !== null && isset($data_origin) && sizeof($data_origin) > 0)
 												foreach ($data_origin as $row) {
@@ -195,7 +193,19 @@
 												<option value="<?php echo $row["id"] ?>">
 													<?php echo $row["name_origin"] ?> </option>
 											<?php } ?>
+											<option value="-1">-- Thêm nơi nhập --</option>
 										</select>
+										<span name="cat_autocheck" class="autocheck"></span>
+										<div name="cat_error" class="clear error"></div>
+									</div>
+									<div class="clear"></div>
+								</div>
+
+								<!-- Add new origin -->
+								<div class="formRow hidden" id="add-origin">
+									<label class="formLeft" for="param_cat">Thêm nơi nhập:<span class="req">*</span></label>
+									<div class="formRight">
+										<span class="oneTwo"><input name="new_origin" id="param_name" _autocheck="true" type="text" autocomplete="off" /></span>
 										<span name="cat_autocheck" class="autocheck"></span>
 										<div name="cat_error" class="clear error"></div>
 									</div>
@@ -207,14 +217,13 @@
 									<label class="formLeft" for="param_name">Link hình ảnh:<span class="req">*</span></label>
 									<div class="formRight">
 										<span class="oneTwo">
-											<input name="img" id="param_name" _autocheck="true" type="file" accept="image/png, image/jpeg" autocomplete="off" required />
+											<input name="img" id="param_name" _autocheck="true" type="file" accept="image/png, image/jpeg, image/webp" autocomplete="off" required />
 										</span>
 										<span name="name_autocheck" class="autocheck"></span>
 										<div name="name_error" class="clear error"></div>
 									</div>
 									<div class="clear"></div>
 								</div>
-
 
 								<!-- Price -->
 								<div class="formRow">
@@ -233,7 +242,7 @@
 									<div class="clear"></div>
 								</div>
 
-								<!-- Price -->
+								<!-- Promotion -->
 								<div class="formRow">
 									<label class="formLeft" for="param_discount">
 										Giảm giá (%)
@@ -249,13 +258,12 @@
 									</div>
 									<div class="clear"></div>
 								</div>
+								
+								<!-- Category -->
 								<div class="formRow">
 									<label class="formLeft" for="param_cat">Thể loại:<span class="req">*</span></label>
 									<div class="formRight">
-										<select name="cat" _autocheck="true" id='param_cat' class="left">
-
-											<!-- kiem tra danh muc co danh muc con hay khong -->
-
+										<select name="cat" _autocheck="true" id='param_cat' class="left input-category" style="text-transform: capitalize;">
 											<?php
 											if ($data_category !== null && isset($data_category) && sizeof($data_category) > 0)
 												foreach ($data_category as $row) {
@@ -263,27 +271,30 @@
 												<option value="<?php echo $row["id_category"] ?>">
 													<?php echo $row["name_category"] ?> </option>
 											<?php } ?>
+											<option value="-1">-- Thêm mới --</option>
 										</select>
 										<span name="cat_autocheck" class="autocheck"></span>
 										<div name="cat_error" class="clear error"></div>
 									</div>
 									<div class="clear"></div>
 								</div>
-								<div class="formRow">
-									<label class="formLeft" for="param_name">Kích thước:<span class="req">*</span></label>
+
+								<!-- Add Category -->
+								<div class="formRow hidden" id="add-category">
+									<label class="formLeft" for="param_cat">Thêm loại mới:<span class="req">*</span></label>
 									<div class="formRight">
-										<span class="oneTwo"><input name="size" id="param_name" _autocheck="true" type="text" autocomplete="off" required /></span>
-										<span name="name_autocheck" class="autocheck"></span>
-										<div name="name_error" class="clear error"></div>
+										<span class="oneTwo"><input name="new_category" id="param_name" _autocheck="true" type="text" autocomplete="off"/></span>
+										<span name="cat_autocheck" class="autocheck"></span>
+										<div name="cat_error" class="clear error"></div>
 									</div>
 									<div class="clear"></div>
 								</div>
+
+								<!-- Unit -->
 								<div class="formRow">
 									<label class="formLeft" for="param_cat">Đơn vị:<span class="req">*</span></label>
 									<div class="formRight">
 										<select name="unit" _autocheck="true" id='param_cat' class="left">
-
-											<!-- kiem tra danh muc co danh muc con hay khong -->
 											<?php
 											if ($data_unit !== null && isset($data_unit) && sizeof($data_unit) > 0)
 												foreach ($data_unit as $row) {
@@ -297,6 +308,19 @@
 									</div>
 									<div class="clear"></div>
 								</div>
+
+								<!-- Size -->
+								<div class="formRow">
+									<label class="formLeft" for="param_name">Kích thước:<span class="req">*</span></label>
+									<div class="formRight">
+										<span class="oneTwo"><input type="number" step="0.1" name="size" id="param_name" _autocheck="true" type="text" autocomplete="off" required style="width: 50px;" value="1.0"/></span>
+										<span name="name_autocheck" class="autocheck"></span>
+										<div name="name_error" class="clear error"></div>
+									</div>
+									<div class="clear"></div>
+								</div>
+								
+								<!-- Description -->
 								<div class="formRow">
 									<label class="formLeft">Mô tả:</label>
 									<div class="formRight">
@@ -328,6 +352,56 @@
 		</div>
 	</div>
 	<div class="clear"></div>
+
+	<script>
+		$(document).ready(function() {
+			$('#form').submit(function(event) {
+				event.preventDefault();
+				var data = $('#form').serializeArray(); 
+				$.ajax({
+					url: $('#form').attr('action'),
+					type: 'post',
+					dataType: 'json',
+					data: data,
+					success: function(res, testStatus, xhr) {
+						if (xhr.status == 500) {
+
+						} else if (xhr.status == 200) {
+
+						}
+					}
+				});
+			});
+
+			$('.input-origin').change(function() {
+				var val = $(this).val();
+				if (-1 == val) {
+					// Show add category input
+					$('#add-origin').removeClass('hidden');
+					$('#add-origin input').prop('required', true);
+					$('#add-origin input').val('');
+				} else {
+					// Hide add category input
+					$('#add-origin').addClass('hidden');
+					$('#add-origin input').prop('required', false);
+				}
+			});
+
+			$('.input-category').change(function() {
+				var val = $(this).val();
+				if (-1 == val) {
+					// Show add category input
+					$('#add-category').removeClass('hidden');
+					$('#add-category input').prop('required', true);
+					$('#add-category input').val('');
+				} else {
+					// Hide add category input
+					$('#add-category').addClass('hidden');
+					$('#add-category input').prop('required', false);
+				}
+			});
+		});
+	</script>
 </body>
 
 </html>

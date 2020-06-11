@@ -34,30 +34,28 @@ class Order extends CI_Controller
                         $product["stage"] = $order[0]["Status"];
                         array_push($products, $product);
                     }
-                    $this->load->view("CheckOrder(2)", [
+                    $this->load->view("CheckOrder", [
                         "status" => true,
                         "stage" => "CheckOrder",
                         "oid" => $oid,
                         "products" => $products
                     ]);
                 } else {
-                    $this->load->view("CheckOrder(2)", [
+                    $this->load->view("CheckOrder", [
                         "status" => false,
                         "stage" => "CheckOrder",
                         "oid" => $oid
                     ]);
                 }
-            } else $this->load->view("CheckOrder(2)", [
+            } else $this->load->view("CheckOrder", [
                 "status" => false,
                 "stage" => "CheckOrder",
                 "oid" => $oid
             ]);
-        } else $this->load->view("CheckOrder(2)", [
+        } else $this->load->view("CheckOrder", [
             "status" => false,
             "stage" => "CheckOrder",
             "oid" => null
         ]);
     }
-
-    private 
 }
