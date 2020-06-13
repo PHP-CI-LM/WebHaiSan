@@ -60,8 +60,8 @@
 						echo "<div class=\"col-lg-3 col-md-4 col-sm-6 col-xs-12\">";
 						echo "<div class=\"book\" id=\"" . $product["id_product"] . "\"><div class=\"icon-bar vertical\">";
 						echo "<ul><li><div class=\"button-modify\">";
-						echo "<div class=\"button-arc forest right\" onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\">";
-						echo "<i class=\"fa fa-info-circle\" onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\"></i>";
+						echo "<div class=\"button-arc forest right\" onclick=\"gotoPage('" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\">";
+						echo "<i class=\"fa fa-info-circle\" onclick=\"gotoPage('" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\"></i>";
 						echo "<div class=\"content content-right\"><span>Thông tin chi tiết</span></div></div></div></li>";
 						echo "<li><div class=\"button-modify\"><div class=\"button-arc cool right\" style=\"transform: translateY(150%)\">";
 						echo "<i class=\"fa fa-cart-plus\" onclick=\"addToCart(" . $product["id_product"] . ", 1, " . $product["price"] . ")\"></i>";
@@ -70,7 +70,7 @@
 						echo "<i class=\"fa fa-money\" onclick=\"buyNow('" . $product["id_product"] . "', 1, ". (int)(($product["price"]*(100 - $product["discount"]))/100) .")\"></i>";
 						echo "<div class=\"content content-right\"><span>Mua ngay</span></div></div></div></li></ul></div>";
 						echo "<div class=\"thumbnail\">";
-						echo "<img onclick=\"gotoPage('product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . base_url() . "images/" . $product["DuongDan"] . "\"></div>";
+						echo "<img onclick=\"gotoPage('" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html')\" style=\"cursor:pointer\" alt=\"" . $product["id_product"] . "\" src=\"" . base_url() . "images/" . $product["DuongDan"] . "\"></div>";
 						echo "<div class=\"info-book\"><div class=\"title\">" . $product["name_product"] . "</div>";
 						echo "<div class=\"price\">" . number_format($product["price"]) . "đ/kg</div></div></div></div>";
 					}
