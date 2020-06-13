@@ -82,5 +82,8 @@
 	</div>
 
 	<?php require_once("comp/Footer.php")?>
+
+	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.js"></script>
+	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.js"></script>
 </body>
 </html>
