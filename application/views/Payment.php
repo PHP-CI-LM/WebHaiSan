@@ -198,6 +198,8 @@
 			</div>
 		</div>
 
+		<?php require_once("comp/Footer.php") ?>
+
 		<script type="text/javascript">
 			String.prototype.replaceAll = function(search, replacement) {
 				var target = this;

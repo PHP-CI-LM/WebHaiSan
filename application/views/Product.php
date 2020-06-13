@@ -88,7 +88,7 @@ function drawTree($comments, $comment, $product, $isReply)
 	<!-- Phần header cho trang Web -->
 	<?php require_once "comp/Header.php" ?>
 
-	<div class="container-fluid" id="content">
+	<div class="container-fluid" id="content" style="margin-left: 0; margin-right: 0;">
 		<div class="row">
 			<div class="col-sm-12">
 				<ul class="breadcrumb" itemtype="http://schema.org/BreadcrumbList" style="margin-top: 30px; margin-bottom: 5px;">

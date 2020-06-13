@@ -106,6 +106,8 @@
 			</div>
 		</a>
 	</div>
+
+	<?php require_once("comp/Footer.php") ?>
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
