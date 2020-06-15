@@ -58,3 +58,64 @@ input, select {
 li.active a {
     color: #333 !important;
 }
+
+.board .header {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 20%;
+    text-align: right;
+}
+
+.board .header h2{
+    flex-basis: 95%;
+    text-align: left;
+}
+
+.board .header .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    flex-basis: 5%;
+}
+
+.board .header .actions img {
+    width: 20px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.form-info {
+    display: flex;
+    align-items: center;
+}
+
+.form-info label {
+    flex-basis: 20%;
+    text-align: right;
+}
+
+.form-info .info {
+    flex-basis: 80%;
+}
+
+.form-info input.info {
+    margin: 10px;
+    padding: 0.25rem 1rem;
+    flex-basis: 50%;
+    font-size: 13px;
+    font-family: inherit;
+}
+
+.form-info input[type="file"].info {
+    background-color: inherit;
+    border: transparent;
+    margin-left: 10px;
+}
+
+.form-info select.info {
+    flex-basis: 35%;
+    padding: 0 1rem;
+    max-height: 38px;
+    margin-left: 10px;
+}

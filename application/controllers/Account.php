@@ -82,6 +82,65 @@ class Account extends CI_Controller
         }
     }
 
+    public function updateInfomation($customerID)
+    {
+        header("Content-Type: Application/Json");
+        // Check invalid input
+        if (
+            null == $this->input->post('customerName') || null == $this->input->post('sex') || 
+            null == $this->input->post('address') || null == $this->input->post('phone')
+        ) {
+            $this->sendResponse(0, 'Input not valid!', []);
+            return;
+        }
+
+        // Get data update in pre-processing
+        $customerName = $this->security->xss_clean($this->input->post('customerName'));
+        $sex = $this->security->xss_clean($this->input->post('sex'));
+        $address = $this->security->xss_clean($this->input->post('address'));
+        $phone = $this->security->xss_clean($this->input->post('phone'));
+
+        // Loading model and saving data
+        $this->load->model('Customer_Model');
+        $result = $this->Customer_Model->updateCustomer($customerID, $customerName, $sex, $phone, $address);
+        if (true == $result) {
+            // Update success
+            $this->sendResponse(1, 'Update successfully!');
+            return;
+        } else {
+            // Update failed
+            $this->sendResponse(0, 'Update fail!');
+            return;
+        }
+    }
+
+    public function uploadAvatar($customerID)
+    {
+        header("Content-Type: Application/Json");
+        $result = false;
+
+        // Load library to upload thumbnail of product
+        $config['upload_path'] = 'static/image/avatar';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '10240';
+        $config['override'] = false;
+        $this->load->library('upload', $config);
+        // Start upload 
+        if ($this->upload->do_upload('avatar')) {
+            $result = $this->upload->data()['file_name'];
+        }
+
+        // Update avatar url in database
+        $this->load->model('Customer_Model');
+        $this->Customer_Model->updateCustomerAvatar($customerID, $result);
+
+        // Return url of avatar
+        $result = base_url().'static/image/avatar/'.$result;
+        $this->sendResponse(1, 'Upload avatar successfully!', [
+            'url'   => $result
+        ]);
+    }
+
     public function logout()
     {
         $this->session->sess_destroy();
@@ -120,7 +179,7 @@ class Account extends CI_Controller
                     $this->input->post('phone'),
                     $this->input->post('address')
                 );
-                redirect(base_url().'dang-nhap.html', 'auto');
+                redirect(base_url() . 'dang-nhap.html', 'auto');
             }
         }
     }
@@ -179,6 +238,18 @@ class Account extends CI_Controller
 
     // get user name of accout
     public function getUserName($id_account)
-    {
+    { }
+
+    private function sendResponse(int $status, $message, $data = []) {
+        $statusText = false;
+        if (1 == $status) {
+            $statusText = true;
+        }
+        $result = json_encode([
+            'status'    => $statusText,
+            'message'   => $message,
+            'data'      => $data
+        ]);
+        echo $result;
     }
 }

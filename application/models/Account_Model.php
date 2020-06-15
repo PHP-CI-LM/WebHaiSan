@@ -18,7 +18,7 @@ class Account_Model extends CI_Model {
 
     public function getAccount($accountID) {
         $query = $this->db->query(
-            "SELECT UserName, avatar FROM accounts WHERE AccountID=" . $accountID . ";"
+            "SELECT UserName FROM accounts WHERE AccountID=" . $accountID . ";"
         );
         return $query->result_array();
     }
