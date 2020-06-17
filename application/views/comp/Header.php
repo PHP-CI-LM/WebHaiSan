@@ -29,7 +29,7 @@
                     ?>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-ms-8">
                         <form action="<?php echo base_url() ?>tim-kiem.html" method="GET" class="search-bar clearfix" id="search-textbox\">
-                            <input name="query" type="text" id="Search" value="<?php echo $strSearch ?>" placeholder="Nhập thứ muốn tìm ..." style="border: 1px solid #dcdcdc; border-radius: 0;"></input> <span><button type="submit">
+                            <input name="query" type="text" autocomplete="off" id="Search" value="<?php echo $strSearch ?>" placeholder="Nhập thứ muốn tìm ..." style="border: 1px solid #dcdcdc; border-radius: 0;"></input> <span><button type="submit">
                                     <i class="fa fa-search" style="margin-top: 0"></i>
                                 </button></span>
                         </form>
