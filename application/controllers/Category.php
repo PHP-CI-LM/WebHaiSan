@@ -21,7 +21,7 @@ class Category extends CI_Controller
                 $count = $this->Product_Model->getTotal($type);
                 // Paginate page
                 $limit_per_page = 8;
-                $paging_links = generatePagingLinks($count, $limit_per_page);
+                $paging_links = generatePagingLinks($count, $limit_per_page, false);
                 $start = 0;
                 if ($page_num != -1) {
                     $start = ($page_num - 1) * $limit_per_page;

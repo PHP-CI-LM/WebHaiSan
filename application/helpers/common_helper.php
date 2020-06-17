@@ -51,12 +51,12 @@ function diff_time($time1, $time2 = null)
  * 
  * @return array
  */
-function generateConfigPagination($total_rows, $limit_per_page = 10, $base_url, $prefix = '', $suffix = '', $use_query_string = false)
+function generateConfigPagination($total_rows, $limit_per_page = 10, $base_url, $uri_segment = 3, $prefix = '', $suffix = '', $use_query_string = false)
 {
     $config['total_rows'] = $total_rows;
     $config['base_url'] = $base_url;
     $config['per_page'] = $limit_per_page;
-    $config['uri_segment'] = 2;
+    $config['uri_segment'] = $uri_segment;
     if (false == $use_query_string) {
         $config['use_page_numbers'] = TRUE;
     } else {
@@ -111,12 +111,12 @@ function getBaseURL($current_url = '', $query = null)
 /**
  * Generate pagination link
  */
-function generatePagingLinks($total_rows, $limit_per_page = 10, $use_query_string = false, $prefix = '', $suffix = '')
+function generatePagingLinks($total_rows, $limit_per_page = 10, $use_query_string = false, $uri_segment = 3, $prefix = '', $suffix = '')
 {
     $CI = &get_instance();
     $limit_per_page = 8;
     $baseURL = getBaseURL(current_url(), $CI->input->get(null, true));
-    $config = generateConfigPagination($total_rows, $limit_per_page, $baseURL, $prefix, $suffix, $use_query_string);
+    $config = generateConfigPagination($total_rows, $limit_per_page, $baseURL, $uri_segment, $prefix, $suffix, $use_query_string);
     $CI->pagination->initialize($config);
     return $CI->pagination->create_links();
 }
