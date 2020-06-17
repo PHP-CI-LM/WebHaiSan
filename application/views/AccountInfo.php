@@ -32,8 +32,8 @@
                     </h3>
                     <ul class="level0">
                         <li class="active"><span><a href="<?php echo base_url() ?>"><i class="fa fa-user-circle-o" style="padding-right:15px;"></i> Thông tin tài khoản</a></span></li>
-                        <li><span><a href="<?php echo base_url() ?>"><i class="fa fa-shopping-cart" style="padding-right:15px;"></i> Lịch sử mua hàng</a></span></li>
-                        <li><span><a href="<?php echo base_url() ?>"><i class="fa fa-sign-out" style="padding-right:15px;"></i> Đăng xuất</a></span></li>
+                        <li><span><a href="<?php echo base_url() ?>lich-su-mua-hang.html"><i class="fa fa-shopping-cart" style="padding-right:15px;"></i> Lịch sử mua hàng</a></span></li>
+                        <li><span><a href="<?php echo base_url() ?>dang-xuat.html"><i class="fa fa-sign-out" style="padding-right:15px;"></i> Đăng xuất</a></span></li>
                     </ul>
                 </div>
             </div>

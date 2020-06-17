@@ -14,14 +14,23 @@ class Order_Model extends CI_Model {
         return $query->result_array();
     }
 
-    public function getOrder($id, $orderDate) {
+    public function getOrder($id, $orderDate)
+    {
         $query = $this->db->query(
             "SELECT * FROM orders WHERE OrderID = ".$id." And OrderDate = '".$orderDate."';"
         );
         return $query->result_array();
     }
 
-    public function saveOrder($data = array()) {
+    public function getOrdersOfUser($id)
+    {
+        $this->db->where('AccountID', $id);
+        $result = $this->db->get('orders');
+        return $result->result_array();
+    }
+
+    public function saveOrder($data = array())
+    {
         if ($data == null || sizeof($data) == 0) return false;
         else {
             $this->db->trans_start();

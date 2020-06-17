@@ -58,4 +58,19 @@ class Order extends CI_Controller
             "oid" => null
         ]);
     }
+
+    public function history()
+    {
+        // Check user login
+        if ($this->session->tempdata('user') == null) {
+            redirect(base_url(), 'auto');
+        } else {
+            $accountID = $this->session->tempdata('user');
+            $this->load->model('Order_Model');
+            $orders = $this->Order_Model->getOrdersOfUser($accountID);
+            $this->load->view("History", [
+                'orders'    => $orders
+            ]);
+        }
+    }
 }
