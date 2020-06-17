@@ -21,9 +21,8 @@ class Catalog extends CI_Controller
             // Paginate page
             $this->load->library('pagination');
             $limit_per_page = 8;
-            $uri = explode('/', current_url());
-            $suffix = '/' . $uri[sizeof($uri) - 1];
-            $config = $this->generateConfigPagination($count, $limit_per_page, '', $suffix);
+            $baseURL = $this->getBaseURL(current_url());
+            $config = $this->generateConfigPagination($count, $limit_per_page, $baseURL);
             $this->pagination->initialize($config);
             $paging_links = $this->pagination->create_links();
             $start = 0;
@@ -32,7 +31,7 @@ class Catalog extends CI_Controller
             }
             $data = $this->Product_Model->getProductsSelling($limit_per_page, $start);
             $this->load->view("Catalog", [
-                "name" => "Hàng bán chạy", 
+                "name" => "Hàng bán chạy",
                 "products" => $data,
                 "paging_links"  => $paging_links
             ]);
@@ -49,16 +48,16 @@ class Catalog extends CI_Controller
      * 
      * @return array
      */
-    private function generateConfigPagination($total_rows, $limit_per_page = 10, $prefix, $suffix)
+    private function generateConfigPagination($total_rows, $limit_per_page = 10, $base_url, $prefix = '', $suffix = '')
     {
         $config['total_rows'] = $total_rows;
-        $config['base_url'] = base_url('catalog');
+        $config['base_url'] = $base_url;
         $config['per_page'] = $limit_per_page;
-        $config['uri_segment'] = 2;
+        $config['uri_segment'] = 3;
         $config['use_page_numbers'] = TRUE;
         $config['next_link'] = 'Next';
         $config['prev_link'] = 'Prev';
-        $config['num_links'] = 5;
+        $config['num_links'] = 3;
         $config['prefix'] = $prefix;
         $config['suffix'] = $suffix;
         $config['use_page_numbers'] = true;
@@ -76,5 +75,19 @@ class Catalog extends CI_Controller
             'class'     => 'page_link'
         ];
         return $config;
+    }
+
+    /**
+     * Get base url of pagination
+     * 
+     * @param string $current_url
+     * 
+     * @return array
+     */
+    private function getBaseURL($current_url = '')
+    {
+        $html_post = strripos($current_url, '.html');
+        $current_url = substr(current_url(), 0, $html_post + 5);
+        return $current_url . '/';
     }
 }
