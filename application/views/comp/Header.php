@@ -44,7 +44,7 @@
                                     <a href="javascript:void(0)">
                                         <i class="fa fa-user"></i>
                                         <span class="title">
-                                        <?php
+                                            <?php
                                             $user = $this->session->tempdata('user');
                                             if (null == $user) {
                                                 echo '<span>Đăng nhập</span><br>';
@@ -104,7 +104,7 @@
                                 echo "<li class=\"nav-item nav-item-lv1 active\"><a class=\"nav-link\" href=\"" . base_url() . "\">Trang chủ</a></li>";
                                 echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"" . base_url() . "chinh-sach.html\">Chính sách</a></li>";
                             } else
-                            if(isset($page) && $page == 'Policy') {
+                            if (isset($page) && $page == 'Policy') {
                                 echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"" . base_url() . "\">Trang chủ</a></li>";
                                 echo "<li class=\"nav-item nav-item-lv1 active\"><a class=\"nav-link\" href=\"" . base_url() . "chinh-sach.html\">Chính sách</a></li>";
                             }
@@ -116,8 +116,8 @@
                             </button>
                             <div class="toggle-content">
                                 <?php
-                                echo "<a class=\"toggle-item\" href=\"". base_url() ."\">Trang chủ</a>";
-                                echo "<a class=\"toggle-item\" href=\"". base_url() ."chinh-sach.html\">Chính sách</a>";
+                                echo "<a class=\"toggle-item\" href=\"" . base_url() . "\">Trang chủ</a>";
+                                echo "<a class=\"toggle-item\" href=\"" . base_url() . "chinh-sach.html\">Chính sách</a>";
                                 ?>
                             </div>
                         </div>
@@ -125,20 +125,40 @@
                 </div>
             </div>
         </nav>
+        <div class="over"></div>
     </header>
     <script type="text/javascript">
         $(document).ready(function() {
             $("#btn-toggle").click(function() {
-                var height = $("#btn-toggle").next().css("height");
-                if (height == '0px') {
-                    $("#btn-toggle").next().animate({
-                        "height": "50%"
-                    }, 450);
-                } else {
-                    $("#btn-toggle").next().animate({
-                        "height": "0px"
-                    }, 450);
-                }
+                // Enable toggle content
+                $("#btn-toggle").next().animate({
+                    "left": "0"
+                }, 100);
+                $("#btn-toggle").next().animate({
+                    "width": "300px"
+                }, 100);
+                $('.over').css({
+                    "height": "100%"
+                });
+                $('#content').css({
+                    "position": "fixed"
+                });
+            });
+
+            $(".over").click(function() {
+                // Disable toggle content
+                $("#btn-toggle").next().animate({
+                    "left": "-2px"
+                }, 100);
+                $("#btn-toggle").next().animate({
+                    "width": "0px"
+                }, 100);
+                $('.over').css({
+                    "height": "0"
+                });
+                $('#content').css({
+                    "position": "relative"
+                });
             });
         });
 

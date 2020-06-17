@@ -19,7 +19,7 @@
       <li class="item">Chính sách đổi trả</li>
     </ul>
   </div>
-</div> 
+</div>
 
 <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>

@@ -193,7 +193,7 @@
 					echo "</div>";
 					echo "<div class=\"col-lg-8 col-md-8 col-sm-6 col-xs-6\">";
 					echo "<div class=\"view-detail\">";
-					echo "<a href=\"" . base_url() . "category/" . vn_to_str($classifiedProducts["name_category"]) . ".html" . "\">Xem chi tiết >></a>\"";
+					echo "<a href=\"" . base_url() . "category/" . vn_to_str($classifiedProducts["name_category"]) . ".html" . "\">Xem chi tiết >></a>";
 					echo "</div></div></div>";
 					echo "<div class=\"row content\">";
 					for ($i = 0; $i < sizeof($classifiedProducts["items"]); $i++) {
