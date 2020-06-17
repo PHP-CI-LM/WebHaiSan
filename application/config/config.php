@@ -23,11 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$root = $_SERVER['HTTP_HOST'];
+$root = 'http://'.$_SERVER['HTTP_HOST'];
 $root .= dirname($_SERVER['SCRIPT_NAME']);
 $config['base_url']    = $root;
-// $config['base_url'] = 'https://haisanbinhminh.azurewebsites.net/';
-// $config['base_url'] = '';
 
 /*
 |--------------------------------------------------------------------------
