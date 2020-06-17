@@ -26,7 +26,7 @@ class Account_Model extends CI_Model {
     public function createNewAccount($username, $password) {
         $this->db->trans_start();
         $this->db->query(
-            "INSERT INTO accounts(UserName, Password, id_permission) VALUES(UserName, Pass, 2);"
+            "INSERT INTO accounts(UserName, Password, id_permission) VALUES('" . $username . "', '" . $password . "', 2);"
         );
         $result = $this->db->query(
             "SELECT AccountID FROM accounts WHERE UserName = '" . $username ."';"

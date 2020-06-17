@@ -76,22 +76,6 @@
 										<input type="submit" value="Đăng nhập" class="btn btn-primary" id="btn-search" style="width: max-content !important">
 										<a class="forget-password" href="#form"><i class="fa fa-question-circle" id="QuenMK"></i></a>
 									</form>
-
-									<div class="social-login row" style="margin-top: 20px;">
-										<div class="col-sm-6" style="padding-left: 0px;">
-											<a href="<?php echo $data['fb']['authURL']; ?>">
-												<button class="loginBtn loginBtn--facebook">
-													Login with Facebook
-												</button>
-											</a>
-										</div>
-
-										<div class="col-sm-6" style="padding-left: 0px;">
-											<button class="loginBtn loginBtn--google">
-												Login with Google
-											</button>
-										</div>
-									</div>
 								</div>
 							</div>
 							<div class="col-sm-6">
