@@ -1,5 +1,10 @@
 <?php
 
+function app_title()
+{
+    return 'Hải Sản Bình Minh';
+}
+
 function public_url($url = '')
 {
     return base_url('static_admin/' . $url);

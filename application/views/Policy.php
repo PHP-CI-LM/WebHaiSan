@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Chính sách đổi trả</title>
+    <title><?php echo app_title()?> - Chính sách đổi trả</title>
     <link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css">

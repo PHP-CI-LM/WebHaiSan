@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://canghaisan.azurewebsites.net/';
+$config['base_url'] = 'https://haisanbinhminh.azurewebsites.net/';
 // $config['base_url'] = '';
 
 /*
