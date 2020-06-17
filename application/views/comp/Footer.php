@@ -47,6 +47,13 @@
 
 <body>
   <script>
+    $(document).ready(() => {
+      var view_port_height = $(window).height();
+      var body_height = parseInt($('body').height());
+      if (view_port_height > body_height) {
+        $('.custom-footer').addClass('bottom');
+      }
+    });
     function buyNow(id, soluong, gia) {
       addToCart(id, soluong, gia, checkOut);
     }

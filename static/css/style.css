@@ -1193,6 +1193,12 @@ span.small-text {
 	background: -webkit-linear-gradient(bottom, #003D56 0%, #007BAD 100%);
 }
 
+.custom-footer.bottom {
+	position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
 .custom-footer .contact {
 	display: flex;
 	flex-direction: row;
