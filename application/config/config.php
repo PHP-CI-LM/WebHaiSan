@@ -24,7 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |
 */
 
-if ('::1' != $_SERVER["REMOTE_ADDR"] || '127.0.0.1' != $_SERVER['REMOTE_ADDR']) {
+if ('::1' != $_SERVER["REMOTE_ADDR"] && '127.0.0.1' != $_SERVER['REMOTE_ADDR']) {
     $root = 'https://' . $_SERVER['HTTP_HOST'];
     $root .= dirname($_SERVER['SCRIPT_NAME']);
     $config['base_url']    = $root;
