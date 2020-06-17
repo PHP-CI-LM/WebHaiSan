@@ -69,6 +69,8 @@ class Product_Model extends CI_Model
         WHERE p.id_category = c.id_category And p.id_origin = o.id And p.id_unit = u.id_unit And p.id_category = '.$idCategory;
         if ($limit !== 0 && $start != -1) {
             $str = $str.' LIMIT '. $start . ', ' . $limit;
+        } else if ($limit != 0) {
+            $str = $str.' LIMIT '. $limit;
         }
         $query = $this->db->query($str);
 
@@ -86,6 +88,8 @@ class Product_Model extends CI_Model
             .' ORDER BY `p`.`count_buy` DESC , `p`.`count_view` DESC';
         if ($limit !== 0 && $start != -1) {
             $str = $str.' LIMIT '. $start . ', ' . $limit;
+        } else if ($limit != 0) {
+            $str = $str.' LIMIT '. $limit;
         }
         $query = $this->db->query($str);
 
@@ -99,6 +103,8 @@ class Product_Model extends CI_Model
             WHERE p.id_category = c.id_category And p.id_origin = o.id And p.id_unit = u.id_unit And p.name_product Like '%".$name."%'";
         if ($limit !== 0 && $start != -1) {
             $query = $query.' LIMIT '. $start . ', ' . $limit;
+        } else if ($limit != 0) {
+            $query = $query.' LIMIT '. $limit;
         }
         $result = $this->db->query($query);
 
