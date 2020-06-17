@@ -79,7 +79,7 @@
                                     <label for="Avatar">Ảnh đại diện: </label>
                                     <?php
                                         if (isset($data['Avatar'])) {
-                                            echo '<span class="info"><img src="' . base_url() . 'static/image/avatar/'. $data['Avatar'] . '" style="max-width: 40px;"></span>';
+                                            echo '<span class="info"><img src="' . base_url() . 'static/image/avatar/'. $data['Avatar'] . '" style="max-width: 40px; border-radius: 50%"></span>';
                                             echo '<input type="file" class="info input hidden" name="avatar" accept="image/png, image/jpeg">';
                                         } else {
                                             echo '<input type="file" class="info input fixed" name="avatar" accept="image/png, image/jpeg">';

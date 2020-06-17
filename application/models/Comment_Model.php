@@ -8,11 +8,11 @@ class Comment_Model extends CI_Model
     {
         $query = '';
         if ($idAccount == null) {
-            $query = 'SELECT c.id, a.avatar, ct.CustomerName as name, c.comment_time as time, c.content, c.id_reply 
+            $query = 'SELECT c.id, ct.avatar, ct.CustomerName as name, c.comment_time as time, c.content, c.id_reply 
                         FROM comments as c JOIN accounts as a ON c.id_account = a.AccountID JOIN customers as ct ON ct.CustomerID = c.id_account 
                         WHERE c.id_product = '.$idProduct;
         } else {
-            $query = 'SELECT c.id, a.avatar, ct.CustomerName as name, c.comment_time as time, c.content, c.id_reply 
+            $query = 'SELECT c.id, ct.avatar, ct.CustomerName as name, c.comment_time as time, c.content, c.id_reply 
                         FROM comments as c JOIN accounts as a ON c.id_account = a.AccountID JOIN customers as ct ON ct.CustomerID = c.id_account 
                         WHERE id_product = '.$idProduct.' And c.id_account = '.$idAccount;
         }

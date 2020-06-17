@@ -77,6 +77,7 @@
 				}
 				?>
 			</div>
+			<?php echo $paging_links; ?>
 		</div>
 	</div>
 

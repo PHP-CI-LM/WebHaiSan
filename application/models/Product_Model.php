@@ -75,7 +75,7 @@ class Product_Model extends CI_Model
         return $query->result_array();
     }
 
-    public function getProductsSelling($limit = 0)
+    public function getProductsSelling($limit = 0, $start = -1)
     {
         $str = 'SELECT `p`.`id_product` AS `id_product`, `p`.`name_product` AS `name_product`, `p`.`price` AS `price`,'
             .' `p`.`descript` AS `descript`, `p`.`importDate` AS `importDate`, `p`.`count_view` AS `count_view`,'
@@ -84,8 +84,8 @@ class Product_Model extends CI_Model
             .' FROM (((`products` `p` JOIN `categories` `c`) JOIN `origins` `o`) JOIN `units` `u`)'
             .' WHERE ((`p`.`id_category` = `c`.`id_category`) AND (`p`.`id_origin` = `o`.`id`) AND (`p`.`id_unit` = `u`.`id_unit`))'
             .' ORDER BY `p`.`count_buy` DESC , `p`.`count_view` DESC';
-        if ($limit !== 0) {
-            $str = $str.' LIMIT '.$limit;
+        if ($limit !== 0 && $start != -1) {
+            $str = $str.' LIMIT '. $start . ', ' . $limit;
         }
         $query = $this->db->query($str);
 

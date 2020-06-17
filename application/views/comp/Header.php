@@ -44,15 +44,21 @@
                                     <a href="javascript:void(0)">
                                         <i class="fa fa-user"></i>
                                         <span class="title">
-                                            <span>Đăng nhập</span>
-                                            <br>
-                                            <span style="font-size: 1.15rem; font-weight: 500;">Tài khoản</span>
+                                        <?php
+                                            $user = $this->session->tempdata('user');
+                                            if (null == $user) {
+                                                echo '<span>Đăng nhập</span><br>';
+                                                echo '<span style="font-size: 1.15rem; font-weight: 500;">Đăng ký</span>';
+                                            } else {
+                                                echo '<span>Thông tin</span><br>';
+                                                echo '<span style="font-size: 1.15rem; font-weight: 500;">Đăng xuất</span>';
+                                            }
+                                            ?>
                                         </span>
                                     </a>
                                 </span>
                                 <div class="right-dropdown-content">
                                     <?php
-                                    $user = $this->session->tempdata('user');
                                     if ($user === null) {
                                         echo '<a class="item" href="' . base_url() . 'dang-nhap.html?backUrl=' . urlencode(current_url()) . '">Đăng nhập</a>';
                                         echo '<a class="item" href="' . base_url() . 'dang-ky-thanh-vien.html">Đăng ký tài khoản</a>';

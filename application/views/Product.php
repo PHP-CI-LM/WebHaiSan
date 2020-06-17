@@ -25,7 +25,7 @@ function drawTree($comments, $comment, $product, $isReply)
 	if ($comment['avatar'] == null) {
 		echo '<img src="' . base_url() . 'static/image/others/icon.svg" alt="Avatar">';
 	} else {
-		// Hiển thị avatar
+		echo '<img src="' . base_url() . 'static/image/avatar/' . $comment['avatar'] . '" alt="Avatar" style="max-width: 40px; border-radius: 50%">';
 	}
 	echo '</span>';
 	echo '<span class="content">';
