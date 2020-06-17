@@ -62,13 +62,13 @@ class Product_Model extends CI_Model
         return $result->result_array();
     }
 
-    public function getProductOfCategory($idCategory, $limit = 0)
+    public function getProductOfCategory($idCategory, $limit = 0, $start = -1)
     {
         $str = 'SELECT p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy, o.name_origin, p.size, u.name_unit
         FROM products As p, categories As c, units As u, origins As o
         WHERE p.id_category = c.id_category And p.id_origin = o.id And p.id_unit = u.id_unit And p.id_category = '.$idCategory;
-        if ($limit !== 0) {
-            $str = $str.' LIMIT '.$limit;
+        if ($limit !== 0 && $start != -1) {
+            $str = $str.' LIMIT '. $start . ', ' . $limit;
         }
         $query = $this->db->query($str);
 
@@ -92,13 +92,13 @@ class Product_Model extends CI_Model
         return $query->result_array();
     }
 
-    public function getProductsWithName($name, $limit = 0)
+    public function getProductsWithName($name, $limit = 0, $start = -1)
     {
         $query = "SELECT p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy, o.name_origin, p.size, u.name_unit
             FROM products As p, categories As c, units As u, origins As o
             WHERE p.id_category = c.id_category And p.id_origin = o.id And p.id_unit = u.id_unit And p.name_product Like '%".$name."%'";
-        if ($limit !== 0) {
-            $query = $query.' LIMIT '.$limit.';';
+        if ($limit !== 0 && $start != -1) {
+            $query = $query.' LIMIT '. $start . ', ' . $limit;
         }
         $result = $this->db->query($query);
 
@@ -149,9 +149,14 @@ class Product_Model extends CI_Model
         $this->db->query($strdelete);
     }
 
-    public function getTotal($input = array())
+    public function getTotal($id_category = -1, $query = null) 
     {
-        return $this->db->count_all('products');
+        if (-1 != $id_category) {
+            $this->db->where('id_category', $id_category);
+        } else if (null != $query) {
+            $this->db->like('name_product', $query);
+        }
+        return $this->db->count_all_results('products');
     }
 
     public function FindProduct($id, $name, $theloai)

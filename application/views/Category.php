@@ -62,7 +62,13 @@
 				}
 				?>
 			</div>
+			<?php 
+				if (true == isset($paging_links)) {
+					echo $paging_links;
+				}
+			?>
 		</div>
+		
 		<div class="col-md-3">
 			<div class="menu-product">
 				<h3>
