@@ -23,7 +23,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-if (true == isset($_SERVER["HTTPS"])) {
+
+if ('::1' != $_SERVER["REMOTE_ADDR"] || '127.0.0.1' != $_SERVER['REMOTE_ADDR']) {
     $root = 'https://' . $_SERVER['HTTP_HOST'];
     $root .= dirname($_SERVER['SCRIPT_NAME']);
     $config['base_url']    = $root;
