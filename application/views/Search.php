@@ -39,7 +39,7 @@
 		</div>
 		<div class="col-md-9 bookshelf" style="padding: 10px 20px;">
 			<div class="row descrip">
-				<div class="col-lg-4 col-sm-6 col-xs-12" style="padding-left: 0;">
+				<div class="col-sm-6 col-xs-12" style="padding-left: 0;">
 					<div class="title none-bg large-text inline" style="text-transform: capitalize; padding-right: 0; clip-path: none;">
 						<?php
 						echo "Kết quả tìm kiếm cho: ";
