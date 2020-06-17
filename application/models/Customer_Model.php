@@ -5,7 +5,15 @@ class Customer_Model extends CI_Model {
 
     public function createNewAccount($AccountID, $customername, $sex, $phone, $address)
     {
-        // Updating...
+        $data = [
+            'CustomerID'    => $AccountID,
+            'CustomerName'  => $customername,
+            'Sex'           => $sex,
+            'Phone'         => $phone,
+            'Address'       => $address,
+            'Avatar'        => null
+        ];
+        $this->db->insert('customers', $data);
     }
 
     public function updateCustomer($customerID, $customername, $sex, $phone, $address)
