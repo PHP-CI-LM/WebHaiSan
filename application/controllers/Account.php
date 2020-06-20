@@ -94,6 +94,12 @@ class Account extends CI_Controller
             return;
         }
 
+        // Check user logged in
+        if ($this->session->tempdata('user') !== null) {
+            $this->sendResponse(0, 'User not login!', []);
+            return;
+        }
+
         // Get data update in pre-processing
         $customerName = $this->security->xss_clean($this->input->post('customerName'));
         $sex = $this->security->xss_clean($this->input->post('sex'));
@@ -117,6 +123,12 @@ class Account extends CI_Controller
     public function uploadAvatar($customerID)
     {
         header("Content-Type: Application/Json");
+        // Check user logged in
+        if ($this->session->tempdata('user') !== null) {
+            $this->sendResponse(0, 'User not login!', []);
+            return;
+        }
+
         $result = false;
 
         // Load library to upload thumbnail of product

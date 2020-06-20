@@ -140,9 +140,6 @@
                 $('.over').css({
                     "height": "100%"
                 });
-                $('#content').css({
-                    "position": "fixed"
-                });
             });
 
             $(".over").click(function() {
@@ -155,9 +152,6 @@
                 }, 100);
                 $('.over').css({
                     "height": "0"
-                });
-                $('#content').css({
-                    "position": "relative"
                 });
             });
         });
