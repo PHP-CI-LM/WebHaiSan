@@ -646,7 +646,7 @@ header nav .active a {
 .bookshelf>.descrip .title {
 	display: inline-block;
 	background: #007bad;
-	color: #FFF;
+	color: #DDD !important;
 	padding: 1rem;
 	padding-right: 7rem;
 	clip-path: polygon(0 0, 75% 0, 100% 100%, 0 100%);
@@ -670,7 +670,8 @@ header nav .active a {
 }
 
 .bookshelf>.descrip .view-detail {
-	padding-left: 20px;
+	padding-left: 10px;
+	padding-top: 5px;
 	padding-bottom: 10px;
 	text-align: right;
 	font-size: inherit;
@@ -1299,7 +1300,52 @@ ul.list-info .item {
 	#search-textbox {
 		display: none;
 	}
+
+	.bookshelf {
+		margin: 12px 0px 20px 0px !important;
+	}
+
+	.bookshelf>.descrip .title {
+		padding-right: 5rem;
+		color: #333 !important;
+		font-size: 13px;
+		text-transform: uppercase;
+		clip-path: polygon(0 0, 80% 0, 100% 100%, 0 100%);
+	}
+
+	.bookshelf>.descrip .title::after {
+		display: inline;
+		content: '>>';
+		padding-left: 10px;
+	}
+
+	.bookshelf>.descrip .view-detail {
+		display: none;
+	}
 }
+
+@media all and (min-width: 500px) {
+	.bookshelf>.descrip .title {
+		padding-right: 5rem;
+		clip-path: polygon(0 0, 80% 0, 100% 100%, 0 100%);
+		font-size: 12px;
+	}
+
+	.bookshelf>.descrip .view-detail {
+		padding-left: 0px;
+		font-size: 11px;
+	}
+}
+
+@media all and (min-width: 768px) {
+	.bookshelf>.descrip .view-detail {
+		font-size: 12px;
+	}
+}
+
+@media all and (min-width: 992px) {}
+
+@media all and (min-width: 1200px) {}
 
 @media (max-width :767px) {
 	.book {
@@ -1307,6 +1353,10 @@ ul.list-info .item {
 		width: 70%;
 		min-height: 430px;
 		display: inline-block;
+	}
+
+	.bookshelf>.descrip .title {
+		text-transform: uppercase;
 	}
 }
 

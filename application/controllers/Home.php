@@ -15,6 +15,7 @@ class Home extends CI_Controller {
 		$result = $this->BangTin_Model->getAllBangTin();
 		$sellingProducts = $this->Product_Model->getProductsSelling(4);
 		$classifiedProducts = $this->listAllProduct();
+		// var_dump($sellingProducts); die();
 		$this->load->view('Home', [
 			'bangTin' => $result, 
 			'sellingProducts' => $sellingProducts,
