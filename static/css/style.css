@@ -396,7 +396,7 @@ header nav .active a {
 .title_block span {
 	padding: 10px 20px;
 	display: inline-block;
-	font-size: 15px;
+	font-size: 14px;
 }
 
 .navbar_menuvertical {
@@ -814,7 +814,7 @@ header nav .active a {
 	float: inherit;
 }
 
-.nav-toggle .toggle-content {
+.nav-toggle>.toggle-content {
 	display: flex;
     flex-direction: column;
 	height: 100%;
@@ -844,20 +844,41 @@ header nav .active a {
 	z-index: 10001;
 }
 
-.nav-toggle .toggle-content .toggle-item:first-child {
+.nav-toggle>.toggle-content>.toggle-item:first-child {
 	border-bottom: 1px solid #b4bdca;
 }
 
-.nav-toggle .toggle-content .toggle-item:hover {
-	background: #094963;
+.nav-toggle .toggle-content>.toggle-item:hover {
+	background: #deaa51;
 }
 
-.nav-toggle .toggle-content .toggle-item a {
+.nav-toggle .toggle-content>.has-child:hover {
+	background: transparent;
+}
+
+.nav-toggle .toggle-content>.toggle-item a {
 	color: #fff;
 }
 
 .nav-toggle .toggle-content .toggle-item:hover a {
 	color: #fff !important;
+}
+
+.toggle-item.has-child {
+	height: 40px;
+	overflow: hidden;
+	cursor: pointer;
+	transition: height 0.25s ease-in-out;
+}
+
+.toggle-item.has-child a:first-child {
+	margin-top: 10px;
+}
+
+.toggle-item.has-child a {
+	text-transform: none !important;
+	display: flex;
+    align-items: center;
 }
 
 .nav-toggle>button i {
@@ -1286,7 +1307,7 @@ ul.list-info .item {
 .mini-icon-bar a {
 	flex-basis: 33.3333333333%;
 	text-align: center;
-	color: #fff !important;
+	color: #FF9800 !important;
 	border-left: 1px solid #adadad;
 }
 
@@ -1301,6 +1322,18 @@ ul.list-info .item {
 
 	.input-search {
 		width: 100%;
+	}
+
+	.toplink .phone {
+		font-size: 10px;
+	}
+
+	.toplink {
+		display: none;
+	}
+
+	.navbar {
+		margin-top: 0;
 	}
 
 	.bookshelf {
@@ -1356,6 +1389,10 @@ ul.list-info .item {
 		width: 70%;
 		min-height: 430px;
 		display: inline-block;
+	}
+
+	#service {
+		display: none;
 	}
 }
 

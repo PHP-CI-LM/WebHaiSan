@@ -72,7 +72,7 @@
                             <li class="icon cart-icon">
                                 <span>
                                     <a href="<?php echo base_url() ?>gio-hang.html">
-                                        <i class="fa fa-briefcase" style="color: #363636"></i>
+                                        <i class="fa fa-shopping-cart" style="color: #363636"></i>
                                         <span class="title">Giỏ hàng</span>
                                     </a>
                                 </span>
@@ -117,20 +117,43 @@
                             <div class="toggle-content">
                                 <div class="mini-icon-bar">
                                     <?php if (null == $user) {
-                                        echo '<a href="'. base_url() .'dang-nhap.html" title="Đăng nhập"><i class="fa fa-sign-in"></i></a>';
-                                        echo '<a href="'. base_url() .'dang-ky-thanh-vien.html" title="Đăng ký thành viên"><i class="fa fa-user-plus "></i></a>';
-                                        echo '<a href="'. base_url() .'gio-hang.html" title="Giỏ hàng"><i class="fa fa-shopping-cart "></i></a>';
+                                        echo '<a href="' . base_url() . 'dang-nhap.html" title="Đăng nhập"><i class="fa fa-sign-in"></i></a>';
+                                        echo '<a href="' . base_url() . 'dang-ky-thanh-vien.html" title="Đăng ký thành viên"><i class="fa fa-user-plus "></i></a>';
+                                        echo '<a href="' . base_url() . 'gio-hang.html" title="Giỏ hàng"><i class="fa fa-shopping-cart"></i></a>';
                                     } else {
-                                        echo '<a href="'. base_url() .'user/thong-tin-tai-khoan.html" title="Thông tin tài khoản"><i class="fa fa-user-plus "></i></a>';
-                                        echo '<a href="'. base_url() .'dang-xuat.html" title="Đăng xuất"><i class="fa fa-sign-out"></i></a>';
-                                        echo '<a href="'. base_url() .'gio-hang.html" title="Giỏ hàng"><i class="fa fa-shopping-cart "></i></a>';
+                                        echo '<a href="' . base_url() . 'user/thong-tin-tai-khoan.html" title="Thông tin tài khoản"><i class="fa fa-user-plus "></i></a>';
+                                        echo '<a href="' . base_url() . 'dang-xuat.html" title="Đăng xuất"><i class="fa fa-sign-out"></i></a>';
+                                        echo '<a href="' . base_url() . 'gio-hang.html" title="Giỏ hàng"><i class="fa fa-shopping-cart "></i></a>';
                                     }
                                     ?>
                                 </div>
                                 <?php
                                 echo "<a class=\"toggle-item\" href=\"" . base_url() . "\">Trang chủ</a>";
                                 echo "<a class=\"toggle-item\" href=\"" . base_url() . "chinh-sach.html\">Chính sách</a>";
+                                echo "<a class=\"toggle-item\" href=\"" . base_url() . "kiem-tra-don-hang.html\">Kiểm tra đơn hàng</a>";
                                 ?>
+                                <span class="toggle-content toggle-item has-child">Danh mục sản phẩm
+                                    <a class="toggle-item" href="<?php echo base_url() ?>category/ca-bien.html">
+                                        <span style="background: url('./static/image/icon/fish.png');background-repeat: no-repeat;background-size: contain;margon-right: 10px;width: 30px;height: 20px;"> </span>
+                                        Cá biển
+                                    </a>
+                                    <a class="toggle-item" href="<?php echo base_url() ?>category/tom.html">
+                                        <span style="background: url('./static/image/icon/shrimp.png');background-repeat: no-repeat;background-size: contain;margon-right: 10px;width: 30px;height: 20px;"> </span>
+                                        Tôm
+                                    </a>
+                                    <a class="toggle-item" href="<?php echo base_url() ?>category/muc.html">
+                                        <span style="background: url('./static/image/icon/cuttle.png');background-repeat: no-repeat;background-size: contain;margon-right: 10px;width: 30px;height: 20px;"> </span>
+                                        Mực - Bạch tuộc
+                                    </a>
+                                    <a class="toggle-item" href="<?php echo base_url() ?>category/so.html">
+                                        <span style="background: url('./static/image/icon/scallop.png');background-repeat: no-repeat;background-size: contain;margon-right: 10px;width: 30px;height: 20px;"> </span>
+                                        Ngao - sò
+                                    </a>
+                                    <a class="toggle-item" href="<?php echo base_url() ?>category/oc.html">
+                                        <span style="background: url('./static/image/icon/snail.png');background-repeat: no-repeat;background-size: contain;margon-right: 10px;width: 30px;height: 20px;"> </span>
+                                        Ốc
+                                    </a>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -165,6 +188,16 @@
                 $('.over').css({
                     "height": "0"
                 });
+            });
+
+            $('.toggle-item.has-child').on('click', function(event) {
+                var element = event.target;
+                var height = $(element).css('height');
+                if ('40px' == height) {
+                    element.style.setProperty('height', '270px');
+                } else {
+                    element.style.setProperty('height', '40px');
+                }
             });
         });
 
