@@ -42,7 +42,7 @@
 			<div class="bookshelf" style="margin: 1rem 2.85rem 1rem 1.05rem;">
 				<div class="row descrip" href="<?php echo base_url() ?>catalog/san-pham-hot-00002.html" title="Xem chi tiết">
 					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-8" style="padding-left: 0;">
-						<a class="title" href="<?php echo base_url() ?>catalog/san-pham-hot-00002.html" title="Xem chi tiết">Sản phẩm bán chạy</a>
+						<a class="title none-detail" href="<?php echo base_url() ?>catalog/san-pham-hot-00002.html" title="Xem chi tiết" style="padding-right:0; clip-path: none; color: #333 !important; background: transparent;">Sản phẩm bán chạy</a>
 					</div>
 					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-4">
 						<div class="view-detail">
