@@ -12,6 +12,7 @@ class Category extends CI_Controller
     public function index($type, $page_num)
     {
         $this->load->model("Product_Model");
+        $this->load->model("Category_Model");
         switch ($type) {
             case 1:
             case 3:
@@ -27,9 +28,11 @@ class Category extends CI_Controller
                     $start = ($page_num - 1) * $limit_per_page;
                 }
                 $result = $this->Product_Model->getProductOfCategory($type, $limit_per_page, $start);
+                $name_category = $this->Category_Model->getCategory($type)[0]['name_category'];
                 $this->load->view("Category", [
                     "products"          => $result,
-                    "paging_links"   => $paging_links
+                    "name_category"     => $name_category,
+                    "paging_links"      => $paging_links
                 ]);
                 break;
             default:

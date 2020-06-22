@@ -15,6 +15,12 @@ class Category_Model extends CI_Model {
         return $query->result_array();
     }
 
+    public function getCategory($id_category = -1) {
+        if ($id_category == -1) return false;
+        $result = $this->db->where('id_category', $id_category)->select('name_category')->get('categories');
+        return $result->result_array();
+    }
+
     public function getCategories() {
         $query = $this->db->query(
             "SELECT id_category, name_category FROM categories;"

@@ -9,8 +9,8 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleListProducts.css">
-	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -185,7 +185,7 @@
 					echo "<div class=\"bookshelf\" style=\"margin: 1rem 2.85rem 1rem 1.05rem;\">";
 					echo "<div class=\"row descrip\">";
 					echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-8" style="padding-left: 0;">';
-					echo '<a class="title" href="' . base_url() . 'catalog/san-pham-hot-00002.html" title="Xem chi tiết">' . $classifiedProducts["name_category"] . "</a>";
+					echo '<a class="title" href="' . base_url() . 'catagory/'. vn_to_str($classifiedProducts["name_category"]) .'.html" title="Xem chi tiết">' . $classifiedProducts["name_category"] . "</a>";
 					echo "</div>";
 					echo '<div class="col-lg-8 col-md-8 col-sm-6 col-xs-4">';
 					echo "<div class=\"view-detail\">";

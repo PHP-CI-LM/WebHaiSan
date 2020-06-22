@@ -9,7 +9,7 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleProduct.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleMenu.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleListProducts.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -50,7 +50,7 @@
 						<li><span><a href="<?php echo base_url() ?>category/ca-bien.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Cá biển</a></span></li>
 						<li><span><a href="<?php echo base_url() ?>category/tom.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Tôm</a></span></li>
 						<li><span><a href="<?php echo base_url() ?>category/muc.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Mực</a></span></li>
-						<li><span><a href="<?php echo base_url() ?>category/ngao-so.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Ngao - sò</a></span></li>
+						<li><span><a href="<?php echo base_url() ?>category/so.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Ngao - sò</a></span></li>
 						<li><span><a href="<?php echo base_url() ?>category/oc.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Các loại ốc</a></span></li>
 					</ul>
 				</div>
