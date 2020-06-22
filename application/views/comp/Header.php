@@ -1,7 +1,7 @@
     <header>
         <div class="container toplink">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12" style="display: flex;justify-content: space-between;">
                     <span class="phone">
                         <i class="fa fa-phone"></i>
                         Liên hệ:
