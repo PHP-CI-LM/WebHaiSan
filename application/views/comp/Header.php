@@ -134,23 +134,23 @@
                                 ?>
                                 <span class="toggle-content toggle-item has-child">Danh mục sản phẩm
                                     <a class="toggle-item" href="<?php echo base_url() ?>category/ca-bien.html">
-                                        <span style="background: url('./static/image/icon/fish.png');background-repeat: no-repeat;background-size: contain;margon-right: 10px;width: 30px;height: 20px;"> </span>
+                                        <span style="background: url('./static/image/icon/fish.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
                                         Cá biển
                                     </a>
                                     <a class="toggle-item" href="<?php echo base_url() ?>category/tom.html">
-                                        <span style="background: url('./static/image/icon/shrimp.png');background-repeat: no-repeat;background-size: contain;margon-right: 10px;width: 30px;height: 20px;"> </span>
+                                        <span style="background: url('./static/image/icon/shrimp.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
                                         Tôm
                                     </a>
                                     <a class="toggle-item" href="<?php echo base_url() ?>category/muc.html">
-                                        <span style="background: url('./static/image/icon/cuttle.png');background-repeat: no-repeat;background-size: contain;margon-right: 10px;width: 30px;height: 20px;"> </span>
+                                        <span style="background: url('./static/image/icon/cuttle.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
                                         Mực - Bạch tuộc
                                     </a>
                                     <a class="toggle-item" href="<?php echo base_url() ?>category/so.html">
-                                        <span style="background: url('./static/image/icon/scallop.png');background-repeat: no-repeat;background-size: contain;margon-right: 10px;width: 30px;height: 20px;"> </span>
+                                        <span style="background: url('./static/image/icon/scallop.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
                                         Ngao - sò
                                     </a>
                                     <a class="toggle-item" href="<?php echo base_url() ?>category/oc.html">
-                                        <span style="background: url('./static/image/icon/snail.png');background-repeat: no-repeat;background-size: contain;margon-right: 10px;width: 30px;height: 20px;"> </span>
+                                        <span style="background: url('./static/image/icon/snail.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
                                         Ốc
                                     </a>
                                 </span>
