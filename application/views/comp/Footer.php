@@ -54,6 +54,7 @@
         $('.custom-footer').addClass('bottom');
       }
     });
+
     function buyNow(id, soluong, gia) {
       addToCart(id, soluong, gia, checkOut);
     }

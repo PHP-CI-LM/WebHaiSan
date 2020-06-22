@@ -58,30 +58,6 @@ span {
 	padding: 5px 0px;
 }
 
-#zoom-btn {
-	display: none;
-	position: absolute;
-	top: 5px;
-	left: 30px;
-	background-color: lightgray;
-	width: 35px;
-	height: 35px;
-	border-radius: 20px;
-	box-shadow: 0px 0px 5px 0px white;
-}
-
-#zoom-btn i {
-	color: darkslategrey;
-	padding: 2px;
-}
-
-#QuenMK {
-	display: inline-block;
-	position: absolute;
-	right: 0 !important;
-	transform: translateX(-200%);
-}
-
 .f-center {
 	position: absolute;
 	top: 50%;
@@ -839,6 +815,8 @@ header nav .active a {
 }
 
 .nav-toggle .toggle-content {
+	display: flex;
+    flex-direction: column;
 	height: 100%;
 	position: fixed;
 	left: -2px;
@@ -1300,9 +1278,29 @@ ul.list-info .item {
 	background-color: #36b1bf;
 }
 
+.mini-icon-bar {
+	display: flex;
+	padding: 10px 0;
+}
+
+.mini-icon-bar a {
+	flex-basis: 33.3333333333%;
+	text-align: center;
+	color: #fff !important;
+	border-left: 1px solid #adadad;
+}
+
+.mini-icon-bar a:first-child {
+	border-left: none;
+}
+
 @media (max-width: 499px) {
 	#search-textbox {
 		display: none;
+	}
+
+	.input-search {
+		width: 100%;
 	}
 
 	.bookshelf {

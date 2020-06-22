@@ -27,7 +27,7 @@
                         $strSearch = $query;
                     }
                     ?>
-                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-ms-8">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-ms-8 input-search">
                         <form action="<?php echo base_url() ?>tim-kiem.html" method="GET" class="search-bar clearfix" id="search-textbox\">
                             <input name="query" type="text" autocomplete="off" id="Search" value="<?php echo $strSearch ?>" placeholder="Nhập thứ muốn tìm ..." style="border: 1px solid #dcdcdc; border-radius: 0;"></input> <span><button type="submit">
                                     <i class="fa fa-search" style="margin-top: 0"></i>
@@ -115,6 +115,18 @@
                                 <i class="fa fa-align-justify"></i>
                             </button>
                             <div class="toggle-content">
+                                <div class="mini-icon-bar">
+                                    <?php if (null == $user) {
+                                        echo '<a href="'. base_url() .'dang-nhap.html" title="Đăng nhập"><i class="fa fa-sign-in"></i></a>';
+                                        echo '<a href="'. base_url() .'dang-ky-thanh-vien.html" title="Đăng ký thành viên"><i class="fa fa-user-plus "></i></a>';
+                                        echo '<a href="'. base_url() .'gio-hang.html" title="Giỏ hàng"><i class="fa fa-shopping-cart "></i></a>';
+                                    } else {
+                                        echo '<a href="'. base_url() .'user/thong-tin-tai-khoan.html" title="Thông tin tài khoản"><i class="fa fa-user-plus "></i></a>';
+                                        echo '<a href="'. base_url() .'dang-xuat.html" title="Đăng xuất"><i class="fa fa-sign-out"></i></a>';
+                                        echo '<a href="'. base_url() .'gio-hang.html" title="Giỏ hàng"><i class="fa fa-shopping-cart "></i></a>';
+                                    }
+                                    ?>
+                                </div>
                                 <?php
                                 echo "<a class=\"toggle-item\" href=\"" . base_url() . "\">Trang chủ</a>";
                                 echo "<a class=\"toggle-item\" href=\"" . base_url() . "chinh-sach.html\">Chính sách</a>";
