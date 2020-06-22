@@ -8,7 +8,7 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleHome.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleListProducts.css">
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">

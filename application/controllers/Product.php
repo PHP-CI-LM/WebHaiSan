@@ -33,7 +33,7 @@ class Product extends CI_Controller {
         if ($this->input->get("query") !== null) {
             $query = $this->security->xss_clean($this->input->get("query"));
             $this->load->model("Product_Model");
-            $count = $this->Product_Model->getTotal(-1, $query);
+            $count = sizeof($this->Product_Model->getProductsWithName($query));
             // Paginate page
             $limit_per_page = 8;
             $paging_links = generatePagingLinks($count, $limit_per_page, true);

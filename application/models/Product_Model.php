@@ -100,7 +100,7 @@ class Product_Model extends CI_Model
     {
         $query = "SELECT p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy, o.name_origin, p.size, u.name_unit
             FROM products As p, categories As c, units As u, origins As o
-            WHERE p.id_category = c.id_category And p.id_origin = o.id And p.id_unit = u.id_unit And UPPER(p.name_product) Like Binary UPPER('%".$name."%')";
+            WHERE p.id_category = c.id_category And p.id_origin = o.id And p.id_unit = u.id_unit And UPPER(p.name_product) Like UPPER('%".$name."%')";
         if ($limit !== 0 && $start != -1) {
             $query = $query.' LIMIT '. $start . ', ' . $limit;
         } else if ($limit != 0) {
