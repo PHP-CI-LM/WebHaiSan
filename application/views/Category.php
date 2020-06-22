@@ -32,7 +32,7 @@
 						</a> <span><i class="fa fa-angle-right"></i></span>
 						<meta itemprop="position" content="1">
 					</li>
-					<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name">Tìm kiếm</strong></a>
+					<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name" style="text-transform: capitalize"><?=$name_category?></strong></a>
 						<meta itemprop="position" content="3">
 					</li>
 				</ul>
