@@ -70,9 +70,7 @@ function drawTree($comments, $comment, $product, $isReply)
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleView.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleDialog.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/sheet.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/BEM_Style.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/comment.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -91,7 +89,7 @@ function drawTree($comments, $comment, $product, $isReply)
 	<div class="container-fluid" id="content" style="margin-left: 0; margin-right: 0;">
 		<div class="row">
 			<div class="col-sm-12">
-				<ul class="breadcrumb" itemtype="http://schema.org/BreadcrumbList" style="margin-top: 30px; margin-bottom: 5px;">
+				<ul class="breadcrumb" itemtype="http://schema.org/BreadcrumbList" style="margin-top: 10px; margin-bottom: 5px;">
 					<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="<?php echo base_url() ?>"> <span itemprop="name"> <i class="fa fa-home"></i> Trang chủ
 							</span>
 						</a> <span><i class="fa fa-angle-right"></i></span>
@@ -118,7 +116,7 @@ function drawTree($comments, $comment, $product, $isReply)
 		<div class="row" style="padding-left: 3rem; padding-right: 3rem;">
 			<div class="col-md-9 col-sm-8 col-xs-12">
 				<article>
-					<div class="board flex-board flex-lg-row flex-md-column flex-sm-column flex-xs-column">
+					<div class="board flex-board flex-column">
 						<div class="thumbnail">
 							<?php
 							if ($product != null) {

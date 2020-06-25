@@ -1316,6 +1316,14 @@ ul.list-info .item {
 }
 
 @media (max-width: 499px) {
+	.container-fluid {
+		margin: 0;
+	}
+
+	#content {
+		margin-top: 120px !important;
+	}
+
 	#search-textbox {
 		display: none;
 	}

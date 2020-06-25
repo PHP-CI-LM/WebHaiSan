@@ -151,7 +151,7 @@
 		<div class="wrapper">
 
 			<!-- Form -->
-			<form class="form" id="form" action="<?php echo base_url() ?>admin/add-product.html" method="post" enctype="multipart/form-data">
+			<form class="form" id="form" action="<?php echo base_url() ?>ci-admin/add-product.html" method="post" enctype="multipart/form-data">
 				<fieldset>
 					<div class="widget">
 						<div class="title">
