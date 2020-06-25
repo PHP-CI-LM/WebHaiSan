@@ -338,6 +338,8 @@
 						});
 						// Remove paging links
 						$('tfoot.auto_check_pages tr').remove();
+						// Update total product
+						document.querySelectorAll('.num b')[0].innerText = result["data"]["products"].length;
 					}
 				}
 			});
