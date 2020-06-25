@@ -355,24 +355,6 @@
 
 	<script>
 		$(document).ready(function() {
-			$('#form').submit(function(event) {
-				event.preventDefault();
-				var data = $('#form').serializeArray(); 
-				$.ajax({
-					url: $('#form').attr('action'),
-					type: 'post',
-					dataType: 'json',
-					data: data,
-					success: function(res, testStatus, xhr) {
-						if (xhr.status == 500) {
-
-						} else if (xhr.status == 200) {
-
-						}
-					}
-				});
-			});
-
 			$('.input-origin').change(function() {
 				var val = $(this).val();
 				if (-1 == val) {
