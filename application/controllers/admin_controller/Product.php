@@ -238,8 +238,8 @@ class product extends CI_Controller
     {
         // Load library to upload thumbnail of product
         $config['upload_path'] = './images';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '10240';
+        $config['allowed_types'] = 'gif|jpg|png|webp';
+        $config['max_size'] = '20480';
         $config['override'] = false;
         $this->load->library('upload', $config);
 
