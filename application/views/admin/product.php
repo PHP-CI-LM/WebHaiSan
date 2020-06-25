@@ -323,10 +323,11 @@
 								'<tr class="row_9">' +
 								'<td><div class="checker" id="uniform-undefined"><span><input type="checkbox" name="id[]" value="' + product["id_product"] + '" style="opacity: 0;"></span></div></td>' +
 								'<td class="textC">' + product["id_product"] + '</td>' +
-								'<td><div class="image_thumb"><img src="<?php echo base_url()."images/"?>' + product["image_link"] + '" height="50"><div class="clear"></div></div><a href="http://localhost/WebHaiSan-master/WebHaiSan-master/admin/update-product.html/' + product["id_product"] + '" class="tipS" target="_blank" original-title=""><b>' + product["name_product"] + '</b></a><div class="f11">Đã bán: ' + product["count_buy"] + ' | Xem: ' + product["count_view"] + ' </div></td>' +
+								'<td><div class="image_thumb"><img src="<?php echo base_url()."images/"?>' + product["image_link"] + '" height="50"><div class="clear"></div></div>' +
+								'<a href="<?php echo base_url() ?>ci-admin/update-product.html/' + product["id_product"] + '" class="tipS" target="_blank" original-title=""><b>' + product["name_product"] + '</b></a><div class="f11">Đã bán: ' + product["count_buy"] + ' | Xem: ' + product["count_view"] + ' </div></td>' +
 								'<td class="textR">265,000 đ</td><td class="textC">' + product["importDate"] + '</td>' +
 								'<td class="option textC">' +
-								'<a href="<?php echo base_url() ?>admin/update-product.html/' + product["id_product"] + '" title="Chỉnh sửa" class="tipS">' +
+								'<a href="<?php echo base_url() ?>ci-dmin/update-product.html/' + product["id_product"] + '" title="Chỉnh sửa" class="tipS">' +
 								'<img src="<?php echo public_url() ?>/images/icons/color/edit.png" />' +
 								'</a>' +
 								'<a href="javascript:void(0)" class="tipS" onclick="deleteProduct(this)" original-title="Xóa">' +
@@ -335,6 +336,8 @@
 								'</td></tr>'
 							);
 						});
+						// Remove paging links
+						$('tfoot.auto_check_pages tr').remove();
 					}
 				}
 			});

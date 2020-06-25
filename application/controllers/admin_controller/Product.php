@@ -181,6 +181,7 @@ class product extends CI_Controller
             $id_category = $this->security->xss_clean($this->input->post('theloai'));
             $this->load->model('Product_Model');
             $str = $this->Product_Model->FindProduct($id_product, $name_product, $id_category);
+
             echo json_encode($result = [
                 "status"    => true,
                 "data"      => [
