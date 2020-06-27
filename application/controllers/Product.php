@@ -33,6 +33,7 @@ class Product extends CI_Controller {
         if ($this->input->get("query") !== null) {
             $query = $this->security->xss_clean($this->input->get("query"));
             $this->load->model("Product_Model");
+            $this->load->model("Category_Model");
             $count = sizeof($this->Product_Model->getProductsWithName($query));
             // Paginate page
             $limit_per_page = 8;
@@ -42,11 +43,13 @@ class Product extends CI_Controller {
                 $start = ($this->input->get('page') - 1) * $limit_per_page;
             }
             $products = $this->Product_Model->getProductsWithName($query, $limit_per_page, $start);
+            $categories = $this->Category_Model->getCategories();
         }
         $this->load->view("Search", [
             "query"         => $query,
             "products"      => $products,
-            "paging_links"  => $paging_links
+            "paging_links"  => $paging_links,
+            "categories"    => $categories
         ]);
     }
 }

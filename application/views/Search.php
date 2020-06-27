@@ -41,18 +41,7 @@
 		<div class="row">
 			<div class="col-lg-3 col-md-4 col-sm-5">
 				<div class="menu-product">
-					<h3>
-						<span>
-							Sản phẩm
-						</span>
-					</h3>
-					<ul class="level0">
-						<li><span><a href="<?php echo base_url() ?>category/ca-bien.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Cá biển</a></span></li>
-						<li><span><a href="<?php echo base_url() ?>category/tom.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Tôm</a></span></li>
-						<li><span><a href="<?php echo base_url() ?>category/muc.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Mực</a></span></li>
-						<li><span><a href="<?php echo base_url() ?>category/so.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Ngao - sò</a></span></li>
-						<li><span><a href="<?php echo base_url() ?>category/oc.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Các loại ốc</a></span></li>
-					</ul>
+					<?php require_once('comp/Vertical_Menu.php') ?>
 				</div>
 			</div>
 			<div class="col-lg-9 col-md-8 col-sm-7 bookshelf" style="padding: 10px 20px;">

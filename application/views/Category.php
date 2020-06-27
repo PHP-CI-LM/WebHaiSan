@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title><?php echo app_title()?> - Cảng hải sản tươi ngon</title>
+	<title><?php echo app_title() ?> - Cảng hải sản tươi ngon</title>
 	<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
@@ -24,7 +24,7 @@
 
 
 	<div class="container" id="content">
-	<div class="row">
+		<div class="row">
 			<div class="col-sm-12">
 				<ul class="breadcrumb" itemtype="http://schema.org/BreadcrumbList" style="margin-top: 30px; margin-bottom: 5px;">
 					<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="<?php echo base_url() ?>"> <span itemprop="name"> <i class="fa fa-home"></i> Trang chủ
@@ -32,7 +32,7 @@
 						</a> <span><i class="fa fa-angle-right"></i></span>
 						<meta itemprop="position" content="1">
 					</li>
-					<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name" style="text-transform: capitalize"><?=$name_category?></strong></a>
+					<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name" style="text-transform: capitalize"><?= $name_category ?></strong></a>
 						<meta itemprop="position" content="3">
 					</li>
 				</ul>
@@ -41,24 +41,13 @@
 		<div class="row">
 			<div class="col-lg-3 col-md-4 col-sm-5">
 				<div class="menu-product">
-					<h3>
-						<span>
-							Sản phẩm
-						</span>
-					</h3>
-					<ul class="level0">
-						<li><span><a href="<?php echo base_url() ?>category/ca-bien.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Cá biển</a></span></li>
-						<li><span><a href="<?php echo base_url() ?>category/tom.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Tôm</a></span></li>
-						<li><span><a href="<?php echo base_url() ?>category/muc.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Mực</a></span></li>
-						<li><span><a href="<?php echo base_url() ?>category/so.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Ngao - sò</a></span></li>
-						<li><span><a href="<?php echo base_url() ?>category/oc.html"><i class="fa fa-arrow-circle-right" style="padding-right:15px;"></i> Các loại ốc</a></span></li>
-					</ul>
+					<?php require_once('comp/Vertical_Menu.php') ?>
 				</div>
 			</div>
 			<div class="col-lg-9 col-md-8 col-sm-7 bookshelf" style="padding: 10px 20px;">
 				<div class="row descrip">
 					<div class="col-sm-6 col-xs-12" style="padding-left: 0;">
-						<div class="title none-bg none-detail large-text inline" style="text-transform: capitalize; padding-right: 0; clip-path: none; color: #333 !important;"><?=$name_category?>
+						<div class="title none-bg none-detail large-text inline" style="text-transform: capitalize; padding-right: 0; clip-path: none; color: #333 !important;"><?= $name_category ?>
 						</div>
 					</div>
 				</div>
@@ -94,12 +83,13 @@
 				}
 				?>
 			</div>
+			</>
 		</div>
-	</div>
 
-	<?php require_once("comp/Footer.php")?>
+		<?php require_once("comp/Footer.php") ?>
 
-	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.js"></script>
-	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.js"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.js"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.js"></script>
 </body>
+
 </html>

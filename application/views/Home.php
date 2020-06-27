@@ -26,46 +26,8 @@
 		<section>
 			<div clas="container" style="margin: 1.5rem 2rem;">
 				<div class="row khung">
-					<div class="col-md-3 col-sm-12 col-xs-12 vertical_menu">
-						<div id="mb_verticle_menu" class="menu-quick-select">
-							<div class="title_block">
-								<span>Danh mục sản phẩm</span>
-							</div>
-							<div id="menuverti" class="block_content navbar_menuvertical">
-								<ul class="nav_verticalmenu">
-									<li class="level0">
-										<a href="<?php echo base_url() ?>category/ca-bien.html">
-											<img class="icon-menu" src="<?php echo base_url() ?>static/image/icon/fish.png" alt="Nghao - Sò - Ốc">
-											<span>Cá biển</span>
-										</a>
-									</li>
-									<li class="level0">
-										<a href="<?php echo base_url() ?>category/tom.html">
-											<img class="icon-menu" src="<?php echo base_url() ?>static/image/icon/shrimp.png" alt="Tôm">
-											<span>Tôm</span>
-										</a>
-									</li>
-									<li class="level0">
-										<a href="<?php echo base_url() ?>category/muc.html">
-											<img class="icon-menu" src="<?php echo base_url() ?>static/image/icon/cuttle.png" alt="Mực">
-											<span>Mực</span>
-										</a>
-									</li>
-									<li class="level0">
-										<a href="<?php echo base_url() ?>category/so.html">
-											<img class="icon-menu" src="<?php echo base_url() ?>static/image/icon/scallop.png" alt="Ngao - Sò">
-											<span>Ngao - Sò</span>
-										</a>
-									</li>
-									<li class="level0">
-										<a href="<?php echo base_url() ?>category/oc.html">
-											<img class="icon-menu" src="<?php echo base_url() ?>static/image/icon/snail.png" alt="Ốc">
-											<span>Các loại ốc</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<?php require_once('comp/Vertical_Menu.php') ?>
 					</div>
 					<div id="my-carousel" class="col-md-9 col-sm-12 col-xs-12 p-l-0 carousel" data-ride="carousel">
 						<ol class="carousel-indicators">

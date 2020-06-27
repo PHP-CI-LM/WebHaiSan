@@ -400,7 +400,6 @@ header nav .active a {
 }
 
 .navbar_menuvertical {
-	position: absolute;
 	background: #ffffff;
 	min-height: 50px;
 	z-index: 90;
@@ -443,6 +442,10 @@ header nav .active a {
 	padding: 7px 0px;
 	display: block;
 	position: relative;
+}
+
+.navbar_menuvertical .nav_verticalmenu li a span {
+	text-transform: capitalize;
 }
 
 .navbar_menuvertical .nav_verticalmenu li:hover {
@@ -1220,8 +1223,9 @@ span.small-text {
 
 .custom-footer.bottom {
 	position: fixed;
-	width: 100%;
+	width: 120%;
 	bottom: 0;
+	margin-left: -50px;
 }
 
 .custom-footer .contact {

@@ -5,8 +5,11 @@ class Category_Model extends CI_Model {
 
     public function addCategory($nameCategory)
     {
+        $this->load->helper('lang_helper');
         $data = [
-            'name_category' => $nameCategory
+            'name_category' => $nameCategory,
+            'thumbnail'     => 'default_cat.png',
+            'url'           => vn_to_str(strtolower($nameCategory)). '.html'
         ];
         $this->db->trans_start();
         $this->db->insert('categories', $data);
@@ -17,21 +20,19 @@ class Category_Model extends CI_Model {
 
     public function getCategory($id_category = -1) {
         if ($id_category == -1) return false;
-        $result = $this->db->where('id_category', $id_category)->select('name_category')->get('categories');
+        $this->db->where('id_category', $id_category);
+        $result = $this->db->get('categories');
         return $result->result_array();
     }
 
     public function getCategories() {
-        $query = $this->db->query(
-            "SELECT id_category, name_category FROM categories;"
-        );
+        $query = $query=$this->db->get('categories');
         return $query->result_array();
     }
 
     public function getAllCategory()
     {
-        $str="SELECT *from categories";
-        $query=$this->db->query($str);
+        $query=$this->db->get('categories');
         return $query->result_array();
     }
 

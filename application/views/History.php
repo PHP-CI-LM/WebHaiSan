@@ -43,7 +43,6 @@
 							<table class="table product-list">
 								<thead>
 									<tr>
-										<th></th>
 										<th class="a-center">Mã</th>
 										<th class="a-center">Ngày đặt</th>
 										<th class="a-center">Địa chỉ</th>
@@ -57,7 +56,6 @@
 										if (true == isset($orders) && 0 < sizeof($orders)) {
 											foreach ($orders as $order) {
 												echo '<tr>';
-												echo '<td class="a-center"></td>';
 												echo '<td class="a-center">' . $order['OrderID'] . '</td>';
 												echo '<td class="a-center">' . $order['OrderDate'] . '</td>';
 												echo '<td>' . $order['Ward'] . ', ' . $order['District'] . ', ' . $order['Province'] . '</td>';
