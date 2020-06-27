@@ -3,9 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Account_Model extends CI_Model {
 
-    public function login($username, $password) {
-        $strQuery = "SELECT AccountID FROM accounts WHERE Username = '". $username ."' And Password = '" . $password . "'";
-        $query = $this->db->query($strQuery);
+    public function userLogin($username, $password) {
+        $this->db->where('Username', $username);
+        $this->db->where('Password', $password);
+        $this->db->where('id_permission', 2);
+        $this->db->select('AccountID');
+        $query = $this->db->get('accounts');
         return $query->result_array();
     }
 

@@ -59,7 +59,7 @@ class Account extends CI_Controller
             } else {
                 $newPassword = md5($this->input->post('password'));
                 $this->load->model('Account_Model');
-                $result = $this->Account_Model->login(
+                $result = $this->Account_Model->userLogin(
                     $this->input->post('username'),
                     $newPassword
                 );
