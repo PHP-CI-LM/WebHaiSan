@@ -3,22 +3,21 @@
 <div class="custom-footer">
   <div class="contact">
     <div class="logo">
-      <img src="<?php echo base_url() ?>static/image/logo.png" />
+      <span class="img"></span>
     </div>
     <ul class="list-info">
-      <li class="item name">Hải sản Bình Minh
-      </li>
-      <li class="item phone">Liên hệ: 0123456789</li>
-      <li class="item address">Địa chỉ: 1 Võ Văn Ngân, Thủ Đức, Tp. Hồ Chí Minh</li>
+      <li class="item name">Công ty TNHH Hải sản Bình Minh</li>
+      <li class="item address">Chi nhánh 1: Số 1 Võ Văn Ngân, Thủ Đức, Tp. Hồ Chí Minh</li>
+      <li class="item address">Chi nhánh 2: Số 210/5 Cao Văn Lâu, Quận 8, Tp. Hồ Chí Minh</li>
     </ul>
   </div>
-  <div class="info">
+  <!-- <div class="info">
     <div class="title">Về chúng tôi</div>
     <ul class="list-info">
       <li class="item">Chính sách giao nhận hàng</li>
       <li class="item">Chính sách đổi trả</li>
     </ul>
-  </div>
+  </div> -->
 </div>
 
 <!-- Load Facebook SDK for JavaScript -->
