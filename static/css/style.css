@@ -574,6 +574,10 @@ header nav .active a {
     display: flex;
 }
 
+.flex-board.f-column {
+    flex-direction: row !important;
+}
+
 .search-bar {
     display: block;
     position: relative;
@@ -1226,7 +1230,6 @@ span.small-text {
     position: fixed;
     width: 120%;
     bottom: 0;
-    margin-left: -50px;
 }
 
 .custom-footer .contact {
@@ -1438,6 +1441,9 @@ ul.list-info .item {
     }
     .vertical_menu {
         display: none;
+    }
+    .flex-board.f-column {
+        flex-direction: column !important;
     }
 }
 

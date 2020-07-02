@@ -91,7 +91,8 @@ $route['kiem-tra-don-hang.html'] = 'Order/index';
 $route['lich-su-mua-hang.html'] = 'Order/History';
 $route['comment']['POST'] = 'Comment/add';
 $route['fblogin'] = 'User_authentication/index';
-$route['comments']['get'] = 'Comment/getListcomment';
+$route['comments']['GET'] = 'Comment/getListcomment';
+$route['order/huy-don-hang.html']['GET'] = 'Order/delete';
 
 // admin pages route
 $route['ci-admin'] = 'admin_controller/admin/index';

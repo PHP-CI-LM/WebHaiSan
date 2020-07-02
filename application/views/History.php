@@ -49,26 +49,33 @@
 										<th class="a-center">Thành tiền</th>
 										<th class="a-center">Tình trạng</th>
 										<th></th>
+										<th></th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php
-										if (true == isset($orders) && 0 < sizeof($orders)) {
-											foreach ($orders as $order) {
-												echo '<tr>';
-												echo '<td class="a-center">' . $order['OrderID'] . '</td>';
-												echo '<td class="a-center">' . $order['OrderDate'] . '</td>';
-												echo '<td>' . $order['Ward'] . ', ' . $order['District'] . ', ' . $order['Province'] . '</td>';
-												echo '<td class="a-center">' . $order['Price'] . '</td>';
-												if (0 == $order['Status']) {
-													echo '<td class="a-center">Đang giao hàng</td>';
-												} else if (1 == $order['Status']) {
-													echo '<td class="a-center">Đã giao hàng</td>';
-												}
-												echo '<td class="a-center"><a href="'. base_url() .'kiem-tra-don-hang.html?oid=' . str_replace("/", "", $order["OrderDate"]).$order["OrderID"] . '">Chi tiết >></a></td>';
-												echo '</tr>';
+									if (true == isset($orders) && 0 < sizeof($orders)) {
+										foreach ($orders as $order) {
+											echo '<tr oid="' . str_replace("/", "", $order["OrderDate"]) . $order["OrderID"] . '">';
+											echo '<td class="a-center">' . $order['OrderID'] . '</td>';
+											echo '<td class="a-center">' . $order['OrderDate'] . '</td>';
+											echo '<td>' . $order['Ward'] . ', ' . $order['District'] . ', ' . $order['Province'] . '</td>';
+											echo '<td class="a-center">' . $order['Price'] . '</td>';
+											echo '<td class="a-center">' . $order['Status'] . '</td>';
+											echo '</td>';
+											echo '<td class="a-center">';
+											echo '<a href="' . base_url() . 'kiem-tra-don-hang.html?oid=' . str_replace("/", "", $order["OrderDate"]) . $order["OrderID"] . '" title="Thông tin chi tiết">';
+											echo '<i class="fa fa-info"></i>';
+											echo '</a>';
+											echo '<td class="a-center">';
+											if ($order["statusCode"] == 1) {
+												echo '<a id="cancelOrder" href="javascript:void(0)" onclick="cancelOrder(this)" title="Hủy đơn hàng">';
+												echo '<i class="fa fa-trash"></i>';
+												echo '</a>';
 											}
+											echo '</td></tr>';
 										}
+									}
 									?>
 								</tbody>
 							</table>
@@ -80,6 +87,32 @@
 	</div>
 
 	<?php require_once("comp/Footer.php") ?>
+	<script>
+		function cancelOrder(cancelButton) {
+			if (window.confirm('Bạn có chắc chắn muốn xóa đơn này?')) {
+				let oid = $($(cancelButton).parents('tr')[0]).attr('oid');
+				$.ajax({
+					'url': '<?= base_url() ?>order/huy-don-hang.html?oid=' + oid,
+					'method': 'get',
+					'success': res => {
+						let data = JSON.parse(JSON.stringify(res));
+						if (typeof data == 'string' || data instanceof String) {
+							data = JSON.parse(res);
+						}
+						if (true == data['status']) {
+							alert('Đơn hàng của bạn đã được xóa');
+							location.reload();
+						} else {
+							alert(data['message']);
+						}
+					},
+					'error': (request, status, error) => {
+						alert('Lỗi trong quá trình hủy đơn. Vui lòng thử lại')
+					}
+				});
+			}
+		}
+	</script>
 </body>
 
 </html>

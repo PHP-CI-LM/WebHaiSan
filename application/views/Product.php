@@ -116,7 +116,7 @@ function drawTree($comments, $comment, $product, $isReply)
 		<div class="row" style="padding-left: 3rem; padding-right: 3rem;">
 			<div class="col-md-9 col-sm-8 col-xs-12">
 				<article>
-					<div class="board flex-board flex-column">
+					<div class="board flex-board f-column">
 						<div class="thumbnail">
 							<?php
 							if ($product != null) {

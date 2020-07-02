@@ -87,7 +87,6 @@
 											<th>Giá</th>
 											<th>Khối lượng</th>
 											<th>Thành tiền</th>
-											<th></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -110,13 +109,7 @@
 												echo "<td class=\"amount\">";
 												echo number_format((int) (($product["price"] * $product["count"]) * (100 - $product["discount"]) / 100)) . "đ";
 												echo "</td>";
-												echo "<td class=\"text-center\">";
-												echo "<a href=\"javascript:void(0)\">";
-												if ($product["stage"] == "1")
-													echo "<i class=\"fa fa-bus\"></i>";
-												else
-													echo "<i class=\"fa fa-check-circle\"></i>";
-												echo "</a></td></tr>";
+												echo "</td></tr>";
 											}
 										}
 										?>
