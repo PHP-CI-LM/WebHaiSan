@@ -84,16 +84,6 @@
 
 				<div class="horControlB menu_action">
 					<ul>
-							<!-- 
-						<li><a href="admin/product_order.html">
-								<img src="<?php echo public_url() ?>/images/icons/control/16/list.png" />
-								<span>Danh sách</span>
-							</a></li> -->
-							<!-- 
-						<li><a href="">
-								<img src="<?php echo public_url() ?>/images/excel.png" />
-								<span>Xuất file excel</span>
-							</a></li> -->
 					</ul>
 				</div>
 
@@ -102,16 +92,8 @@
 		</div>
 		<div class="line"></div>
 
-		<!-- Message -->
-
-
-
-
-
-
 		<!-- Main content wrapper -->
 		<div class="wrapper">
-
 			<div class="widget">
 				<div class="title">
 					<span class="titleIcon"><img src="<?php echo public_url() ?>/images/icons/tableArrows.png" /></span>
@@ -194,10 +176,7 @@
 
 					<tfoot class="auto_check_pages">
 						<tr>
-							<td colspan="9">
-
-								<div class='pagination'>
-									&nbsp;<strong>1</strong>&nbsp;<a href="ci-admin/product_order/index/10">2</a>&nbsp;<a href="admin/product_order/index/10">Trang kế tiếp</a>&nbsp; </div>
+							<td colspan="9"></td>
 							</td>
 						</tr>
 					</tfoot>

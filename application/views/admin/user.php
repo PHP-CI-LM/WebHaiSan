@@ -62,14 +62,14 @@
 <body>
 
 	<!-- Left side content -->
-	<?php require("comp/nav.php")?>
+	<?php require("comp/nav.php") ?>
 
 
 	<!-- Right side -->
 	<div id="rightSide">
 
 		<!-- Account panel top -->
-		<?php require("comp/topNav.php")?>
+		<?php require("comp/topNav.php") ?>
 
 		<!-- Main content -->
 		<!-- Common view -->
@@ -83,15 +83,6 @@
 
 				<div class="horControlB menu_action">
 					<ul>
-						<!-- <li><a href="user/add.html">
-								<img src="<?php echo public_url() ?>/images/icons/control/16/add.png" />
-								<span>Thêm mới</span>
-							</a></li>
-
-						<li><a href="user.html">
-								<img src="<?php echo public_url() ?>/images/icons/control/16/list.png" />
-								<span>Danh sách</span>
-							</a></li> -->
 					</ul>
 				</div>
 
@@ -123,24 +114,17 @@
 						<thead>
 							<tr>
 								<td style="width:10px;"><img src="<?php echo public_url() ?>/images/icons/tableArrows.png" /></td>
-								<td style="width:80px;">Mã số</td>
-								<td>Tên</td>
-								<td style="width:10px;">Giới tính</td>
-								<td>Điện thoại</td>
+								<td style="width:45px;">Mã số</td>
+								<td style="width:200px;">Tên</td>
+								<td style="width:45px;">Giới tính</td>
+								<td style="width:100px;">Điện thoại</td>
 								<td style="width:300px;">Địa chỉ</td>
-								<!-- <td style="width:100px;">Hành động</td> -->
 							</tr>
 						</thead>
 
 						<tfoot>
 							<tr>
 								<td colspan="7">
-									<!-- <div class="list_action itemActions">
-										<a href="#submit" id="submit" class="button blueB" url="user/del_all.html">
-											<span style='color:white;'>Xóa hết</span>
-										</a>
-									</div> -->
-
 									<div class='pagination'>
 									</div>
 								</td>
@@ -149,32 +133,23 @@
 						<tbody>
 							<!-- Filter -->
 							<?php
-								if($data==!null && isset($data) && sizeof($data)>0)
-								foreach($data as $row) 
-								{
-							 ?>
-							<tr>
-								<td><input type="checkbox" name="id[]" value="16" /></td>
+							if ($data == !null && isset($data) && sizeof($data) > 0)
+								foreach ($data as $row) {
+									?>
+								<tr>
+									<td><input type="checkbox" name="id[]" value="16" /></td>
 
-								<td class="textC"><?php echo $row['CustomerID']?></td>
-								<td><span title="" class="tipS">
-										<?php echo $row['CustomerName'] ?> </span></td>
-								<td><span title="" class="tipS">
-								<?php echo $row['Sex']?></span></td>
-								<td>
-									<?php echo $row['Phone'] ?></td>
-								<td>
-									<?php echo $row['Address'] ?></td>
-								<!-- <td class="option">
-									<a href="user/edit/16.html" title="Chỉnh sửa" class="tipS ">
-										<img src="<?php echo public_url() ?>/images/icons/color/edit.png" />
-									</a>
-									<a href="user/del/16.html" title="Xóa" class="tipS verify_action">
-										<img src="<?php echo public_url() ?>/images/icons/color/delete.png" />
-									</a>
-								</td> -->
-							</tr>
-								<?php }?>
+									<td class="textC"><?php echo $row['CustomerID'] ?></td>
+									<td><span title="" class="tipS">
+											<?php echo $row['CustomerName'] ?> </span></td>
+									<td><span title="" class="tipS">
+											<?php echo $row['Sex'] ?></span></td>
+									<td>
+										<?php echo $row['Phone'] ?></td>
+									<td>
+										<?php echo $row['Address'] ?></td>
+								</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</form>

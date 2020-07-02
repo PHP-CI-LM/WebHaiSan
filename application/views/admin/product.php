@@ -12,18 +12,10 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo public_url() ?>/crown/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo public_url() ?>/css/css.css" media="screen" />
 
-
-	<script type="text/javascript">
-		var admin_url = '';
-		var base_url = '';
-		var public_url = '';
-	</script>
-
 	<script type="text/javascript" src="<?php echo public_url() ?>/js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="<?php echo public_url() ?>	/js/jquery/jquery-ui.min.js"></script>
 
 	<script type="text/javascript" src="<?php echo public_url() ?>/crown/js/plugins/spinner/jquery.mousewheel.js"></script>
-
 	<script type="text/javascript" src="<?php echo public_url() ?>/crown/js/plugins/forms/uniform.js"></script>
 	<script type="text/javascript" src="<?php echo public_url() ?>/crown/js/plugins/forms/jquery.tagsinput.min.js"></script>
 	<script type="text/javascript" src="<?php echo public_url() ?>/crown/js/plugins/forms/autogrowtextarea.js"></script>
