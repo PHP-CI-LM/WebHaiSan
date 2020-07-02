@@ -102,13 +102,13 @@
 											<select class="form-control" onchange="changedDistrict()" required="">
 												<option value="number:0" label="Vui lòng chọn huyện" selected>Vui lòng chọn huyện</option>
 											</select>
-											<img class="wait" src="http://localhost/WebBanHang/static/image/gif/loading.gif">
+											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif">
 										</div>
 										<div class="form-group">
 											<select class="form-control" required="">
 												<option value="number:0" label="Vui lòng chọn xã/phường" selected>Vui lòng chọn xã/phường</option>
 											</select>
-											<img class="wait" src="http://localhost/WebBanHang/static/image/gif/loading.gif">
+											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif">
 										</div>
 										<textarea class="form-control" rows="4" placeholder="Ghi chú đơn hàng" styte="resize:none;"></textarea>
 									</div>
@@ -240,6 +240,9 @@
 					},
 					success: res => {
 						let data = JSON.parse(JSON.stringify(res));
+						if (typeof data == 'string' || data instanceof String) {
+							data = JSON.parse(res);
+						}
 						if (data["status"] == true) {
 							alert("Đơn hàng của bạn đã được tiếp nhận. Chúng tôi sẽ liên hệ lại ngay cho bạn để xác nhận đơn hàng");
 							deleteAllCookie();
