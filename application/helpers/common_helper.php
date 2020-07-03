@@ -13,6 +13,19 @@ function public_url($url = '')
 }
 
 
+function getTimestamp()
+{
+    $date = new DateTime();
+    return $date->getTimestamp();
+}
+
+
+function toDatetime($timestamp)
+{
+    return date('d-m-Y', $timestamp);
+}
+
+
 function diff_time($time1, $time2 = null)
 {
     $datetime1 = new DateTime($time1);

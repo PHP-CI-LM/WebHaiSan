@@ -163,7 +163,7 @@
 
 					<thead class="filter">
 						<tr>
-							<td colspan="6">
+							<td colspan="8">
 								<form class="list_filter form" action="admin/product.html" method="get">
 									<table cellpadding="0" cellspacing="0" width="80%">
 										<tbody>
@@ -205,6 +205,8 @@
 							<td style="width:60px;">Mã số</td>
 							<td>Tên</td>
 							<td>Giá</td>
+							<td style="width:50px;">Lượt xem</td>
+							<td style="width:50px;">Lượt bán</td>
 							<td style="width:75px;">Ngày tạo</td>
 							<td style="width:120px;">Hành động</td>
 						</tr>
@@ -212,7 +214,7 @@
 
 					<tfoot class="auto_check_pages">
 						<tr>
-							<td colspan="6">
+							<td colspan="8">
 								<div class="list_action itemActions">
 									<!-- <a href="#submit" id="submit" class="button blueB" url="admin/product/del_all.html">
 										<span style='color:white;'>Xóa hết</span>
@@ -234,10 +236,10 @@
 								echo "<a href=\"" . base_url() . "admin/update-product.html/" . $row["id_product"] . "\" class=\"tipS\" title=\"\" target=\"_blank\"><b>" . $row["name_product"] . "</b></a>";
 								echo "<div class=\"f11\">Đã bán: " . $row["count_buy"] . " | Xem: " . $row["count_view"] . " </div></td>";
 								echo "<td class=\"textR\">" . number_format($row["price"]) . " đ</td>";
-								echo "<td class=\"textC\">" . $row["importDate"] . "</td>";
+								echo "<td class=\"textC\">". $row["count_view"] ."</td>";
+								echo "<td class=\"textC\">". $row["count_buy"] ."</td>";
+								echo "<td class=\"textC\">" . toDatetime($row["importDate"]) . "</td>";
 								echo "<td class=\"option textC\">";
-								//echo "<a href=\"\" title=\"Gán là nhạc tiêu biểu\" class=\"tipE\"><img src=\"" . public_url() . "/images/icons/color/star.png" . "\" /></a>";
-								//echo "<a href=\"product/view/9.html\" target='_blank' class='tipS' title=\"Xem chi tiết sản phẩm\"><img src=\"" . public_url() . "/images/icons/color/view.png" . "\" /></a>";
 								echo "<a href=\"" . base_url() . "admin/update-product.html/" . $row["id_product"] . "\" title=\"Chỉnh sửa\" class=\"tipS\"><img src=\"" . public_url() . "/images/icons/color/edit.png" . "\" /></a>";
 								echo "<a href=\"javascript:void(0)\" title=\"Xóa\" class=\"tipS\" onclick='deleteProduct(this)'><img src=\"" . public_url() . "/images/icons/color/delete.png" . "\" /></a></td></tr>";
 							}

@@ -62,14 +62,14 @@
 <body>
 
 	<!-- Left side content -->
-	<?php require("comp/nav.php")?>
+	<?php require("comp/nav.php") ?>
 
 
 	<!-- Right side -->
 	<div id="rightSide">
 
 		<!-- Account panel top -->
-		<?php require("comp/topNav.php")?>
+		<?php require("comp/topNav.php") ?>
 
 		<!-- Main content -->
 		<script type="text/javascript">
@@ -126,16 +126,6 @@
 					<span>Quản lý danh sách tự vựng</span>
 				</div>
 
-				<!-- <div class="horControlB menu_action">
-					<ul>
-						<li><a href="<?php echo base_url() ?>admin/add-product.html">
-								<img src="<?php echo public_url() ?>images/icons/control/16/add.png" />
-								<span>Thêm mới</span>
-							</a>
-						</li>
-					</ul>
-				</div> -->
-
 				<div class="clear"></div>
 			</div>
 		</div>
@@ -150,9 +140,7 @@
 
 				<div class="title">
 					<span class="titleIcon"><input type="checkbox" id="titleCheck" name="titleCheck" /></span>
-					<h6>
-						Danh sách từ vựng </h6>
-					<!-- <div class="num f12">Số lượng: <b><?php echo $nums_row; ?></b></div> -->
+					<h6>Danh sách từ vựng </h6>
 				</div>
 
 				<table cellpadding="0" cellspacing="0" width="100%" class="sTable mTable myTable" id="checkAll">
@@ -160,21 +148,18 @@
 					<thead class="filter">
 						<tr>
 							<td colspan="4">
-								<form class="list_filter form" action="admin/product.html" method="get">
+								<form class="list_filter form" action="<?= base_url() ?>ci-admin/comment/filter.html/add" method="get">
 									<table cellpadding="0" cellspacing="0" width="80%">
 										<tbody>
-
 											<tr>
-												<td class="label" style="width:55px;"><label for="filter_type">Từ vựng</label></td>
-												<td class="item">
-													<input type="text" name="product" style="width: 150px;">
+												<td class="item" style="width: 70%">
+													<label for="filter">Từ vựng</label>
+													<input type="text" name="filter" style="width: 80%; margin-left: 10px;">
 													</input>
 												</td>
-												<td style='width:300px; float: right'>
-													<a href="javascript:void(0)" class="button blueB" style="padding: 7px 18px 8px 18px;color: black" onclick='fillterComment()' ;>Thêm</a>
-													<!-- <input type="reset" class="basic" value="Reset" onclick="window.location.href = 'index.php/admin/product.html'; "> -->
+												<td style='width:30%;'>
+													<a href="javascript:void(0)" class="button blueB" style="padding: 7px 18px 8px 18px;color: black" onclick='addFilter()'>Thêm</a>
 												</td>
-
 											</tr>
 										</tbody>
 									</table>
@@ -196,9 +181,6 @@
 						<tr>
 							<td colspan="4">
 								<div class="list_action itemActions">
-									<!-- <a href="#submit" id="submit" class="button blueB" url="admin/product/del_all.html">
-										<span style='color:white;'>Xóa hết</span>
-									</a> -->
 								</div>
 								<?php echo $paging_links ?>
 							</td>
@@ -210,16 +192,11 @@
 						if ($data !== null && isset($data) && sizeof($data) > 0) {
 							foreach ($data as $row) {
 								echo "<tr class='row_9'>";
-								echo "<td><input type=\"checkbox\" name=\"id[]\" value=\"" . $row["id_product"] . "\" /></td>";
-								echo "<td class=\"textC\">" . $row["id_product"] . "</td>";
-								echo "<td><div class=\"image_thumb\"><img src=\"" . base_url() . "images/" . $row['image_link'] . "\" height=\"50\"><div class=\"clear\"></div></div>";
-								echo "<a href=\"" . base_url() . "admin/update-product.html/" . $row["id_product"] . "\" class=\"tipS\" title=\"\" target=\"_blank\"><b>" . $row["name_product"] . "</b></a>";
-								echo "<div class=\"f11\">Đã bán: " . $row["count_buy"] . " | Xem: " . $row["count_view"] . " </div></td>";
-								echo "<td class=\"textR\">" . number_format($row["price"]) . " đ</td>";
-								echo "<td class=\"textC\">" . $row["importDate"] . "</td>";
+								echo "<td><input type=\"checkbox\" name=\"id[]\" value=\"" . $row["id"] . "\" /></td>";
+								echo "<td class=\"textC\">" . $row["id"] . "</td>";
+								echo "<td class=\"textL\">" . $row["key_word"] . "</td>";
 								echo "<td class=\"option textC\">";
-								echo "<a href=\"" . base_url() . "admin/update-product.html/" . $row["id_product"] . "\" title=\"Chỉnh sửa\" class=\"tipS\"><img src=\"" . public_url() . "/images/icons/color/edit.png" . "\" /></a>";
-								echo "<a href=\"javascript:void(0)\" title=\"Xóa\" class=\"tipS\" onclick='deleteProduct(this)'><img src=\"" . public_url() . "/images/icons/color/delete.png" . "\" /></a></td></tr>";
+								echo "<a href=\"javascript:void(0)\" title=\"Xóa\" class=\"tipS\" onclick='removeFilter(\"" . $row["id"] . "\")'><img src=\"" . public_url() . "/images/icons/color/delete.png" . "\" /></a></td></tr>";
 							}
 						}
 						?>
@@ -241,6 +218,54 @@
 	<div class="clear"></div>
 
 	<script type="text/javascript">
+		function addFilter() {
+			let url = $('form').attr('action');
+			let filter = $($('form').find('input')[0]).val();
+			$.ajax({
+				"url": url + '?t=' + filter,
+				"method": 'get',
+				"success": res => {
+					let data = JSON.parse(JSON.stringify(res));
+					if (typeof data == 'string' || data instanceof String) {
+						data = JSON.parse(res);
+					}
+					if (true == data['status']) {
+						alert('Đã thêm thành công');
+						location.reload();
+					} else {
+						alert(data['message']);
+					}
+				},
+				'error': (request, status, error) => {
+					alert('Lỗi trong quá trình thêm filter. Vui lòng thử lại')
+				}
+			});
+		}
+
+		function removeFilter(id_filter) {
+			if (true == window.confirm('Bạn có chắc muốn xóa?')) {
+				let url = '<?= base_url() ?>ci-admin/comment/filter.html/remove';
+				$.ajax({
+					"url": url + '?id=' + id_filter,
+					"method": 'get',
+					"success": res => {
+						let data = JSON.parse(JSON.stringify(res));
+						if (typeof data == 'string' || data instanceof String) {
+							data = JSON.parse(res);
+						}
+						if (true == data['status']) {
+							alert('Đã xóa thành công');
+							location.reload();
+						} else {
+							alert(data['message']);
+						}
+					},
+					'error': (request, status, error) => {
+						alert('Lỗi trong quá trình xóa. Vui lòng thử lại')
+					}
+				});
+			}
+		}
 	</script>
 </body>
 

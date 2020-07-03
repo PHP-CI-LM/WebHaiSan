@@ -33,9 +33,6 @@ class Comment extends CI_Controller
         $this->load->model('Product_Model');
         $name_procduct = $this->Product_Model->getProductName($id_product);
         $this->load->model('Comment_Model');
-        //print_r($name_procduct[0]['name_product']);
-        // $listSubComment = $this->Comment_Model->getListSubComment(1, $id_product);
-        // print_r($listSubComment);
         $fullCommetForProduceId = array();
         $listComment = $this->Comment_Model->getListCommentForProcduct($id_product);
         foreach ($listComment as $row) {

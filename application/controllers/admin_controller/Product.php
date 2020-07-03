@@ -116,7 +116,7 @@ class product extends CI_Controller
                     }
                 }
 
-                $importDate = date("Y-m-d");
+                $importDate = getTimestamp();
                 $price = str_replace(",", "", $price);
                 $image_link = $this->uploadImageOfProduct();
                 if (false !== $image_link) {
