@@ -164,7 +164,7 @@
 					<thead class="filter">
 						<tr>
 							<td colspan="8">
-								<form class="list_filter form" action="admin/product.html" method="get">
+								<form class="list_filter form" action="ci-admin/product.html" method="get">
 									<table cellpadding="0" cellspacing="0" width="80%">
 										<tbody>
 
@@ -233,14 +233,14 @@
 								echo "<td><input type=\"checkbox\" name=\"id[]\" value=\"" . $row["id_product"] . "\" /></td>";
 								echo "<td class=\"textC\">" . $row["id_product"] . "</td>";
 								echo "<td><div class=\"image_thumb\"><img src=\"" . base_url() . "images/" . $row['image_link'] . "\" height=\"50\"><div class=\"clear\"></div></div>";
-								echo "<a href=\"" . base_url() . "admin/update-product.html/" . $row["id_product"] . "\" class=\"tipS\" title=\"\" target=\"_blank\"><b>" . $row["name_product"] . "</b></a>";
+								echo "<a href=\"" . base_url() . "ci-admin/update-product.html/" . $row["id_product"] . "\" class=\"tipS\" title=\"\" target=\"_blank\"><b>" . $row["name_product"] . "</b></a>";
 								echo "<div class=\"f11\">Đã bán: " . $row["count_buy"] . " | Xem: " . $row["count_view"] . " </div></td>";
 								echo "<td class=\"textR\">" . number_format($row["price"]) . " đ</td>";
 								echo "<td class=\"textC\">". $row["count_view"] ."</td>";
 								echo "<td class=\"textC\">". $row["count_buy"] ."</td>";
 								echo "<td class=\"textC\">" . toDatetime($row["importDate"]) . "</td>";
 								echo "<td class=\"option textC\">";
-								echo "<a href=\"" . base_url() . "admin/update-product.html/" . $row["id_product"] . "\" title=\"Chỉnh sửa\" class=\"tipS\"><img src=\"" . public_url() . "/images/icons/color/edit.png" . "\" /></a>";
+								echo "<a href=\"" . base_url() . "ci-admin/update-product.html/" . $row["id_product"] . "\" title=\"Chỉnh sửa\" class=\"tipS\"><img src=\"" . public_url() . "/images/icons/color/edit.png" . "\" /></a>";
 								echo "<a href=\"javascript:void(0)\" title=\"Xóa\" class=\"tipS\" onclick='deleteProduct(this)'><img src=\"" . public_url() . "/images/icons/color/delete.png" . "\" /></a></td></tr>";
 							}
 						}
