@@ -9,6 +9,7 @@ class Product extends CI_Controller {
     }
 
     public function index($uri_product) {
+        validateSession();
         $this->load->model('Product_Model');
         $this->load->model('Comment_Model');
         $id_product = (int)substr($uri_product, strlen($uri_product) - 5, 5);
@@ -29,6 +30,7 @@ class Product extends CI_Controller {
     }
 
     public function find() {
+        validateSession();
         $products = array();
         if ($this->input->get("query") !== null) {
             $query = $this->security->xss_clean($this->input->get("query"));

@@ -11,6 +11,7 @@ class Payment extends CI_Controller
 
     public function index()
     {
+        validateSession();
         if (get_cookie("countProduct") != null) {
             //Get info of list product in cookie
             $count = get_cookie("countProduct");
@@ -47,6 +48,7 @@ class Payment extends CI_Controller
 
     public function confirm()
     {
+        validateSession();
         $status = false;
         $oid = null;
         if ($this->input->post("data") !== null) {
@@ -109,6 +111,7 @@ class Payment extends CI_Controller
 
     public function result()
     {
+        validateSession();
         if ($this->input->get("oid") !== null) {
             $oid = $this->input->get("oid");
             if (is_numeric($oid) && strlen($oid) > 8) {

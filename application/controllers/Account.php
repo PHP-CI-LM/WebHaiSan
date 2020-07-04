@@ -18,6 +18,7 @@ class Account extends CI_Controller
 
     public function index()
     {
+        validateSession();
         //Check if user is login
         if ($this->session->tempdata('user') !== null) {
             $id_account = $this->session->tempdata('user');
@@ -36,26 +37,16 @@ class Account extends CI_Controller
 
     public function login()
     {
-        // Generate oauth url
-        $fbAccountData = $this->fb_authenticate();
-
+        validateSession();
         if ($this->session->tempdata('user') !== null) {
             redirect(base_url(), 'auto');
         } else {
             $this->form_validation->set_rules('username', 'Username', 'required|max_length[20]');
             $this->form_validation->set_rules('password', 'Password', 'required');
             if ($this->input->post('username') === null) {
-                $this->load->view('Login', [
-                    'data' => [
-                        'fb' => $fbAccountData,
-                    ],
-                ]);
+                $this->load->view('Login');
             } elseif ($this->form_validation->run() === false) {
-                $this->load->view('Login', [
-                    'data' => [
-                        'fb' => $fbAccountData,
-                    ],
-                ]);
+                $this->load->view('Login');
             } else {
                 $newPassword = md5($this->input->post('password'));
                 $this->load->model('Account_Model');
@@ -65,6 +56,10 @@ class Account extends CI_Controller
                 );
                 if (0 < sizeof($result)) {
                     $this->session->set_tempdata('user', $result[0]['AccountID'], 3600); //Phiên đăng nhập 60 phút
+                    $accessToken = generateToken($result[0]['AccountID'], $this->input->post('username'), 0); // Expire in 3600s
+                    $refreshToken = generateToken($result[0]['AccountID'], $this->input->post('username'), 1); // Expire in 2 days
+                    set_cookie('accessToken', $accessToken, 3600);
+                    set_cookie('refreshToken', $refreshToken, 3600*2);
                     $backUrl = urldecode($this->input->get('backUrl'));
                     if ($backUrl === null) {
                         $backUrl = base_url();
@@ -72,10 +67,7 @@ class Account extends CI_Controller
                     redirect($backUrl, 'auto');
                 } else {
                     $this->load->view('Login', [
-                        'error' => 'Sai tên đăng nhập hoặc mật khẩu!',
-                        'data' => [
-                            'fb' => $fbAccountData,
-                        ],
+                        'error' => 'Sai tên đăng nhập hoặc mật khẩu!'
                     ]);
                 }
             }
@@ -84,6 +76,7 @@ class Account extends CI_Controller
 
     public function updateInfomation($customerID)
     {
+        validateSession();
         header("Content-Type: Application/Json");
         // Check invalid input
         if (
@@ -122,6 +115,7 @@ class Account extends CI_Controller
 
     public function uploadAvatar($customerID)
     {
+        validateSession();
         header("Content-Type: Application/Json");
         // Check user logged in
         if ($this->session->tempdata('user') !== null) {
@@ -156,11 +150,14 @@ class Account extends CI_Controller
     public function logout()
     {
         $this->session->sess_destroy();
+        delete_cookie('refreshToken');
+        delete_cookie('accessToken');
         redirect(base_url(), 'auto');
     }
 
     public function signup()
     {
+        validateSession();
         if ($this->session->tempdata('user') !== null) {
             redirect(base_url(), 'auto');
         } else {
@@ -247,10 +244,6 @@ class Account extends CI_Controller
 
         return $data;
     }
-
-    // get user name of accout
-    public function getUserName($id_account)
-    { }
 
     private function sendResponse(int $status, $message, $data = []) {
         $statusText = false;

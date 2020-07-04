@@ -11,6 +11,7 @@ class Cart extends CI_Controller
 
     public function index()
     {
+        validateSession();
         if (get_cookie("countProduct") != null) {
             $count = get_cookie("countProduct");
             $cookieName = "product";

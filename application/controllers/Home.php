@@ -10,6 +10,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+		validateSession();
 		$this->load->model('BangTin_Model');
 		$this->load->model('Product_Model');
 		$this->load->model('Category_Model');
@@ -27,6 +28,7 @@ class Home extends CI_Controller {
 	}
 
 	public function policy() {
+		validateSession();
 		$this->load->view('Policy', ["page" => "Policy"]);
 	}
 

@@ -12,6 +12,7 @@ class Comment extends CI_Controller
     // Function check comment before write comment to database, return true is allow write and else
     public function filter_comment($comment)
     {
+        validateSession();
         $this->load->model('Filter_Comment');
         $array_filter = $this->Filter_Comment->get_filter_comment();
         $array = [];
@@ -30,6 +31,7 @@ class Comment extends CI_Controller
     // function get all comment and subcomment for id_product, return json. in data json contain id, id_account, id_product, comment_time, content, id_reply, subComment of comment. subCommant contain list comments
     public function getListcomment($id_product = 1)
     {
+        validateSession();
         $this->load->model('Product_Model');
         $name_procduct = $this->Product_Model->getProductName($id_product);
         $this->load->model('Comment_Model');
@@ -47,6 +49,7 @@ class Comment extends CI_Controller
 
     public function add()
     {
+        validateSession();
         header('Content-Type: application/json');
         $result = [];
         $time = date('Y-m-d h:i:s');

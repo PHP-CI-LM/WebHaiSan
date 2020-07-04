@@ -12,6 +12,7 @@ class Catalog extends CI_Controller
 
     public function index($page_num, $name)
     {
+        validateSession();
         $idFilterType = substr($name, strlen($name) - 5, 5); //Tách id của kiểu fillter từ chuỗi
         $data = null; //Dữ liệu gửi về view
         $this->load->model("Product_Model"); //Gọi lớp model để lấy dữ liệu

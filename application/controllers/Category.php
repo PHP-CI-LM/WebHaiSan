@@ -11,6 +11,7 @@ class Category extends CI_Controller
 
     public function index($type, $page_num)
     {
+        validateSession();
         $this->load->model("Product_Model");
         $this->load->model("Category_Model");
         switch ($type) {

@@ -11,6 +11,7 @@ class Order extends CI_Controller
 
     public function index()
     {
+        validateSession();
         if ($this->input->get("oid") !== null) {
             $oid = $this->input->get("oid");
             if (is_numeric($oid) && strlen($oid) > 8) {
@@ -60,6 +61,7 @@ class Order extends CI_Controller
 
     public function history()
     {
+        validateSession();
         // Check user login
         if ($this->session->tempdata('user') == null) {
             redirect(base_url(), 'auto');
@@ -83,6 +85,7 @@ class Order extends CI_Controller
 
     public function delete()
     {
+        validateSession();
         header('Content-Type: application/json');
         $result = [];
         $result['status'] = false;

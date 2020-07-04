@@ -1224,6 +1224,8 @@ span.small-text {
     align-items: center;
     padding: 1rem 0 0.5rem 0;
     cursor: default;
+    width: calc(100% + 100px);
+    margin-left: -50px;
 }
 
 .custom-footer.bottom {
