@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Demo Database</title>
+    <title>Chợ Hải Sản - Admin page</title>
     <link rel="stylesheet" href="<?php echo base_url(); ?>/static_admin/css/login.css" />
 </head>
 
@@ -11,7 +11,7 @@
     <div class="container">
         <div id="title">Đăng nhập vào hệ thống</div>
 
-        <?php echo form_open('admin/login.html'); ?>
+        <?php echo form_open('ci-admin/login.html'); ?>
 
         <form id="input" action="" method="POST">
             <div class="row">

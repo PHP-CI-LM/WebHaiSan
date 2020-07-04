@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Thông tin tài khoản - Cảng hải sản tươi ngon</title>
+    <title><?php echo app_title()?> - Thông tin tài khoản</title>
     <link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
@@ -21,7 +21,7 @@
     <!-- Phần header cho trang Web -->
     <?php require_once("comp/Header.php") ?>
 
-    <div class="container" id="content" style="padding-left: 5rem;">
+    <div class="container" id="content" style="padding-left: 5rem; padding-top: 20px;">
         <div class="row">
             <div class="col-md-3">
                 <div class="menu">
@@ -32,15 +32,15 @@
                     </h3>
                     <ul class="level0">
                         <li class="active"><span><a href="<?php echo base_url() ?>"><i class="fa fa-user-circle-o" style="padding-right:15px;"></i> Thông tin tài khoản</a></span></li>
-                        <li><span><a href="<?php echo base_url() ?>"><i class="fa fa-shopping-cart" style="padding-right:15px;"></i> Lịch sử mua hàng</a></span></li>
-                        <li><span><a href="<?php echo base_url() ?>"><i class="fa fa-sign-out" style="padding-right:15px;"></i> Đăng xuất</a></span></li>
+                        <li><span><a href="<?php echo base_url() ?>lich-su-mua-hang.html"><i class="fa fa-shopping-cart" style="padding-right:15px;"></i> Lịch sử mua hàng</a></span></li>
+                        <li><span><a href="<?php echo base_url() ?>dang-xuat.html"><i class="fa fa-sign-out" style="padding-right:15px;"></i> Đăng xuất</a></span></li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-9">
                 <div class="row">
                     <div class="col-sm-12" style="padding-left: 0;">
-                        <ul class="breadcrumb" itemtype="http://schema.org/BreadcrumbList" style="margin-left: 5px;">
+                        <ul class="breadcrumb" itemtype="http://schema.org/BreadcrumbList" style="margin-left: 5px; margin-bottom: 5px;">
                             <li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="<?php echo base_url() ?>"> <span itemprop="name"> <i class="fa fa-home"></i> Trang chủ
                                     </span>
                                 </a> <span><i class="fa fa-angle-right"></i></span>
@@ -53,69 +53,102 @@
                     </div>
                 </div>
                 <div class="board" style="margin-top: 12px; padding-top: 5px;">
-                    <form action="#" method="POST">
-                        <h2>Thông tin tài khoản</h2>
-                        <div style="display:flex;">
-                            <label for="NameSignUp" style="flex-basis: 20%; text-align: right;">Tên đăng nhập: </label>
-                            <span style="flex-basis: 80%;">
-                                <?php
-                                if (isset($data) === true) {
-                                    echo $data["UserName"];
-                                }
-                                ?>
-                            </span>
-                        </div>
-                        <div style="display:flex">
-                            <label for="Password" style="flex-basis: 20%; text-align: right;">Mật khẩu: </label>
-                            <span style="flex-basis: 80%;">********************</span>
-                        </div>
-                        <h2>Thông tin cá nhân</h2>
-                        <div style="display:flex;">
-                            <label for="UserSignUp" style="flex-basis: 20%; text-align: right;">Tên người dùng: </label>
-                            <span style="flex-basis: 80%;">
-                                <?php
-                                if (isset($data) === true) {
-                                    echo $data["CustomerName"];
-                                }
-                                ?>
-                            </span>
-                        </div>
-                        <div style="display:flex;">
-                            <label for="Sex" style="flex-basis: 20%; text-align: right;">Giới tính: </label>
-                            <span style="flex-basis: 80%;">
-                                <?php
-                                if (isset($data) === true) {
-                                    if ($data["Sex"] == 0) echo "Nữ";
-                                    else echo "Nam";
-                                }
-                                ?>
-                            </span>
-                        </div>
-                        <div style="display:flex;">
-                            <label for="Address" style="flex-basis: 20%; text-align: right;">Địa chỉ: </label>
-                            <span style="flex-basis: 80%;">
-                                <?php
-                                if (isset($data) === true) {
-                                    echo $data["Address"];
-                                }
-                                ?>
-                            </span>
-                        </div>
-                        <div style="display:flex;">
-                            <label for="PhoneNumber" style="flex-basis: 20%; text-align: right;">Số điện thoại: </label>
-                            <span style="flex-basis: 80%;">
-                                <?php
-                                if (isset($data) === true) {
-                                echo $data["Phone"];
-                                }
-                                ?>
-                            </span>
-                        </div>
-                    </form>
+                    <?php if (isset($data)) { ?>
+                        <form action="#" method="POST" enctype="multipart/form-data">
+                            <div class="header">
+                                <h2>Thông tin tài khoản</h2>
+                                <span class="actions">
+                                    <img class="edit" style="" src="<?php echo base_url() . 'static/image/icon/edit.png' ?>">
+                                    <img class="save hidden" style="" src="<?php echo base_url() . 'static/image/icon/save.png' ?>">
+                                    <img class="loading hidden" style="" src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>">
+                                    <img class="success hidden" style="" src="<?php echo base_url() . 'static/image/icon/success.png' ?>">
+                                    <img class="error hidden" style="" src="<?php echo base_url() . 'static/image/icon/error.png' ?>">
+                                    <img class="cancel hidden" style="" src="<?php echo base_url() . 'static/image/icon/close.png' ?>">
+                                </span>
+                            </div>
+                            <div class="detail">
+                                <div class="form-info username">
+                                    <label for="NameSignUp">Tên đăng nhập: </label>
+                                    <span class="info"><?php echo $data["UserName"]; ?></span>
+                                </div>
+                                <div class="form-info password">
+                                    <label for="Password">Mật khẩu: </label>
+                                    <span class="info">********************</span>
+                                </div>
+                                <div class="form-info avatar" style="align-items: center;">
+                                    <label for="Avatar">Ảnh đại diện: </label>
+                                    <?php
+                                        if (isset($data['Avatar'])) {
+                                            echo '<span class="info"><img src="' . base_url() . 'static/image/avatar/'. $data['Avatar'] . '" style="max-width: 40px; border-radius: 50%"></span>';
+                                            echo '<input type="file" class="info input hidden" name="avatar" accept="image/png, image/jpeg">';
+                                        } else {
+                                            echo '<input type="file" class="info input fixed" name="avatar" accept="image/png, image/jpeg">';
+                                        }
+                                        ?>
+                                </div>
+                            </div>
+
+                            <div class="header">
+                                <h2>Thông tin tài khoản</h2>
+                                <span class="actions">
+                                    <img class="edit" style="" src="<?php echo base_url() . 'static/image/icon/edit.png' ?>">
+                                    <img class="save hidden" style="" src="<?php echo base_url() . 'static/image/icon/save.png' ?>">
+                                    <img class="loading hidden" style="" src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>">
+                                    <img class="success hidden" style="" src="<?php echo base_url() . 'static/image/icon/success.png' ?>">
+                                    <img class="error hidden" style="" src="<?php echo base_url() . 'static/image/icon/error.png' ?>">
+                                    <img class="cancel hidden" style="" src="<?php echo base_url() . 'static/image/icon/close.png' ?>">
+                                </span>
+                            </div>
+                            <div class="detail">
+                                <div class="form-info">
+                                    <label for="UserSignUp">Tên người dùng: </label>
+                                    <span class="info"><?php echo $data["CustomerName"]; ?></span>
+                                    <input class="info input hidden" type="text" name="customerName" value="<?php echo $data["CustomerName"]; ?>">
+                                </div>
+                                <div class="form-info sex">
+                                    <label for="Sex">Giới tính: </label>
+                                    <span class="info">
+                                        <?php
+                                            if ($data["Sex"] == 0) echo "Nam";
+                                            else echo "Nữ";
+                                            ?>
+                                    </span>
+                                    <select class="info input hidden" name="sex">
+                                        <?php
+                                            if ($data["Sex"] == 0) {
+                                                echo '<option value="0" selected>Nam</option>';
+                                                echo '<option value="1">Nữ</option>';
+                                            } else {
+                                                echo '<option value="0">Nam</option>';
+                                                echo '<option value="1" selected>Nữ</option>';
+                                            }
+                                            ?>
+                                    </select>
+                                </div>
+                                <div class="form-info">
+                                    <label for="Address">Địa chỉ: </label>
+                                    <span class="info"><?php echo $data["Address"]; ?></span>
+                                    <input class="info input hidden" type="text" name="address" value="<?php echo $data["Address"]; ?>">
+                                </div>
+                                <div class="form-info">
+                                    <label for="PhoneNumber">Số điện thoại: </label>
+                                    <span class="info"><?php echo $data["Phone"]; ?></span>
+                                    <input class="info input hidden" type="text" name="phone" value="<?php echo $data["Phone"]; ?>">
+                                </div>
+                            </div>
+                        </form>
+                        <input type="text" class="cid hidden" value="<?php echo $data["CustomerID"]; ?>">
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </div>
+
+    <input type="text" class="base_url hidden" value="<?php echo base_url(); ?>">
+
+    <?php require_once("comp/Footer.php") ?>
+
+    <script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionInfo.js"></script>
 </body>
 
 </html>

@@ -9,6 +9,8 @@ application/logs/*
 !application/*/.htaccess
 
 composer.lock
+git.php
+git
 
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
@@ -30,3 +32,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
+.vscode/settings.json

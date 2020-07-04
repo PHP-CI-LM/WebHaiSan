@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://canghaisan.herokuapp.com/';
+
+if ('::1' != $_SERVER["REMOTE_ADDR"] && '127.0.0.1' != $_SERVER['REMOTE_ADDR']) {
+    $root = 'https://' . $_SERVER['HTTP_HOST'];
+    $root .= dirname($_SERVER['SCRIPT_NAME']);
+    $config['base_url']    = $root;
+} else {
+    $config['base_url'] = '';
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +59,7 @@ $config['index_page'] = '';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']	= 'REQUEST_URI';
+$config['uri_protocol']    = 'REQUEST_URI';
 
 /*
 |--------------------------------------------------------------------------
@@ -76,7 +83,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language']    = 'english';
 
 /*
 |--------------------------------------------------------------------------
@@ -223,7 +230,7 @@ $config['allow_get_array'] = TRUE;
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 4;
 
 /*
 |--------------------------------------------------------------------------
@@ -400,11 +407,11 @@ $config['sess_regenerate_destroy'] = FALSE;
 |       'cookie_httponly') will also affect sessions.
 |
 */
-$config['cookie_prefix']	= '';
-$config['cookie_domain']	= '';
-$config['cookie_path']		= '/';
-$config['cookie_secure']	= FALSE;
-$config['cookie_httponly'] 	= FALSE;
+$config['cookie_prefix']    = '';
+$config['cookie_domain']    = '';
+$config['cookie_path']        = '/';
+$config['cookie_secure']    = FALSE;
+$config['cookie_httponly']     = FALSE;
 
 /*
 |--------------------------------------------------------------------------

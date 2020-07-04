@@ -1,7 +1,7 @@
     <header>
         <div class="container toplink">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12" style="display: flex;justify-content: space-between;">
                     <span class="phone">
                         <i class="fa fa-phone"></i>
                         Liên hệ:
@@ -27,9 +27,9 @@
                         $strSearch = $query;
                     }
                     ?>
-                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-ms-8">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-ms-8 input-search">
                         <form action="<?php echo base_url() ?>tim-kiem.html" method="GET" class="search-bar clearfix" id="search-textbox\">
-                            <input name="query" type="text" id="Search" value="<?php echo $strSearch ?>" placeholder="Nhập thứ muốn tìm ..." style="border: 1px solid #dcdcdc; border-radius: 0;"></input> <span><button type="submit">
+                            <input name="query" type="text" autocomplete="off" id="Search" value="<?php echo $strSearch ?>" placeholder="Nhập thứ muốn tìm ..." style="border: 1px solid #dcdcdc; border-radius: 0;"></input> <span><button type="submit">
                                     <i class="fa fa-search" style="margin-top: 0"></i>
                                 </button></span>
                         </form>
@@ -44,15 +44,21 @@
                                     <a href="javascript:void(0)">
                                         <i class="fa fa-user"></i>
                                         <span class="title">
-                                            <span>Đăng nhập</span>
-                                            <br>
-                                            <span style="font-size: 1.15rem; font-weight: 500;">Tài khoản</span>
+                                            <?php
+                                            $user = $this->session->tempdata('user');
+                                            if (null == $user) {
+                                                echo '<span>Đăng nhập</span><br>';
+                                                echo '<span style="font-size: 1.15rem; font-weight: 500;">Đăng ký</span>';
+                                            } else {
+                                                echo '<span>Thông tin</span><br>';
+                                                echo '<span style="font-size: 1.15rem; font-weight: 500;">Đăng xuất</span>';
+                                            }
+                                            ?>
                                         </span>
                                     </a>
                                 </span>
                                 <div class="right-dropdown-content">
                                     <?php
-                                    $user = $this->session->tempdata('user');
                                     if ($user === null) {
                                         echo '<a class="item" href="' . base_url() . 'dang-nhap.html?backUrl=' . urlencode(current_url()) . '">Đăng nhập</a>';
                                         echo '<a class="item" href="' . base_url() . 'dang-ky-thanh-vien.html">Đăng ký tài khoản</a>';
@@ -66,7 +72,7 @@
                             <li class="icon cart-icon">
                                 <span>
                                     <a href="<?php echo base_url() ?>gio-hang.html">
-                                        <i class="fa fa-briefcase" style="color: #363636"></i>
+                                        <i class="fa fa-shopping-cart" style="color: #363636"></i>
                                         <span class="title">Giỏ hàng</span>
                                     </a>
                                 </span>
@@ -98,7 +104,7 @@
                                 echo "<li class=\"nav-item nav-item-lv1 active\"><a class=\"nav-link\" href=\"" . base_url() . "\">Trang chủ</a></li>";
                                 echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"" . base_url() . "chinh-sach.html\">Chính sách</a></li>";
                             } else
-                            if(isset($page) && $page == 'Policy') {
+                            if (isset($page) && $page == 'Policy') {
                                 echo "<li class=\"nav-item nav-item-lv1\"><a class=\"nav-link\" href=\"" . base_url() . "\">Trang chủ</a></li>";
                                 echo "<li class=\"nav-item nav-item-lv1 active\"><a class=\"nav-link\" href=\"" . base_url() . "chinh-sach.html\">Chính sách</a></li>";
                             }
@@ -109,29 +115,88 @@
                                 <i class="fa fa-align-justify"></i>
                             </button>
                             <div class="toggle-content">
+                                <div class="mini-icon-bar">
+                                    <?php if (null == $user) {
+                                        echo '<a href="' . base_url() . 'dang-nhap.html" title="Đăng nhập"><i class="fa fa-sign-in"></i></a>';
+                                        echo '<a href="' . base_url() . 'dang-ky-thanh-vien.html" title="Đăng ký thành viên"><i class="fa fa-user-plus "></i></a>';
+                                        echo '<a href="' . base_url() . 'gio-hang.html" title="Giỏ hàng"><i class="fa fa-shopping-cart"></i></a>';
+                                    } else {
+                                        echo '<a href="' . base_url() . 'user/thong-tin-tai-khoan.html" title="Thông tin tài khoản"><i class="fa fa-user-plus "></i></a>';
+                                        echo '<a href="' . base_url() . 'dang-xuat.html" title="Đăng xuất"><i class="fa fa-sign-out"></i></a>';
+                                        echo '<a href="' . base_url() . 'gio-hang.html" title="Giỏ hàng"><i class="fa fa-shopping-cart "></i></a>';
+                                    }
+                                    ?>
+                                </div>
                                 <?php
-                                echo "<a class=\"toggle-item\" href=\"". base_url() ."\">Trang chủ</a>";
-                                echo "<a class=\"toggle-item\" href=\"". base_url() ."chinh-sach.html\">Chính sách</a>";
+                                echo "<a class=\"toggle-item\" href=\"" . base_url() . "\">Trang chủ</a>";
+                                echo "<a class=\"toggle-item\" href=\"" . base_url() . "chinh-sach.html\">Chính sách</a>";
+                                echo "<a class=\"toggle-item\" href=\"" . base_url() . "kiem-tra-don-hang.html\">Kiểm tra đơn hàng</a>";
                                 ?>
+                                <span class="toggle-content toggle-item has-child">Danh mục sản phẩm
+                                    <a class="toggle-item" href="<?php echo base_url() ?>category/ca-bien.html">
+                                        <span style="background: url('<?=base_url()?>/static/image/icon/fish.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
+                                        Cá biển
+                                    </a>
+                                    <a class="toggle-item" href="<?php echo base_url() ?>category/tom.html">
+                                        <span style="background: url('<?=base_url()?>/static/image/icon/shrimp.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
+                                        Tôm
+                                    </a>
+                                    <a class="toggle-item" href="<?php echo base_url() ?>category/muc.html">
+                                        <span style="background: url('<?=base_url()?>/static/image/icon/cuttle.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
+                                        Mực - Bạch tuộc
+                                    </a>
+                                    <a class="toggle-item" href="<?php echo base_url() ?>category/so.html">
+                                        <span style="background: url('<?=base_url()?>/static/image/icon/scallop.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
+                                        Ngao - sò
+                                    </a>
+                                    <a class="toggle-item" href="<?php echo base_url() ?>category/oc.html">
+                                        <span style="background: url('<?=base_url()?>/static/image/icon/snail.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
+                                        Ốc
+                                    </a>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
+        <div class="over"></div>
     </header>
     <script type="text/javascript">
         $(document).ready(function() {
             $("#btn-toggle").click(function() {
-                var height = $("#btn-toggle").next().css("height");
-                if (height == '0px') {
-                    $("#btn-toggle").next().animate({
-                        "height": "50%"
-                    }, 450);
+                // Enable toggle content
+                $("#btn-toggle").next().animate({
+                    "left": "0"
+                }, 100);
+                $("#btn-toggle").next().animate({
+                    "width": "300px"
+                }, 100);
+                $('.over').css({
+                    "height": "100%"
+                });
+            });
+
+            $(".over").click(function() {
+                // Disable toggle content
+                $("#btn-toggle").next().animate({
+                    "left": "-2px"
+                }, 100);
+                $("#btn-toggle").next().animate({
+                    "width": "0px"
+                }, 100);
+                $('.over').css({
+                    "height": "0"
+                });
+            });
+
+            $('.toggle-item.has-child').on('click', function(event) {
+                var element = event.target;
+                var height = $(element).css('height');
+                if ('40px' == height) {
+                    element.style.setProperty('height', '270px');
                 } else {
-                    $("#btn-toggle").next().animate({
-                        "height": "0px"
-                    }, 450);
+                    element.style.setProperty('height', '40px');
                 }
             });
         });

@@ -12,18 +12,10 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo public_url() ?>/crown/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo public_url() ?>/css/css.css" media="screen" />
 
-
-	<script type="text/javascript">
-		var admin_url = '';
-		var base_url = '';
-		var public_url = '';
-	</script>
-
 	<script type="text/javascript" src="<?php echo public_url() ?>/js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="<?php echo public_url() ?>	/js/jquery/jquery-ui.min.js"></script>
 
 	<script type="text/javascript" src="<?php echo public_url() ?>/crown/js/plugins/spinner/jquery.mousewheel.js"></script>
-
 	<script type="text/javascript" src="<?php echo public_url() ?>/crown/js/plugins/forms/uniform.js"></script>
 	<script type="text/javascript" src="<?php echo public_url() ?>/crown/js/plugins/forms/jquery.tagsinput.min.js"></script>
 	<script type="text/javascript" src="<?php echo public_url() ?>/crown/js/plugins/forms/autogrowtextarea.js"></script>
@@ -62,180 +54,14 @@
 <body>
 
 	<!-- Left side content -->
-	<div id="left_content">
-		<div id="leftSide" style="padding-top:30px;">
-
-			<!-- Account panel -->
-
-			<div class="sideProfile">
-				<a href="#" title="" class="profileFace"><img width="40" src="<?php echo public_url() ?>/images/user.png" /></a>
-				<span>Xin chào: <strong>admin!</strong></span>
-				<span>ADMIN</span>
-				<div class="clear"></div>
-			</div>
-			<div class="sidebarSep"></div>
-			<!-- Left navigation -->
-
-			<ul id="menu" class="nav">
-
-				<li class="home">
-
-					<a href="<?php echo base_url()?>admin" class="active" id="current">
-						<span>Bảng điều khiển</span>
-						<strong></strong>
-					</a>
-
-
-				</li>
-				<li class="tran">
-
-					<a href="admin/tran.html" class=" exp">
-						<span>Quản lý bán hàng</span>
-						<strong>1</strong>
-					</a>
-
-					<ul class="sub">
-						<!-- <li>
-							<a href="admin/tran.html">
-								Giao dịch </a>
-						</li> -->
-						<li>
-							<a href="<?php echo base_url()?>admin/order.html">
-								Đơn hàng sản phẩm </a>
-						</li>
-					</ul>
-
-				</li>
-				<li class="product">
-
-					<a href="<?php echo base_url() ?>admin/product.html" class=" exp">
-						<span>Sản phẩm</span>
-						<strong>1</strong>
-					</a>
-
-					<ul class="sub">
-						<li>
-							<a href="<?php echo base_url() ?>admin/product.html">
-								Sản phẩm </a>
-						</li>
-						<!-- <li>
-							<a href="admin/cat.html">
-								Danh mục </a>
-						</li>
-						<li>
-							<a href="admin/comment.html">
-								Phản hồi </a>
-						</li> -->
-					</ul>
-
-				</li>
-				<li class="account">
-
-					<a href="<?php echo base_url() ?>admin/user.html" class=" exp">
-						<span>Tài khoản</span>
-						<strong>1</strong>
-					</a>
-
-					<ul class="sub">
-						<!-- <li>
-							<a href="admin/admin.html">
-								Ban quản trị </a>
-						</li>
-						<li>
-							<a href="admin/admin_group.html">
-								Nhóm quản trị </a>
-						</li> -->
-						<li>
-							<a href="user.html">
-								Thành viên </a>
-						</li>
-					</ul>
-
-				</li>
-				<!-- <li class="support">
-
-					<a href="admin/support.html" class=" exp">
-						<span>Hỗ trợ và liên hệ</span>
-						<strong>2</strong>
-					</a>
-
-					<ul class="sub">
-						<li>
-							<a href="admin/support.html">
-								Hỗ trợ </a>
-						</li>
-						<li>
-							<a href="admin/contact.html">
-								Liên hệ </a>
-						</li>
-					</ul>
-
-				</li> -->
-				<!-- <li class="content">
-
-					<a href="admin/content.html" class=" exp">
-						<span>Nội dung</span>
-						<strong>4</strong>
-					</a>
-
-					<ul class="sub">
-						<li>
-							<a href="admin/slide.html">
-								Slide </a>
-						</li>
-						<li>
-							<a href="admin/news.html">
-								Tin tức </a>
-						</li>
-						<li>
-							<a href="admin/info.html">
-								Trang thông tin </a>
-						</li>
-						<li>
-							<a href="admin/video.html">
-								Video </a>
-						</li>
-					</ul>
-
-				</li> -->
-
-			</ul>
-
-		</div>
-		<div class="clear"></div>
-	</div>
+	<?php require("comp/nav.php")?>
 
 
 	<!-- Right side -->
 	<div id="rightSide">
 
 		<!-- Account panel top -->
-
-		<div class="topNav">
-			<div class="wrapper">
-				<div class="welcome">
-					<span>Xin chào: <b>admin!</b></span>
-				</div>
-
-				<div class="userNav">
-					<ul>
-						<li><a href="" target="_blank">
-								<img style="margin-top:7px;" src="<?php echo public_url() ?>/images/icons/light/home.png" />
-								<span>Trang chủ</span>
-							</a></li>
-
-						<!-- Logout -->
-						<li><a href="<?php echo base_url()?>admin/logout.html">
-								<img src="<?php echo public_url() ?>/images/icons/topnav/logout.png" alt="" />
-								<span>Đăng xuất</span>
-							</a></li>
-
-					</ul>
-				</div>
-
-				<div class="clear"></div>
-			</div>
-		</div>
+		<?php require("comp/topNav.php")?>
 
 		<!-- Main content -->
 		<script type="text/javascript">
@@ -294,7 +120,7 @@
 
 				<div class="horControlB menu_action">
 					<ul>
-						<li><a href="<?php echo base_url() ?>admin/add-product.html">
+						<li><a href="<?php echo base_url() ?>ci-admin/add-product.html">
 								<img src="<?php echo public_url() ?>images/icons/control/16/add.png" />
 								<span>Thêm mới</span>
 							</a></li>
@@ -330,14 +156,14 @@
 					<span class="titleIcon"><input type="checkbox" id="titleCheck" name="titleCheck" /></span>
 					<h6>
 						Danh sách sản phẩm </h6>
-					<div class="num f12">Số lượng: <b><?php echo $data2; ?></b></div>
+					<div class="num f12">Số lượng: <b><?php echo $nums_row; ?></b></div>
 				</div>
 
 				<table cellpadding="0" cellspacing="0" width="100%" class="sTable mTable myTable" id="checkAll">
 
 					<thead class="filter">
 						<tr>
-							<td colspan="6">
+							<td colspan="8">
 								<form class="list_filter form" action="admin/product.html" method="get">
 									<table cellpadding="0" cellspacing="0" width="80%">
 										<tbody>
@@ -360,9 +186,9 @@
 													</select>
 												</td>
 
-												<td style='width:150px'>
+												<td style='width:150px; float: right'>
 													<a href="javascript:void(0)" class="button blueB" style="padding: 7px 18px 8px 18px;color: black" onclick='fillterProduct(this)' ;>LỌC</a>
-													<input type="reset" class="basic" value="Reset" onclick="window.location.href = 'index.php/admin/product.html'; ">
+													<!-- <input type="reset" class="basic" value="Reset" onclick="window.location.href = 'index.php/admin/product.html'; "> -->
 												</td>
 
 											</tr>
@@ -379,6 +205,8 @@
 							<td style="width:60px;">Mã số</td>
 							<td>Tên</td>
 							<td>Giá</td>
+							<td style="width:50px;">Lượt xem</td>
+							<td style="width:50px;">Lượt bán</td>
 							<td style="width:75px;">Ngày tạo</td>
 							<td style="width:120px;">Hành động</td>
 						</tr>
@@ -386,15 +214,13 @@
 
 					<tfoot class="auto_check_pages">
 						<tr>
-							<td colspan="6">
+							<td colspan="8">
 								<div class="list_action itemActions">
 									<!-- <a href="#submit" id="submit" class="button blueB" url="admin/product/del_all.html">
 										<span style='color:white;'>Xóa hết</span>
 									</a> -->
 								</div>
-								<div class='pagination'>
-									<?php echo $this->pagination->create_links() ?>
-								</div>
+								<?php echo $paging_links ?>
 							</td>
 						</tr>
 					</tfoot>
@@ -410,10 +236,10 @@
 								echo "<a href=\"" . base_url() . "admin/update-product.html/" . $row["id_product"] . "\" class=\"tipS\" title=\"\" target=\"_blank\"><b>" . $row["name_product"] . "</b></a>";
 								echo "<div class=\"f11\">Đã bán: " . $row["count_buy"] . " | Xem: " . $row["count_view"] . " </div></td>";
 								echo "<td class=\"textR\">" . number_format($row["price"]) . " đ</td>";
-								echo "<td class=\"textC\">" . $row["importDate"] . "</td>";
+								echo "<td class=\"textC\">". $row["count_view"] ."</td>";
+								echo "<td class=\"textC\">". $row["count_buy"] ."</td>";
+								echo "<td class=\"textC\">" . toDatetime($row["importDate"]) . "</td>";
 								echo "<td class=\"option textC\">";
-								//echo "<a href=\"\" title=\"Gán là nhạc tiêu biểu\" class=\"tipE\"><img src=\"" . public_url() . "/images/icons/color/star.png" . "\" /></a>";
-								//echo "<a href=\"product/view/9.html\" target='_blank' class='tipS' title=\"Xem chi tiết sản phẩm\"><img src=\"" . public_url() . "/images/icons/color/view.png" . "\" /></a>";
 								echo "<a href=\"" . base_url() . "admin/update-product.html/" . $row["id_product"] . "\" title=\"Chỉnh sửa\" class=\"tipS\"><img src=\"" . public_url() . "/images/icons/color/edit.png" . "\" /></a>";
 								echo "<a href=\"javascript:void(0)\" title=\"Xóa\" class=\"tipS\" onclick='deleteProduct(this)'><img src=\"" . public_url() . "/images/icons/color/delete.png" . "\" /></a></td></tr>";
 							}
@@ -440,7 +266,7 @@
 		function deleteProduct(selector) {
 			//Xác thực xóa dữ liệu
 			$.ajax({
-				url: "<?php echo base_url() ?>admin/delete-product.html/save",
+				url: "<?php echo base_url() ?>ci-admin/delete-product.html/save",
 				type: "post",
 				dataType: "text",
 				data: {
@@ -466,7 +292,7 @@
 
 
 			$.ajax({
-				url: "<?php echo base_url() ?>admin/fill-product.html",
+				url: "<?php echo base_url() ?>ci-admin/fill-product.html",
 				type: "post",
 				dataType: "text",
 				data: {
@@ -491,11 +317,23 @@
 								'<tr class="row_9">' +
 								'<td><div class="checker" id="uniform-undefined"><span><input type="checkbox" name="id[]" value="' + product["id_product"] + '" style="opacity: 0;"></span></div></td>' +
 								'<td class="textC">' + product["id_product"] + '</td>' +
-								'<td><div class="image_thumb"><img src="<?php echo base_url()."images/"?>' + product["image_link"] + '" height="50"><div class="clear"></div></div><a href="http://localhost/WebHaiSan-master/WebHaiSan-master/admin/update-product.html/' + product["id_product"] + '" class="tipS" target="_blank" original-title=""><b>' + product["name_product"] + '</b></a><div class="f11">Đã bán: ' + product["count_buy"] + ' | Xem: ' + product["count_view"] + ' </div></td>' +
+								'<td><div class="image_thumb"><img src="<?php echo base_url()."images/"?>' + product["image_link"] + '" height="50"><div class="clear"></div></div>' +
+								'<a href="<?php echo base_url() ?>ci-admin/update-product.html/' + product["id_product"] + '" class="tipS" target="_blank" original-title=""><b>' + product["name_product"] + '</b></a><div class="f11">Đã bán: ' + product["count_buy"] + ' | Xem: ' + product["count_view"] + ' </div></td>' +
 								'<td class="textR">265,000 đ</td><td class="textC">' + product["importDate"] + '</td>' +
-								'<td class="option textC"><a href="http://localhost/WebHaiSan-master/WebHaiSan-master/admin/update-product.html/' + product["id_product"] + '" class="tipS" original-title="Chỉnh sửa"><img src="http://localhost/WebHaiSan-master/WebHaiSan-master/static_admin//images/icons/color/edit.png"></a><a href="javascript:void(0)" class="tipS" onclick="deleteProduct(this)" original-title="Xóa"><img src="http://localhost/WebHaiSan-master/WebHaiSan-master/static_admin//images/icons/color/delete.png"></a></td></tr>'
+								'<td class="option textC">' +
+								'<a href="<?php echo base_url() ?>ci-dmin/update-product.html/' + product["id_product"] + '" title="Chỉnh sửa" class="tipS">' +
+								'<img src="<?php echo public_url() ?>/images/icons/color/edit.png" />' +
+								'</a>' +
+								'<a href="javascript:void(0)" class="tipS" onclick="deleteProduct(this)" original-title="Xóa">' +
+								'<img src="<?php echo public_url() ?>/images/icons/color/delete.png" />' +
+								'</a>' +
+								'</td></tr>'
 							);
 						});
+						// Remove paging links
+						$('tfoot.auto_check_pages tr').remove();
+						// Update total product
+						document.querySelectorAll('.num b')[0].innerText = result["data"]["products"].length;
 					}
 				}
 			});

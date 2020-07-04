@@ -63,148 +63,7 @@
 <body>
 
 	<!-- Left side content -->
-	<div id="left_content">
-		<div id="leftSide" style="padding-top:30px;">
-
-			<!-- Account panel -->
-
-			<div class="sideProfile">
-				<a href="#" title="" class="profileFace"><img width="40" src="<?php echo public_url() ?>/images/user.png" /></a>
-				<span>Xin chào: <strong>admin!</strong></span>
-				<span>ADMIN</span>
-				<div class="clear"></div>
-			</div>
-			<div class="sidebarSep"></div>
-			<!-- Left navigation -->
-
-			<ul id="menu" class="nav">
-
-				<li class="home">
-
-					<a href="<?php echo base_url()?>admin" class="">
-						<span>Bảng điều khiển</span>
-						<strong></strong>
-					</a>
-
-
-				</li>
-				<li class="tran">
-
-					<a href="tran.html" class=" exp">
-						<span>Quản lý bán hàng</span>
-						<strong>1</strong>
-					</a>
-
-					<ul class="sub">
-						<!-- <li>
-							<a href="tran.html">
-								Giao dịch </a>
-						</li> -->
-						<li>
-							<a href="<?php echo base_url()?>admin/order.html">
-								Đơn hàng sản phẩm </a>
-						</li>
-					</ul>
-
-				</li>
-				<li class="product">
-
-					<a href="product.html" class="active exp" id="current">
-						<span>Sản phẩm</span>
-						<strong>1</strong>
-					</a>
-
-					<ul class="sub">
-						<li class="this">
-							<a href="<?php echo base_url()?>admin/product.html">
-								Sản phẩm </a>
-						</li>
-						<!-- <li>
-							<a href="cat.html">
-								Danh mục </a>
-						</li>
-						<li>
-							<a href="comment.html">
-								Phản hồi </a>
-						</li> -->
-					</ul>
-
-				</li>
-				<li class="account">
-
-					<a href="user.html" class=" exp">
-						<span>Tài khoản</span>
-						<strong>1</strong>
-					</a>
-
-					<ul class="sub">
-						<!-- <li>
-							<a href="admin.html">
-								Ban quản trị </a>
-						</li> -->
-						<!--  <li>
-							<a href="admin_group.html">
-								Nhóm quản trị </a>
-						</li> -->
-						<li>
-							<a href="<?php echo base_url()?>admin/user.html">
-								Thành viên </a>
-						</li> 
-					</ul>
-
-				</li>
-				<!-- <li class="support">
-
-					<a href="support.html" class=" exp">
-						<span>Hỗ trợ và liên hệ</span>
-						<strong>2</strong>
-					</a>
-
-					<ul class="sub">
-						<li>
-							<a href="support.html">
-								Hỗ trợ </a>
-						</li>
-						<li>
-							<a href="contact.html">
-								Liên hệ </a>
-						</li>
-					</ul>
-
-				</li>
-				<li class="content">
-
-					<a href="content.html" class=" exp">
-						<span>Nội dung</span>
-						<strong>4</strong>
-					</a>
-
-					<ul class="sub">
-						<li>
-							<a href="slide.html">
-								Slide </a>
-						</li>
-						<li>
-							<a href="news.html">
-								Tin tức </a>
-						</li>
-						<li>
-							<a href="info.html">
-								Trang thông tin </a>
-						</li>
-						<li>
-							<a href="video.html">
-								Video </a>
-						</li>
-					</ul>
-
-				</li> -->
-
-			</ul>
-
-		</div>
-		<div class="clear"></div>
-	</div>
+	<?php require("comp/nav.php")?>
 
 
 	<!-- Right side -->
@@ -212,31 +71,7 @@
 
 		<!-- Account panel top -->
 
-		<div class="topNav">
-			<div class="wrapper">
-				<div class="welcome">
-					<span>Xin chào: <b>admin!</b></span>
-				</div>
-
-				<div class="userNav">
-					<ul>
-						<li><a href="http://localhost/webphp/" target="_blank">
-								<img style="margin-top:7px;" src="<?php echo public_url() ?>/images/icons/light/home.png" />
-								<span>Trang chủ</span>
-							</a></li>
-
-						<!-- Logout -->
-						<li><a href="<?php echo base_url()?>admin/logout.html">
-								<img src="<?php echo public_url() ?>/images/icons/topnav/logout.png" alt="" />
-								<span>Đăng xuất</span>
-							</a></li>
-
-					</ul>
-				</div>
-
-				<div class="clear"></div>
-			</div>
-		</div>
+		<?php require("comp/topNav.php")?>
 
 		<!-- Main content -->
 
@@ -265,7 +100,7 @@
 								<img src="<?php echo public_url() ?>/images/icons/control/16/add.png" />
 								<span>Thêm mới</span>
 							</a></li>
-<!-- 
+						<!-- 
 						<li>
 							<a href="product/?feature=1.html">
 								<img src="<?php echo public_url() ?>/images/icons/control/16/feature.png" />
@@ -292,7 +127,7 @@
 		<div class="wrapper">
 
 			<!-- Form -->
-			<form class="form" id="form" action="<?php echo base_url() ?>admin/add-product.html/save" method="post" enctype="multipart/form-data">
+			<form class="form" id="form" action="<?php echo base_url() ?>ci-admin/add-product.html" method="post" enctype="multipart/form-data">
 				<fieldset>
 					<div class="widget">
 						<div class="title">
@@ -301,56 +136,70 @@
 							// if ($state)
 							// 	echo "<h6>Sửa Sản phẩm</h6>";
 							// else 
-								echo "<h6>Thêm Sản phẩm</h6>";
+							echo "<h6>Thêm Sản phẩm</h6>";
 							?>
 						</div>
 
 						<ul class="tabs">
 							<li><a href="#tab1">Thông tin chung</a></li>
-							<!-- Form <li><a href="#tab2">SEO Onpage</a></li>
-		                <li><a href="#tab3">Bài viết</a></li>-->
-
 						</ul>
 
 						<div class="tab_container">
 							<div id='tab1' class="tab_content pd0">
+								<!-- Name -->
 								<div class="formRow">
 									<label class="formLeft" for="param_name">Tên:<span class="req">*</span></label>
 									<div class="formRight">
-										<span class="oneTwo"><input name="name" id="param_name" _autocheck="true" type="text" required /></span>
+										<span class="oneTwo"><input name="name" id="param_name" _autocheck="true" type="text" autocomplete="off" required /></span>
 										<span name="name_autocheck" class="autocheck"></span>
 										<div name="name_error" class="clear error"></div>
 									</div>
 									<div class="clear"></div>
 								</div>
+
+								<!-- Origin -->
 								<div class="formRow">
 									<label class="formLeft" for="param_name">Nguồn gốc:<span class="req">*</span></label>
 									<div class="formRight">
-										<select name="origin" _autocheck="true" id='param_cat' class="left">
-
-											<!-- kiem tra danh muc co danh muc con hay khong -->
+										<select name="origin" _autocheck="true" id='param_cat' class="left input-origin">
 											<?php
 											if ($data_origin !== null && isset($data_origin) && sizeof($data_origin) > 0)
 												foreach ($data_origin as $row) {
-											?>
+													?>
 												<option value="<?php echo $row["id"] ?>">
 													<?php echo $row["name_origin"] ?> </option>
 											<?php } ?>
+											<option value="-1">-- Thêm nơi nhập --</option>
 										</select>
 										<span name="cat_autocheck" class="autocheck"></span>
 										<div name="cat_error" class="clear error"></div>
 									</div>
+									<div class="clear"></div>
 								</div>
+
+								<!-- Add new origin -->
+								<div class="formRow hidden" id="add-origin">
+									<label class="formLeft" for="param_cat">Thêm nơi nhập:<span class="req">*</span></label>
+									<div class="formRight">
+										<span class="oneTwo"><input name="new_origin" id="param_name" _autocheck="true" type="text" autocomplete="off" /></span>
+										<span name="cat_autocheck" class="autocheck"></span>
+										<div name="cat_error" class="clear error"></div>
+									</div>
+									<div class="clear"></div>
+								</div>
+
+								<!-- Thumbnail -->
 								<div class="formRow">
 									<label class="formLeft" for="param_name">Link hình ảnh:<span class="req">*</span></label>
 									<div class="formRight">
-										<span class="oneTwo"><input name="linkanh" id="param_name" _autocheck="true" type="text" required /></span>
+										<span class="oneTwo">
+											<input name="img" id="param_name" _autocheck="true" type="file" accept="image/png, image/jpeg, image/webp" autocomplete="off" required />
+										</span>
 										<span name="name_autocheck" class="autocheck"></span>
 										<div name="name_error" class="clear error"></div>
 									</div>
 									<div class="clear"></div>
 								</div>
-
 
 								<!-- Price -->
 								<div class="formRow">
@@ -360,7 +209,7 @@
 									</label>
 									<div class="formRight">
 										<span class="oneTwo">
-											<input name="price" style='width:100px' id="param_price" class="format_number" _autocheck="true" type="text" required />
+											<input name="price" style='width:100px' id="param_price" class="format_number" _autocheck="true" type="text" autocomplete="off" required />
 											<img class='tipS' title='Giá bán sử dụng để giao dịch' style='margin-bottom:-8px' src='<?php echo public_url() ?>/crown/images/icons/notifications/information.png' />
 										</span>
 										<span name="price_autocheck" class="autocheck"></span>
@@ -369,7 +218,7 @@
 									<div class="clear"></div>
 								</div>
 
-								<!-- Price -->
+								<!-- Promotion -->
 								<div class="formRow">
 									<label class="formLeft" for="param_discount">
 										Giảm giá (%)
@@ -377,7 +226,7 @@
 									</label>
 									<div class="formRight">
 										<span>
-											<input name="discount" style='width:100px' id="param_discount" class="format_number" type="text" max="99" min="0" />
+											<input name="discount" style='width:100px' id="param_discount" class="format_number" type="text" max="99" min="0" autocomplete="off" />
 											<img class='tipS' title='Số tiền giảm giá' style='margin-bottom:-8px' src='<?php echo public_url() ?>/crown/images/icons/notifications/information.png' />
 										</span>
 										<span name="discount_autocheck" class="autocheck"></span>
@@ -385,45 +234,47 @@
 									</div>
 									<div class="clear"></div>
 								</div>
+								
+								<!-- Category -->
 								<div class="formRow">
 									<label class="formLeft" for="param_cat">Thể loại:<span class="req">*</span></label>
 									<div class="formRight">
-										<select name="cat" _autocheck="true" id='param_cat' class="left">
-
-											<!-- kiem tra danh muc co danh muc con hay khong -->
-
+										<select name="cat" _autocheck="true" id='param_cat' class="left input-category" style="text-transform: capitalize;">
 											<?php
 											if ($data_category !== null && isset($data_category) && sizeof($data_category) > 0)
 												foreach ($data_category as $row) {
-											?>
+													?>
 												<option value="<?php echo $row["id_category"] ?>">
 													<?php echo $row["name_category"] ?> </option>
 											<?php } ?>
+											<option value="-1">-- Thêm mới --</option>
 										</select>
 										<span name="cat_autocheck" class="autocheck"></span>
 										<div name="cat_error" class="clear error"></div>
 									</div>
 									<div class="clear"></div>
 								</div>
-								<div class="formRow">
-									<label class="formLeft" for="param_name">Kích thước:<span class="req">*</span></label>
+
+								<!-- Add Category -->
+								<div class="formRow hidden" id="add-category">
+									<label class="formLeft" for="param_cat">Thêm loại mới:<span class="req">*</span></label>
 									<div class="formRight">
-										<span class="oneTwo"><input name="size" id="param_name" _autocheck="true" type="text" required /></span>
-										<span name="name_autocheck" class="autocheck"></span>
-										<div name="name_error" class="clear error"></div>
+										<span class="oneTwo"><input name="new_category" id="param_name" _autocheck="true" type="text" autocomplete="off"/></span>
+										<span name="cat_autocheck" class="autocheck"></span>
+										<div name="cat_error" class="clear error"></div>
 									</div>
 									<div class="clear"></div>
 								</div>
+
+								<!-- Unit -->
 								<div class="formRow">
 									<label class="formLeft" for="param_cat">Đơn vị:<span class="req">*</span></label>
 									<div class="formRight">
 										<select name="unit" _autocheck="true" id='param_cat' class="left">
-
-											<!-- kiem tra danh muc co danh muc con hay khong -->
 											<?php
 											if ($data_unit !== null && isset($data_unit) && sizeof($data_unit) > 0)
 												foreach ($data_unit as $row) {
-											?>
+													?>
 												<option value="<?php echo $row["id_unit"] ?>">
 													<?php echo $row["name_unit"] ?> </option>
 											<?php } ?>
@@ -433,6 +284,19 @@
 									</div>
 									<div class="clear"></div>
 								</div>
+
+								<!-- Size -->
+								<div class="formRow">
+									<label class="formLeft" for="param_name">Kích thước:<span class="req">*</span></label>
+									<div class="formRight">
+										<span class="oneTwo"><input type="number" step="0.1" name="size" id="param_name" _autocheck="true" type="text" autocomplete="off" required style="width: 50px;" value="1.0"/></span>
+										<span name="name_autocheck" class="autocheck"></span>
+										<div name="name_error" class="clear error"></div>
+									</div>
+									<div class="clear"></div>
+								</div>
+								
+								<!-- Description -->
 								<div class="formRow">
 									<label class="formLeft">Mô tả:</label>
 									<div class="formRight">
@@ -464,6 +328,38 @@
 		</div>
 	</div>
 	<div class="clear"></div>
+
+	<script>
+		$(document).ready(function() {
+			$('.input-origin').change(function() {
+				var val = $(this).val();
+				if (-1 == val) {
+					// Show add category input
+					$('#add-origin').removeClass('hidden');
+					$('#add-origin input').prop('required', true);
+					$('#add-origin input').val('');
+				} else {
+					// Hide add category input
+					$('#add-origin').addClass('hidden');
+					$('#add-origin input').prop('required', false);
+				}
+			});
+
+			$('.input-category').change(function() {
+				var val = $(this).val();
+				if (-1 == val) {
+					// Show add category input
+					$('#add-category').removeClass('hidden');
+					$('#add-category input').prop('required', true);
+					$('#add-category input').val('');
+				} else {
+					// Hide add category input
+					$('#add-category').addClass('hidden');
+					$('#add-category input').prop('required', false);
+				}
+			});
+		});
+	</script>
 </body>
 
 </html>

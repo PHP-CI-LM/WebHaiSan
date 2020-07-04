@@ -26,4 +26,10 @@ class Order_Detail_Model extends CI_Model
             return $idOrder;
         }
     }
+
+    public function deleteOrderDetail($orderID)
+    {
+        $this->db->delete('orders_detail', array('OrderID' => $orderID));
+        return $this->db->affected_rows();
+    }
 }

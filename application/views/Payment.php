@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Xác nhận đơn hàng</title>
+		<title><?php echo app_title()?> - Xác nhận đơn hàng</title>
 		<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" />
@@ -102,13 +102,13 @@
 											<select class="form-control" onchange="changedDistrict()" required="">
 												<option value="number:0" label="Vui lòng chọn huyện" selected>Vui lòng chọn huyện</option>
 											</select>
-											<img class="wait" src="http://localhost/WebBanHang/static/image/gif/loading.gif">
+											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif">
 										</div>
 										<div class="form-group">
 											<select class="form-control" required="">
 												<option value="number:0" label="Vui lòng chọn xã/phường" selected>Vui lòng chọn xã/phường</option>
 											</select>
-											<img class="wait" src="http://localhost/WebBanHang/static/image/gif/loading.gif">
+											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif">
 										</div>
 										<textarea class="form-control" rows="4" placeholder="Ghi chú đơn hàng" styte="resize:none;"></textarea>
 									</div>
@@ -198,6 +198,8 @@
 			</div>
 		</div>
 
+		<?php require_once("comp/Footer.php") ?>
+
 		<script type="text/javascript">
 			String.prototype.replaceAll = function(search, replacement) {
 				var target = this;
@@ -237,7 +239,10 @@
 						data: packData()
 					},
 					success: res => {
-						let data = JSON.parse(res);
+						let data = JSON.parse(JSON.stringify(res));
+						if (typeof data == 'string' || data instanceof String) {
+							data = JSON.parse(res);
+						}
 						if (data["status"] == true) {
 							alert("Đơn hàng của bạn đã được tiếp nhận. Chúng tôi sẽ liên hệ lại ngay cho bạn để xác nhận đơn hàng");
 							deleteAllCookie();

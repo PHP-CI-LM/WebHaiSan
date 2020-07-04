@@ -127,6 +127,15 @@
     #number {
         text-align: center;
     }
+
+    #info {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .breadcrumb {
+        padding-top: 0;
+    }
 }
 
 @media ( max-width :991px) {

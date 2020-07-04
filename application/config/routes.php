@@ -51,42 +51,65 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
+// Test url
+$route['gglogin'] = 'Account/gg_authenticate';
+
 // Client pages route
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
 $route['chinh-sach.html'] = 'Home/policy';
 $route['product/(:any).html'] = 'Product/index/$1';
-$route['category/ca-bien.html'] = 'category/index/1';
-$route['category/tom.html'] = 'category/index/3';
-$route['category/muc.html'] = 'category/index/4';
-$route['category/so.html'] = 'category/index/7';
-$route['category/oc.html'] = 'category/index/8';
+$route['category/ca-bien.html'] = 'category/index/1/-1';
+$route['category/tom.html'] = 'category/index/3/-1';
+$route['category/muc.html'] = 'category/index/4/-1';
+$route['category/so.html'] = 'category/index/7/-1';
+$route['category/oc.html'] = 'category/index/8/-1';
+$route['category/cua.html'] = 'category/index/9/-1';
+$route['category/other.html'] = 'category/index/10/-1';
+$route['category/ca-bien.html/(:num)'] = 'category/index/1/$1';
+$route['category/tom.html/(:num)'] = 'category/index/3/$1';
+$route['category/muc.html/(:num)'] = 'category/index/4/$1';
+$route['category/so.html/(:num)'] = 'category/index/7/$1';
+$route['category/oc.html/(:num)'] = 'category/index/8/$1';
+$route['category/cua.html/(:num)'] = 'category/index/9/$1';
+$route['category/other.html/(:num)'] = 'category/index/10/$1';
 $route['dang-nhap.html'] = 'Account/login';
 $route['dang-xuat.html'] = 'Account/logout';
 $route['dang-ky-thanh-vien.html'] = 'Account/signup';
 $route['gio-hang.html'] = 'Cart';
-$route['catalog/(:any).html'] = 'Catalog/index/$1';
+$route['catalog/(:any).html'] = 'Catalog/index/-1/$1';
+$route['catalog/(:any).html/(:num)'] = 'Catalog/index/$2/$1';
 $route['thanh-toan.html'] = 'Payment/index';
 $route['xac-nhan-thanh-toan.html']['POST'] = 'Payment/confirm';
 $route['tim-kiem.html'] = 'Product/find';
-$route['user/thong-tin-tai-khoan.html'] = 'Account/index';
+$route['user/thong-tin-tai-khoan.html']['GET'] = 'Account/index';
+$route['user/thong-tin-tai-khoan.html/(:num)']['POST'] = 'Account/updateInfomation/$1';
+$route['user/thong-tin-tai-khoan.html/avatar/(:num)']['POST'] = 'Account/uploadAvatar/$1';
 $route['ket-qua-dat-hang.html'] = 'Payment/result';
 $route['kiem-tra-don-hang.html'] = 'Order/index';
-$route['comment.html']['POST'] = 'Comment/add';
+$route['lich-su-mua-hang.html'] = 'Order/History';
+$route['comment']['POST'] = 'Comment/add';
 $route['fblogin'] = 'User_authentication/index';
+$route['comments']['GET'] = 'Comment/getListcomment';
+$route['order/huy-don-hang.html']['GET'] = 'Order/delete';
 
-// Admin pages route
-$route['admin'] = 'admin_controller/admin/index';
-$route['admin/login.html']['get'] = 'admin_controller/admin/index';
-$route['admin/logout.html']['get'] = 'admin_controller/admin/logout';
-$route['admin/login.html']['post'] = 'admin_controller/admin/login';
-$route['admin/product.html'] = 'admin_controller/product';
-$route['admin/order.html'] = 'admin_controller/order';
-$route['admin/user.html'] = 'admin_controller/user';
-$route['admin/add-product.html'] = 'admin_controller/product/loadviewform';
-$route['admin/add-product.html/save'] = 'admin_controller/product/addProduct';
-$route['admin/update-product.html/(:any)'] = 'admin_controller/product/loadviewform/$1';
-$route['admin/update-product.html/(:any)/save'] = 'admin_controller/product/UpdateProduct/$1';
-$route['admin/delete-product.html/save']['post'] = 'admin_controller/product/DeleteProduct';
-$route['admin/fill-product.html']['post'] = 'admin_controller/product/FillProduct';
+// admin pages route
+$route['ci-admin'] = 'admin_controller/admin/index';
+$route['ci-admin/login.html']['get'] = 'admin_controller/admin/index';
+$route['ci-admin/logout.html']['get'] = 'admin_controller/admin/logout';
+$route['ci-admin/login.html']['post'] = 'admin_controller/admin/login';
+$route['ci-admin/product.html']['get'] = 'admin_controller/product';
+$route['ci-admin/product_(:num).html']['get'] = 'admin_controller/product/index/$1';
+$route['ci-admin/order.html'] = 'admin_controller/order';
+$route['ci-admin/user.html'] = 'admin_controller/user';
+$route['ci-admin/add-product.html']['get'] = 'admin_controller/product/loadviewform';
+$route['ci-admin/add-product.html']['post'] = 'admin_controller/product/addProduct';
+$route['ci-admin/update-product.html/(:any)'] = 'admin_controller/product/loadviewform/$1';
+$route['ci-admin/update-product.html/(:any)/save'] = 'admin_controller/product/UpdateProduct/$1';
+$route['ci-admin/delete-product.html/save']['post'] = 'admin_controller/product/DeleteProduct';
+$route['ci-admin/fill-product.html']['post'] = 'admin_controller/product/FillProduct';
+$route['ci-admin/comment.html'] = 'admin_controller/comment';
+$route['ci-admin/comment/filter.html']['get'] = 'admin_controller/comment/filter';
+$route['ci-admin/comment/filter.html/add']['get'] = 'admin_controller/comment/addFilter';
+$route['ci-admin/comment/filter.html/remove']['get'] = 'admin_controller/comment/removeFilter';

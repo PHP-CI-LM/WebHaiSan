@@ -14,14 +14,23 @@ class Order_Model extends CI_Model {
         return $query->result_array();
     }
 
-    public function getOrder($id, $orderDate) {
-        $query = $this->db->query(
-            "SELECT * FROM orders WHERE OrderID = ".$id." And OrderDate = '".$orderDate."';"
-        );
+    public function getOrder($id, $orderDate)
+    {
+        $this->db->where('OrderID', $id);
+        $this->db->where('OrderDate', $orderDate);
+        $query = $this->db->get('orders');
         return $query->result_array();
     }
 
-    public function saveOrder($data = array()) {
+    public function getOrdersOfUser($id)
+    {
+        $this->db->where('AccountID', $id);
+        $result = $this->db->get('orders');
+        return $result->result_array();
+    }
+
+    public function saveOrder($data = array())
+    {
         if ($data == null || sizeof($data) == 0) return false;
         else {
             $this->db->trans_start();
@@ -48,5 +57,19 @@ class Order_Model extends CI_Model {
             $this->db->trans_complete();
             return $result->row()->id;
         }
+    }
+
+    public function isDelete($orderID)
+    {
+        $this->db->where('OrderID', $orderID);
+        $this->db->where('Status', '1');
+        $this->db->from('orders');
+        return ($this->db->count_all_results() == 1);
+    }
+
+    public function deleteOrder($orderID)
+    {
+        $this->db->delete('orders', array('OrderID' => $orderID));
+        return $this->db->affected_rows();
     }
 }

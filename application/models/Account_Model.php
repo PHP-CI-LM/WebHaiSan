@@ -3,12 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Account_Model extends CI_Model {
 
-    public function login($username, $password) {
-        $query = $this->db->query("
-            SELECT fc_login('". $username . "', '" . $password . "') As id;
-        ");
-        $result = $query->row();
-        return $result->id;
+    public function userLogin($username, $password) {
+        $this->db->where('Username', $username);
+        $this->db->where('Password', $password);
+        $this->db->where('id_permission', 2);
+        $this->db->select('AccountID');
+        $query = $this->db->get('accounts');
+        return $query->result_array();
     }
 
     public function loginAdmin($username, $password) {
@@ -20,7 +21,7 @@ class Account_Model extends CI_Model {
 
     public function getAccount($accountID) {
         $query = $this->db->query(
-            "SELECT UserName, avatar FROM accounts WHERE AccountID=" . $accountID . ";"
+            "SELECT UserName FROM accounts WHERE AccountID=" . $accountID . ";"
         );
         return $query->result_array();
     }
@@ -28,9 +29,11 @@ class Account_Model extends CI_Model {
     public function createNewAccount($username, $password) {
         $this->db->trans_start();
         $this->db->query(
-            "CALL sp_addAccount(@id, '". $username ."', '".  $password ."', 2);"
+            "INSERT INTO accounts(UserName, Password, id_permission) VALUES('" . $username . "', '" . $password . "', 2);"
         );
-        $result = $this->db->query("SELECT @id As AccountID");
+        $result = $this->db->query(
+            "SELECT AccountID FROM accounts WHERE UserName = '" . $username ."';"
+        );
         $this->db->trans_complete();
         $row = $result->row();
         return $row->AccountID;

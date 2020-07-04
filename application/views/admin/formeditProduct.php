@@ -63,181 +63,15 @@
 <body>
 
 	<!-- Left side content -->
-	<div id="left_content">
-		<div id="leftSide" style="padding-top:30px;">
-
-			<!-- Account panel -->
-
-			<div class="sideProfile">
-				<a href="#" title="" class="profileFace"><img width="40" src="<?php echo public_url() ?>/images/user.png" /></a>
-				<span>Xin chào: <strong>admin!</strong></span>
-				<span>ADMIN</span>
-				<div class="clear"></div>
-			</div>
-			<div class="sidebarSep"></div>
-			<!-- Left navigation -->
-
-			<ul id="menu" class="nav">
-
-				<li class="home">
-
-					<a href="<?php echo base_url()?>admin" class="">
-						<span>Bảng điều khiển</span>
-						<strong></strong>
-					</a>
-
-
-				</li>
-				<li class="tran">
-
-					<a href="tran.html" class=" exp">
-						<span>Quản lý bán hàng</span>
-						<strong>1</strong>
-					</a>
-
-					<ul class="sub">
-						<!-- <li>
-							<a href="tran.html">
-								Giao dịch </a>
-						</li> -->
-						<li>
-							<a href="<?php echo base_url()?>admin/order.html">
-								Đơn hàng sản phẩm </a>
-						</li>
-					</ul>
-
-				</li>
-				<li class="product">
-
-					<a href="product.html" class="active exp" id="current">
-						<span>Sản phẩm</span>
-						<strong>1</strong>
-					</a>
-
-					<ul class="sub">
-						<li class="this">
-							<a href="<?php echo base_url()?>admin/product.html">
-								Sản phẩm </a>
-						</li>
-						<!-- <li>
-							<a href="cat.html">
-								Danh mục </a>
-						</li>
-						<li>
-							<a href="comment.html">
-								Phản hồi </a>
-						</li> -->
-					</ul>
-
-				</li>
-				<li class="account">
-
-					<a href="user.html" class=" exp">
-						<span>Tài khoản</span>
-						<strong>1</strong>
-					</a>
-
-					<ul class="sub">
-						<!-- <li>
-							<a href="admin.html">
-								Ban quản trị </a>
-						</li>
-						<li>
-							<a href="admin_group.html">
-								Nhóm quản trị </a>
-						</li> -->
-						<li>
-							<a href="<?php echo base_url()?>admin/user.html">
-								Thành viên </a>
-						</li>
-					</ul>
-
-				</li>
-				<!-- <li class="support">
-
-					<a href="support.html" class=" exp">
-						<span>Hỗ trợ và liên hệ</span>
-						<strong>2</strong>
-					</a>
-
-					<ul class="sub">
-						<li>
-							<a href="support.html">
-								Hỗ trợ </a>
-						</li>
-						<li>
-							<a href="contact.html">
-								Liên hệ </a>
-						</li>
-					</ul>
-
-				</li>
-				<li class="content">
-
-					<a href="content.html" class=" exp">
-						<span>Nội dung</span>
-						<strong>4</strong>
-					</a>
-
-					<ul class="sub">
-						<li>
-							<a href="slide.html">
-								Slide </a>
-						</li>
-						<li>
-							<a href="news.html">
-								Tin tức </a>
-						</li>
-						<li>
-							<a href="info.html">
-								Trang thông tin </a>
-						</li>
-						<li>
-							<a href="video.html">
-								Video </a>
-						</li>
-					</ul>
-
-				</li> -->
-
-			</ul>
-
-		</div>
-		<div class="clear"></div>
-	</div>
+	<?php require("comp/nav.php")?>
 
 
 	<!-- Right side -->
 	<div id="rightSide">
 
 		<!-- Account panel top -->
-
-		<div class="topNav">
-			<div class="wrapper">
-				<div class="welcome">
-					<span>Xin chào: <b>admin!</b></span>
-				</div>
-
-				<div class="userNav">
-					<ul>
-						<li><a href="http://localhost/webphp/" target="_blank">
-								<img style="margin-top:7px;" src="<?php echo public_url() ?>/images/icons/light/home.png" />
-								<span>Trang chủ</span>
-							</a></li>
-
-						<!-- Logout -->
-						<li><a href="<?php echo base_url()?>admin/logout.html">
-								<img src="<?php echo public_url() ?>/images/icons/topnav/logout.png" alt="" />
-								<span>Đăng xuất</span>
-							</a></li>
-
-					</ul>
-				</div>
-
-				<div class="clear"></div>
-			</div>
-		</div>
-
+		<?php require("comp/topNav.php")?>
+		
 		<!-- Main content -->
 
 		<script type="text/javascript">
@@ -292,7 +126,7 @@
 		<div class="wrapper">
 
 			<!-- Form -->
-			<form class="form" id="form" action="<?php echo base_url() . "admin/update-product.html/" . $data_product["id_product"] . "/save" ?>" method="post" enctype="multipart/form-data">
+			<form class="form" id="form" action="<?php echo base_url() . "ci-admin/update-product.html/" . $data_product["id_product"] . "/save" ?>" method="post" enctype="multipart/form-data">
 				<fieldset>
 					<div class="widget">
 						<div class="title">

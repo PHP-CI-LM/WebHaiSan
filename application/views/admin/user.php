@@ -62,180 +62,14 @@
 <body>
 
 	<!-- Left side content -->
-	<div id="left_content">
-		<div id="leftSide" style="padding-top:30px;">
-
-			<!-- Account panel -->
-
-			<div class="sideProfile">
-				<a href="#" title="" class="profileFace"><img width="40" src="<?php echo public_url() ?>/images/user.png" /></a>
-				<span>Xin chào: <strong>admin!</strong></span>
-				<span>ADMIN</span>
-				<div class="clear"></div>
-			</div>
-			<div class="sidebarSep"></div>
-			<!-- Left navigation -->
-
-			<ul id="menu" class="nav">
-
-				<li class="home">
-
-					<a href="<?php echo base_url()?>admin" class="active" id="current">
-						<span>Bảng điều khiển</span>
-						<strong></strong>
-					</a>
-
-
-				</li>
-				<li class="tran">
-
-					<a href="admin/tran.html" class=" exp">
-						<span>Quản lý bán hàng</span>
-						<strong>1</strong>
-					</a>
-
-					<ul class="sub">
-						<!-- <li>
-							<a href="admin/tran.html">
-								Giao dịch </a>
-						</li> -->
-						<li>
-							<a href="<?php echo base_url()?>admin/order.html">
-								Đơn hàng sản phẩm </a>
-						</li>
-					</ul>
-
-				</li>
-				<li class="product">
-
-					<a href="admin/product.html" class=" exp">
-						<span>Sản phẩm</span>
-						<strong>1</strong>
-					</a>
-
-					<ul class="sub">
-						<li>
-							<a href="<?php echo base_url()?>admin/product.html">
-								Sản phẩm </a>
-						</li>
-						<!-- <li>
-							<a href="admin/cat.html">
-								Danh mục </a>
-						</li>
-						<li>
-							<a href="admin/comment.html">
-								Phản hồi </a>
-						</li> -->
-					</ul>
-
-				</li>
-				<li class="account">
-
-					<a href="admin/account.html" class=" exp">
-						<span>Tài khoản</span>
-						<strong>1</strong>
-					</a>
-
-					<ul class="sub">
-						<!-- <li>
-							<a href="admin/admin.html">
-								Ban quản trị </a>
-						</li>
-						<li>
-							<a href="admin/admin_group.html">
-								Nhóm quản trị </a>
-						</li> -->
-						<li>
-							<a href="<?php echo base_url()?>admin/user.html">
-								Thành viên </a>
-						</li>
-					</ul>
-
-				</li>
-				<!-- <li class="support">
-
-					<a href="admin/support.html" class=" exp">
-						<span>Hỗ trợ và liên hệ</span>
-						<strong>2</strong>
-					</a>
-
-					<ul class="sub">
-						<li>
-							<a href="admin/support.html">
-								Hỗ trợ </a>
-						</li>
-						<li>
-							<a href="admin/contact.html">
-								Liên hệ </a>
-						</li>
-					</ul>
-
-				</li> -->
-				<!-- <li class="content">
-
-					<a href="admin/content.html" class=" exp">
-						<span>Nội dung</span>
-						<strong>4</strong>
-					</a>
-
-					<ul class="sub">
-						<li>
-							<a href="admin/slide.html">
-								Slide </a>
-						</li>
-						<li>
-							<a href="admin/news.html">
-								Tin tức </a>
-						</li>
-						<li>
-							<a href="admin/info.html">
-								Trang thông tin </a>
-						</li>
-						<li>
-							<a href="admin/video.html">
-								Video </a>
-						</li>
-					</ul>
-
-				</li> -->
-
-			</ul>
-
-		</div>
-		<div class="clear"></div>
-	</div>
+	<?php require("comp/nav.php") ?>
 
 
 	<!-- Right side -->
 	<div id="rightSide">
 
 		<!-- Account panel top -->
-
-		<div class="topNav">
-			<div class="wrapper">
-				<div class="welcome">
-					<span>Xin chào: <b>admin!</b></span>
-				</div>
-
-				<div class="userNav">
-					<ul>
-						<li><a href="" target="_blank">
-								<img style="margin-top:7px;" src="<?php echo public_url() ?>/images/icons/light/home.png" />
-								<span>Trang chủ</span>
-							</a></li>
-
-						<!-- Logout -->
-						<li><a href="<?php echo base_url()?>admin/logout.html">
-								<img src="images/icons/topnav/logout.png" alt="" />
-								<span>Đăng xuất</span>
-							</a></li>
-
-					</ul>
-				</div>
-
-				<div class="clear"></div>
-			</div>
-		</div>
+		<?php require("comp/topNav.php") ?>
 
 		<!-- Main content -->
 		<!-- Common view -->
@@ -249,15 +83,6 @@
 
 				<div class="horControlB menu_action">
 					<ul>
-						<!-- <li><a href="user/add.html">
-								<img src="<?php echo public_url() ?>/images/icons/control/16/add.png" />
-								<span>Thêm mới</span>
-							</a></li>
-
-						<li><a href="user.html">
-								<img src="<?php echo public_url() ?>/images/icons/control/16/list.png" />
-								<span>Danh sách</span>
-							</a></li> -->
 					</ul>
 				</div>
 
@@ -289,24 +114,17 @@
 						<thead>
 							<tr>
 								<td style="width:10px;"><img src="<?php echo public_url() ?>/images/icons/tableArrows.png" /></td>
-								<td style="width:80px;">Mã số</td>
-								<td>Tên</td>
-								<td style="width:10px;">Giới tính</td>
-								<td>Điện thoại</td>
+								<td style="width:45px;">Mã số</td>
+								<td style="width:200px;">Tên</td>
+								<td style="width:45px;">Giới tính</td>
+								<td style="width:100px;">Điện thoại</td>
 								<td style="width:300px;">Địa chỉ</td>
-								<!-- <td style="width:100px;">Hành động</td> -->
 							</tr>
 						</thead>
 
 						<tfoot>
 							<tr>
 								<td colspan="7">
-									<!-- <div class="list_action itemActions">
-										<a href="#submit" id="submit" class="button blueB" url="user/del_all.html">
-											<span style='color:white;'>Xóa hết</span>
-										</a>
-									</div> -->
-
 									<div class='pagination'>
 									</div>
 								</td>
@@ -315,32 +133,23 @@
 						<tbody>
 							<!-- Filter -->
 							<?php
-								if($data==!null && isset($data) && sizeof($data)>0)
-								foreach($data as $row) 
-								{
-							 ?>
-							<tr>
-								<td><input type="checkbox" name="id[]" value="16" /></td>
+							if ($data == !null && isset($data) && sizeof($data) > 0)
+								foreach ($data as $row) {
+									?>
+								<tr>
+									<td><input type="checkbox" name="id[]" value="16" /></td>
 
-								<td class="textC"><?php echo $row['CustomerID']?></td>
-								<td><span title="" class="tipS">
-										<?php echo $row['CustomerName'] ?> </span></td>
-								<td><span title="" class="tipS">
-								<?php echo $row['Sex']?></span></td>
-								<td>
-									<?php echo $row['Phone'] ?></td>
-								<td>
-									<?php echo $row['Address'] ?></td>
-								<!-- <td class="option">
-									<a href="user/edit/16.html" title="Chỉnh sửa" class="tipS ">
-										<img src="<?php echo public_url() ?>/images/icons/color/edit.png" />
-									</a>
-									<a href="user/del/16.html" title="Xóa" class="tipS verify_action">
-										<img src="<?php echo public_url() ?>/images/icons/color/delete.png" />
-									</a>
-								</td> -->
-							</tr>
-								<?php }?>
+									<td class="textC"><?php echo $row['CustomerID'] ?></td>
+									<td><span title="" class="tipS">
+											<?php echo $row['CustomerName'] ?> </span></td>
+									<td><span title="" class="tipS">
+											<?php echo $row['Sex'] ?></span></td>
+									<td>
+										<?php echo $row['Phone'] ?></td>
+									<td>
+										<?php echo $row['Address'] ?></td>
+								</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</form>
