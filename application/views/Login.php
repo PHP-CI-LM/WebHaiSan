@@ -71,7 +71,7 @@
 										</div>
 										<div class="form-group" style="display:block;">
 											<label class="control-label" for="password">Mật khẩu</label>
-											<input type="password" name="password" value="" maxlength="10" placeholder="Password" id="password" class="form-control">
+											<input type="password" name="password" value="" maxlength="20" placeholder="Password" id="password" class="form-control">
 										</div>
 										<input type="submit" value="Đăng nhập" class="btn btn-primary" id="btn-search" style="width: max-content !important">
 										<a class="forget-password" href="#form"><i class="fa fa-question-circle" id="QuenMK"></i></a>
