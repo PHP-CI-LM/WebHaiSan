@@ -161,15 +161,17 @@ class Account extends CI_Controller
         if ($this->session->tempdata('user') !== null) {
             redirect(base_url(), 'auto');
         } else {
+            $this->form_validation->set_error_delimiters('<p style="color: red;">', '</p>');
             $this->form_validation->set_rules('username', 'Username', 'required|max_length[30]');
-            $this->form_validation->set_rules('password', 'Password', 'required|max_length[20]');
+            $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|max_length[20]');
             $this->form_validation->set_rules('email', 'Email', 'callback_validateEmail');
             $this->form_validation->set_rules('customername', 'CustomerName', 'required');
             $this->form_validation->set_rules('address', 'Address', 'required');
             $this->form_validation->set_rules('phone', 'Phone', 'required|max_length[12]');
             $this->form_validation->set_rules('confirm', 'ConfirmPassword', 'required');
-            $this->form_validation->set_message('required', 'Trường {field} không được để trống');
-            $this->form_validation->set_message('max_length', 'Trường {field} không được quá {param} ký tự');
+            $this->form_validation->set_message('required', '{field} không được để trống');
+            $this->form_validation->set_message('min_length', '{field} phải chứa tối thiểu {param} ký tự');
+            $this->form_validation->set_message('max_length', '{field} không được chứa quá {param} ký tự');
             if ($this->input->post('username') === null) {
                 $this->load->view('Signup');
             } elseif ($this->form_validation->run() === false) {
@@ -211,10 +213,10 @@ class Account extends CI_Controller
     public function validateEmail($email)
     {
         if (null == $email || 0 == strlen($email)) {
-            $this->form_validation->set_message('validateEmail', 'Trường {field} không được để trống');
+            $this->form_validation->set_message('validateEmail', '{field} không được để trống');
             return false;
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $this->form_validation->set_message('validateEmail', 'Trường {field} không hợp lệ');
+            $this->form_validation->set_message('validateEmail', '{field} không hợp lệ');
             return false;
         } else {
             return true;
