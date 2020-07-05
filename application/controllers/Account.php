@@ -118,7 +118,7 @@ class Account extends CI_Controller
         validateSession();
         header("Content-Type: Application/Json");
         // Check user logged in
-        if ($this->session->tempdata('user') !== null) {
+        if ($this->session->tempdata('user') == null) {
             $this->sendResponse(0, 'User not login!', []);
             return;
         }

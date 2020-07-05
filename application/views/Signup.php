@@ -65,6 +65,10 @@
 											<label class="control-label" for="NameSignUp" style="flex-basis: 15%; text-align: right;">Tên đăng nhập (*)</label>
 											<input type="text" class="form-control" name="username" value="" placeholder="User name" maxlength="30" autocomplete="on" id="NameSignUp" required style="flex-basis: 85%; max-width: 60%; margin-left: 3rem;">
 										</div>
+										<div class="form-group" style="display:flex;">
+											<label class="control-label" for="Email" style="flex-basis: 15%; text-align: right;">Email (*)</label>
+											<input type="text" class="form-control" name="email" value="" placeholder="Example: user@email.com" maxlength="50" autocomplete="on" id="Email" required style="flex-basis: 85%; max-width: 60%; margin-left: 3rem;">
+										</div>
 										<div class="form-group" style="display:flex">
 											<label class="control-label" for="Password" style="flex-basis: 15%; text-align: right;">Mật khẩu (*)</label> 
 											<input type="password" class="form-control" name="password" value="" placeholder=" Your password" id="password" maxlength="50" onchange='check_pass();' style="min-width: 250px; max-width: 300px; margin-left: 3rem; flex-basis: 85%;"> 
