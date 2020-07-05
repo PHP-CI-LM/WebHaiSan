@@ -208,9 +208,9 @@ class Account extends CI_Controller
         echo $result;
     }
 
-    private function validateEmail($email)
+    public function validateEmail($email)
     {
-        if (null == $email || 0 < strlen($email)) {
+        if (null == $email || 0 == strlen($email)) {
             $this->form_validation->set_message('validateEmail', 'Trường {field} không được để trống');
             return false;
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {

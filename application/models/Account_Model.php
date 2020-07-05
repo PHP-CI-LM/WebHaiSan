@@ -27,10 +27,10 @@ class Account_Model extends CI_Model {
         return $query->result_array();
     }
 
-    public function createNewAccount($username, $password) {
+    public function createNewAccount($username, $email, $password, $id_permission = 2) {
         $this->db->trans_start();
         $this->db->query(
-            "INSERT INTO accounts(UserName, Password, id_permission) VALUES('" . $username . "', '" . $password . "', 2);"
+            "INSERT INTO accounts(UserName, Email, Password, id_permission) VALUES('" . $username . "', '" . $email . "', '" . $password . "', $id_permission);"
         );
         $result = $this->db->query(
             "SELECT AccountID FROM accounts WHERE UserName = '" . $username ."';"
