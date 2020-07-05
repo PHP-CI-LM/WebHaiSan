@@ -92,7 +92,6 @@ function decodeToken($token)
 function validateSession()
 {
     $CI = &get_instance();
-    echo $CI->session->tempdata('user'); die();
     if (null == $CI->session->tempdata('user')) {
         if (null != get_cookie('accessToken')) {
             $data = decodeToken(get_cookie('accessToken'));

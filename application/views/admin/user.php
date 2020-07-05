@@ -115,10 +115,11 @@
 							<tr>
 								<td style="width:10px;"><img src="<?php echo public_url() ?>/images/icons/tableArrows.png" /></td>
 								<td style="width:45px;">Mã số</td>
-								<td style="width:200px;">Tên</td>
+								<td style="width:150px;">Tên</td>
 								<td style="width:45px;">Giới tính</td>
-								<td style="width:100px;">Điện thoại</td>
-								<td style="width:300px;">Địa chỉ</td>
+								<td style="width:125px;">Email</td>
+								<td style="width:75px;">Điện thoại</td>
+								<td style="width:100px;">Địa chỉ</td>
 							</tr>
 						</thead>
 
@@ -139,15 +140,12 @@
 								<tr>
 									<td><input type="checkbox" name="id[]" value="16" /></td>
 
-									<td class="textC"><?php echo $row['CustomerID'] ?></td>
-									<td><span title="" class="tipS">
-											<?php echo $row['CustomerName'] ?> </span></td>
-									<td><span title="" class="tipS">
-											<?php echo $row['Sex'] ?></span></td>
-									<td>
-										<?php echo $row['Phone'] ?></td>
-									<td>
-										<?php echo $row['Address'] ?></td>
+									<td class="textC"><?= $row['CustomerID'] ?></td>
+									<td><span title="" class="tipS"><?= $row['CustomerName'] ?> </span></td>
+									<td><span title="" class="tipS"><?= $row['Sex'] ?></span></td>
+									<td><span title="" class="tipS"><?= $row['Email'] ?></span></td>
+									<td><span title="" class="tipS"><?= $row['Phone'] ?></span></td>
+									<td><span title="" class="tipS"><?= $row['Address'] ?></span></td>
 								</tr>
 							<?php } ?>
 						</tbody>

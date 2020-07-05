@@ -20,9 +20,10 @@ class Account_Model extends CI_Model {
     }
 
     public function getAccount($accountID) {
-        $query = $this->db->query(
-            "SELECT UserName FROM accounts WHERE AccountID=" . $accountID . ";"
-        );
+        $this->db->where('AccountID', $accountID);
+        $this->db->select('UserName');
+        $this->db->select('Email');
+        $query = $this->db->get('accounts');
         return $query->result_array();
     }
 

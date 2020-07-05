@@ -162,7 +162,8 @@ class Account extends CI_Controller
             redirect(base_url(), 'auto');
         } else {
             $this->form_validation->set_rules('username', 'Username', 'required|max_length[30]');
-            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required|max_length[20]');
+            $this->form_validation->set_rules('email', 'Email', 'callback_validateEmail');
             $this->form_validation->set_rules('customername', 'CustomerName', 'required');
             $this->form_validation->set_rules('address', 'Address', 'required');
             $this->form_validation->set_rules('phone', 'Phone', 'required|max_length[12]');
@@ -179,6 +180,7 @@ class Account extends CI_Controller
                 $this->load->model('Customer_Model');
                 $AccountID = $this->Account_Model->createNewAccount(
                     $this->input->post('username'),
+                    $this->input->post('email'),
                     $newPassword
                 );
                 $this->Customer_Model->createNewAccount(
@@ -193,58 +195,6 @@ class Account extends CI_Controller
         }
     }
 
-    private function fb_logout()
-    {
-        // Remove local Facebook session
-        $this->facebook->destroy_session();
-        // Remove user data from session
-        $this->session->unset_userdata('userData');
-        // Redirect to login page
-        redirect('user_authentication');
-    }
-
-    private function fb_authenticate()
-    {
-        $userData = array();
-
-        // Authenticate user with facebook
-        if ($this->facebook->is_authenticated()) {
-            // Get user info from facebook
-            $fbUser = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,link,gender,picture');
-
-            // Preparing data for database insertion
-            $userData['oauth_provider'] = 'facebook';
-            $userData['oauth_uid'] = !empty($fbUser['id']) ? $fbUser['id'] : '';
-            $userData['first_name'] = !empty($fbUser['first_name']) ? $fbUser['first_name'] : '';
-            $userData['last_name'] = !empty($fbUser['last_name']) ? $fbUser['last_name'] : '';
-            $userData['email'] = !empty($fbUser['email']) ? $fbUser['email'] : '';
-            $userData['gender'] = !empty($fbUser['gender']) ? $fbUser['gender'] : '';
-            $userData['picture'] = !empty($fbUser['picture']['data']['url']) ? $fbUser['picture']['data']['url'] : '';
-            $userData['link'] = !empty($fbUser['link']) ? $fbUser['link'] : 'https://www.facebook.com/';
-
-            // Insert or update user data to the database
-            $userID = $this->user->checkUser($userData);
-
-            // Check user data insert or update status
-            if (!empty($userID)) {
-                $data['userData'] = $userData;
-
-                // Store the user profile info into session
-                $this->session->set_userdata('userData', $userData);
-            } else {
-                $data['userData'] = array();
-            }
-
-            // Facebook logout URL
-            $data['logoutURL'] = $this->facebook->logout_url();
-        } else {
-            // Facebook authentication url
-            $data['authURL'] = $this->facebook->login_url();
-        }
-
-        return $data;
-    }
-
     private function sendResponse(int $status, $message, $data = []) {
         $statusText = false;
         if (1 == $status) {
@@ -256,5 +206,18 @@ class Account extends CI_Controller
             'data'      => $data
         ]);
         echo $result;
+    }
+
+    private function validateEmail($email)
+    {
+        if (null == $email || 0 < strlen($email)) {
+            $this->form_validation->set_message('validateEmail', 'Trường {field} không được để trống');
+            return false;
+        } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->form_validation->set_message('validateEmail', 'Trường {field} không hợp lệ');
+            return false;
+        } else {
+            return true;
+        }
     }
 }

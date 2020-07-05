@@ -71,6 +71,10 @@
                                     <label for="NameSignUp">Tên đăng nhập: </label>
                                     <span class="info"><?php echo $data["UserName"]; ?></span>
                                 </div>
+                                <div class="form-info email">
+                                    <label>Email: </label>
+                                    <span class="info"><?php echo $data["Email"]; ?></span>
+                                </div>
                                 <div class="form-info password">
                                     <label for="Password">Mật khẩu: </label>
                                     <span class="info">********************</span>
