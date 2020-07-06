@@ -59,7 +59,7 @@ class Account extends CI_Controller
                     $accessToken = generateToken($result[0]['AccountID'], $this->input->post('username'), 0); // Expire in 3600s
                     $refreshToken = generateToken($result[0]['AccountID'], $this->input->post('username'), 1); // Expire in 2 days
                     set_cookie('accessToken', $accessToken, 3600);
-                    set_cookie('refreshToken', $refreshToken, 3600*2);
+                    set_cookie('refreshToken', $refreshToken, 3600 * 2);
                     $backUrl = urldecode($this->input->get('backUrl'));
                     if ($backUrl === null) {
                         $backUrl = base_url();
@@ -80,7 +80,7 @@ class Account extends CI_Controller
         header("Content-Type: Application/Json");
         // Check invalid input
         if (
-            null == $this->input->post('customerName') || null == $this->input->post('sex') || 
+            null == $this->input->post('customerName') || null == $this->input->post('sex') ||
             null == $this->input->post('address') || null == $this->input->post('phone')
         ) {
             $this->sendResponse(0, 'Input not valid!', []);
@@ -113,6 +113,47 @@ class Account extends CI_Controller
         }
     }
 
+    public function forgetPassword()
+    {
+        validateSession();
+        //Check if user is login
+        if ($this->session->tempdata('user') == null) {
+            if (null == $this->input->post('email')) {
+                $this->load->view('ForgetPassword');
+                return;
+            }
+
+            $action = 'resetPassword';
+            $lifetime = getTimestamp() + 60 * 60 * 12; // Liftime 12 hours
+            $secureCode = generateSecurityCode($action, $lifetime);
+            $url_resetPassword = base_url() . 'khoi-phuc-mat-khau.html?action=' . $action . '&lifetime=' . $lifetime . '&code=' . $secureCode;
+            $email = $this->security->xss_clean($this->input->post('email'));
+            // Send mail reset to customer mail
+            $this->load->library('email');
+            $this->load->library('encryption');
+            $this->email->initialize($this->initConfigurationMailer());
+            $this->email->set_mailtype('html');
+            $this->email->set_newline('\r\n');
+            $this->email->from('haisan.binhminh.store@gmail.com', 'BinhMinhStore_Admin');
+            $this->email->to($email);
+            $this->email->subject('[Hải Sản Bình Minh] Khôi phục mật khẩu');
+            $this->email->message($this->generateMailContent([
+                '<h3><strong>Hải Sản Bình Minh</strong></h3>',
+                '<p>Xin chào quý khách, chúng tôi nhận được yêu cầu khôi phục mật khẩu của tài khoản ở trang chúng tôi với địa chỉ là mail của bạn.</p>',
+                '<p>Nếu như không phải bạn yêu cầu, vui lòng bỏ qua email này.</p>',
+                '<p>Nếu đúng là bạn, vui lòng click vào đường dẫn dưới đây<p>',
+                $url_resetPassword
+            ]));
+            $this->email->send();
+            $this->sendResponse(1, 'Gửi mail thành công');
+        } else {
+            redirect(base_url(), 'auto');
+        }
+    }
+
+    public function resetPassword()
+    { }
+
     public function uploadAvatar($customerID)
     {
         validateSession();
@@ -141,7 +182,7 @@ class Account extends CI_Controller
         $this->Customer_Model->updateCustomerAvatar($customerID, $result);
 
         // Return url of avatar
-        $result = base_url().'static/image/avatar/'.$result;
+        $result = base_url() . 'static/image/avatar/' . $result;
         $this->sendResponse(1, 'Upload avatar successfully!', [
             'url'   => $result
         ]);
@@ -170,7 +211,7 @@ class Account extends CI_Controller
             $this->form_validation->set_rules('phone', 'Phone', 'required|max_length[12]');
             $this->form_validation->set_rules('confirm', 'ConfirmPassword', 'required');
             $this->form_validation->set_message('required', '{field} không được để trống');
-            $this->form_validation->set_message('min_length', '{field} phải chứa tối thiểu {param} ký tự');
+            $this->form_validation->set_message('min_length', '{field} phải chứa tối th/*  */iểu {param} ký tự');
             $this->form_validation->set_message('max_length', '{field} không được chứa quá {param} ký tự');
             if ($this->input->post('username') === null) {
                 $this->load->view('Signup');
@@ -197,7 +238,8 @@ class Account extends CI_Controller
         }
     }
 
-    private function sendResponse(int $status, $message, $data = []) {
+    private function sendResponse(int $status, $message, $data = [])
+    {
         $statusText = false;
         if (1 == $status) {
             $statusText = true;
@@ -221,5 +263,28 @@ class Account extends CI_Controller
         } else {
             return true;
         }
+    }
+
+    private function initConfigurationMailer()
+    {
+        return [
+            'protocol'  => 'smtp',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_port' => '465',
+            'smtp_user' => 'haisan.binhminh.store@gmail.com',
+            'smtp_pass' => 'haisanbinhminh1234',
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'smtp_crypto'   => 'ssl'
+        ];
+    }
+
+    private function generateMailContent(array $contents)
+    {
+        $result = '';
+        foreach ($contents as $content) {
+            $result .= $content;
+        }
+        return $result;
     }
 }

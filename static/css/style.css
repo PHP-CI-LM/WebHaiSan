@@ -1224,8 +1224,6 @@ span.small-text {
     align-items: center;
     padding: 1rem 0 0.5rem 0;
     cursor: default;
-    width: calc(100% + 100px);
-    margin-left: -50px;
 }
 
 .custom-footer.bottom {
@@ -1331,57 +1329,50 @@ ul.list-info .item {
     border-left: 1px solid #adadad;
 }
 
-.mini-icon-bar a:first-child {
-    border-left: none;
+.login-action {
+    display: flex;
+    align-items: center;
 }
 
-@media all and (max-width: 499px) {
-    .container-fluid {
-        margin: 0;
-    }
-    #content {
-        margin-top: 120px !important;
-    }
-    #search-textbox {
-        display: none;
-    }
-    .input-search {
-        width: 100%;
-    }
-    .toplink .phone {
-        font-size: 10px;
-    }
-    .toplink {
-        display: none;
-    }
-    .navbar {
-        margin-top: 0;
-    }
-    .bookshelf {
-        margin: 12px 0px 20px 0px !important;
-    }
-    .bookshelf>.descrip .title {
-        padding-right: 0;
-        color: #333 !important;
-        font-size: 13px;
-        text-transform: uppercase;
-        clip-path: none;
-        background: transparent;
-    }
-    .bookshelf>.descrip .title::after {
-        display: inline;
-        content: '>>';
-        padding-left: 10px;
-    }
-    .bookshelf>.descrip .view-detail {
-        display: none;
-    }
-    .custom-footer .contact ul.list-info .name {
-        display: none;
-    }
-    .custom-footer .contact {
-        flex-direction: column;
-    }
+.login-action input[type="submit"] {
+    width: max-content !important;
+}
+
+.login-action .forget-password {
+    font-size: 13px;
+    font-weight: 550;
+    width: 100%;
+    text-align: right;
+}
+
+.reset-password {
+    display: flex;
+    align-items: center;
+}
+
+.reset-password label {
+    margin: 0 15px;
+}
+
+.reset-password input[type="text"] {
+    flex-basis: 75%;
+    max-width: 375px;
+}
+
+.reset-password input[type="submit"] {
+    flex-basis: 20%;
+    max-width: 70px;
+    background: #fe9705;
+    border: 1px #333;
+    border-radius: 5px;
+    margin: 0 15px;
+    padding: 5px 10px;
+    font-weight: 550;
+    cursor: pointer;
+}
+
+.mini-icon-bar a:first-child {
+    border-left: none;
 }
 
 @media all and (min-width: 500px) {
@@ -1401,10 +1392,6 @@ ul.list-info .item {
         font-size: 12px;
     }
 }
-
-@media all and (min-width: 992px) {}
-
-@media all and (min-width: 1200px) {}
 
 @media (max-width :767px) {
     .book {
@@ -1487,9 +1474,6 @@ ul.list-info .item {
         margin-top: 3rem;
         text-align: center;
     }
-    .custom-footer .contact ul.list-info {
-        text-align: left;
-    }
     ul.list-info .item {
         color: #333;
     }
@@ -1508,6 +1492,82 @@ ul.list-info .item {
     .hidden-ms {
         display: none !important
     }
+    .container-fluid {
+        margin: 0;
+    }
+    #content {
+        margin-top: 120px !important;
+    }
+    #search-textbox {
+        display: none;
+    }
+    .input-search {
+        width: 100%;
+    }
+    .toplink .phone {
+        font-size: 10px;
+    }
+    .toplink {
+        display: none;
+    }
+    .navbar {
+        margin-top: 0;
+    }
+    .bookshelf {
+        margin: 12px 0px 20px 0px !important;
+    }
+    .bookshelf>.descrip .title {
+        padding-right: 0;
+        color: #333 !important;
+        font-size: 13px;
+        text-transform: uppercase;
+        clip-path: none;
+        background: transparent;
+    }
+    .bookshelf>.descrip .title::after {
+        display: inline;
+        content: '>>';
+        padding-left: 10px;
+    }
+    .bookshelf>.descrip .view-detail {
+        display: none;
+    }
+    .custom-footer,
+    .custom-footer.bottom {
+        width: 100%;
+    }
+    .custom-footer .contact {
+        flex-direction: column;
+    }
+    .custom-footer .contact {
+        align-items: unset;
+    }
+    .custom-footer .contact .logo .img {
+        text-align: center;
+        margin-left: 0px;
+    }
+    .custom-footer .contact ul.list-info {
+        text-align: center;
+        margin-left: 0px;
+    }
+    .reset-password {
+        display: block;
+    }
+    .reset-password label {
+        width: 100%;
+        margin: 0;
+    }
+    .reset-password input[type="text"] {
+        display: block;
+        margin: 10px 0;
+        margin-top: 5px;
+        padding: 5px 10px;
+        width: 100%;
+    }
+    .reset-password input[type="submit"] {
+        margin: 5px 0;
+        width: 100%;
+    }
 }
 
 @media (min-width :500px) and (max-width: 767px) {
@@ -1518,6 +1578,9 @@ ul.list-info .item {
         display: inline-block;
         width: 49%;
         transform: translateX(15%);
+    }
+    .custom-footer .contact ul.list-info {
+        text-align: left;
     }
 }
 

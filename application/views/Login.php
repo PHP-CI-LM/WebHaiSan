@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title><?php echo app_title()?> - Đăng nhập</title>
+	<title><?php echo app_title() ?> - Đăng nhập</title>
 	<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
@@ -73,8 +73,10 @@
 											<label class="control-label" for="password">Mật khẩu</label>
 											<input type="password" name="password" value="" maxlength="20" placeholder="Password" id="password" class="form-control">
 										</div>
-										<input type="submit" value="Đăng nhập" class="btn btn-primary" id="btn-search" style="width: max-content !important">
-										<a class="forget-password" href="#form"><i class="fa fa-question-circle" id="QuenMK"></i></a>
+										<div class="login-action">
+											<input type="submit" value="Đăng nhập" class="btn btn-primary" id="btn-search">
+											<a class="forget-password" href="<?=base_url()?>user/quen-mat-khau.html" title="Quên mật khẩu?"><span>Quên mật khẩu?</span></a>
+										</div>
 									</form>
 								</div>
 							</div>
