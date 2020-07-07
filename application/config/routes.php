@@ -85,6 +85,7 @@ $route['xac-nhan-thanh-toan.html']['POST'] = 'Payment/confirm';
 $route['tim-kiem.html'] = 'Product/find';
 $route['user/quen-mat-khau.html'] = 'Account/forgetPassword';
 $route['user/khoi-phuc-mat-khau.html'] = 'Account/resetPassword';
+$route['user/doi-mat-khau.html'] = 'Account/changePassword';
 $route['user/thong-tin-tai-khoan.html']['GET'] = 'Account/index';
 $route['user/thong-tin-tai-khoan.html/(:num)']['POST'] = 'Account/updateInfomation/$1';
 $route['user/thong-tin-tai-khoan.html/avatar/(:num)']['POST'] = 'Account/uploadAvatar/$1';

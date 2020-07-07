@@ -89,3 +89,17 @@ function generatePagingLinks($total_rows, $limit_per_page = 10, $use_query_strin
     $CI->pagination->initialize($config);
     return $CI->pagination->create_links();
 }
+
+function sendResponse(int $status, $message, $data = [])
+    {
+        $statusText = false;
+        if (1 == $status) {
+            $statusText = true;
+        }
+        $result = json_encode([
+            'status'    => $statusText,
+            'message'   => $message,
+            'data'      => $data
+        ]);
+        echo $result;
+    }

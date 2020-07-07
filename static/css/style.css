@@ -1371,6 +1371,47 @@ ul.list-info .item {
     cursor: pointer;
 }
 
+.change-password {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.change-password .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    padding: 5px 25px;
+}
+
+.change-password .form-group input {
+    border: 1px solid #BBB;
+    border-radius: 0;
+    max-width: 500px;
+    min-width: 250px;
+}
+
+.change-password label {
+    margin: 0;
+}
+
+.change-password input[type="text"] {
+    flex-basis: 75%;
+    max-width: 375px;
+}
+
+.change-password input[type="submit"] {
+    max-width: 70px;
+    background: #fe9705;
+    border: 1px #333;
+    border-radius: 5px;
+    margin: 0;
+    padding: 5px 20px;
+    font-weight: 550;
+    float: right;
+    cursor: pointer;
+}
+
 .mini-icon-bar a:first-child {
     border-left: none;
 }

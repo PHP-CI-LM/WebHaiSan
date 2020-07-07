@@ -83,13 +83,13 @@ class Account extends CI_Controller
             null == $this->input->post('customerName') || null == $this->input->post('sex') ||
             null == $this->input->post('address') || null == $this->input->post('phone')
         ) {
-            $this->sendResponse(0, 'Input not valid!', []);
+            sendResponse(0, 'Input not valid!', []);
             return;
         }
 
         // Check user logged in
         if ($this->session->tempdata('user') !== null) {
-            $this->sendResponse(0, 'User not login!', []);
+            sendResponse(0, 'User not login!', []);
             return;
         }
 
@@ -104,11 +104,11 @@ class Account extends CI_Controller
         $result = $this->Customer_Model->updateCustomer($customerID, $customerName, $sex, $phone, $address);
         if (true == $result) {
             // Update success
-            $this->sendResponse(1, 'Update successfully!');
+            sendResponse(1, 'Update successfully!');
             return;
         } else {
             // Update failed
-            $this->sendResponse(0, 'Update fail!');
+            sendResponse(0, 'Update fail!');
             return;
         }
     }
@@ -145,7 +145,7 @@ class Account extends CI_Controller
                 $url_resetPassword
             ]));
             $this->email->send();
-            $this->sendResponse(1, 'Gửi mail thành công');
+            sendResponse(1, 'Gửi mail thành công');
         } else {
             redirect(base_url(), 'auto');
         }
@@ -154,13 +154,49 @@ class Account extends CI_Controller
     public function resetPassword()
     { }
 
+    public function changePassword()
+    {
+        validateSession();
+        //Check if user is login
+        if ($this->session->tempdata('user') != null) {
+            $this->load->model('Account_Model');
+            $idUser = $this->session->tempdata('user');
+            $currentPass = $this->security->xss_clean($this->input->post('currentPass'));
+            $newPass = $this->security->xss_clean($this->input->post('newPass'));
+            $confirmNewPass = $this->security->xss_clean($this->input->post('confirmNewPass'));
+            if (null == $currentPass || null == $newPass || null == $confirmNewPass ||
+                0 == strlen($currentPass) || 0 == strlen($newPass) || 0 == strlen($confirmNewPass)) {
+                    $this->load->view('ChangePassword');
+                    return;
+                }
+            $userInfo = $this->Account_Model->getAccount($idUser, true);
+            // Check if current password is correct
+            if ($userInfo[0]['Password'] != md5($currentPass)) {
+                sendResponse(0, 'Current password is not correct');
+                return;
+            } else if ($newPass != $confirmNewPass){
+                sendResponse(0, 'New password and confirm does not match');
+                return;
+            } else if ($currentPass == $newPass){
+                sendResponse(0, 'New password must be differnet from current password');
+                return;
+            } else {
+                $affected_rows = $this->Account_Model->updateAccount($idUser, $userInfo[0]['UserName'], $userInfo[0]['Email'], md5($newPass));
+                sendResponse(1, 'Updated '. $affected_rows .' line');
+                return;
+            }
+        }
+        sendResponse(0, 'User is not logged in');
+        return;
+    }
+
     public function uploadAvatar($customerID)
     {
         validateSession();
         header("Content-Type: Application/Json");
         // Check user logged in
         if ($this->session->tempdata('user') == null) {
-            $this->sendResponse(0, 'User not login!', []);
+            sendResponse(0, 'User not login!', []);
             return;
         }
 
@@ -183,7 +219,7 @@ class Account extends CI_Controller
 
         // Return url of avatar
         $result = base_url() . 'static/image/avatar/' . $result;
-        $this->sendResponse(1, 'Upload avatar successfully!', [
+        sendResponse(1, 'Upload avatar successfully!', [
             'url'   => $result
         ]);
     }
@@ -193,7 +229,12 @@ class Account extends CI_Controller
         $this->session->sess_destroy();
         delete_cookie('refreshToken');
         delete_cookie('accessToken');
-        redirect(base_url(), 'auto');
+        if (null != $this->input->get('back_url')) {
+            $back_url = urldecode($this->input->get('back_url'));
+            redirect($back_url, 'auto');
+        } else {
+            redirect(base_url(), 'auto');
+        }
     }
 
     public function signup()
@@ -236,20 +277,6 @@ class Account extends CI_Controller
                 redirect(base_url() . 'dang-nhap.html', 'auto');
             }
         }
-    }
-
-    private function sendResponse(int $status, $message, $data = [])
-    {
-        $statusText = false;
-        if (1 == $status) {
-            $statusText = true;
-        }
-        $result = json_encode([
-            'status'    => $statusText,
-            'message'   => $message,
-            'data'      => $data
-        ]);
-        echo $result;
     }
 
     public function validateEmail($email)
