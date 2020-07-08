@@ -1,23 +1,23 @@
-$(document).ready(function () {
+$(document).ready(function() {
     /*
-    ** Setup listener for edit button
-    */
+     ** Setup listener for edit button
+     */
     $('img.edit').on('click', event => {
         var headerBlock = $(event.target).parents('.header')[0];
         var detailBlock = $(headerBlock).next()[0];
         // Get and hidden all span element in this block except password block and username block
         $(detailBlock).find('span.info').each((index, element) => {
             // Check if parent of element is password block or username block to hidden this
-            if (0 == $(element).parents('.password').length && 0 == $(element).parents('.username').length) {
+            if (0 == $(element).parents('.password').length && 0 == $(element).parents('.username').length && 0 == $(element).parents('.email').length) {
                 $(element).addClass('hidden');
             }
         });
         // Enable all input element to edit except fixed input
         $(detailBlock).find('.input').each((index, element) => {
-            if (false == $(element).hasClass('fixed'))
-                $(element).removeClass('hidden');
-        })
-        // Change icon from edit to save, enable icon cancel
+                if (false == $(element).hasClass('fixed'))
+                    $(element).removeClass('hidden');
+            })
+            // Change icon from edit to save, enable icon cancel
         toggleButton(headerBlock, 'edit', false);
         toggleButton(headerBlock, 'save', true);
         toggleButton(headerBlock, 'cancel', true)
@@ -26,17 +26,17 @@ $(document).ready(function () {
 
 
     /*
-    ** Setup listener for cancel button
-    */
+     ** Setup listener for cancel button
+     */
     $('img.cancel').on('click', event => {
         var headerBlock = $(event.target).parents('.header')[0];
         var detailBlock = $(headerBlock).next()[0];
         // Disable all input element except fixed input
         $(detailBlock).find('.input').each((index, element) => {
-            if (false == $(element).hasClass('fixed'))
-                $(element).addClass('hidden');
-        })
-        // Get and enable all span element in this block except password block
+                if (false == $(element).hasClass('fixed'))
+                    $(element).addClass('hidden');
+            })
+            // Get and enable all span element in this block except password block
         $(detailBlock).find('span.info').each((index, element) => {
             $(element).removeClass('hidden');
         });
@@ -47,8 +47,8 @@ $(document).ready(function () {
 
 
     /*
-    ** Setup listener for save button
-    */
+     ** Setup listener for save button
+     */
     $('img.save').on('click', event => {
         var headerBlock = $(event.target).parents('.header')[0];
         var detailBlock = $(headerBlock).next()[0];
@@ -142,7 +142,7 @@ $(document).ready(function () {
 });
 
 
-var toggleButton = function (parent, className, isEnable = fasle) {
+var toggleButton = function(parent, className, isEnable = fasle) {
     var button = $(parent).find('.' + className)[0];
     if (true == isEnable) {
         $(button).removeClass('hidden');
@@ -152,7 +152,7 @@ var toggleButton = function (parent, className, isEnable = fasle) {
 }
 
 
-var sendRequest = function (url, method, data, success, error) {
+var sendRequest = function(url, method, data, success, error) {
     var base_url = $('.base_url').val();
     $.ajax({
         url: base_url + url,
