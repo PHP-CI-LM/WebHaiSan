@@ -167,11 +167,11 @@
 					echo "<div class=\"bookshelf\" style=\"margin: 1rem 2.85rem 1rem 1.05rem;\">";
 					echo "<div class=\"row descrip\">";
 					echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-8" style="padding-left: 0;">';
-					echo '<a class="title" href="' . base_url() . 'category/' . vn_to_str($classifiedProducts["name_category"]) . '.html" title="Xem chi tiết">' . $classifiedProducts["name_category"] . "</a>";
+					echo '<a class="title" href="' . base_url() . 'category/' . $classifiedProducts["url"] . '" title="Xem chi tiết">' . $classifiedProducts["name_category"] . "</a>";
 					echo "</div>";
 					echo '<div class="col-lg-8 col-md-8 col-sm-6 col-xs-4">';
 					echo "<div class=\"view-detail\">";
-					echo '<a href="' . base_url() . "category/" . vn_to_str($classifiedProducts["name_category"]) . ".html" . "\">Xem chi tiết >></a>";
+					echo '<a href="' . base_url() . "category/" . $classifiedProducts["url"] . "\">Xem chi tiết >></a>";
 					echo "</div></div></div>";
 					echo '<div class="products-list">';
 					for ($i = 0; $i < sizeof($classifiedProducts["items"]); $i++) {

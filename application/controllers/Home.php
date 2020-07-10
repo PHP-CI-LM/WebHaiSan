@@ -38,8 +38,9 @@ class Home extends CI_Controller {
 		$categories = $this->Category_Model->getCategories();
 		foreach ($categories as $category) {
 			$products = array(
-				"id_category" => $category["id_category"], 
-				"name_category" => $category["name_category"]
+				"id_category" 	=> $category["id_category"], 
+				"name_category" => $category["name_category"],
+				"url"			=> $category["url"]
 			);
 			$products["items"] = $this->Product_Model->getProductOfCategory($category["id_category"], $limitItem);
 			array_push($result, $products);
