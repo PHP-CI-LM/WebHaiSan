@@ -27,7 +27,27 @@
 			<div clas="container" style="margin: 1.5rem 2rem;">
 				<div class="row khung">
 					<div class="col-md-3 col-sm-12 col-xs-12">
-						<?php require_once('comp/Vertical_Menu.php') ?>
+						<div class="vertical_menu home-hidden">
+							<div id="mb_verticle_menu" class="menu-quick-select">
+								<div class="title_block">
+									<span>Danh mục sản phẩm</span>
+								</div>
+								<div id="menuverti" class="block_content navbar_menuvertical">
+									<ul class="nav_verticalmenu">
+										<?php if (isset($categories) && sizeof($categories) > 0) {
+											foreach ($categories as $key => $category) {
+												echo '<li class="level0">';
+												echo '<a href="' . base_url() . 'category/' . $category['url'] . '">';
+												echo '<img class="icon-menu" src="' . base_url() . 'static/image/icon/' . $category['thumbnail'] . '" alt="' . $category['name_category'] . '">';
+												echo '<span>' . $category['name_category'] . '</span>';
+												echo '</a></li>';
+											}
+										}
+										?>
+									</ul>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div id="my-carousel" class="col-md-9 col-sm-12 col-xs-12 p-l-0 carousel" data-ride="carousel">
 						<ol class="carousel-indicators">
@@ -147,7 +167,7 @@
 					echo "<div class=\"bookshelf\" style=\"margin: 1rem 2.85rem 1rem 1.05rem;\">";
 					echo "<div class=\"row descrip\">";
 					echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-8" style="padding-left: 0;">';
-					echo '<a class="title" href="' . base_url() . 'category/'. vn_to_str($classifiedProducts["name_category"]) .'.html" title="Xem chi tiết">' . $classifiedProducts["name_category"] . "</a>";
+					echo '<a class="title" href="' . base_url() . 'category/' . vn_to_str($classifiedProducts["name_category"]) . '.html" title="Xem chi tiết">' . $classifiedProducts["name_category"] . "</a>";
 					echo "</div>";
 					echo '<div class="col-lg-8 col-md-8 col-sm-6 col-xs-4">';
 					echo "<div class=\"view-detail\">";
