@@ -27,17 +27,28 @@
                         $strSearch = $query;
                     }
                     ?>
-                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-ms-8 input-search">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-ms-12 input-search">
                         <form action="<?php echo base_url() ?>tim-kiem.html" method="GET" class="search-bar clearfix" id="search-textbox\">
-                            <input name="query" type="text" autocomplete="off" id="Search" value="<?php echo $strSearch ?>" placeholder="Nhập thứ muốn tìm ..." style="border: 1px solid #dcdcdc; border-radius: 0;"></input> <span><button type="submit">
+                            <input name="query" type="text" autocomplete="off" id="Search" value="<?php echo $strSearch ?>" placeholder="Nhập thứ muốn tìm ..." style="border: 1px solid #dcdcdc;"></input> <span><button type="submit">
                                     <i class="fa fa-search" style="margin-top: 0"></i>
                                 </button></span>
                         </form>
-                        <div id="zoom-btn">
-                            <i class="fa fa-search"></i>
-                        </div>
+                        <ul class="search-suggestions">
+                            <li class="item">
+                                <i class="fa fa-filter"></i>
+                                <a href="#">Cá Bã Trầu Size Lớn</a>
+                            </li>
+                            <li class="item">
+                                <i class="fa fa-filter"></i>
+                                <a href="#">Cá Đuối</a>
+                            </li>
+                            <li class="item">
+                                <i class="fa fa-filter"></i>
+                                <a href="#">Mực Trứng</a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-ms-4">
+                    <ul class="col-lg-4 col-md-4 col-sm-4 col-ms-12">
                         <ul class="icon-bar horizontal f-right">
                             <li class="icon dropdown">
                                 <span>
@@ -134,23 +145,23 @@
                                 ?>
                                 <span class="toggle-content toggle-item has-child">Danh mục sản phẩm
                                     <a class="toggle-item" href="<?php echo base_url() ?>category/ca-bien.html">
-                                        <span style="background: url('<?=base_url()?>/static/image/icon/fish.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
+                                        <span style="background: url('<?= base_url() ?>/static/image/icon/fish.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
                                         Cá biển
                                     </a>
                                     <a class="toggle-item" href="<?php echo base_url() ?>category/tom.html">
-                                        <span style="background: url('<?=base_url()?>/static/image/icon/shrimp.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
+                                        <span style="background: url('<?= base_url() ?>/static/image/icon/shrimp.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
                                         Tôm
                                     </a>
                                     <a class="toggle-item" href="<?php echo base_url() ?>category/muc.html">
-                                        <span style="background: url('<?=base_url()?>/static/image/icon/cuttle.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
+                                        <span style="background: url('<?= base_url() ?>/static/image/icon/cuttle.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
                                         Mực - Bạch tuộc
                                     </a>
                                     <a class="toggle-item" href="<?php echo base_url() ?>category/so.html">
-                                        <span style="background: url('<?=base_url()?>/static/image/icon/scallop.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
+                                        <span style="background: url('<?= base_url() ?>/static/image/icon/scallop.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
                                         Ngao - sò
                                     </a>
                                     <a class="toggle-item" href="<?php echo base_url() ?>category/oc.html">
-                                        <span style="background: url('<?=base_url()?>/static/image/icon/snail.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
+                                        <span style="background: url('<?= base_url() ?>/static/image/icon/snail.png');background-repeat: no-repeat;background-size: contain;margin-right: 10px;width: 30px;height: 20px;"> </span>
                                         Ốc
                                     </a>
                                 </span>
@@ -163,7 +174,13 @@
         <div class="over"></div>
     </header>
     <script type="text/javascript">
+        function changeWidthSearchSuggestions() {
+            let newWidth = document.querySelectorAll('input#Search')[0].offsetWidth - 2
+            $('.search-suggestions').width(newWidth + 'px');
+        }
         $(document).ready(function() {
+            changeWidthSearchSuggestions();
+            
             $("#btn-toggle").click(function() {
                 // Enable toggle content
                 $("#btn-toggle").next().animate({
@@ -176,6 +193,9 @@
                     "height": "100%"
                 });
             });
+
+
+            $(window).on('resize', changeWidthSearchSuggestions);
 
             $(".over").click(function() {
                 // Disable toggle content

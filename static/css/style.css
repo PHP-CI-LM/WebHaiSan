@@ -205,7 +205,6 @@ header nav .active a {
     line-height: unset;
     font-size: 15px;
     padding: 1rem 2rem;
-    overflow-y: hidden;
 }
 
 .topbar a {
@@ -215,6 +214,37 @@ header nav .active a {
 
 .topbar a:hover {
     color: main-color-2
+}
+
+.topbar .search-suggestions {
+    display: none;
+    position: absolute;
+    background: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-top: none;
+    top: 42px;
+    width: 809px;
+    z-index: 100;
+    border-radius: 0 0 10px 10px;
+}
+
+.topbar .search-suggestions .item {
+    padding: 5px 20px;
+}
+
+.topbar .search-suggestions .item:first-child {
+    margin-top: 5px;
+}
+
+.topbar .search-suggestions .item i {
+    color: #CCC;
+    font-size: 15px !important;
+    margin-right: 10px;
+}
+
+.topbar .search-suggestions .item a {
+    font-weight: 500;
+    font-size: 12px;
 }
 
 .icon-bar.horizontal {
@@ -1020,6 +1050,7 @@ header nav .active a {
     box-shadow: none !important;
     font-family: inherit;
     padding: 2rem;
+    border-radius: 10px 10px;
 }
 
 #btnSearch {
@@ -1471,6 +1502,9 @@ ul.list-info .item {
     }
     .vertical_menu {
         display: none;
+    }
+    .vertical_menu.none-hidden {
+        display: block;
     }
     .flex-board.f-column {
         flex-direction: column !important;
