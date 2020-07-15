@@ -97,6 +97,8 @@ $route['fblogin'] = 'User_authentication/index';
 $route['comments']['GET'] = 'Comment/getListcomment';
 $route['order/huy-don-hang.html']['GET'] = 'Order/delete';
 
+$route['product/searchwordkey']['GET'] = 'Product/enterWordsearch';
+
 // admin pages route
 $route['ci-admin'] = 'admin_controller/admin/index';
 $route['ci-admin/login.html']['get'] = 'admin_controller/admin/index';
