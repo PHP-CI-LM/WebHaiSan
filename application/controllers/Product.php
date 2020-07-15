@@ -60,6 +60,8 @@ class Product extends CI_Controller
 
     public function enterWordsearch()
     {
+        header("Content-Type: Application/Json");
+        header("Access-Control-Allow-Origin: http://localhost");
         $data = array();
         $keyword = null;
         $keyword = $this->input->get('q');

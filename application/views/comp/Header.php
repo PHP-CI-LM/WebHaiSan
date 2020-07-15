@@ -35,16 +35,13 @@
                         </form>
                         <ul class="search-suggestions">
                             <li class="item">
-                                <i class="fa fa-filter"></i>
-                                <a href="#">Cá Bã Trầu Size Lớn</a>
+                                <a href="#"><i class="fa fa-filter"></i>Cá Bã Trầu Size Lớn</a>
                             </li>
                             <li class="item">
-                                <i class="fa fa-filter"></i>
-                                <a href="#">Cá Đuối</a>
+                                <a href="#"><i class="fa fa-filter"></i>Cá Đuối</a>
                             </li>
                             <li class="item">
-                                <i class="fa fa-filter"></i>
-                                <a href="#">Mực Trứng</a>
+                                <a href="#"><i class="fa fa-filter"></i>Mực Trứng</a>
                             </li>
                         </ul>
                     </div>
@@ -174,13 +171,22 @@
         <div class="over"></div>
     </header>
     <script type="text/javascript">
+        var suggestRequest = [];
+
         function changeWidthSearchSuggestions() {
             let newWidth = document.querySelectorAll('input#Search')[0].offsetWidth - 2
             $('.search-suggestions').width(newWidth + 'px');
         }
+
+        function abortRequests() {
+            suggestRequest.forEach(request => {
+                request.abort();
+            });
+        }
+
         $(document).ready(function() {
             changeWidthSearchSuggestions();
-            
+
             $("#btn-toggle").click(function() {
                 // Enable toggle content
                 $("#btn-toggle").next().animate({
@@ -196,6 +202,49 @@
 
 
             $(window).on('resize', changeWidthSearchSuggestions);
+
+            $('body').on('click', event => {
+                if (0 == $(event.target).parents('.search-bar').length && 0 == $(event.target).parents('.search-suggestions').length) {
+                    $('.search-suggestions').css('display', 'none');
+                }
+            });
+
+            $('.search-bar input').on('input', event => {
+                var question = $(event.target).val();
+                if (question.length > 0) {
+                    abortRequests();
+                    suggestRequest.push($.ajax({
+                        url: '<?= base_url() ?>search-word-key.html?q=' + question,
+                        method: 'get',
+                        success: res => {
+                            $('.search-suggestions').empty();
+                            let data = JSON.parse(JSON.stringify(res));
+                            if (typeof data == 'string' || data instanceof String) {
+                                data = JSON.parse(res);
+                            }
+                            if (1 == data['status']) {
+                                if (data['data'].length > 0) {
+                                    data['data'].forEach(element => {
+                                        var htmlElement = '<li class="item"><a href="' + element['url'] + '"><i class="fa fa-filter"></i>' + element['name_product'] + '</a></li>';
+                                        $('.search-suggestions').append(htmlElement);
+                                        $('.search-suggestions').css('display', 'block');
+                                    });
+                                } else {
+                                    $('.search-suggestions').empty();
+                                    $('.search-suggestions').css('display', 'none');
+                                }
+                            } else {
+                                $('.search-suggestions').empty();
+                                $('.search-suggestions').css('display', 'none');
+                            }
+                        }
+                    }));
+                } else {
+                    abortRequests();
+                    $('.search-suggestions').empty();
+                    $('.search-suggestions').css('display', 'none');
+                }
+            })
 
             $(".over").click(function() {
                 // Disable toggle content
