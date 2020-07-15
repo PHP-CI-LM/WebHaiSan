@@ -45,7 +45,7 @@
                             </li>
                         </ul>
                     </div>
-                    <ul class="col-lg-4 col-md-4 col-sm-4 col-ms-12">
+                    <ul class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
                         <ul class="icon-bar horizontal f-right">
                             <li class="icon dropdown">
                                 <span>
