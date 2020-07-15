@@ -28,6 +28,64 @@ class Comment extends CI_Controller
         return false;
     }
 
+    // edit comment
+    public function editComment()
+    {
+        // $id_comment = $this->input->post('id_comment');
+        // $content = $this->input->post('content');
+        // $id_user = $this->session->tempdata('user');
+        // $this->load->model('Comment_Model');
+        // $result = $this->Comment_Model->editComment($id_comment, $content);
+        // if ($result) {
+        //     sendResponse(1, 'edit comment successful');
+        // } else {
+        //     sendResponse(0, 'edit comment faild');
+        // }
+
+        validateSession();
+        if ($this->session->tempdata('user') !== null) {
+            $id_comment = $this->input->post('id_comment');
+            $content = $this->input->post('content');
+            $id_user = $this->session->tempdata('user');
+            $this->load->model('Comment_Model');
+            $result = $this->Comment_Model->editComment($id_comment, $id_user, $content);
+            if ($result) {
+                sendResponse(1, 'edit comment successful');
+            } else {
+                sendResponse(0, 'edit comment faild');
+            }
+        } else {
+            sendResponse(0, 'not loged in');
+        }
+    }
+
+    public function removeComment()
+    {
+        // $id_comment = $this->input->post('id_comment');
+        // $id_user = $this->session->tempdata('user');
+        // $this->load->model('Comment_Model');
+        // $result = $this->Comment_Model->removeComment($id_comment, $id_user);
+        // if ($result) {
+        //     sendResponse(1, 'remove comment successful');
+        // } else {
+        //     sendResponse(0, 'remove comment faild');
+        // }
+
+        if ($this->session->tempdata('user') !== null) {
+            $id_comment = $this->input->post('id_comment');
+            $id_user = $this->session->tempdata('user');
+            $this->load->model('Comment_Model');
+            $result = $this->Comment_Model->removeComment($id_comment, $id_user);
+            if ($result) {
+                sendResponse(1, 'remove comment successful');
+            } else {
+                sendResponse(0, 'remove comment faild');
+            }
+        } else {
+            sendResponse(0, 'not loged in');
+        }
+    }
+
     // function get all comment and subcomment for id_product, return json. in data json contain id, id_account, id_product, comment_time, content, id_reply, subComment of comment. subCommant contain list comments
     public function getListcomment($id_product = 1)
     {
@@ -91,20 +149,20 @@ class Comment extends CI_Controller
     }
 
     /**
-     * Generate notify result 
-     * 
-     * @param bool $status
+     * Generate notify result.
+     *
+     * @param bool   $status
      * @param string $message
-     * @param array $data
-     * 
+     * @param array  $data
+     *
      * @return string
      */
     private function generateNotifyResult($status, $message, $data = [])
     {
         return [
-            'status'    => $status,
-            'message'   => $message,
-            'data'      => $data
+            'status' => $status,
+            'message' => $message,
+            'data' => $data,
         ];
     }
 }
