@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title><?php echo app_title()?> - Chỉnh sửa đơn hàng</title>
+		<title><?php echo app_title()?> - Xác nhận đơn hàng</title>
 		<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" />
@@ -37,25 +37,16 @@
 						</ul>
 					</div>
 
-					<div class="payment-content ng-scope" ng-controller="orderController" ng-init="initCheckoutController()">
-						<h1 class="title"><span>Thanh toán</span></h1>
-						<div class="steps clearfix">
-							<ul class="clearfix">
-								<li class="cart active col-md-2 col-xs-12 col-sm-4 col-md-offset-3 col-sm-offset-0 col-xs-offset-0"><span><i class="glyphicon glyphicon-shopping-cart"></i></span><span>Giỏ hàng của tôi</span><span class="step-number"><a>1</a></span></li>
-								<li class="payment active col-md-2 col-xs-12 col-sm-4"><span><i class="glyphicon glyphicon-usd"></i></span><span>Thanh toán</span><span class="step-number"><a>2</a></span></li>
-								<li class="finish col-md-2 col-xs-12 col-sm-4"><span><i class="glyphicon glyphicon-ok"></i></span><span>Hoàn tất</span><span class="step-number"><a>3</a></span></li>
-							</ul>
-						</div>
+					<div class="payment-content">
+						<h1 class="title"><span>Chỉnh sửa đơn hàng</span></h1>
 						<form class="payment-block clearfix" id="checkout-container">
 							<div class="col-md-4 col-sm-12 col-xs-12 payment-step step2">
 								<h4>1. Địa chỉ thanh toán và giao hàng</h4>
 								<div class="step-preview clearfix">
 									<h2 class="title">Thông tin thanh toán</h2>
-									<!-- ngIf: CustomerId>0 -->
-									<!-- ngIf: CustomerId<=0 -->
 									<div class="form-block" ng-if="CustomerId<=0">
 										<?php
-										if (isset($info) == false) {
+										if ($this->session->tempdata('user') == null) {
 											echo "<div class=\"user-login\"><a href=\"" . base_url() . "dang-ky-thanh-vien.html\">Đăng ký tài khoản mua hàng</a>";
 											echo "<a href=\"" . base_url() . 'dang-nhap.html?backUrl=' . urlencode(current_url()). "\">Đăng nhập</a></div>";
 											echo "<label>Mua hàng không cần tài khoản</label>";
@@ -145,10 +136,11 @@
 													echo "</a></span>";
 													echo "<div class=\"product-info pull-left\">";
 													echo "<span class=\"product-name\">";
-													echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">" . $product["name_product"] . "</a> x <span>1</span>";
+													echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">" . $product["name_product"] . " x </a>";
+													echo "<span><input type=\"number\" value=\"". $product["count"] ."\" step=\"0.1\" min=\"0.5\" max=\"100\" oninput=\"changeQuantity(this)\" style=\"width: 75px; padding: 3px 5px;\"/></span>";
 													echo "</span></div>";
 													echo "<span class=\"price\">" . number_format((int) ($product["price"] * (100 - $product["discount"]) / 100)) . "₫</span></div>";
-													$totalPrice += (int) ($product["price"] * $product["count"] * (100 - $product["discount"])) / 100;
+													$totalPrice = (int) ($product["price"] * $product["count"] * (100 - $product["discount"])) / 100;
 												}
 											}
 											?>
@@ -177,7 +169,7 @@
 											</span>
 										</div>
 										<div class="button-submit">
-											<button class="btn btn-primary" type="submit">Đặt hàng</button>
+											<button class="btn btn-primary" type="submit">Lưu</button>
 										</div>
 									</div>
 								</div>
