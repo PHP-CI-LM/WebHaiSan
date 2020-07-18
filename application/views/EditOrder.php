@@ -435,7 +435,7 @@
 			function changeShipmentInfomation(info) {
 				//Change price
 				let price_delivery = info["price"].split(/(((\d+),)+)(\d+)\sđ/);
-				let price_products = <?php echo $totalPrice ?>;
+				let price_products = getTotalPay();
 				$(".shiping-price label").text(formatNumber(price_delivery) + "đ");
 				//Change time delivery
 				$(".time_delivery span").text(info["time_delivery"]);
