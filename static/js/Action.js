@@ -3,6 +3,11 @@ String.prototype.replaceAll = function(search, replacement) {
     return target.split(search).join(replacement);
 };
 
+Number.prototype.format = function(n, x) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+    return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+};
+
 
 
 
@@ -10,7 +15,7 @@ String.prototype.replaceAll = function(search, replacement) {
 
 
 //Add product to cart
-function addToCart(id, soluong, gia=0, callback=null) {
+function addToCart(id, soluong, gia = 0, callback = null) {
     var count = getCookie("countProduct");
     if (count.length == 0)
         count = 1;
@@ -21,6 +26,7 @@ function addToCart(id, soluong, gia=0, callback=null) {
     setCookie("countProduct", count);
     $(".cart-count").load(document.URL + " #number");
     $("#countInput").load(document.URL + " #count");
+    alert('Thêm sản phẩm thành công');
     if (callback != null) callback();
 }
 
@@ -70,6 +76,24 @@ function refreshTableProduct() {
 }
 
 
+
+//Refresh total price of cart (edit order)
+function refreshPricePayment() {
+    var totalPrice = getTotalPay();
+    $('.total-price label').text(totalPrice.format() + 'đ');
+}
+
+
+
+//Refresh total price of cart (edit order)
+function refreshTotalPricePayment() {
+    var totalPrice = getTotalPay();
+    var delivery = getDeliveryCharge();
+    $('.total-payment span').text((totalPrice + delivery).format() + 'đ');
+}
+
+
+
 //Refresh total price of cart
 function refreshTotalPrice() {
     var totalPrice = getTotalPrice();
@@ -101,9 +125,42 @@ function refreshHeaderButtonCart(count) {
 
 
 //Event after change input quantity
+function changeQuantityPayment() {
+    refreshPricePayment();
+    refreshTotalPricePayment();
+}
+
+
+
+//Event after change input quantity
 function changeQuantity(input) {
     refreshRowProduct(input);
     refreshTotalPrice();
+}
+
+
+
+function getDeliveryCharge() {
+    var price = $('.shiping-price label').text();
+    return parseInt(price.substring(0, price.length - 2).replaceAll(',', ''));
+}
+
+
+
+//Calculate and return total price of all product in cart (edit order)
+function getTotalPay() {
+    var items = $('.cart-item');
+    var totalPrice = 0;
+    if (items.length > 0) {
+        for (var i = 0; i < items.length; i++) {
+            var item = items[i];
+            var count = $($(item).find('input')[0]).val();
+            var price = $($(item).children('.price')[0]).text();
+            price = parseInt(price.substring(0, price.length - 1).replaceAll(',', ''));
+            totalPrice = totalPrice + price * count;
+        }
+    }
+    return totalPrice;
 }
 
 
@@ -187,7 +244,7 @@ function setProductInfo(index, info) {
 
 
 //Update amount of product in cookie by index of it in cookie
-function setProductCount(cookie_name, maSanPham, soLuong, gia=0) {
+function setProductCount(cookie_name, maSanPham, soLuong, gia = 0) {
     var newInfo = "id:" + maSanPham + "-" + "count:" + soLuong + "price:" + gia;
     var count = getCookie("countProduct");
 

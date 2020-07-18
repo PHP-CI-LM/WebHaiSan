@@ -318,7 +318,7 @@
 						"display": "block"
 					});
 					$.ajax({
-						url: "https://forwardapi.herokuapp.com/",
+						url: "https://api-haisanbinhminh.azurewebsites.net/",
 						method: "post",
 						data: {
 							idProvince: idProvince
@@ -356,7 +356,7 @@
 						"display": "block"
 					});
 					$.ajax({
-						url: "https://forwardapi.herokuapp.com/",
+						url: "https://api-haisanbinhminh.azurewebsites.net/",
 						method: "post",
 						data: {
 							idDistrict: idDistrict

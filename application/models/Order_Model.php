@@ -59,7 +59,23 @@ class Order_Model extends CI_Model {
         }
     }
 
-    public function isDelete($orderID)
+    public function updateOrder($orderID, $data = array())
+    {
+        if ($data == null || sizeof($data) == 0) return false;
+        else {
+            $this->db->set('Ward', $data['ward']);
+            $this->db->set('District', $data['district']);
+            $this->db->set('Province', $data['province']);
+            $this->db->set('Price', $data['price']);
+            $this->db->set('Status', 1);
+            $this->db->set('Note', $data['note']);
+            $this->db->where('OrderID', $orderID);
+            $this->db->update('orders');
+            return $this->db->affected_rows();
+        }
+    }
+
+    public function isCancel($orderID)
     {
         $this->db->where('OrderID', $orderID);
         $this->db->where('Status', '1');
@@ -67,9 +83,11 @@ class Order_Model extends CI_Model {
         return ($this->db->count_all_results() == 1);
     }
 
-    public function deleteOrder($orderID)
+    public function cancelOrder($orderID)
     {
-        $this->db->delete('orders', array('OrderID' => $orderID));
+        $this->db->set('Status', 4);
+        $this->db->where('OrderID', $orderID);
+        $this->db->update('orders');
         return $this->db->affected_rows();
     }
 }

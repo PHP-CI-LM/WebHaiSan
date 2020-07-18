@@ -12,7 +12,7 @@ class Payment extends CI_Controller
     public function index()
     {
         validateSession();
-        if (get_cookie("countProduct") != null) {
+        if (get_cookie("countProduct") != null && get_cookie('countProduct') > 0) {
             //Get info of list product in cookie
             $count = get_cookie("countProduct");
             $cookieName = "product";
@@ -43,7 +43,7 @@ class Payment extends CI_Controller
                 "products" => $products,
                 "info" => $data
             ]);
-        } else $this->load->view('Payment');
+        } else redirect(base_url());
     }
 
     public function confirm()

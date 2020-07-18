@@ -50,6 +50,7 @@
 										<th class="a-center">Tình trạng</th>
 										<th></th>
 										<th></th>
+										<th></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -64,9 +65,16 @@
 											echo '<td class="a-center">' . $order['Status'] . '</td>';
 											echo '</td>';
 											echo '<td class="a-center">';
-											echo '<a href="' . base_url() . 'kiem-tra-don-hang.html?oid=' . str_replace("/", "", $order["OrderDate"]) . $order["OrderID"] . '" title="Thông tin chi tiết">';
+											echo '<a href="' . base_url() . 'order/kiem-tra-don-hang.html?oid=' . str_replace("/", "", $order["OrderDate"]) . $order["OrderID"] . '" title="Thông tin chi tiết">';
 											echo '<i class="fa fa-info"></i>';
-											echo '</a>';
+											echo '</a></td>';
+											echo '<td class="a-center">';
+											if ($order["statusCode"] == 1) {
+												echo '<a href="' . base_url() . 'order/chinh-sua-don-hang.html?oid=' . str_replace("/", "", $order["OrderDate"]) . $order["OrderID"] . '" title="Chỉnh sửa đơn hàng">';
+												echo '<i class="fa fa-edit"></i>';
+												echo '</a>';
+											}
+											echo '</td>';
 											echo '<td class="a-center">';
 											if ($order["statusCode"] == 1) {
 												echo '<a id="cancelOrder" href="javascript:void(0)" onclick="cancelOrder(this)" title="Hủy đơn hàng">';
@@ -89,7 +97,7 @@
 	<?php require_once("comp/Footer.php") ?>
 	<script>
 		function cancelOrder(cancelButton) {
-			if (window.confirm('Bạn có chắc chắn muốn xóa đơn này?')) {
+			if (window.confirm('Bạn có chắc chắn muốn hủy đơn này?')) {
 				let oid = $($(cancelButton).parents('tr')[0]).attr('oid');
 				$.ajax({
 					'url': '<?= base_url() ?>order/huy-don-hang.html?oid=' + oid,
@@ -100,7 +108,7 @@
 							data = JSON.parse(res);
 						}
 						if (true == data['status']) {
-							alert('Đơn hàng của bạn đã được xóa');
+							alert('Đơn hàng của bạn đã được hủy');
 							location.reload();
 						} else {
 							alert(data['message']);

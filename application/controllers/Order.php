@@ -83,6 +83,75 @@ class Order extends CI_Controller
         }
     }
 
+    public function edit()
+    {
+        validateSession();
+        if ($this->session->tempdata('user') == null) {
+            redirect(base_url(), 'auto');
+        } else if (null != $this->input->post('data') && null != $this->input->post('oid')) {
+            // Edit order
+            header('Content-Type: application/json');
+            $data = (array) json_decode($this->input->post("data"));
+            if (
+                isset($data["name"]) && isset($data["phone"]) && isset($data["address"]) &&
+                isset($data["ward"]) && isset($data["district"]) && isset($data["province"]) &&
+                isset($data["shipper"]) && isset($data["price"]) && isset($data["products"])
+            ) {
+                $data = $this->cleanInput($data);
+                $this->load->model('Order_Model');
+                $this->load->model('Order_Detail_Model');
+                $this->load->model("Product_Model");
+                //Check if user is login then add user id to data array
+                if ($this->session->tempdata("user") !== null) {
+                    $data["AccountID"] = $this->session->tempdata("user");
+                }
+                //Save order information from data array to database
+                $this->Order_Model->updateOrder($this->input->post('oid'), $data);
+                //Save detail of order to database
+                $this->Order_Detail_Model->updateOrderDetail($this->input->post('oid'), json_decode(json_encode($data['products']), true));
+                sendResponse(1, 'Update order successfully!');
+                return;
+            }
+        } else {
+            $accountID = $this->session->tempdata('user');
+            $oid = $this->input->get("oid");
+            $order = [];
+            if (is_numeric($oid) && strlen($oid) > 8) {
+                //Split id and order date from order id
+                $id = substr($oid, 8, strlen($oid) - 8);
+                $date = substr($oid, 0, 2) . "/" . substr($oid, 2, 2) . "/" . substr($oid, 4, 4);
+                $this->load->model("Order_Model");
+                $this->load->model("Customer_Model");
+                $this->load->model("Order_Detail_Model");
+                $this->load->model("Product_Model");
+                $order = $this->Order_Model->getOrder($id, $date);
+                if (sizeof($order) > 0) {
+                    //Get list products of order if id is valid
+                    $order = $order[0];
+                    $order = array_merge($order, $this->Customer_Model->getCustomer($order['AccountID'])[0]);
+                    $details = $this->Order_Detail_Model->getDetailOrder($id);
+                    $products = array();
+                    foreach ($details as $item) {
+                        $product = (array) $this->Product_Model->getProductOfId($item["id"], 1);
+                        $product["price"] = $item["price"];
+                        $product["count"] = $item["amount"];
+                        array_push($products, $product);
+                    }
+                    $order['detail'] = $details;
+                    $order['products'] = $products;
+                    $this->load->view('EditOrder', [
+                        'oid'   => $id,
+                        'info'  => $order
+                    ]);
+                } else {
+                    redirect(base_url());
+                }
+            } else {
+                redirect(base_url());
+            }
+        }
+    }
+
     public function delete()
     {
         validateSession();
@@ -99,15 +168,14 @@ class Order extends CI_Controller
                 $this->load->model('Order_Model');
                 $this->load->model('Order_Detail_Model');
                 // Delete order_detail and order
-                if (true == $this->Order_Model->isDelete($id)) {
+                if (true == $this->Order_Model->isCancel($id)) {
                     $result['status'] = true;
-                    $this->Order_Detail_Model->deleteOrderDetail($id);
-                    $row_affect = $this->Order_Model->deleteOrder($id);
+                    $row_affect = $this->Order_Model->cancelOrder($id);
                     if (0 < $row_affect) {
-                        $result['message'] = 'Đã xóa '. $row_affect .'dòng';
+                        $result['message'] = 'Đã huỷ ' . $row_affect . 'dòng';
                     }
                 } else {
-                    $result['message'] = 'Đơn hàng không thể xóa';
+                    $result['message'] = 'Đơn hàng không thể hủy';
                 }
             } else {
                 $result['message'] = 'Thông tin đơn hàng không hợp lệ';
@@ -116,5 +184,19 @@ class Order extends CI_Controller
             $result['message'] = 'Yêu cầu không hợp lệ';
         }
         echo json_encode($result);
+    }
+
+    private function cleanInput($array)
+    {
+        $result = array();
+        foreach ($array as $key => $value) {
+            if ($key != 'products') {
+                $tempValue = $this->security->xss_clean($value);
+                $result[$key] = $tempValue;
+            } else {
+                $result[$key] = $value;
+            }
+        }
+        return $result;
     }
 }

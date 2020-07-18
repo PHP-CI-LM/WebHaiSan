@@ -31,7 +31,7 @@
 								</a> <span><i class="fa fa-angle-right"></i></span>
 								<meta itemprop="position" content="1">
 							</li>
-							<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name">Thanh toán</strong></a>
+							<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name">Chỉnh sửa đơn hàng</strong></a>
 								<meta itemprop="position" content="3">
 							</li>
 						</ul>
@@ -101,7 +101,13 @@
 											</select>
 											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif">
 										</div>
-										<textarea class="form-control" rows="4" placeholder="Ghi chú đơn hàng" styte="resize:none;"></textarea>
+										<?php
+										if (isset($info["Note"]) == false) {
+											echo '<textarea class="form-control" rows="4" placeholder="Ghi chú đơn hàng" styte="resize:none;"></textarea>';
+										} else {
+											echo '<textarea class="form-control" rows="4" placeholder="Ghi chú đơn hàng" styte="resize:none;">'. $info['Note'] .'</textarea>';
+										}
+										?>
 									</div>
 								</div>
 							</div>
@@ -126,10 +132,10 @@
 									<div class="cart-info">
 										<div class="cart-items">
 											<?php
-											if (isset($products) == true) {
+											if (isset($info['products']) == true) {
 												$totalPrice = 0;
-												foreach ($products as $product) {
-													echo "<div class=\"cart-item clearfix\">";
+												foreach ($info['products'] as $product) {
+													echo "<div class=\"cart-item clearfix\" pid=\"". $product['id_product'] ."\">";
 													echo "<span class=\"image pull-left\" style=\"margin-right:10px;\">";
 													echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">";
 													echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" class=\"img-responsive\">";
@@ -137,7 +143,7 @@
 													echo "<div class=\"product-info pull-left\">";
 													echo "<span class=\"product-name\">";
 													echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">" . $product["name_product"] . " x </a>";
-													echo "<span><input type=\"number\" value=\"". $product["count"] ."\" step=\"0.1\" min=\"0.5\" max=\"100\" oninput=\"changeQuantity(this)\" style=\"width: 75px; padding: 3px 5px;\"/></span>";
+													echo "<span><input type=\"number\" value=\"". $product["count"] ."\" step=\"0.1\" min=\"0.5\" max=\"100\" oninput=\"changeQuantityPayment()\" style=\"width: 75px; padding: 3px 5px;\"/></span>";
 													echo "</span></div>";
 													echo "<span class=\"price\">" . number_format((int) ($product["price"] * (100 - $product["discount"]) / 100)) . "₫</span></div>";
 													$totalPrice = (int) ($product["price"] * $product["count"] * (100 - $product["discount"])) / 100;
@@ -191,6 +197,7 @@
 		</div>
 
 		<?php require_once("comp/Footer.php") ?>
+		<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.js"></script>
 
 		<script type="text/javascript">
 			String.prototype.replaceAll = function(search, replacement) {
@@ -220,14 +227,15 @@
 					}
 				}
 				//Config and open modal notification
-				changeModalLabel("Đang xử lý đơn hàng của bạn...");
+				changeModalLabel("Đang cập nhật đơn hàng của bạn...");
 				disableCloseButton();
 				showModal();
 				//Send request to server
 				$.ajax({
-					url: "<?php echo base_url(); ?>xac-nhan-thanh-toan.html",
+					url: "<?php echo base_url(); ?>order/chinh-sua-don-hang.html",
 					method: 'post',
 					data: {
+						oid  : <?=$oid?>,
 						data: packData()
 					},
 					success: res => {
@@ -236,13 +244,12 @@
 							data = JSON.parse(res);
 						}
 						if (data["status"] == true) {
-							alert("Đơn hàng của bạn đã được tiếp nhận. Chúng tôi sẽ liên hệ lại ngay cho bạn để xác nhận đơn hàng");
-							deleteAllCookie();
+							alert("Đã chỉnh sửa đơn hàng thành công");
 							//Go to page check detail order
-							window.location.replace('<?php echo base_url() . "ket-qua-dat-hang.html?oid=" ?>' + data["data"]["oid"]);
+							window.location.replace('<?php echo base_url() . "order/lich-su-mua-hang.html" ?>');
 						} else {
 							enableCloseButton();
-							changeModalLabel("Quá trình đặt hàng có trục trặc. Làm phiền quý khách thực hiện lại thao tác")
+							changeModalLabel("Quá trình chỉnh sửa đơn hàng gặp trục trặc. Làm phiền quý khách thực hiện lại thao tác")
 						}
 					}
 				});
@@ -286,6 +293,15 @@
 				let note = $('textarea').val();
 				let shipper = $($('.form-group select option:selected')[3]).text();
 				let price = removeNumberFormat($('.total-payment span').text());
+				let items = $('.cart-item');
+				let products = [];
+				items.each((index, value) => {
+					products.push({
+						'id_product'	: $(value).attr('pid'),
+						'amount'			: $($(value).find('input')[0]).val(),
+						'price'			: removeNumberFormat($($(value).find('.price')[0]).text())
+					});
+				});
 				return JSON.stringify({
 					name: name,
 					phone: phone,
@@ -295,7 +311,8 @@
 					province: province,
 					note: note,
 					shipper: shipper,
-					price: price
+					price: price,
+					products: products
 				});
 			}
 
@@ -310,7 +327,7 @@
 						"display": "block"
 					});
 					$.ajax({
-						url: "https://forwardapi.herokuapp.com/",
+						url: "https://api-haisanbinhminh.azurewebsites.net/",
 						method: "post",
 						data: {
 							idProvince: idProvince
@@ -348,7 +365,7 @@
 						"display": "block"
 					});
 					$.ajax({
-						url: "https://forwardapi.herokuapp.com/",
+						url: "https://api-haisanbinhminh.azurewebsites.net/",
 						method: "post",
 						data: {
 							idDistrict: idDistrict

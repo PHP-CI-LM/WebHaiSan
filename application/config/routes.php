@@ -90,13 +90,14 @@ $route['user/thong-tin-tai-khoan.html']['GET'] = 'Account/index';
 $route['user/thong-tin-tai-khoan.html/(:num)']['POST'] = 'Account/updateInfomation/$1';
 $route['user/thong-tin-tai-khoan.html/avatar/(:num)']['POST'] = 'Account/uploadAvatar/$1';
 $route['ket-qua-dat-hang.html'] = 'Payment/result';
-$route['kiem-tra-don-hang.html'] = 'Order/index';
-$route['lich-su-mua-hang.html'] = 'Order/History';
+$route['order/kiem-tra-don-hang.html'] = 'Order/index';
+$route['order/lich-su-mua-hang.html'] = 'Order/History';
 $route['comment']['POST'] = 'Comment/add';
 $route['fblogin'] = 'User_authentication/index';
 $route['comments']['GET'] = 'Comment/getListcomment';
 $route['order/huy-don-hang.html']['GET'] = 'Order/delete';
-
+$route['order/chinh-sua-don-hang.html']['GET'] = 'Order/edit';
+$route['order/chinh-sua-don-hang.html']['POST'] = 'Order/edit';
 $route['search-word-key.html']['GET'] = 'Product/enterWordsearch';
 $route['comment/edit-comment']['POST'] = 'Comment/editComment';
 $route['comment/remove-comment']['POST'] = 'comment/removeComment';
