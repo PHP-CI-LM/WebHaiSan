@@ -27,11 +27,11 @@
                 <div class="menu">
                     <h3>
                         <span>
-                            Sản phẩm
+                            Thông tin
                         </span>
                     </h3>
                     <ul class="level0">
-                        <li class="active"><span><a href="<?php echo base_url() ?>"><i class="fa fa-user-circle-o" style="padding-right:15px;"></i> Thông tin tài khoản</a></span></li>
+                        <li class="active"><span><a href="<?php echo base_url() ?>user/thong-tin-tai-khoan.html"><i class="fa fa-user-circle-o" style="padding-right:15px;"></i> Thông tin tài khoản</a></span></li>
                         <li><span><a href="<?php echo base_url() ?>order/lich-su-mua-hang.html"><i class="fa fa-shopping-cart" style="padding-right:15px;"></i> Lịch sử mua hàng</a></span></li>
                         <li><span><a href="<?php echo base_url() ?>user/doi-mat-khau.html"><i class="fa fa-key" style="padding-right:15px;"></i> Đổi mật khẩu</a></span></li>
                         <li><span><a href="<?php echo base_url() ?>dang-xuat.html"><i class="fa fa-sign-out" style="padding-right:15px;"></i> Đăng xuất</a></span></li>
