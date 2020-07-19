@@ -23,9 +23,9 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 	echo '<div class="comment-info">';
 	echo '<span class="avatar">';
 	if ($comment['avatar'] == null) {
-		echo '<img src="' . base_url() . 'static/image/others/icon.svg" alt="Avatar">';
+		echo '<img src="' . base_url() . 'static/image/others/icon.svg" data-src="' . base_url() . 'static/image/others/icon.svg" alt="Avatar">';
 	} else {
-		echo '<img src="' . base_url() . 'static/image/avatar/' . $comment['avatar'] . '" alt="Avatar" style="max-width: 40px; border-radius: 50%">';
+		echo '<img src="' . base_url() . 'static/image/avatar/' . $comment['avatar'] . '" data-src="' . base_url() . 'static/image/avatar/' . $comment['avatar'] . '" alt="Avatar" style="max-width: 40px; border-radius: 50%">';
 	}
 	echo '</span>';
 	echo '<span class="content">';
@@ -129,7 +129,7 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 						<div class="thumbnail">
 							<?php
 							if ($product != null) {
-								echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" id=\"zoom-image\" style=\"content: url('" . base_url() . "images/" . $product["DuongDan"] . "');\">";
+								echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" data-src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" id=\"zoom-image\" style=\"content: url('" . base_url() . "images/" . $product["DuongDan"] . "');\">";
 							}
 							?>
 						</div>
@@ -215,7 +215,7 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 							$length = sizeof($similarProducts);
 							foreach ($similarProducts as $sproduct) {
 								echo '<a href="' . vn_to_str($sproduct["name_product"] . "-" . substr("00000" . $sproduct["id_product"], strlen("00000" . $sproduct["id_product"]) - 5, 5)) . ".html\">";
-								echo "<li class=\"item\"><img src=\"" . base_url() . "images/" . $sproduct["DuongDan"] . "\"></img> <span>" . $sproduct["name_product"];
+								echo "<li class=\"item\"><img src=\"" . base_url() . "images/" . $sproduct["DuongDan"] . "\" data-src=\"" . base_url() . "images/" . $sproduct["DuongDan"] . "\"></img> <span>" . $sproduct["name_product"];
 								echo "</span></li></a>";
 							}
 						}

@@ -65,7 +65,7 @@
 												$product = (array) $carts[$i];
 												echo "<tr id=\"" . $product["id_product"] . "\" c-name=\"" . $product["cookie_name"] . "\">";
 												echo "<td class=\"image\">";
-												echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\"> <img class=\"img-responsive\" src=\"" . base_url() . "images/" . $product["DuongDan"] . "\"></a>";
+												echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\"> <img class=\"img-responsive\" src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" data-src=\"" . base_url() . "images/" . $product["DuongDan"] . "\"></a>";
 												echo "</td>";
 												echo "<td class=\"des\">";
 												echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">" . $product["name_product"] . "</a>";
