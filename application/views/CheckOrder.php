@@ -7,13 +7,13 @@
 		<title><?php echo app_title()?> - Xem thông tin đơn hàng</title>
 		<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleView.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleDialog.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleCart.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.min.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleView.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleDialog.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleCart.min.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 		<script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
 	</head>
 
@@ -123,7 +123,7 @@
 		</div>
 
 		<?php require_once("comp/Footer.php") ?>
-		<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.js"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.min.js"></script>
 	</body>
 
 	</html>

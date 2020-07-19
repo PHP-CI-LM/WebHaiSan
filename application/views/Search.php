@@ -7,11 +7,11 @@
 	<title><?php echo app_title() ?> - Kết quả tìm kiếm</title>
 	<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleMenu.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleListProducts.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.min.css" data-minify="1" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleMenu.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleListProducts.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.min.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -94,8 +94,8 @@
 
 	<?php require_once("comp/Footer.php") ?>
 
-	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.js"></script>
-	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.js"></script>
+	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.min.js"></script>
 </body>
 
 </html>

@@ -39,7 +39,8 @@
     display: block;
 }
 
-input, select {
+input,
+select {
     min-height: 40px;
     background-color: #FFF;
     border-style: solid !important;
@@ -66,7 +67,7 @@ li.active a {
     text-align: right;
 }
 
-.board .header h2{
+.board .header h2 {
     flex-basis: 95%;
     text-align: left;
 }

@@ -7,10 +7,10 @@
     <title><?php echo app_title()?> - Thông tin tài khoản</title>
     <link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/sheet.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleInfo.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.min.css" data-minify="1" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/sheet.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleInfo.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -153,7 +153,7 @@
 
     <?php require_once("comp/Footer.php") ?>
 
-    <script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionInfo.js"></script>
+    <script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionInfo.min.js"></script>
 </body>
 
 </html>

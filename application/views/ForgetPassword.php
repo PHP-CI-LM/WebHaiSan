@@ -7,8 +7,8 @@
     <title><?php echo app_title() ?> - Thông tin tài khoản</title>
     <link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.min.css" data-minify="1" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
 
