@@ -77,13 +77,13 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 	<title><?php echo app_title() ?> - Thông tin chi tiết</title>
 	<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
-	<link rel="preload" as="style" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.min.css" data-minify="1" />
-	<link rel="preload" as="style" type="text/css" href="<?php echo base_url() ?>static/css/styleView.min.css" />
-	<link rel="preload" as="style" type="text/css" href="<?php echo base_url() ?>static/css/style.min.css" />
-	<link rel="preload" as="style" type="text/css" href="<?php echo base_url() ?>static/css/BEM_Style.min.css" />
-	<link rel="preload" as="style" type="text/css" href="<?php echo base_url() ?>static/css/comment.min.css" />
-	<link rel="preload" as="style" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="preload" as="style">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.min.css" data-minify="1" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleView.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/BEM_Style.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/comment.min.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.min.js"></script>
