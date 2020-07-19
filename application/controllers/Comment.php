@@ -12,6 +12,8 @@ class Comment extends CI_Controller
     // Function check comment before write comment to database, return true is allow write and else
     public function filter_comment($comment)
     {
+       
+        $resulData = [];
         validateSession();
         $this->load->model('Filter_Comment');
         $array_filter = $this->Filter_Comment->get_filter_comment();
@@ -22,10 +24,14 @@ class Comment extends CI_Controller
         $slipt_array = explode(' ', $comment);
         $intersect = array_intersect($slipt_array, $array);
         if (empty($intersect)) {
-            return true;
+            
+            $resulData['validate']=true;
+            $resultdata['keyViolate']=[];
+            return $resulData;
         }
-
-        return false;
+        $resultdata['validate']=false;
+        $resultdata['keyViolate']=$intersect;
+        return $resultdata;
     }
 
     // edit comment
@@ -129,13 +135,25 @@ class Comment extends CI_Controller
                 }
 
                 // Filter comment before saving into database
-                if (true === $this->filter_comment($this->input->post('content'))) {
+                // 
+                $this->load->model('Comment_Model');
+                if (true === $this->filter_comment($this->input->post('content'))['validate']) {
                     // Load model and save data
-                    $this->load->model('Comment_Model');
                     $this->Comment_Model->addComment($idProduct, $idAccount, $content, $time, $idReply);
                     $result = $this->generateNotifyResult(true, CREATE_SUCCESS);
                 } else {
-                    $result = $this->generateNotifyResult(false, CONTENT_RESTRICTED);
+                    // print('da');
+                    // die();  
+                    $comment = $this->input->post('content');
+                    $wordFileter = $this->filter_comment($this->input->post('content'))['keyViolate'];
+                    foreach($wordFileter as $key=>$word){
+                        $comment = preg_replace_callback("~\b$word\b~i", function($matches) use ($word) {
+                            return str_ireplace($word, str_repeat('*', mb_strlen($word)), $matches[0]);
+                        }, $comment);
+                        
+                    }
+                    $this->Comment_Model->addComment($idProduct, $idAccount, $comment, $time, $idReply);
+                    $result = $this->generateNotifyResult(true, CREATE_SUCCESS);
                 }
             } else {
                 $result = $this->generateNotifyResult(false, INPUT_REQUIRED);
