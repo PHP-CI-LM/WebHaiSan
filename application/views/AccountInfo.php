@@ -59,12 +59,12 @@
                             <div class="header">
                                 <h2>Thông tin tài khoản</h2>
                                 <span class="actions">
-                                    <img class="edit" style="" src="<?php echo base_url() . 'static/image/icon/edit.png' ?>" data-src="<?php echo base_url() . 'static/image/icon/edit.png' ?>">
-                                    <img class="save hidden" style="" src="<?php echo base_url() . 'static/image/icon/save.png' ?>" data-src="<?php echo base_url() . 'static/image/icon/save.png' ?>">
-                                    <img class="loading hidden" style="" src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>" data-src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>">
+                                    <img class="edit" style="" src="<?php echo base_url() . 'static/image/icon/edit.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/edit.png' ?>">
+                                    <img class="save hidden" style="" src="<?php echo base_url() . 'static/image/icon/save.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/save.png' ?>">
+                                    <img class="loading hidden" style="" src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>">
                                     <img class="success hidden" style="" src="<?php echo base_url() . 'static/image/icon/success.png' ?>" src="<?php echo base_url() . 'static/image/icon/success.png' ?>">
-                                    <img class="error hidden" style="" src="<?php echo base_url() . 'static/image/icon/error.png' ?>" data-src="<?php echo base_url() . 'static/image/icon/error.png' ?>">
-                                    <img class="cancel hidden" style="" src="<?php echo base_url() . 'static/image/icon/close.png' ?>" data-src="<?php echo base_url() . 'static/image/icon/close.png' ?>">
+                                    <img class="error hidden" style="" src="<?php echo base_url() . 'static/image/icon/error.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/error.png' ?>">
+                                    <img class="cancel hidden" style="" src="<?php echo base_url() . 'static/image/icon/close.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/close.png' ?>">
                                 </span>
                             </div>
                             <div class="detail">
@@ -84,7 +84,7 @@
                                     <label for="Avatar">Ảnh đại diện: </label>
                                     <?php
                                         if (isset($data['Avatar'])) {
-                                            echo '<span class="info"><img src="' . base_url() . 'static/image/avatar/'. $data['Avatar'] . '" data-src="' . base_url() . 'static/image/avatar/'. $data['Avatar'] . '" style="max-width: 40px; border-radius: 50%"></span>';
+                                            echo '<span class="info"><img src="' . base_url() . 'static/image/avatar/'. $data['Avatar'] . '" loading="lazy" data-src="' . base_url() . 'static/image/avatar/'. $data['Avatar'] . '" style="max-width: 40px; border-radius: 50%"></span>';
                                             echo '<input type="file" class="info input hidden" name="avatar" accept="image/png, image/jpeg">';
                                         } else {
                                             echo '<input type="file" class="info input fixed" name="avatar" accept="image/png, image/jpeg">';
@@ -96,12 +96,12 @@
                             <div class="header">
                                 <h2>Thông tin tài khoản</h2>
                                 <span class="actions">
-                                    <img class="edit" style="" src="<?php echo base_url() . 'static/image/icon/edit.png' ?>" data-src="<?php echo base_url() . 'static/image/icon/edit.png' ?>">
-                                    <img class="save hidden" style="" src="<?php echo base_url() . 'static/image/icon/save.png' ?>" data-src="<?php echo base_url() . 'static/image/icon/save.png' ?>">
-                                    <img class="loading hidden" style="" src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>" data-src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>">
-                                    <img class="success hidden" style="" src="<?php echo base_url() . 'static/image/icon/success.png' ?>" data-src="<?php echo base_url() . 'static/image/icon/success.png' ?>">
-                                    <img class="error hidden" style="" src="<?php echo base_url() . 'static/image/icon/error.png' ?>" data-src="<?php echo base_url() . 'static/image/icon/error.png' ?>">
-                                    <img class="cancel hidden" style="" src="<?php echo base_url() . 'static/image/icon/close.png' ?>" data-src="<?php echo base_url() . 'static/image/icon/close.png' ?>">
+                                    <img class="edit" style="" src="<?php echo base_url() . 'static/image/icon/edit.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/edit.png' ?>">
+                                    <img class="save hidden" style="" src="<?php echo base_url() . 'static/image/icon/save.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/save.png' ?>">
+                                    <img class="loading hidden" style="" src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>">
+                                    <img class="success hidden" style="" src="<?php echo base_url() . 'static/image/icon/success.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/success.png' ?>">
+                                    <img class="error hidden" style="" src="<?php echo base_url() . 'static/image/icon/error.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/error.png' ?>">
+                                    <img class="cancel hidden" style="" src="<?php echo base_url() . 'static/image/icon/close.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/close.png' ?>">
                                 </span>
                             </div>
                             <div class="detail">

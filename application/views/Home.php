@@ -38,7 +38,7 @@
 											foreach ($categories as $key => $category) {
 												echo '<li class="level0">';
 												echo '<a href="' . base_url() . 'category/' . $category['url'] . '">';
-												echo '<img class="icon-menu" src="' . base_url() . 'static/image/icon/' . $category['thumbnail'] . '" data-src="' . base_url() . 'static/image/icon/' . $category['thumbnail'] . '" alt="' . $category['name_category'] . '">';
+												echo '<img class="icon-menu" src="' . base_url() . 'static/image/icon/' . $category['thumbnail'] . '" loading="lazy" data-src="' . base_url() . 'static/image/icon/' . $category['thumbnail'] . '" alt="' . $category['name_category'] . '">';
 												echo '<span>' . $category['name_category'] . '</span>';
 												echo '</a></li>';
 											}
@@ -59,10 +59,10 @@
 							<?php
 							if ($bangTin !== null && sizeof($bangTin) > 0) {
 								echo '<div class="item active"><a href="#"> <img src="' . base_url() . 'static/image/' . $bangTin[0]['path']
-									. '" data-src="' . base_url() . 'static/image/' . $bangTin[0]['path'] . '" style="width: 100%; background-repeat: no-repeat; cursor:pointer;"> </a></div>';
+									. '" loading="lazy" data-src="' . base_url() . 'static/image/' . $bangTin[0]['path'] . '" style="width: 100%; background-repeat: no-repeat; cursor:pointer;"> </a></div>';
 								for ($i = 1; $i < sizeof($bangTin); ++$i) {
 									echo '<div class="item"><a href="#"> <img src="' . base_url() . 'static/image/' . $bangTin[$i]['path']
-										. '" data-src="' . base_url() . 'static/image/' . $bangTin[$i]['path'] . '" style="width: 100%; background-repeat: no-repeat; cursor:pointer;"></a></div>';
+										. '" loading="lazy" data-src="' . base_url() . 'static/image/' . $bangTin[$i]['path'] . '" style="width: 100%; background-repeat: no-repeat; cursor:pointer;"></a></div>';
 								}
 							}
 							?>
@@ -79,7 +79,7 @@
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-xxs-12 text-center m-b-xs-10">
 							<div class="service_item">
 								<div class="icon icon_product">
-									<img src="<?php echo base_url(); ?>static/image/icon/icon_1.png" data-src="<?php echo base_url(); ?>static/image/icon/icon_1.png" alt="">
+									<img src="<?php echo base_url(); ?>static/image/icon/icon_1.png" loading="lazy" data-src="<?php echo base_url(); ?>static/image/icon/icon_1.png" alt="">
 								</div>
 								<div class="description_icon">
 									<span class="large-text">
@@ -94,7 +94,7 @@
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-xxs-12 text-center m-b-xs-10">
 							<div class="service_item">
 								<div class="icon icon_product">
-									<img src="<?php echo base_url(); ?>static/image/icon/icon_2.png" data-src="<?php echo base_url(); ?>static/image/icon/icon_2.png" alt="">
+									<img src="<?php echo base_url(); ?>static/image/icon/icon_2.png" loading="lazy" data-src="<?php echo base_url(); ?>static/image/icon/icon_2.png" alt="">
 								</div>
 								<div class="description_icon">
 									<span class="large-text">
@@ -109,7 +109,7 @@
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center m-b-xs-10">
 							<div class="service_item">
 								<div class="icon icon_product">
-									<img src="<?php echo base_url(); ?>static/image/icon/icon_3.png" data-src="<?php echo base_url(); ?>static/image/icon/icon_3.png" alt="">
+									<img src="<?php echo base_url(); ?>static/image/icon/icon_3.png" loading="lazy" data-src="<?php echo base_url(); ?>static/image/icon/icon_3.png" alt="">
 								</div>
 								<div class="description_icon">
 									<span class="large-text">
@@ -147,7 +147,7 @@
 							$price = strval(intval($product['price'] * (100 - intval($product['discount'])) / 100));
 							echo '<a href="' . $url_product . '" title="' . $product['name_product'] . '" class="product">';
 							echo '<div class="thumbnail">';
-							echo '<img src="' . $url_thumbnail . '" data-src="' . $url_thumbnail . '" alt="' . $product['name_product'] . '">';
+							echo '<img src="' . $url_thumbnail . '" loading="lazy" data-src="' . $url_thumbnail . '" alt="' . $product['name_product'] . '">';
 							echo '</div>';
 							echo '<p class="title">' . $product['name_product'] . '</p>';
 							echo '<p class="price">' . number_format($price);
@@ -181,7 +181,7 @@
 						$price = strval(intval($product['price'] * (100 - intval($product['discount'])) / 100));
 						echo '<a href="' . $url_product . '" title="' . $product['name_product'] . '" class="product">';
 						echo '<div class="thumbnail">';
-						echo '<img src="' . $url_thumbnail . '" alt="' . $product['name_product'] . '">';
+						echo '<img src="' . $url_thumbnail . '" loading="lazy" data-src="' . $url_thumbnail . '" alt="' . $product['name_product'] . '">';
 						echo '</div>';
 						echo '<p class="title">' . $product['name_product'] . '</p>';
 						echo '<p class="price">' . number_format($price);

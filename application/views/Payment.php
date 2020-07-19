@@ -102,13 +102,13 @@
 											<select class="form-control" onchange="changedDistrict()" required="">
 												<option value="number:0" label="Vui lòng chọn huyện" selected>Vui lòng chọn huyện</option>
 											</select>
-											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif" data-src="<?=base_url()?>static/image/gif/loading.gif">
+											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif" loading="lazy" data-src="<?=base_url()?>static/image/gif/loading.gif">
 										</div>
 										<div class="form-group">
 											<select class="form-control" required="">
 												<option value="number:0" label="Vui lòng chọn xã/phường" selected>Vui lòng chọn xã/phường</option>
 											</select>
-											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif" data-src="<?=base_url()?>static/image/gif/loading.gif">
+											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif" loading="lazy" data-src="<?=base_url()?>static/image/gif/loading.gif">
 										</div>
 										<textarea class="form-control" rows="4" placeholder="Ghi chú đơn hàng" styte="resize:none;"></textarea>
 									</div>
@@ -141,7 +141,7 @@
 													echo "<div class=\"cart-item clearfix\">";
 													echo "<span class=\"image pull-left\" style=\"margin-right:10px;\">";
 													echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">";
-													echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" data-src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" class=\"img-responsive\">";
+													echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" loading=\"lazy\" data-src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" class=\"img-responsive\">";
 													echo "</a></span>";
 													echo "<div class=\"product-info pull-left\">";
 													echo "<span class=\"product-name\">";
@@ -192,7 +192,7 @@
 				<span class="modal-close">Close</span>
 				<h1>Thông báo</h1>
 				<div class="content">
-					<img src="<?php echo base_url() ?>static/image/gif/loading.gif" data-src="<?php echo base_url() ?>static/image/gif/loading.gif">
+					<img src="<?php echo base_url() ?>static/image/gif/loading.gif" loading="lazy" data-src="<?php echo base_url() ?>static/image/gif/loading.gif">
 					<span class="label">Đang xử lý đơn hàng của bạn</span>
 				</div>
 			</div>
