@@ -70,8 +70,9 @@ class Order_Model extends CI_Model {
             $this->db->set('Status', 1);
             $this->db->set('Note', $data['note']);
             $this->db->where('OrderID', $orderID);
+            $this->db->where('AccountID', $data['AccountID']);
             $this->db->update('orders');
-            return $this->db->affected_rows();
+            return true;
         }
     }
 

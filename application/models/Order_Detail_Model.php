@@ -38,7 +38,7 @@ class Order_Detail_Model extends CI_Model
                 $this->db->where('OrderID', $idOrder);
                 $this->db->update('orders_detail');
             }
-            return $this->db->affected_rows();
+            return true;
         }
     }
 
