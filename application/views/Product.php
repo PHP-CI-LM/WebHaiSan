@@ -251,14 +251,26 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 			</div>
 			<input class="hidden base_url" value="<?php echo base_url() ?>" />
 		</div>
+		<div id="open-modal" class="modal-window">
+			<div>
+				<span class="modal-close"><i class="fa fa-close"></i></span>
+				<h1>Thông báo</h1>
+				<div class="content">
+					<img src="<?php echo base_url() ?>static/image/gif/loading.gif" loading="lazy" data-src="<?php echo base_url() ?>static/image/gif/loading.gif">
+					<span class="label">Đang gửi bình luận</span>
+				</div>
+			</div>
+		</div>
 
 		<?php require_once("comp/Footer.php") ?>
+		<script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionModal.min.js"></script>
 
 		<script type="text/javascript">
 			var inputFocused = null;
 			var isEdited = false;
 
 			function editComment(idComment, content) {
+				showModal('Đang cập nhật bình luận');
 				$.ajax({
 					url: '<?= base_url() ?>comment/edit-comment',
 					method: 'post',
@@ -275,6 +287,7 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 							alert('Chỉnh sửa bình luận thành công');
 							window.location.reload();
 						} else {
+							hideModal();
 							alert(data['message']);
 						}
 					}
@@ -282,6 +295,7 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 			}
 
 			function deleteComment(idComment) {
+				showModal('Đang xóa bình luận');
 				$.ajax({
 					url: '<?= base_url() ?>comment/remove-comment',
 					method: 'post',
@@ -297,6 +311,7 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 							alert('Xoá bình luận thành công');
 							window.location.reload();
 						} else {
+							hideModal();
 							alert(data['message']);
 						}
 					}
@@ -309,6 +324,7 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 				$('.board ul.content').css({
 					"max-height": max_height
 				});
+
 
 				$('body').on('click', event => {
 					if (isEdited == true) {
@@ -379,6 +395,7 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 						replyId = $('.comment-all input[type="text"]').attr('reply-id');
 					}
 					if (content.length > 0) {
+						showModal("Đang thêm bình luận");
 						$.ajax($('.base_url').val() + '/comment', {
 							type: 'post',
 							data: {
@@ -388,8 +405,9 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 							},
 							success: function(res, textStatus, xhr) {
 								if (xhr.status == 200) { // Request success
-									alert(res.message);
 									$('.comment-form').load(window.location.href + ' .comments-container, .comment-all');
+									hideModal();
+									alert(res.message);
 								}
 							}
 						});

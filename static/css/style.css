@@ -1443,6 +1443,79 @@ ul.list-info .item {
     cursor: pointer;
 }
 
+.modal-window {
+    display: none;
+    position: fixed;
+    background-color: rgba(125, 125, 125, 0.5);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9998;
+    /* visibility: hidden;
+	opacity: 0;
+	pointer-events: none; */
+    transition: all 0.3s;
+}
+
+.modal-window:target {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-window>div {
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1.85rem;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.modal-window header {
+    font-weight: bold;
+}
+
+.modal-window h1 {
+    font-size: 150%;
+    margin: 0 0 15px;
+}
+
+.modal-close {
+    color: #aaa;
+    line-height: 35px;
+    font-size: 80%;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    float: right;
+}
+
+.modal-close:hover {
+    color: black;
+}
+
+.modal-window .content {
+    display: flex;
+    align-items: center;
+}
+
+.modal-window .content img {
+    width: 5rem;
+    height: 5rem;
+}
+
+.modal-window .content .label {
+    color: #333;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding-left: 2rem;
+}
+
 .mini-icon-bar a:first-child {
     border-left: none;
 }

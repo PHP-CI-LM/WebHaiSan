@@ -187,7 +187,7 @@
 		</div>
 		<div id="open-modal" class="modal-window">
 			<div>
-				<span class="modal-close">Close</span>
+				<span class="modal-close"><i class="fa fa-close"></i></span>
 				<h1>Thông báo</h1>
 				<div class="content">
 					<img src="<?php echo base_url() ?>static/image/gif/loading.gif" loading="lazy" data-src="<?php echo base_url() ?>static/image/gif/loading.gif">
@@ -198,6 +198,7 @@
 
 		<?php require_once("comp/Footer.php") ?>
 		<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionModal.min.js"></script>
 
 		<script type="text/javascript">
 			String.prototype.replaceAll = function(search, replacement) {
@@ -252,34 +253,6 @@
 							changeModalLabel("Quá trình chỉnh sửa đơn hàng gặp trục trặc. Làm phiền quý khách thực hiện lại thao tác")
 						}
 					}
-				});
-			}
-
-			function showModal() {
-				$(".modal-window").css({
-					"display": "block"
-				});
-			}
-
-			function hideModal() {
-				$(".modal-window").css({
-					"display": "none"
-				});
-			}
-
-			function changeModalLabel(content) {
-				$(".modal-window content span.label").text(content);
-			}
-
-			function disableCloseButton() {
-				$(".modal-close").css({
-					"display": "none"
-				});
-			}
-
-			function enableCloseButton() {
-				$(".modal-close").css({
-					"display": "block"
 				});
 			}
 

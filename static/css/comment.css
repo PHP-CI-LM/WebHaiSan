@@ -43,7 +43,6 @@
 }
 
 .comment-info .info {
-    display: flex;
     align-items: center;
 }
 
@@ -145,12 +144,9 @@
 }
 
 .comments-list .reply-input {
-    margin-left: 60px;
+    padding-left: 60px;
     height: 36px;
     width: 75%;
-    padding: 0.25rem 1rem;
-    margin-right: 2rem;
-    margin-top: 1rem;
 }
 
 .comment-all,
@@ -167,6 +163,7 @@
 }
 
 .reply-input {
+    text-align: left;
     position: relative;
     border-top: none;
     width: 100%;
@@ -185,6 +182,8 @@
 
 .reply-input input[type="text"] {
     margin-right: 15%;
+    padding: 3px 5px;
+    width: 100%;
 }
 
 .comment-all input[type="submit"] {
@@ -201,15 +200,15 @@
 }
 
 .reply-input input[type="submit"] {
+    right: 11px;
     position: absolute;
-    width: 55px;
-    top: 0;
-    right: 0;
-    margin-right: 10%;
-    border: none;
+    top: 0px;
+    margin: 1px 0;
+    padding: 0 1.5rem;
+    height: 30px;
     background: #0295d0;
-    color: #DDD;
+    color: #ddd;
     font-weight: 600;
-    padding-left: 0;
-    padding-right: 0;
+    border: none;
+    cursor: pointer;
 }

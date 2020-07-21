@@ -109,11 +109,25 @@
 		</article>
 	</div>
 
+	<div id="open-modal" class="modal-window">
+		<div>
+			<span class="modal-close"><i class="fa fa-close"></i></span>
+			<h1>Thông báo</h1>
+			<div class="content">
+				<img src="<?php echo base_url() ?>static/image/gif/loading.gif" loading="lazy" data-src="<?php echo base_url() ?>static/image/gif/loading.gif">
+				<span class="label">Đang gửi bình luận</span>
+			</div>
+		</div>
+	</div>
+
 	<?php require_once("comp/Footer.php") ?>
+	<script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionModal.min.js"></script>
+
 	<script>
 		function cancelOrder(cancelButton) {
 			if (window.confirm('Bạn có chắc chắn muốn hủy đơn này?')) {
 				let oid = $($(cancelButton).parents('tr')[0]).attr('oid');
+				showModal('Đang hủy đơn hàng');
 				$.ajax({
 					'url': '<?= base_url() ?>order/huy-don-hang.html?oid=' + oid,
 					'method': 'get',
@@ -123,14 +137,14 @@
 							data = JSON.parse(res);
 						}
 						if (true == data['status']) {
-							alert('Đơn hàng của bạn đã được hủy');
+							showModal('Đơn hàng của bạn đã được hủy');
 							location.reload();
 						} else {
-							alert(data['message']);
+							showModal(data['message'], true);
 						}
 					},
 					'error': (request, status, error) => {
-						alert('Lỗi trong quá trình hủy đơn. Vui lòng thử lại')
+						showModal('Lỗi trong quá trình hủy đơn. Vui lòng thử lại', true);
 					}
 				});
 			}

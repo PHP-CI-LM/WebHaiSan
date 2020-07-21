@@ -10,7 +10,7 @@
                     <?php echo preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "$1-$2-$3", "0123456789") ?>
                 </span>
                 <span class="checkOrder f-right">
-                    <a href="<?php echo base_url() ?>kiem-tra-don-hang.html">
+                    <a href="<?php echo base_url() ?>order/kiem-tra-don-hang.html">
                         <i class="fa fa-bullseye"></i>
                         Tra cứu đơn hàng
                     </a>
