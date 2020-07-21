@@ -34,7 +34,7 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 	echo '<span class="time">' . $comment['time'] . '</span></span>';
 	if ($user != null) {
 		if ($user == $comment['AccountID']) {
-			echo '<span class="detail"><i class="fa fa-ellipsis-h"></i>';
+			echo '<span class="detail"><i onclick="toggleDetailComment(this)" class="fa fa-ellipsis-h"></i>';
 			echo '<ul class="hidden list-detail">';
 			echo '<li><a id="editComment" href="">Chỉnh sửa</a></li>';
 			echo '<li><a id="deleteComment" href="">Xóa</a></li>';
@@ -318,6 +318,13 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 				});
 			}
 
+			function toggleDetailComment(element) {
+				if ($(element).siblings('ul').length > 0) {
+					var detail = $(element).siblings('ul');
+					$(detail).toggleClass('hidden');
+				}
+			}
+
 			$(document).ready(function() {
 				let max_height = $('.board').height() - 2 * $('.board .title').height();
 
@@ -335,13 +342,6 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 							$(inputFocused).prop('disabled', 'true');
 						}
 						isEdited = false;
-					}
-				});
-
-				$('.comment-info .info .detail i').on('click', event => {
-					if ($(event.target).siblings('ul').length > 0) {
-						var detail = $(event.target).siblings('ul');
-						$(detail).toggleClass('hidden');
 					}
 				});
 
