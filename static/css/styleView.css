@@ -150,6 +150,12 @@
     }
 }
 
+@media (min-width: 992px) {
+    .thumbnail img {
+        margin-left: 20px;
+    }
+}
+
 @media ( min-width :1200px) {
     input#count {
         margin-top: 10px;
