@@ -43,6 +43,8 @@
 }
 
 .comment-info .info {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -66,7 +68,7 @@
 .comment-info .info .detail {
     position: relative;
     background: #FFF;
-    width: 45%;
+    margin-right: 20px;
     text-align: right;
     cursor: pointer;
 }
@@ -81,6 +83,7 @@
     border: 1px solid #DDD;
     top: 20px;
     right: 0px;
+    width: 100px;
 }
 
 .comment-info .info .detail ul li {

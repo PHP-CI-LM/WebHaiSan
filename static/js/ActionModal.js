@@ -4,7 +4,8 @@ function showModal() {
     });
 }
 
-function showModal(label) {
+function show_modal(label) {
+    alert(label);
     if (0 < label.length) {
         changeModalLabel(label);
     }
@@ -34,7 +35,7 @@ function hideModal() {
 }
 
 function changeModalLabel(content) {
-    $(".modal-window content span.label").text(content);
+    $(".modal-window .content span.label").text(content);
 }
 
 function disableCloseButton() {
