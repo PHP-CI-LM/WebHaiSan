@@ -15,28 +15,28 @@ function toDatetime($timestamp)
 
 function diff_time($time1, $time2 = null)
 {
-    $datetime1 = new DateTime($time1);
+    $time1 = strtotime($time1);
     if ($time2 != null) {
-        $datetime2 = new DateTime($time2);
+        $time2 = strtotime($time2);
     } else {
-        $datetime2 = new DateTime('now');
+        $time2 = getTimestamp();
     }
-    $diffTime = $datetime1->diff($datetime2)->format('%i');
+    $diffTime = $time2 - $time1;
 
-    if ($diffTime == 0) {
+    if ($diffTime < 60) {
         $diffTime = 'Vừa mới đây';
-    } else if ($diffTime > 0 && $diffTime < 60) {
-        $diffTime = $diffTime . ' phút trước';
-    } else if ($diffTime > 60 && $diffTime < 1440) {
-        $diffTime = $diffTime / 60 . ' giờ trước';
-    } else if ($diffTime >= 1440 && $diffTime < 10080) {
-        $diffTime = $diffTime / 1440 . ' ngày trước';
-    } else if ($diffTime >= 10080 && $diffTime < 40320) {
-        $diffTime = $diffTime / 40320 . ' tuần trước';
-    } else if ($diffTime >= 40320 && $diffTime < 525600) {
-        $diffTime = $diffTime / 40320 . ' tháng trước';
+    } else if ($diffTime >= 60 && $diffTime < 3600) {
+        $diffTime = intval($diffTime/60) . ' phút trước';
+    } else if ($diffTime >= 3600 && $diffTime < 86400) {
+        $diffTime = intval($diffTime/3600) . ' giờ trước';
+    } else if ($diffTime >= 86400 && $diffTime < 604800) {
+        $diffTime = intval($diffTime/86400) . ' ngày trước';
+    } else if ($diffTime >= 604800 && $diffTime < 2419200) {
+        $diffTime = intval($diffTime/604800) . ' tuần trước';
+    } else if ($diffTime >= 2419200 && $diffTime < 29030400) {
+        $diffTime = intval($diffTime/2419200) . ' tháng trước';
     } else {
-        $diffTime = $diffTime / 525600 . ' năm trước';
+        $diffTime = intval($diffTime/29030400) . ' năm trước';
     }
 
     return $diffTime;
