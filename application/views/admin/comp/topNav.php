@@ -6,7 +6,7 @@
 
         <div class="userNav" style="margin-left: 214px; margin-right: 0px">
             <ul>
-                <li><a href="http://localhost/webphp/" target="_blank">
+                <li><a href="<?=base_url()?>" target="_blank">
                         <img style="margin-top:7px;" src="<?php echo public_url() ?>/images/icons/light/home.png" />
                         <span>Trang chủ</span>
                     </a></li>

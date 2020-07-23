@@ -11,7 +11,7 @@
 	<link rel="shortcut icon" href="<?php echo public_url() ?>/images/icon.png" type="image/x-icon" />
 	<link rel="stylesheet" type="text/css" href="<?php echo public_url() ?>/crown/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo public_url() ?>/css/css.css" media="screen" />
-
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 	<script type="text/javascript">
 		var admin_url = '';
@@ -62,23 +62,114 @@
 <body>
 
 	<!-- Left side content -->
-	<?php require("comp/nav.php")?>
+	<div id="left_content">
+		<div id="leftSide" style="padding-top:30px;">
+
+			<!-- Account panel -->
+
+			<div class="sideProfile">
+				<a href="#" title="" class="profileFace"><img width="40" src="<?php echo public_url() ?>/images/user.png" /></a>
+				<span>Xin chào: <strong>admin!</strong></span>
+				<span>ADMIN</span>
+				<div class="clear"></div>
+			</div>
+			<div class="sidebarSep"></div>
+			<!-- Left navigation -->
+
+			<ul id="menu" class="nav">
+
+				<li class="home">
+
+					<a href="<?php echo base_url() ?>ci-admin" id="current">
+						<span>Bảng điều khiển</span>
+						<strong></strong>
+					</a>
+
+
+				</li>
+				<li class="tran">
+
+					<a href="ci-admin/tran.html" class="active exp">
+						<span>Quản lý bán hàng</span>
+						<strong>1</strong>
+					</a>
+
+					<ul class="sub">
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/order.html">
+								Thông tin đơn hàng</a>
+						</li>
+					</ul>
+
+				</li>
+				<li class="product">
+
+					<a href="<?php echo base_url() ?>ci-admin/product.html" class=" exp">
+						<span>Sản phẩm</span>
+						<strong>1</strong>
+					</a>
+
+					<ul class="sub">
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/product.html">
+								Sản phẩm </a>
+						</li>
+					</ul>
+
+				</li>
+				<li class="account">
+
+					<a href="<?php echo base_url() ?>ci-admin/user.html" class=" exp">
+						<span>Tài khoản</span>
+						<strong>1</strong>
+					</a>
+
+					<ul class="sub">
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/user.html">
+								Thành viên </a>
+						</li>
+					</ul>
+
+				</li>
+				<li class="product">
+
+					<a href="javascript:void(0)" class=" exp">
+						<span>Bình luận</span>
+						<strong>2</strong>
+					</a>
+
+					<ul class="sub">
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/comment.html">
+								Bình luận </a>
+						</li>
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/comment/filter.html">
+								Lọc bình luận</a>
+						</li>
+					</ul>
+
+				</li>
+			</ul>
+
+		</div>
+		<div class="clear"></div>
+	</div>
 
 
 	<!-- Right side -->
 	<div id="rightSide">
 
 		<!-- Account panel top -->
-		<?php require("comp/topNav.php")?>
-
-		<!-- Main content -->
+		<?php require("comp/topNav.php") ?>
 
 		<!-- Common -->
 		<!-- Title area -->
 		<div class="titleArea">
 			<div class="wrapper">
 				<div class="pageTitle">
-					<h5>Đơn hàng sản phẩm</h5>
+					<h5>Thông tin đơn hàng </h5>
 					<span>Quản lý đơn hàng</span>
 				</div>
 
@@ -97,7 +188,7 @@
 			<div class="widget">
 				<div class="title">
 					<span class="titleIcon"><img src="<?php echo public_url() ?>/images/icons/tableArrows.png" /></span>
-					<h6>Danh sách Đơn hàng sản phẩm</h6>
+					<h6>Danh sách đơn hàng</h6>
 
 					<!-- <div class="num f12">Tổng số: <b></b></div> -->
 				</div>
@@ -105,11 +196,10 @@
 				<table cellpadding="0" cellspacing="0" width="100%" class="sTable mTable myTable" id="checkAll">
 					<thead class="filter">
 						<tr>
-							<td colspan="6">
+							<td colspan="9">
 								<form class="list_filter form" action="index.php/admin/product_order.html" method="get">
 									<table cellpadding="0" cellspacing="0" width="100%">
 										<tbody>
-
 											<tr>
 												<td class="label" style="width:60px;"><label for="filter_id">Mã số</label></td>
 												<td class="item"><input name="id" value="" id="filter_id" type="text" style="width:95px;" /></td>
@@ -125,37 +215,16 @@
 												</td>
 
 												<td class="label" style="width:60px;"><label for="filter_created">Từ ngày</label></td>
-												<td class="item"><input name="created" value="" id="filter_created" type="text" class="datepicker" /></td>
+												<td class="item"><input name="fromDate" value="" id="filter_created" type="text" class="datepicker" /></td>
 
+												<td class="label" style="width:60px;"><label for="filter_created">Đến ngày</label></td>
+												<td class="item"><input name="toDate" value="" id="filter_created" type="text" class="datepicker" /></td>
 
 												<td colspan='2' style='width:60px'>
 													<input type="submit" class="button blueB" value="Lọc" />
-													<input type="reset" class="basic" value="Reset" onclick="window.location.href = 'index.php/admin/product_order.html'; ">
 												</td>
 
 											</tr>
-
-											<tr>
-												<td class="label" style="width:60px;"><label for="filter_user">Thành viên</label></td>
-												<td class="item"><input name="user" value="" id="filter_user" class="tipS" title="Nhập mã thành viên" type="text" /></td>
-
-												<td class="label"><label for="filter_status">Giao dịch</label></td>
-												<td class="item">
-													<select name="transaction_status">
-														<option value=""></option>
-														<option value='0'>Đợi xử lý</option>
-														<option value='1'>Thành công</option>
-														<option value='2'>Hủy bỏ</option>
-													</select>
-												</td>
-
-												<td class="label"><label for="filter_created_to">Đến ngày</label></td>
-												<td class="item"><input name="created_to" value="" id="filter_created_to" type="text" class="datepicker" /></td>
-
-												<td class="label"></td>
-												<td class="item"></td>
-											</tr>
-
 										</tbody>
 									</table>
 								</form>
@@ -164,18 +233,21 @@
 					</thead>
 					<thead>
 						<tr>
-							<td style="width:60px;">Mã đơn</td>
-							<td style="width:75px;">Người nhận</td>
+							<td style="width:25px;">Mã đơn</td>
+							<td style="width:85px;">Người nhận</td>
 							<td style="width:200px;">Địa Chỉ</td>
 							<td style="width:80px;">Giá</td>
 							<td style="width:75px;">Tình trạng</td>
-							<td style="width:75px;">Ngày đặt</td>
+							<td style="width:60px;">Ngày đặt</td>
+							<td style="width:25px"></td>
+							<td style="width:25px"></td>
+							<td style="width:25px"></td>
 						</tr>
 					</thead>
 
 					<tfoot class="auto_check_pages">
 						<tr>
-							<td colspan="6"></td>
+							<td colspan="9"></td>
 							</td>
 						</tr>
 					</tfoot>
@@ -184,11 +256,22 @@
 							foreach ($data as $row) { ?>
 								<tr class='row_20'>
 									<td class="textC"><?php echo $row["OrderID"] ?></td>
-									<td class="textC"><?php echo $row["Customer"] ?></td>
-									<td class="status textC"><?php echo $row["DiaChi"] ?></td>
-									<td class="textR"><?php echo $row["Price"] ?></td>
-									<td class="textC"><?php echo $row["Status"] ?></td>
+									<td class="textL"><?php echo $row["Receiver"] ?></td>
+									<td class="status textL"><?php echo $row["DiaChi"] ?></td>
+									<td class="textL"><?php echo number_format($row["Price"]) . " đ" ?></td>
+									<td class="textL"><?php echo $row["Status"] ?></td>
 									<td class="status textC"><?php echo $row["OrderDate"] ?></td>
+									<td class="textC"><a href="#" title="Xem chi tiết"><i class="fa fa-info" style="font-size: 16px !important;"></i></a></td>
+									<td class="textC"><a href="#" title="Hủy đơn hàng"><i class="fa fa-trash" style="font-size: 16px !important;"></i></a></td>
+									<?php
+											if (1 == $row['StatusCode']) {
+												echo '<td class="textC"><a href="#" title="Bàn giao vận chuyển"><i class="fa fa-car" style="font-size: 16px !important;"></i></a></td>';
+											} else if (2 == $row['StatusCode']) {
+												echo '<td class="textC"><a href="#" title="Xác nhận giao hàng"><i class="fa fa-check" style="font-size: 16px !important;"></i></a></td>';
+											} else {
+												echo '<td class="textC"></td>';
+											}
+											?>
 								</tr>
 						<?php }
 						} ?>

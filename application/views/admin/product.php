@@ -54,14 +54,107 @@
 <body>
 
 	<!-- Left side content -->
-	<?php require("comp/nav.php")?>
+	<div id="left_content">
+		<div id="leftSide" style="padding-top:30px;">
+
+			<!-- Account panel -->
+
+			<div class="sideProfile">
+				<a href="#" title="" class="profileFace"><img width="40" src="<?php echo public_url() ?>/images/user.png" /></a>
+				<span>Xin chào: <strong>admin!</strong></span>
+				<span>ADMIN</span>
+				<div class="clear"></div>
+			</div>
+			<div class="sidebarSep"></div>
+			<!-- Left navigation -->
+
+			<ul id="menu" class="nav">
+
+				<li class="home">
+
+					<a href="<?php echo base_url() ?>ci-admin" id="current">
+						<span>Bảng điều khiển</span>
+						<strong></strong>
+					</a>
+
+
+				</li>
+				<li class="tran">
+
+					<a href="ci-admin/tran.html" class=" exp">
+						<span>Quản lý bán hàng</span>
+						<strong>1</strong>
+					</a>
+
+					<ul class="sub">
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/order.html">
+								Thông tin đơn hàng</a>
+						</li>
+					</ul>
+
+				</li>
+				<li class="product">
+
+					<a href="<?php echo base_url() ?>ci-admin/product.html" class="active exp">
+						<span>Sản phẩm</span>
+						<strong>1</strong>
+					</a>
+
+					<ul class="sub">
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/product.html">
+								Sản phẩm </a>
+						</li>
+					</ul>
+
+				</li>
+				<li class="account">
+
+					<a href="<?php echo base_url() ?>ci-admin/user.html" class=" exp">
+						<span>Tài khoản</span>
+						<strong>1</strong>
+					</a>
+
+					<ul class="sub">
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/user.html">
+								Thành viên </a>
+						</li>
+					</ul>
+
+				</li>
+				<li class="product">
+
+					<a href="javascript:void(0)" class=" exp">
+						<span>Bình luận</span>
+						<strong>2</strong>
+					</a>
+
+					<ul class="sub">
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/comment.html">
+								Bình luận </a>
+						</li>
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/comment/filter.html">
+								Lọc bình luận</a>
+						</li>
+					</ul>
+
+				</li>
+			</ul>
+
+		</div>
+		<div class="clear"></div>
+	</div>
 
 
 	<!-- Right side -->
 	<div id="rightSide">
 
 		<!-- Account panel top -->
-		<?php require("comp/topNav.php")?>
+		<?php require("comp/topNav.php") ?>
 
 		<!-- Main content -->
 		<script type="text/javascript">
@@ -180,8 +273,8 @@
 													<select name="catalog">
 														<option value="0" selected>Chọn thể loại</option>
 														<?php foreach ($data_category as $row) { ?>
-																<option value="<?php echo $row['id_category'] ?>" style="text-transform: capitalize;">
-																	<?php echo $row['name_category'] ?> </option>
+															<option value="<?php echo $row['id_category'] ?>" style="text-transform: capitalize;">
+																<?php echo $row['name_category'] ?> </option>
 														<?php } ?>
 													</select>
 												</td>
@@ -236,8 +329,8 @@
 								echo "<a href=\"" . base_url() . "ci-admin/update-product.html/" . $row["id_product"] . "\" class=\"tipS\" title=\"\" target=\"_blank\"><b>" . $row["name_product"] . "</b></a>";
 								echo "<div class=\"f11\">Đã bán: " . $row["count_buy"] . " | Xem: " . $row["count_view"] . " </div></td>";
 								echo "<td class=\"textR\">" . number_format($row["price"]) . " đ</td>";
-								echo "<td class=\"textC\">". $row["count_view"] ."</td>";
-								echo "<td class=\"textC\">". $row["count_buy"] ."</td>";
+								echo "<td class=\"textC\">" . $row["count_view"] . "</td>";
+								echo "<td class=\"textC\">" . $row["count_buy"] . "</td>";
 								echo "<td class=\"textC\">" . toDatetime($row["importDate"]) . "</td>";
 								echo "<td class=\"option textC\">";
 								echo "<a href=\"" . base_url() . "ci-admin/update-product.html/" . $row["id_product"] . "\" title=\"Chỉnh sửa\" class=\"tipS\"><img src=\"" . public_url() . "/images/icons/color/edit.png" . "\" /></a>";
@@ -317,7 +410,7 @@
 								'<tr class="row_9">' +
 								'<td><div class="checker" id="uniform-undefined"><span><input type="checkbox" name="id[]" value="' + product["id_product"] + '" style="opacity: 0;"></span></div></td>' +
 								'<td class="textC">' + product["id_product"] + '</td>' +
-								'<td><div class="image_thumb"><img src="<?php echo base_url()."images/"?>' + product["image_link"] + '" height="50"><div class="clear"></div></div>' +
+								'<td><div class="image_thumb"><img src="<?php echo base_url() . "images/" ?>' + product["image_link"] + '" height="50"><div class="clear"></div></div>' +
 								'<a href="<?php echo base_url() ?>ci-admin/update-product.html/' + product["id_product"] + '" class="tipS" target="_blank" original-title=""><b>' + product["name_product"] + '</b></a><div class="f11">Đã bán: ' + product["count_buy"] + ' | Xem: ' + product["count_view"] + ' </div></td>' +
 								'<td class="textR">265,000 đ</td><td class="textC">' + product["importDate"] + '</td>' +
 								'<td class="option textC">' +
