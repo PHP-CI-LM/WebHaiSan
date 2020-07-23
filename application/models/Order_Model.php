@@ -6,11 +6,7 @@ class Order_Model extends CI_Model {
 
     public function getAllOrder()
     {
-        $str = "select orders.OrderID,products.name_product,products.image_link,concat(Ward,', ',District,', ',Province) as DiaChi,OrderDate,orders_detail.Price,".
-        "Case orders.Status When '1' Then 'Đang xử lý' Else 'Đã giao hàng' End As Status".
-        ", Amount from orders join orders_detail join products
-        where orders.OrderID=orders_detail.OrderID and products.id_product=orders_detail.ProductID";
-        $query = $this->db->query($str);
+        $query = $this->db->get('orders');
         return $query->result_array();
     }
 

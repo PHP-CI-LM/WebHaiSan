@@ -105,7 +105,7 @@
 				<table cellpadding="0" cellspacing="0" width="100%" class="sTable mTable myTable" id="checkAll">
 					<thead class="filter">
 						<tr>
-							<td colspan="9">
+							<td colspan="6">
 								<form class="list_filter form" action="index.php/admin/product_order.html" method="get">
 									<table cellpadding="0" cellspacing="0" width="100%">
 										<tbody>
@@ -164,19 +164,18 @@
 					</thead>
 					<thead>
 						<tr>
-							<td style="width:60px;">Mã số</td>
-							<td style="width:80px;">Sản phẩm</td>
-							<td style="width:80px;">Giá</td>
-							<td style="width:50px;">Số lượng</td>
-							<td style="width:75px;">Tình trạng</td>
+							<td style="width:60px;">Mã đơn</td>
+							<td style="width:75px;">Người nhận</td>
 							<td style="width:200px;">Địa Chỉ</td>
-							<td style="width:75px;">Ngày tạo</td>
+							<td style="width:80px;">Giá</td>
+							<td style="width:75px;">Tình trạng</td>
+							<td style="width:75px;">Ngày đặt</td>
 						</tr>
 					</thead>
 
 					<tfoot class="auto_check_pages">
 						<tr>
-							<td colspan="9"></td>
+							<td colspan="6"></td>
 							</td>
 						</tr>
 					</tfoot>
@@ -185,36 +184,11 @@
 							foreach ($data as $row) { ?>
 								<tr class='row_20'>
 									<td class="textC"><?php echo $row["OrderID"] ?></td>
-									<td>
-										<div class="<?php echo public_url() ?>/image_thumb">
-									<img src="<?php echo base_url() . "images/" . $row['image_link'] ?>" height="50">
-									<div class="clear"></div>
-								</div> 
-										<a href="product/view/8.html" class="tipS" title="" target="_blank">
-											<b><?php echo $row["name_product"] ?></b>
-										</a>
-									</td>
-
-									<td class="textR">
-										<?php echo $row["Price"] ?>
-									</td>
-
-									<td class="textC"><?php echo $row["Amount"] ?></td>
-
+									<td class="textC"><?php echo $row["Customer"] ?></td>
+									<td class="status textC"><?php echo $row["DiaChi"] ?></td>
+									<td class="textR"><?php echo $row["Price"] ?></td>
 									<td class="textC"><?php echo $row["Status"] ?></td>
-
-
-									<td class="status textC">
-										<span class="pending">
-											<?php echo $row["DiaChi"] ?> </span>
-									</td>
-
-									<td class="status textC">
-										<span class="pending">
-											<?php echo $row["OrderDate"] ?> </span>
-									</td>
-
-
+									<td class="status textC"><?php echo $row["OrderDate"] ?></td>
 								</tr>
 						<?php }
 						} ?>
