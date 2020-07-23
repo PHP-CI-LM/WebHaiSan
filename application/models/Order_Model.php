@@ -30,8 +30,8 @@ class Order_Model extends CI_Model {
         if ($data == null || sizeof($data) == 0) return false;
         else {
             $this->db->trans_start();
-            $queryString = "Insert Into orders(Ward, District, Province, Price, Status, OrderDate, AccountID, Note) " .
-                            "Values('" . $data["ward"] . "', '" . $data["district"] . "', '" . $data["province"] . "', " . 
+            $queryString = "Insert Into orders(Receiver, Ward, District, Province, Price, Status, OrderDate, AccountID, Note) " .
+                            "Values('". $data['name'] . "', '" . $data["ward"] . "', '" . $data["district"] . "', '" . $data["province"] . "', " . 
                             $data["price"] . ", 1, '" . $data["OrderDate"] . "'";
             if (isset($data["AccountID"]) == true) {
                 $queryString .= ", " . $data["AccountID"];
