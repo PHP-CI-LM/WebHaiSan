@@ -60,17 +60,18 @@ class order extends CI_Controller
         }
     }
     public function filter_order(){
-        if($this->session->tempdata('admin')!=NULL){
+        // if($this->session->tempdata('admin')!=NULL){
             $id_order = $this->input->post('idOrder');
             $from_date = $this->input->post('fromDate');
             $to_date = $this->input->post('toDate');
             $status = $this->input->post('status');
             $this->load->model('Order_Model');
             $result = [];
-            $result = $this->Order_Model->filter_order($id_order,$from_date,$to_date,$status); 
-            return sendResponse(1,'adadsad',$result);
-            die();
-            $this->load->view('admin/order', ['data' => $result]);
-        }
+            $result = $this->Order_Model->filter_order($id_order,$from_date,$to_date,$status);
+            $this->load->model('Order_Stage_Model');
+            $listStage = $this->Order_Stage_Model->get_all_stage();
+            $result = ['data'=>$result,'arguments'=>['id_order'=>$id_order,'from_date'=>$from_date,'to_date'=>$to_date,'status'=>$status],'list_stage'=>$listStage];
+            $this->load->view('admin/order', $result);
+        // }
     }
 }
