@@ -72,6 +72,15 @@ class order extends CI_Controller
             $result = [];
             $result = $this->Order_Model->filter_order($id_order,$from_date,$to_date,$status);
             $this->load->model('Order_Stage_Model');
+            for ($i = 0; $i < sizeof($result); $i++) {
+                $stage = $this->Order_Stage_Model->getStage($result[$i]['Status']);
+                if (false != $stage) {
+                    $result[$i]['StatusCode'] = $stage[0]['id'];
+                    $result[$i]['Status'] = $stage[0]['name'];
+                }
+                $result[$i]['DiaChi'] = $result[$i]['Ward'] . ', ' . $result[$i]['District'] . ', ' . $result[$i]['Province'];
+            }
+            $this->load->model('Order_Stage_Model');
             $listStage = $this->Order_Stage_Model->get_all_stage();
             $result = ['data'=>$result,'arguments'=>['id_order'=>$id_order,'from_date'=>$from_date,'to_date'=>$to_date,'status'=>$status],'list_stage'=>$listStage];
             $this->load->view('admin/order', $result);
