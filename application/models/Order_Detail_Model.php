@@ -47,4 +47,18 @@ class Order_Detail_Model extends CI_Model
         $this->db->delete('orders_detail', array('OrderID' => $orderID));
         return $this->db->affected_rows();
     }
+    public function get_order_detail($order_id,$product_id){
+       
+        if(!empty($order_id)){
+            $this->db->where('orders.OrderID', $order_id);
+        }   
+        if(!empty($product_id)){
+            $this->db->where('ProductID', $product_id);
+        }
+        $this->db->join('orders', 'orders.orderID = orders_detail.OrderID');
+        $this->db->from('orders_detail');
+        $this->db->select('orders_detail.OrderID,orders.receiver,orders_detail.Price,orders_detail.Amount');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
