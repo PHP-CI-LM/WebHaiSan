@@ -83,6 +83,7 @@ class order extends CI_Controller
             $this->load->model('Order_Stage_Model');
             $listStage = $this->Order_Stage_Model->get_all_stage();
             $result = ['data'=>$result,'arguments'=>['id_order'=>$id_order,'from_date'=>$from_date,'to_date'=>$to_date,'status'=>$status],'list_stage'=>$listStage];
+            return sendResponse(1,'adad',$result);
             $this->load->view('admin/order', $result);
         // }
     }

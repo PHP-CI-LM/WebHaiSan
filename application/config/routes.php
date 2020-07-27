@@ -123,3 +123,4 @@ $route['ci-admin/comment.html'] = 'admin_controller/comment';
 $route['ci-admin/comment/filter.html']['get'] = 'admin_controller/comment/filter';
 $route['ci-admin/comment/filter.html/add']['get'] = 'admin_controller/comment/addFilter';
 $route['ci-admin/comment/filter.html/remove']['get'] = 'admin_controller/comment/removeFilter';
+$route['abc']=  'admin_controller/order/filter_order';

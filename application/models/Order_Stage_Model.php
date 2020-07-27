@@ -14,7 +14,7 @@ class Order_Stage_Model extends CI_Model {
         }
     }
     public function get_all_stage(){
-        $this->db->select('id');
+        $this->db->select('id, name');
         $result = $this->db->get('orders_stage')->result_array();
         if(0<sizeof($result)){
             return $result;
