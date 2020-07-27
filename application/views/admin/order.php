@@ -197,37 +197,37 @@
 					<thead class="filter">
 						<tr>
 							<td colspan="9">
-								<form class="list_filter form" action="<?=base_url()?>ci-admin/order.html/filter" method="post">
+								<form class="list_filter form" action="<?= base_url() ?>ci-admin/order.html/filter" method="post">
 									<table cellpadding="0" cellspacing="0" width="100%">
-										<tbody> 
+										<tbody>
 											<tr>
 												<td class="label" style="width:60px;"><label for="filter_id">Mã số</label></td>
-												<td class="item"><input name="id" value="<?php if (isset($argument['id_order'])) echo $argument['id_order']?>" id="filter_id" type="text" style="width:95px;" /></td>
+												<td class="item"><input name="id" value="<?php if (isset($argument['id_order'])) echo $argument['id_order'] ?>" id="filter_id" type="text" style="width:95px;" /></td>
 												<td class="label" style="width:60px;"><label for="filter_type">Đơn hàng</label></td>
 												<td class="item">
 													<select name="status" id="filter_status">
 														<option value="">Chọn trạng thái</option>
 														<?php
-															if (isset($list_stage)) {
-																foreach ($list_stage as $stage) {
-																	if (isset($argument['status'])) {
-																		if ($argument['status'] == $stage['id']) {
-																			echo "<option value='". $stage['id'] ."' selected>". $stage['name'] ."</option>";
-																		}
-																	} else {
-																		echo "<option value='". $stage['id'] ."'>". $stage['name'] ."</option>";
+														if (isset($list_stage)) {
+															foreach ($list_stage as $stage) {
+																if (isset($argument['status'])) {
+																	if ($argument['status'] == $stage['id']) {
+																		echo "<option value='" . $stage['id'] . "' selected>" . $stage['name'] . "</option>";
 																	}
+																} else {
+																	echo "<option value='" . $stage['id'] . "'>" . $stage['name'] . "</option>";
 																}
 															}
+														}
 														?>
 													</select>
 												</td>
 
 												<td class="label" style="width:60px;"><label for="filter_created">Từ ngày</label></td>
-												<td class="item"><input name="fromDate" value="<?php if (isset($argument['from_date'])) echo $argument['from_date']?>" id="filter_created" type="text" class="datepicker" /></td>
+												<td class="item"><input name="fromDate" value="<?php if (isset($argument['from_date'])) echo $argument['from_date'] ?>" id="filter_created" type="text" class="datepicker" /></td>
 
 												<td class="label" style="width:60px;"><label for="filter_ended">Đến ngày</label></td>
-												<td class="item"><input name="toDate" value="<?php if (isset($argument['to_date'])) echo $argument['to_date']?>" id="filter_ended" type="text" class="datepicker" /></td>
+												<td class="item"><input name="toDate" value="<?php if (isset($argument['to_date'])) echo $argument['to_date'] ?>" id="filter_ended" type="text" class="datepicker" /></td>
 
 												<td colspan='2' style='width:60px'>
 													<input type="submit" class="button blueB" value="Lọc" />
@@ -274,9 +274,9 @@
 									<td class="textC"><a href="#" title="Hủy đơn hàng"><i class="fa fa-trash" style="font-size: 16px !important;"></i></a></td>
 									<?php
 											if (1 == $row['StatusCode']) {
-												echo '<td class="textC"><a href="#" title="Bàn giao vận chuyển"><i class="fa fa-car" style="font-size: 16px !important;"></i></a></td>';
+												echo '<td class="textC"><a href="javascript:void(0)" title="Bàn giao vận chuyển" onclick="switch_stage(\'' . $row["OrderID"] . '\', \'2\')"><i class="fa fa-car" style="font-size: 16px !important;"></i></a></td>';
 											} else if (2 == $row['StatusCode']) {
-												echo '<td class="textC"><a href="#" title="Xác nhận giao hàng"><i class="fa fa-check" style="font-size: 16px !important;"></i></a></td>';
+												echo '<td class="textC"><a href="javascript:void(0)" title="Xác nhận giao hàng" onclick="switch_stage(\'' . $row["OrderID"] . '\', \'3\')"><i class="fa fa-check" style="font-size: 16px !important;"></i></a></td>';
 											} else {
 												echo '<td class="textC"></td>';
 											}
@@ -322,25 +322,25 @@
 			});
 		});
 
-		function switch_stage(id-order, new_stage) {
+		function switch_stage(id_order, new_stage) {
 			$.ajax({
-				'url': '<?=base_url()?>order.html/switch',
-				'method': 'post',
+				'url': '<?= base_url() ?>ci-admin/order.html/switch',
+				'type': 'post',
 				'data': {
 					'id_order': id_order,
 					'new_stage': new_stage
 				},
 				success: res => {
 					let data = JSON.parse(JSON.stringify(res));
-						if (typeof data == 'string' || data instanceof String) {
-							data = JSON.parse(res);
-						}
-						if (true == data['status']) {
-							alert('Cập nhật thành công');
-							location.reload();
-						} else {
-							alert(data['message'], true);
-						}
+					if (typeof data == 'string' || data instanceof String) {
+						data = JSON.parse(res);
+					}
+					if (true == data['status']) {
+						alert('Cập nhật thành công');
+						location.reload();
+					} else {
+						alert(data['message'], true);
+					}
 				}
 			});
 		}
