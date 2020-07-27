@@ -59,17 +59,25 @@ class order extends CI_Controller
             }
         }
     }
-    public function filter_order(){
-        if($this->session->tempdata('admin')!=NULL){
+    public function filter_order()
+    {
+        if ($this->session->tempdata('admin')!=NULL){
             $id_order = $this->input->post('idOrder');
             $from_date = $this->input->post('fromDate');
             $to_date = $this->input->post('toDate');
             $status = $this->input->post('status');
             $this->load->model('Order_Model');
+            $this->load->model('Order_Stage_Model');
             $result = [];
             $result = $this->Order_Model->filter_order($id_order,$from_date,$to_date,$status); 
-            return sendResponse(1,'adadsad',$result);
-            die();
+            for ($i = 0; $i < sizeof($result); $i++) {
+                $stage = $this->Order_Stage_Model->getStage($result[$i]['Status']);
+                if (false != $stage) {
+                    $result[$i]['StatusCode'] = $stage[0]['id'];
+                    $result[$i]['Status'] = $stage[0]['name'];
+                }
+                $result[$i]['DiaChi'] = $result[$i]['Ward'] . ', ' . $result[$i]['District'] . ', ' . $result[$i]['Province'];
+            }
             $this->load->view('admin/order', ['data' => $result]);
         }
     }

@@ -197,28 +197,37 @@
 					<thead class="filter">
 						<tr>
 							<td colspan="9">
-								<form class="list_filter form" action="index.php/admin/product_order.html" method="get">
+								<form class="list_filter form" action="<?=base_url()?>ci-admin/order.html/filter" method="post">
 									<table cellpadding="0" cellspacing="0" width="100%">
-										<tbody>
+										<tbody> 
 											<tr>
 												<td class="label" style="width:60px;"><label for="filter_id">Mã số</label></td>
-												<td class="item"><input name="id" value="" id="filter_id" type="text" style="width:95px;" /></td>
-
+												<td class="item"><input name="id" value="<?php if (isset($argument['id_order'])) echo $argument['id_order']?>" id="filter_id" type="text" style="width:95px;" /></td>
 												<td class="label" style="width:60px;"><label for="filter_type">Đơn hàng</label></td>
 												<td class="item">
-													<select name="status">
-														<option value=""></option>
-														<option value='0'>Đợi xử lý</option>
-														<option value='1'>Đã gửi hàng</option>
-														<option value='2'>Hủy bỏ</option>
+													<select name="status" id="filter_status">
+														<option value="">Chọn trạng thái</option>
+														<?php
+															if (isset($list_stage)) {
+																foreach ($list_stage as $stage) {
+																	if (isset($argument['status'])) {
+																		if ($argument['status'] == $stage['id']) {
+																			echo "<option value='". $stage['id'] ."' selected>". $stage['name'] ."</option>";
+																		}
+																	} else {
+																		echo "<option value='". $stage['id'] ."'>". $stage['name'] ."</option>";
+																	}
+																}
+															}
+														?>
 													</select>
 												</td>
 
 												<td class="label" style="width:60px;"><label for="filter_created">Từ ngày</label></td>
-												<td class="item"><input name="fromDate" value="" id="filter_created" type="text" class="datepicker" /></td>
+												<td class="item"><input name="fromDate" value="<?php if (isset($argument['from_date'])) echo $argument['from_date']?>" id="filter_created" type="text" class="datepicker" /></td>
 
-												<td class="label" style="width:60px;"><label for="filter_created">Đến ngày</label></td>
-												<td class="item"><input name="toDate" value="" id="filter_created" type="text" class="datepicker" /></td>
+												<td class="label" style="width:60px;"><label for="filter_ended">Đến ngày</label></td>
+												<td class="item"><input name="toDate" value="<?php if (isset($argument['to_date'])) echo $argument['to_date']?>" id="filter_ended" type="text" class="datepicker" /></td>
 
 												<td colspan='2' style='width:60px'>
 													<input type="submit" class="button blueB" value="Lọc" />
@@ -256,10 +265,10 @@
 							foreach ($data as $row) { ?>
 								<tr class='row_20'>
 									<td class="textC"><?php echo $row["OrderID"] ?></td>
-									<td class="textL"><?php echo $row["Receiver"] ?></td>
-									<td class="status textL"><?php echo $row["DiaChi"] ?></td>
-									<td class="textL"><?php echo number_format($row["Price"]) . " đ" ?></td>
-									<td class="textL"><?php echo $row["Status"] ?></td>
+									<td class="textC"><?php echo $row["Receiver"] ?></td>
+									<td class="status textC"><?php echo $row["DiaChi"] ?></td>
+									<td class="textC"><?php echo number_format($row["Price"]) . " đ" ?></td>
+									<td class="textC"><?php echo $row["Status"] ?></td>
 									<td class="status textC"><?php echo $row["OrderDate"] ?></td>
 									<td class="textC"><a href="#" title="Xem chi tiết"><i class="fa fa-info" style="font-size: 16px !important;"></i></a></td>
 									<td class="textC"><a href="#" title="Hủy đơn hàng"><i class="fa fa-trash" style="font-size: 16px !important;"></i></a></td>
@@ -292,6 +301,50 @@
 		</div>
 	</div>
 	<div class="clear"></div>
+
+	<script>
+		$(document).ready(function() {
+			$('.list_filter').submit(event => {
+				event.preventDefault();
+
+				var url = $('form').prop('action');
+				var id_order = $('#filter_id').val();
+				var status = $('#filter_status option:selected').val();
+				var fromDate = $('#filter_created').val().split('-').join('/');
+				var toDate = $('#filter_ended').val().split('-').join('/');
+
+				$('.widget').load(url + ' .title, #checkAll', {
+					'idOrder': id_order,
+					'status': status,
+					'fromDate': fromDate,
+					'toDate': toDate
+				})
+			});
+		});
+
+		function switch_stage(id-order, new_stage) {
+			$.ajax({
+				'url': '<?=base_url()?>order.html/switch',
+				'method': 'post',
+				'data': {
+					'id_order': id_order,
+					'new_stage': new_stage
+				},
+				success: res => {
+					let data = JSON.parse(JSON.stringify(res));
+						if (typeof data == 'string' || data instanceof String) {
+							data = JSON.parse(res);
+						}
+						if (true == data['status']) {
+							alert('Cập nhật thành công');
+							location.reload();
+						} else {
+							alert(data['message'], true);
+						}
+				}
+			});
+		}
+	</script>
 </body>
 
 </html>
