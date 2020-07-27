@@ -110,6 +110,7 @@ $route['ci-admin/login.html']['post'] = 'admin_controller/admin/login';
 $route['ci-admin/product.html']['get'] = 'admin_controller/product';
 $route['ci-admin/product_(:num).html']['get'] = 'admin_controller/product/index/$1';
 $route['ci-admin/order.html'] = 'admin_controller/order';
+$route['ci-admin/order-detail.html'] = 'admin_controller/order_detail';
 $route['ci-admin/order.html/filter'] = 'admin_controller/order/filter_order';
 $route['ci-admin/order.html/switch']['post'] = 'admin_controller/order/switch_stage';
 $route['ci-admin/user.html'] = 'admin_controller/user';

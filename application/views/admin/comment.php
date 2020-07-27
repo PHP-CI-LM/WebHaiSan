@@ -91,13 +91,17 @@
 
 					<a href="ci-admin/tran.html" class=" exp">
 						<span>Quản lý bán hàng</span>
-						<strong>1</strong>
+						<strong>2</strong>
 					</a>
 
 					<ul class="sub">
 						<li>
 							<a href="<?php echo base_url() ?>ci-admin/order.html">
 								Thông tin đơn hàng</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/order-detail.html">
+								Chi tiết đơn hàng</a>
 						</li>
 					</ul>
 
