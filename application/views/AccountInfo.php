@@ -7,10 +7,10 @@
     <title><?php echo app_title()?> - Thông tin tài khoản</title>
     <link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/sheet.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleInfo.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.min.css" data-minify="1" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/sheet.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleInfo.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -27,12 +27,13 @@
                 <div class="menu">
                     <h3>
                         <span>
-                            Sản phẩm
+                            Thông tin
                         </span>
                     </h3>
                     <ul class="level0">
-                        <li class="active"><span><a href="<?php echo base_url() ?>"><i class="fa fa-user-circle-o" style="padding-right:15px;"></i> Thông tin tài khoản</a></span></li>
-                        <li><span><a href="<?php echo base_url() ?>lich-su-mua-hang.html"><i class="fa fa-shopping-cart" style="padding-right:15px;"></i> Lịch sử mua hàng</a></span></li>
+                        <li class="active"><span><a href="<?php echo base_url() ?>user/thong-tin-tai-khoan.html"><i class="fa fa-user-circle-o" style="padding-right:15px;"></i> Thông tin tài khoản</a></span></li>
+                        <li><span><a href="<?php echo base_url() ?>order/lich-su-mua-hang.html"><i class="fa fa-shopping-cart" style="padding-right:15px;"></i> Lịch sử mua hàng</a></span></li>
+                        <li><span><a href="<?php echo base_url() ?>user/doi-mat-khau.html"><i class="fa fa-key" style="padding-right:15px;"></i> Đổi mật khẩu</a></span></li>
                         <li><span><a href="<?php echo base_url() ?>dang-xuat.html"><i class="fa fa-sign-out" style="padding-right:15px;"></i> Đăng xuất</a></span></li>
                     </ul>
                 </div>
@@ -58,18 +59,22 @@
                             <div class="header">
                                 <h2>Thông tin tài khoản</h2>
                                 <span class="actions">
-                                    <img class="edit" style="" src="<?php echo base_url() . 'static/image/icon/edit.png' ?>">
-                                    <img class="save hidden" style="" src="<?php echo base_url() . 'static/image/icon/save.png' ?>">
-                                    <img class="loading hidden" style="" src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>">
-                                    <img class="success hidden" style="" src="<?php echo base_url() . 'static/image/icon/success.png' ?>">
-                                    <img class="error hidden" style="" src="<?php echo base_url() . 'static/image/icon/error.png' ?>">
-                                    <img class="cancel hidden" style="" src="<?php echo base_url() . 'static/image/icon/close.png' ?>">
+                                    <img class="edit" style="" src="<?php echo base_url() . 'static/image/icon/edit.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/edit.png' ?>">
+                                    <img class="save hidden" style="" src="<?php echo base_url() . 'static/image/icon/save.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/save.png' ?>">
+                                    <img class="loading hidden" style="" src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>">
+                                    <img class="success hidden" style="" src="<?php echo base_url() . 'static/image/icon/success.png' ?>" src="<?php echo base_url() . 'static/image/icon/success.png' ?>">
+                                    <img class="error hidden" style="" src="<?php echo base_url() . 'static/image/icon/error.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/error.png' ?>">
+                                    <img class="cancel hidden" style="" src="<?php echo base_url() . 'static/image/icon/close.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/close.png' ?>">
                                 </span>
                             </div>
                             <div class="detail">
                                 <div class="form-info username">
                                     <label for="NameSignUp">Tên đăng nhập: </label>
                                     <span class="info"><?php echo $data["UserName"]; ?></span>
+                                </div>
+                                <div class="form-info email">
+                                    <label>Email: </label>
+                                    <span class="info"><?php echo $data["Email"]; ?></span>
                                 </div>
                                 <div class="form-info password">
                                     <label for="Password">Mật khẩu: </label>
@@ -79,7 +84,7 @@
                                     <label for="Avatar">Ảnh đại diện: </label>
                                     <?php
                                         if (isset($data['Avatar'])) {
-                                            echo '<span class="info"><img src="' . base_url() . 'static/image/avatar/'. $data['Avatar'] . '" style="max-width: 40px; border-radius: 50%"></span>';
+                                            echo '<span class="info"><img src="' . base_url() . 'static/image/avatar/'. $data['Avatar'] . '" loading="lazy" data-src="' . base_url() . 'static/image/avatar/'. $data['Avatar'] . '" style="max-width: 40px; border-radius: 50%"></span>';
                                             echo '<input type="file" class="info input hidden" name="avatar" accept="image/png, image/jpeg">';
                                         } else {
                                             echo '<input type="file" class="info input fixed" name="avatar" accept="image/png, image/jpeg">';
@@ -91,12 +96,12 @@
                             <div class="header">
                                 <h2>Thông tin tài khoản</h2>
                                 <span class="actions">
-                                    <img class="edit" style="" src="<?php echo base_url() . 'static/image/icon/edit.png' ?>">
-                                    <img class="save hidden" style="" src="<?php echo base_url() . 'static/image/icon/save.png' ?>">
-                                    <img class="loading hidden" style="" src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>">
-                                    <img class="success hidden" style="" src="<?php echo base_url() . 'static/image/icon/success.png' ?>">
-                                    <img class="error hidden" style="" src="<?php echo base_url() . 'static/image/icon/error.png' ?>">
-                                    <img class="cancel hidden" style="" src="<?php echo base_url() . 'static/image/icon/close.png' ?>">
+                                    <img class="edit" style="" src="<?php echo base_url() . 'static/image/icon/edit.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/edit.png' ?>">
+                                    <img class="save hidden" style="" src="<?php echo base_url() . 'static/image/icon/save.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/save.png' ?>">
+                                    <img class="loading hidden" style="" src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/gif/loading.gif' ?>">
+                                    <img class="success hidden" style="" src="<?php echo base_url() . 'static/image/icon/success.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/success.png' ?>">
+                                    <img class="error hidden" style="" src="<?php echo base_url() . 'static/image/icon/error.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/error.png' ?>">
+                                    <img class="cancel hidden" style="" src="<?php echo base_url() . 'static/image/icon/close.png' ?>" loading="lazy" data-src="<?php echo base_url() . 'static/image/icon/close.png' ?>">
                                 </span>
                             </div>
                             <div class="detail">
@@ -148,7 +153,7 @@
 
     <?php require_once("comp/Footer.php") ?>
 
-    <script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionInfo.js"></script>
+    <script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionInfo.min.js"></script>
 </body>
 
 </html>

@@ -33,7 +33,7 @@
                 <ul class="sub">
                     <li>
                         <a href="<?php echo base_url() ?>ci-admin/order.html">
-                            Đơn hàng sản phẩm </a>
+                            Thông tin đơn hàng</a>
                     </li>
                 </ul>
 

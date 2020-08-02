@@ -11,7 +11,7 @@ function findChildren($comments, $nodeId = null)
 	return $children;
 }
 
-function drawTree($comments, $comment, $product, $isReply)
+function drawTree($user, $comments, $comment, $product, $isReply)
 {
 	// Start tree
 	if ($isReply == false) {
@@ -23,23 +23,32 @@ function drawTree($comments, $comment, $product, $isReply)
 	echo '<div class="comment-info">';
 	echo '<span class="avatar">';
 	if ($comment['avatar'] == null) {
-		echo '<img src="' . base_url() . 'static/image/others/icon.svg" alt="Avatar">';
+		echo '<img src="' . base_url() . 'static/image/others/icon.svg" loading="lazy" data-src="' . base_url() . 'static/image/others/icon.svg" alt="Avatar">';
 	} else {
-		echo '<img src="' . base_url() . 'static/image/avatar/' . $comment['avatar'] . '" alt="Avatar" style="max-width: 40px; border-radius: 50%">';
+		echo '<img src="' . base_url() . 'static/image/avatar/' . $comment['avatar'] . '" loading="lazy" data-src="' . base_url() . 'static/image/avatar/' . $comment['avatar'] . '" alt="Avatar" style="max-width: 40px; border-radius: 50%">';
 	}
 	echo '</span>';
 	echo '<span class="content">';
 	echo '<span class="info">';
-	echo '<span class="name">' . $comment['name'] . '</span>';
-	echo '<span class="time">' . $comment['time'] . '</span>';
+	echo '<span class="name">' . $comment['name'];
+	echo '<span class="time">' . $comment['time'] . '</span></span>';
+	if ($user != null) {
+		if ($user == $comment['AccountID']) {
+			echo '<span class="detail"><i onclick="toggleDetailComment(this)" class="fa fa-ellipsis-h"></i>';
+			echo '<ul class="hidden list-detail">';
+			echo '<li><a id="editComment" href="">Chỉnh sửa</a></li>';
+			echo '<li><a id="deleteComment" href="">Xóa</a></li>';
+			echo '</ul>';
+			echo '</span>';
+		}
+	}
 	echo '</span>';
-	echo '<span class="comment-content">';
+	echo '<span class="comment-content"><input cmid="' . $comment['id'] . '" class="edit-input" value="';
 	echo $comment['content'];
+	echo '" disabled/>';
 	echo '</span>';
 	echo '<span class="feedback">';
 	echo '<span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>';
-	echo '<span class="like"><a href="#">Thích</a></span>';
-	echo '<span class="dislike"><a href="#">Không thích</a></span>';
 	echo '</span>';
 	echo '</span>';
 	echo '</div>';
@@ -47,7 +56,7 @@ function drawTree($comments, $comment, $product, $isReply)
 	$children = findChildren($comments, $comment['id']);
 	$sizeChildren = sizeof($children);
 	for ($i = 0; $i < $sizeChildren; $i++) {
-		drawTree($comments, $children[$i], $product, true);
+		drawTree($user, $comments, $children[$i], $product, true);
 	}
 	// End tree
 	echo '</li>';
@@ -65,20 +74,20 @@ function drawTree($comments, $comment, $product, $isReply)
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title><?php echo app_title()?> - Thông tin chi tiết</title>
+	<title><?php echo app_title() ?> - Thông tin chi tiết</title>
 	<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" data-minify="1" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleView.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/BEM_Style.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/comment.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.min.css" data-minify="1" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleView.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/BEM_Style.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/comment.min.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 	<script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.js"></script>
-	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.js"></script>
-	<script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionBook.js"></script>
+	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionBook.min.js"></script>
 
 </head>
 
@@ -120,7 +129,7 @@ function drawTree($comments, $comment, $product, $isReply)
 						<div class="thumbnail">
 							<?php
 							if ($product != null) {
-								echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" id=\"zoom-image\" style=\"content: url('" . base_url() . "images/" . $product["DuongDan"] . "');\">";
+								echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" loading=\"lazy\" data-src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" id=\"zoom-image\" style=\"content: url('" . base_url() . "images/" . $product["DuongDan"] . "');\">";
 							}
 							?>
 						</div>
@@ -206,7 +215,7 @@ function drawTree($comments, $comment, $product, $isReply)
 							$length = sizeof($similarProducts);
 							foreach ($similarProducts as $sproduct) {
 								echo '<a href="' . vn_to_str($sproduct["name_product"] . "-" . substr("00000" . $sproduct["id_product"], strlen("00000" . $sproduct["id_product"]) - 5, 5)) . ".html\">";
-								echo "<li class=\"item\"><img src=\"" . base_url() . "images/" . $sproduct["DuongDan"] . "\"></img> <span>" . $sproduct["name_product"];
+								echo "<li class=\"item\"><img src=\"" . base_url() . "images/" . $sproduct["DuongDan"] . "\" loading=\"lazy\" data-src=\"" . base_url() . "images/" . $sproduct["DuongDan"] . "\"></img> <span>" . $sproduct["name_product"];
 								echo "</span></li></a>";
 							}
 						}
@@ -227,7 +236,7 @@ function drawTree($comments, $comment, $product, $isReply)
 								if (sizeof($comments) > 0 && $product != null) {
 									$parentNodes = findChildren($comments);
 									foreach ($parentNodes as $node) {
-										drawTree($comments, $node, $product, false);
+										drawTree($this->session->tempdata('user'), $comments, $node, $product, false);
 									}
 								}
 								?>
@@ -242,15 +251,139 @@ function drawTree($comments, $comment, $product, $isReply)
 			</div>
 			<input class="hidden base_url" value="<?php echo base_url() ?>" />
 		</div>
+		<div id="open-modal" class="modal-window">
+			<div>
+				<span class="modal-close"><i class="fa fa-close"></i></span>
+				<h1>Thông báo</h1>
+				<div class="content">
+					<img src="<?php echo base_url() ?>static/image/gif/loading.gif" loading="lazy" data-src="<?php echo base_url() ?>static/image/gif/loading.gif">
+					<span class="label">Đang gửi bình luận</span>
+				</div>
+			</div>
+		</div>
 
 		<?php require_once("comp/Footer.php") ?>
+		<script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionModal.min.js"></script>
 
 		<script type="text/javascript">
+			var inputFocused = null;
+			var isEdited = false;
+
+			function editComment(idComment, content) {
+				showModal('Đang cập nhật bình luận');
+				$.ajax({
+					url: '<?= base_url() ?>comment/edit-comment',
+					method: 'post',
+					data: {
+						'id_comment': idComment,
+						'content': content
+					},
+					success: res => {
+						let data = JSON.parse(JSON.stringify(res));
+						if (typeof data == 'string' || data instanceof String) {
+							data = JSON.parse(res);
+						}
+						if (true == data['status']) {
+							alert('Chỉnh sửa bình luận thành công');
+							window.location.reload();
+						} else {
+							hideModal();
+							alert(data['message']);
+						}
+					}
+				});
+			}
+
+			function deleteComment(idComment) {
+				showModal('Đang xóa bình luận');
+				$.ajax({
+					url: '<?= base_url() ?>comment/remove-comment',
+					method: 'post',
+					data: {
+						'id_comment': idComment
+					},
+					success: res => {
+						let data = JSON.parse(JSON.stringify(res));
+						if (typeof data == 'string' || data instanceof String) {
+							data = JSON.parse(res);
+						}
+						if (true == data['status']) {
+							alert('Xoá bình luận thành công');
+							window.location.reload();
+						} else {
+							hideModal();
+							alert(data['message']);
+						}
+					}
+				});
+			}
+
+			function toggleDetailComment(element) {
+				if ($(element).siblings('ul').length > 0) {
+					var detail = $(element).siblings('ul');
+					$(detail).toggleClass('hidden');
+				}
+			}
+
 			$(document).ready(function() {
 				let max_height = $('.board').height() - 2 * $('.board .title').height();
+
 				$('.board ul.content').css({
 					"max-height": max_height
 				});
+
+
+				$('body').on('click', event => {
+					if (isEdited == true) {
+						if (inputFocused != null) {
+							var cmid = $(inputFocused).attr('cmid');
+							var content = $(inputFocused).val();
+							editComment(cmid, content);
+							$(inputFocused).prop('disabled', 'true');
+						}
+						isEdited = false;
+					}
+				});
+
+				$('.comment-info .info .detail ul li').on('click', event => {
+					if ($(event.target).parents('.list-detail').hasClass('hidden') == false) {
+						$(event.target).parents('.list-detail').addClass('hidden');
+					}
+				});
+
+				$('.comment-info .info .detail ul li a').on('click', event => {
+					event.preventDefault();
+					var id = $(event.target).attr('id');
+					if (id == 'editComment') {
+						var content = $($(event.target).parents('.content')[0]).find('.comment-content')[0];
+						var input = $(content).find('input')[0];
+						var value = $(input).val();
+						if (null != inputFocused) {
+							$(inputFocused).attr('disabled', true);
+						}
+						$(input).attr('disabled', false);
+						$(input).focus();
+						$(input).val('');
+						$(input).val(value);
+						inputFocused = input;
+					} else if (id == 'deleteComment') {
+						var content = $($(event.target).parents('.content')[0]).find('.comment-content')[0];
+						var input = $(content).find('input')[0];
+						var id = $(input).attr('cmid');
+						deleteComment(id);
+					}
+				})
+
+				$('.edit-input').on('keydown', event => {
+					isEdited = true;
+					if (event.which == 13) {
+						var cmid = $(event.target).attr('cmid');
+						var content = $(event.target).val();
+						editComment(cmid, content);
+						$(inputFocused).prop('disabled', 'true');
+					}
+				});
+
 				$('.comment-form').submit(function(event) {
 					event.preventDefault();
 					// List all input in comment box
@@ -262,6 +395,7 @@ function drawTree($comments, $comment, $product, $isReply)
 						replyId = $('.comment-all input[type="text"]').attr('reply-id');
 					}
 					if (content.length > 0) {
+						showModal("Đang thêm bình luận");
 						$.ajax($('.base_url').val() + '/comment', {
 							type: 'post',
 							data: {
@@ -271,8 +405,9 @@ function drawTree($comments, $comment, $product, $isReply)
 							},
 							success: function(res, textStatus, xhr) {
 								if (xhr.status == 200) { // Request success
-									alert(res.message);
 									$('.comment-form').load(window.location.href + ' .comments-container, .comment-all');
+									hideModal();
+									alert(res.message);
 								}
 							}
 						});

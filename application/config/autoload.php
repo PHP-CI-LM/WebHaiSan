@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'cookie', 'lang_helper', 'form', 'security', 'common_helper');
+$autoload['helper'] = array('url', 'cookie', 'lang_helper', 'form', 'security', 'secure_helper', 'time_helper', 'common_helper');
 
 /*
 | -------------------------------------------------------------------
@@ -134,5 +134,5 @@ $autoload['language'] = array();
 */
 $autoload['model'] = array();
 
-//$autoload['libraries'] = array('session','database');
+// $autoload['libraries'] = array('encryption');
 //$autoload['helper'] = array('url');

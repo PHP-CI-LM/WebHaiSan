@@ -7,13 +7,13 @@
 		<title><?php echo app_title()?> - Xem thông tin đơn hàng</title>
 		<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleView.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleDialog.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleCart.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.min.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleView.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleDialog.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleCart.min.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 		<script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
 	</head>
 
@@ -96,7 +96,7 @@
 												$product = (array) $products[$i];
 												echo "<tr id=\"" . $product["id_product"] . "\">";
 												echo "<td class=\"image\">";
-												echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\"> <img class=\"img-responsive\" src=\"" . base_url() . "images/" . $product["DuongDan"] . "\"></a>";
+												echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\"> <img class=\"img-responsive\" src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" loading=\"lazy\" data-src=\"" . base_url() . "images/" . $product["DuongDan"] . "\"></a>";
 												echo "</td>";
 												echo "<td class=\"des\">";
 												echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">" . $product["name_product"] . "</a>";
@@ -123,6 +123,7 @@
 		</div>
 
 		<?php require_once("comp/Footer.php") ?>
+		<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.min.js"></script>
 	</body>
 
 	</html>

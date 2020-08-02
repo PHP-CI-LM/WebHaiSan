@@ -116,10 +116,13 @@ class Product_Model extends CI_Model
      *
      * @return array
      */
-    public function getAllProducts($limit = -1, $start = 0)
+    public function getAllProducts($limit = -1, $start = 0, $column = [])
     {
         if (-1 !== $limit) {
             $this->db->limit($limit, $start);
+        }
+        if (0 < sizeof($column)) {
+            $this->db->select(implode(',', $column));
         }
         $query = $this->db->get('products');
 

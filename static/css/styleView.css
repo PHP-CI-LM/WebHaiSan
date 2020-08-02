@@ -127,12 +127,10 @@
     #number {
         text-align: center;
     }
-
     #info {
         margin-left: auto !important;
         margin-right: auto !important;
     }
-
     .breadcrumb {
         padding-top: 0;
     }
@@ -149,6 +147,12 @@
     .button-modify {
         text-align: center;
         margin: 0.5em 0em;
+    }
+}
+
+@media (min-width: 992px) {
+    .thumbnail img {
+        margin-left: 20px;
     }
 }
 

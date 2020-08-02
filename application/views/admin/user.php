@@ -62,7 +62,104 @@
 <body>
 
 	<!-- Left side content -->
-	<?php require("comp/nav.php") ?>
+	<div id="left_content">
+		<div id="leftSide" style="padding-top:30px;">
+
+			<!-- Account panel -->
+
+			<div class="sideProfile">
+				<a href="#" title="" class="profileFace"><img width="40" src="<?php echo public_url() ?>/images/user.png" /></a>
+				<span>Xin chào: <strong>admin!</strong></span>
+				<span>ADMIN</span>
+				<div class="clear"></div>
+			</div>
+			<div class="sidebarSep"></div>
+			<!-- Left navigation -->
+
+			<ul id="menu" class="nav">
+
+				<li class="home">
+
+					<a href="<?php echo base_url() ?>ci-admin" id="current">
+						<span>Bảng điều khiển</span>
+						<strong></strong>
+					</a>
+
+
+				</li>
+				<li class="tran">
+
+					<a href="ci-admin/tran.html" class=" exp">
+						<span>Quản lý bán hàng</span>
+						<strong>2</strong>
+					</a>
+
+					<ul class="sub">
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/order.html">
+								Thông tin đơn hàng</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/order-detail.html">
+								Chi tiết đơn hàng</a>
+						</li>
+					</ul>
+
+				</li>
+				<li class="product">
+
+					<a href="<?php echo base_url() ?>ci-admin/product.html" class=" exp">
+						<span>Sản phẩm</span>
+						<strong>1</strong>
+					</a>
+
+					<ul class="sub">
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/product.html">
+								Sản phẩm </a>
+						</li>
+					</ul>
+
+				</li>
+				<li class="account">
+
+					<a href="<?php echo base_url() ?>ci-admin/user.html" class="active exp">
+						<span>Tài khoản</span>
+						<strong>1</strong>
+					</a>
+
+					<ul class="sub">
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/user.html">
+								Thành viên </a>
+						</li>
+					</ul>
+
+				</li>
+				<li class="product">
+
+					<a href="javascript:void(0)" class=" exp">
+						<span>Bình luận</span>
+						<strong>2</strong>
+					</a>
+
+					<ul class="sub">
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/comment.html">
+								Bình luận </a>
+						</li>
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/comment/filter.html">
+								Lọc bình luận</a>
+						</li>
+					</ul>
+
+				</li>
+			</ul>
+
+		</div>
+		<div class="clear"></div>
+	</div>
 
 
 	<!-- Right side -->
@@ -115,10 +212,11 @@
 							<tr>
 								<td style="width:10px;"><img src="<?php echo public_url() ?>/images/icons/tableArrows.png" /></td>
 								<td style="width:45px;">Mã số</td>
-								<td style="width:200px;">Tên</td>
+								<td style="width:150px;">Tên</td>
 								<td style="width:45px;">Giới tính</td>
-								<td style="width:100px;">Điện thoại</td>
-								<td style="width:300px;">Địa chỉ</td>
+								<td style="width:125px;">Email</td>
+								<td style="width:75px;">Điện thoại</td>
+								<td style="width:100px;">Địa chỉ</td>
 							</tr>
 						</thead>
 
@@ -139,15 +237,12 @@
 								<tr>
 									<td><input type="checkbox" name="id[]" value="16" /></td>
 
-									<td class="textC"><?php echo $row['CustomerID'] ?></td>
-									<td><span title="" class="tipS">
-											<?php echo $row['CustomerName'] ?> </span></td>
-									<td><span title="" class="tipS">
-											<?php echo $row['Sex'] ?></span></td>
-									<td>
-										<?php echo $row['Phone'] ?></td>
-									<td>
-										<?php echo $row['Address'] ?></td>
+									<td class="textC"><?= $row['CustomerID'] ?></td>
+									<td><span title="" class="tipS"><?= $row['CustomerName'] ?> </span></td>
+									<td><span title="" class="tipS"><?= $row['Sex'] ?></span></td>
+									<td><span title="" class="tipS"><?= $row['Email'] ?></span></td>
+									<td><span title="" class="tipS"><?= $row['Phone'] ?></span></td>
+									<td><span title="" class="tipS"><?= $row['Address'] ?></span></td>
 								</tr>
 							<?php } ?>
 						</tbody>

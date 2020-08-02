@@ -1,4 +1,4 @@
-<div class="vertical_menu">
+<div class="vertical_menu none-hidden">
     <div id="mb_verticle_menu" class="menu-quick-select">
         <div class="title_block">
             <span>Danh mục sản phẩm</span>

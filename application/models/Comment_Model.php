@@ -8,11 +8,11 @@ class Comment_Model extends CI_Model
     {
         $query = '';
         if ($idAccount == null) {
-            $query = 'SELECT c.id, ct.avatar, ct.CustomerName as name, c.comment_time as time, c.content, c.id_reply 
+            $query = 'SELECT c.id, a.AccountID, ct.avatar, ct.CustomerName as name, c.comment_time as time, c.content, c.id_reply 
                         FROM comments as c JOIN accounts as a ON c.id_account = a.AccountID JOIN customers as ct ON ct.CustomerID = c.id_account 
                         WHERE c.id_product = '.$idProduct;
         } else {
-            $query = 'SELECT c.id, ct.avatar, ct.CustomerName as name, c.comment_time as time, c.content, c.id_reply 
+            $query = 'SELECT c.id, a.AccountID, ct.avatar, ct.CustomerName as name, c.comment_time as time, c.content, c.id_reply 
                         FROM comments as c JOIN accounts as a ON c.id_account = a.AccountID JOIN customers as ct ON ct.CustomerID = c.id_account 
                         WHERE id_product = '.$idProduct.' And c.id_account = '.$idAccount;
         }
@@ -30,13 +30,14 @@ class Comment_Model extends CI_Model
     {
         $this->db->select('comments.id, comments.id_account, comments.id_product, comments.comment_time, comments.content, comments.id_reply, accounts.UserName, products.name_product');
         $this->db->from('comments');
-        $this->db->join('accounts' , 'accounts.AccountID = comments.id_account');
+        $this->db->join('accounts', 'accounts.AccountID = comments.id_account');
         $this->db->join('products', 'products.id_product = comments.id_product');
         $this->db->order_by('comments.id');
         if (-1 !== $limit) {
             $this->db->limit($limit, $start);
         }
         $query = $this->db->get();
+
         return $query->result_array();
     }
 
@@ -62,5 +63,26 @@ class Comment_Model extends CI_Model
             'INSERT INTO comments(id_account, id_product, comment_time, content, id_reply)'.
                 'VALUES('.$idAccount.', '.$idProduct.", '".$time."', '".$content."', ".$idReply.')'
         );
+    }
+
+    public function editComment($id_Comment, $id_user, $content)
+    {
+        $query = "update comments set content ='".$content."' where id =".$id_Comment.' and id_account = '.$id_user;
+        $this->db->query($query);
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function removeComment($id_comment, $id_user)
+    {
+        $this->db->delete('comments', array('id' => $id_comment));
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

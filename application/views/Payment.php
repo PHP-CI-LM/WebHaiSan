@@ -4,18 +4,18 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title><?php echo app_title()?> - Xác nhận đơn hàng</title>
+		<title><?php echo app_title()?> - Chỉnh sửa đơn hàng</title>
 		<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleView.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleDialog.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylePayment.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.min.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleView.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleDialog.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylePayment.min.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 		<script type="text/javascript" src="<?php echo base_url() ?>static/js/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.js"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>static/js/Cookies.min.js"></script>
 	</head>
 
 	<body>
@@ -57,7 +57,7 @@
 										<?php
 										if (isset($info) == false) {
 											echo "<div class=\"user-login\"><a href=\"" . base_url() . "dang-ky-thanh-vien.html\">Đăng ký tài khoản mua hàng</a>";
-											echo "<a href=\"" . base_url() . "dang-nhap.html\">Đăng nhập</a></div>";
+											echo "<a href=\"" . base_url() . 'dang-nhap.html?backUrl=' . urlencode(current_url()). "\">Đăng nhập</a></div>";
 											echo "<label>Mua hàng không cần tài khoản</label>";
 										}
 										?>
@@ -102,13 +102,13 @@
 											<select class="form-control" onchange="changedDistrict()" required="">
 												<option value="number:0" label="Vui lòng chọn huyện" selected>Vui lòng chọn huyện</option>
 											</select>
-											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif">
+											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif" loading="lazy" data-src="<?=base_url()?>static/image/gif/loading.gif">
 										</div>
 										<div class="form-group">
 											<select class="form-control" required="">
 												<option value="number:0" label="Vui lòng chọn xã/phường" selected>Vui lòng chọn xã/phường</option>
 											</select>
-											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif">
+											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif" loading="lazy" data-src="<?=base_url()?>static/image/gif/loading.gif">
 										</div>
 										<textarea class="form-control" rows="4" placeholder="Ghi chú đơn hàng" styte="resize:none;"></textarea>
 									</div>
@@ -141,7 +141,7 @@
 													echo "<div class=\"cart-item clearfix\">";
 													echo "<span class=\"image pull-left\" style=\"margin-right:10px;\">";
 													echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">";
-													echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" class=\"img-responsive\">";
+													echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" loading=\"lazy\" data-src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" class=\"img-responsive\">";
 													echo "</a></span>";
 													echo "<div class=\"product-info pull-left\">";
 													echo "<span class=\"product-name\">";
@@ -192,7 +192,7 @@
 				<span class="modal-close">Close</span>
 				<h1>Thông báo</h1>
 				<div class="content">
-					<img src="<?php echo base_url() ?>static/image/gif/loading.gif">
+					<img src="<?php echo base_url() ?>static/image/gif/loading.gif" loading="lazy" data-src="<?php echo base_url() ?>static/image/gif/loading.gif">
 					<span class="label">Đang xử lý đơn hàng của bạn</span>
 				</div>
 			</div>
@@ -318,7 +318,7 @@
 						"display": "block"
 					});
 					$.ajax({
-						url: "https://forwardapi.herokuapp.com/",
+						url: "https://api-haisanbinhminh.azurewebsites.net/",
 						method: "post",
 						data: {
 							idProvince: idProvince
@@ -356,7 +356,7 @@
 						"display": "block"
 					});
 					$.ajax({
-						url: "https://forwardapi.herokuapp.com/",
+						url: "https://api-haisanbinhminh.azurewebsites.net/",
 						method: "post",
 						data: {
 							idDistrict: idDistrict
