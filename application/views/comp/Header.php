@@ -227,7 +227,7 @@
                         if (1 == data['status']) {
                             if (data['data'].length > 0) {
                                 data['data'].forEach(element => {
-                                    var htmlElement = '<li class="item"><a href="' + element['url'] + '"><i class="fa fa-filter"></i>' + element['name_product'] + '</a></li>';
+                                    var htmlElement = '<li class="item"><a href="' + element['url'] + '" style="display: block;"><i class="fa fa-filter"></i>' + element['name_product'] + '</a></li>';
                                     $('.search-suggestions').append(htmlElement);
                                     $('.search-suggestions').css('display', 'block');
                                 });

@@ -229,7 +229,7 @@ header nav .active a {
 }
 
 .topbar .search-suggestions .item {
-    padding: 5px 20px;
+    padding: 5px 0px;
 }
 
 .topbar .search-suggestions .item:first-child {
@@ -243,8 +243,17 @@ header nav .active a {
 }
 
 .topbar .search-suggestions .item a {
+    padding: 7px 20px;
     font-weight: 500;
     font-size: 12px;
+}
+
+.topbar .search-suggestions .item a:hover {
+    background: #ececec;
+}
+
+.topbar .search-suggestions .item a:hover i {
+    color: #333;
 }
 
 .icon-bar.horizontal {
