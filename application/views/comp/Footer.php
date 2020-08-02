@@ -42,7 +42,7 @@
 
 <!-- Your Chat Plugin code -->
 <div class="fb-customerchat" attribution=setup_tool page_id="101485071604686">
-</div> -->
+</div>
 
 <body>
   <script>
