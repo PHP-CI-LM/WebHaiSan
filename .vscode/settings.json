@@ -1,0 +1,19 @@
+{
+    "restructuredtext.confPath": "",
+    "liveServer.settings.port": 5501,
+    "sqltools.connections": [
+        {
+            "database": "webhaisan",
+            "driver": "MySQL",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "GCloud WebHaiSan",
+            "password": "G1MWxvk0Nmx@d&oxkL7s",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "34.96.138.227",
+            "username": "admin"
+        }
+    ]
+}
