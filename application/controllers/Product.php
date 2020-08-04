@@ -7,6 +7,7 @@ class Product extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
     }
 
     public function index($uri_product)
@@ -63,17 +64,23 @@ class Product extends CI_Controller
         header("Content-Type: Application/Json");
         header("Access-Control-Allow-Origin: http://localhost");
         $data = array();
+        $result = [];
         $keyword = null;
         $keyword = $this->input->get('q');
         if ($keyword != null) {
-            $this->load->model('Product_Model');
-            $result = $this->Product_Model->getProductsWithName($keyword, 5, 0);
+            if (!$result = $this->cache->get($keyword)) {
+                $this->load->model('Product_Model');
+                $result = $this->Product_Model->getProductsWithName($keyword, 5, 0);
+                if (0 < sizeof($result)) {
+                    $this->cache->save($keyword, $result, 300);
+                }
+            }
             if ($result) {
                 $x = [];
                 foreach ($result as $element) {
                     $x['id_product'] = $element['id_product'];
                     $x['name_product'] = $element['name_product'];
-                    $x['url'] = base_url().'product/'.vn_to_str($element['name_product'].'-'.substr('00000'.$element['id_product'], strlen('00000'.$element['id_product']) - 5, 5)).'.html';
+                    $x['url'] = base_url() . 'product/' . vn_to_str($element['name_product'] . '-' . substr('00000' . $element['id_product'], strlen('00000' . $element['id_product']) - 5, 5)) . '.html';
                     array_push($data, $x);
                 }
                 sendResponse(1, 'data exist', $data);

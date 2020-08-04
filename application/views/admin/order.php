@@ -205,7 +205,7 @@
 									<table cellpadding="0" cellspacing="0" width="100%">
 										<tbody>
 											<tr>
-												<td class="label" style="width:60px;"><label for="filter_id">Mã số</label></td>
+												<td class="label" style="width:60px;"><label for="filter_id">Mã đơn</label></td>
 												<td class="item"><input name="id" value="<?php if (isset($arguments['id_order'])) echo $arguments['id_order'] ?>" id="filter_id" type="text" style="width:95px;" /></td>
 												<td class="label" style="width:60px;"><label for="filter_type">Đơn hàng</label></td>
 												<td class="item">
@@ -218,7 +218,7 @@
 																	if ($arguments['status'] == $stage['id']) {
 																		echo "<option value='" . $stage['id'] . "' selected>" . $stage['name'] . "</option>";
 																	} else {
-																		echo "<option value='" . $stage['id'] . "'>" . $stage['name'] . "</option>";	
+																		echo "<option value='" . $stage['id'] . "'>" . $stage['name'] . "</option>";
 																	}
 																} else {
 																	echo "<option value='" . $stage['id'] . "'>" . $stage['name'] . "</option>";
@@ -228,14 +228,17 @@
 														?>
 													</select>
 												</td>
+											</tr>
+											<tr>
 
 												<td class="label" style="width:60px;"><label for="filter_created">Từ ngày</label></td>
 												<td class="item"><input name="fromDate" value="<?php if (isset($arguments['from_date'])) echo $arguments['from_date'] ?>" id="filter_created" type="text" class="datepicker" /></td>
 
 												<td class="label" style="width:60px;"><label for="filter_ended">Đến ngày</label></td>
 												<td class="item"><input name="toDate" value="<?php if (isset($arguments['to_date'])) echo $arguments['to_date'] ?>" id="filter_ended" type="text" class="datepicker" /></td>
-
-												<td colspan='2' style='width:60px'>
+											</tr>
+											<tr>
+												<td colspan='2' style='padding: 10px 15px;'>
 													<input type="submit" class="button blueB" value="Lọc" />
 												</td>
 
@@ -249,11 +252,11 @@
 					<thead>
 						<tr>
 							<td style="width:25px;">Mã đơn</td>
-							<td style="width:85px;">Người nhận</td>
+							<td style="width:95px;">Người nhận</td>
 							<td style="width:200px;">Địa Chỉ</td>
-							<td style="width:80px;">Giá</td>
+							<td style="width:65px;">Giá</td>
 							<td style="width:75px;">Tình trạng</td>
-							<td style="width:60px;">Ngày đặt</td>
+							<td style="width:50px;">Ngày đặt</td>
 							<td style="width:25px"></td>
 							<td style="width:25px"></td>
 							<td style="width:25px"></td>
@@ -271,15 +274,15 @@
 							foreach ($data as $row) { ?>
 								<tr class='row_20'>
 									<td class="textC"><?php echo $row["OrderID"] ?></td>
-									<td class="textC"><?php echo $row["Receiver"] ?></td>
-									<td class="status textC"><?php echo $row["DiaChi"] ?></td>
-									<td class="textC"><?php echo number_format($row["Price"]) . " đ" ?></td>
-									<td class="textC"><?php echo $row["Status"] ?></td>
-									<td class="status textC"><?php echo $row["OrderDate"] ?></td>
-									<td class="textC"><a href="#" title="Xem chi tiết"><i class="fa fa-info" style="font-size: 16px !important;"></i></a></td>
+									<td class="textL"><?php echo $row["Receiver"] ?></td>
+									<td class="status textL"><?php echo $row["DiaChi"] ?></td>
+									<td class="textL"><?php echo number_format($row["Price"]) . " đ" ?></td>
+									<td class="textL"><?php echo $row["Status"] ?></td>
+									<td class="status textL"><?php echo $row["OrderDate"] ?></td>
+									<td class="textC"><a href="<?=base_url()?>ci-admin/order-detail.html/filter?order_id=<?=$row["OrderID"]?>" title="Xem chi tiết"><i class="fa fa-info" style="font-size: 16px !important;"></i></a></td>
 									<?php
 											if (1 == $row['StatusCode']) {
-												echo '<td class="textC"><a href="javascript:void(0)" title="Hủy đơn hàng" onclick="cancel_order(\''. $row["OrderID"] .'\')"><i class="fa fa-trash" style="font-size: 16px !important;"></i></a></td>';
+												echo '<td class="textC"><a href="javascript:void(0)" title="Hủy đơn hàng" onclick="cancel_order(\'' . $row["OrderID"] . '\')"><i class="fa fa-trash" style="font-size: 16px !important;"></i></a></td>';
 												echo '<td class="textC"><a href="javascript:void(0)" title="Bàn giao vận chuyển" onclick="switch_stage(\'' . $row["OrderID"] . '\', \'2\')"><i class="fa fa-car" style="font-size: 16px !important;"></i></a></td>';
 											} else if (2 == $row['StatusCode']) {
 												echo '<td class="textC"></td>';
@@ -359,7 +362,7 @@
 				'type': 'post',
 				'data': {
 					'id_order': id_order,
-					'new_stage': 4 
+					'new_stage': 4
 				},
 				success: res => {
 					let data = JSON.parse(JSON.stringify(res));

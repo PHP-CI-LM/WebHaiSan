@@ -55,9 +55,10 @@ class Order_Detail_Model extends CI_Model
         if(!empty($product_id)){
             $this->db->where('ProductID', $product_id);
         }
-        $this->db->join('orders', 'orders.orderID = orders_detail.OrderID');
         $this->db->from('orders_detail');
-        $this->db->select('orders_detail.OrderID,orders.receiver,orders_detail.Price,orders_detail.Amount');
+        $this->db->join('orders', 'orders.orderID = orders_detail.OrderID');
+        $this->db->join('products', 'orders_detail.ProductID = products.id_product');
+        $this->db->select('orders_detail.OrderID,orders.receiver,orders_detail.Price,orders_detail.Amount,products.name_product');
         $query = $this->db->get();
         return $query->result_array();
     }

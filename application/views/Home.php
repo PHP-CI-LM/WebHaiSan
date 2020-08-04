@@ -22,7 +22,7 @@
 	<!-- Phần header cho trang Web -->
 	<?php require_once 'comp/Header.php'; ?>
 
-	<div class="container-fluid" id="content">
+	<div class="container-fluid" id="content" style="margin-top: 160px !important;">
 		<section>
 			<div clas="container" style="margin: 1.5rem 2rem;">
 				<div class="row khung">

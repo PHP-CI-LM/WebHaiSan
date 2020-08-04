@@ -17,6 +17,9 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 CREATE SCHEMA IF NOT EXISTS `webhaisan` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 USE `webhaisan` ;
 
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'G1MWxvk0Nmx@d&oxkL7s';
+GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost';
+
 -- -----------------------------------------------------
 -- Table `webhaisan`.`permissions`
 -- -----------------------------------------------------
