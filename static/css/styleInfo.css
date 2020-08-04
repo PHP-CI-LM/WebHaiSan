@@ -1,0 +1,122 @@
+.menu {
+    margin-bottom: 15px;
+    margin-top: 12px;
+}
+
+.menu h3 {
+    background-color: #00709d;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 15px 10px;
+    text-transform: uppercase;
+    margin: 0;
+    border-left: 5px solid #0f9ed8;
+}
+
+.menu ul {
+    list-style: none;
+    display: block;
+    border: 1px solid #dddddd;
+    position: relative;
+    background-color: #f6f6f6;
+}
+
+.menu ul li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li a {
+    padding: 15px 12px;
+    margin: 0 7px;
+    color: #0f9ed8;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    border-bottom: 1px dashed #c3c3c3;
+    display: block;
+}
+
+input,
+select {
+    min-height: 40px;
+    background-color: #FFF;
+    border-style: solid !important;
+    border-radius: 5px !important;
+    border: 1px #cac7c7 solid;
+}
+
+.board label {
+    margin: 1.25rem 0;
+}
+
+.board span {
+    margin: 1.5rem 2.5rem;
+}
+
+li.active a {
+    color: #333 !important;
+}
+
+.board .header {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 20%;
+    text-align: right;
+}
+
+.board .header h2 {
+    flex-basis: 95%;
+    text-align: left;
+}
+
+.board .header .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    flex-basis: 5%;
+}
+
+.board .header .actions img {
+    width: 20px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.form-info {
+    display: flex;
+    align-items: center;
+}
+
+.form-info label {
+    flex-basis: 20%;
+    text-align: right;
+}
+
+.form-info .info {
+    flex-basis: 80%;
+}
+
+.form-info input.info {
+    margin: 10px;
+    padding: 0.25rem 1rem;
+    flex-basis: 50%;
+    font-size: 13px;
+    font-family: inherit;
+}
+
+.form-info input[type="file"].info {
+    background-color: inherit;
+    border: transparent;
+    margin-left: 10px;
+}
+
+.form-info select.info {
+    flex-basis: 35%;
+    padding: 0 1rem;
+    max-height: 38px;
+    margin-left: 10px;
+}
