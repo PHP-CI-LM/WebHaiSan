@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title><?php echo app_title()?> - Xác nhận đơn hàng</title>
+		<title><?php echo app_title() ?> - Xác nhận đơn hàng</title>
 		<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.min.css" />
@@ -48,7 +48,7 @@
 										<?php
 										if ($this->session->tempdata('user') == null) {
 											echo "<div class=\"user-login\"><a href=\"" . base_url() . "dang-ky-thanh-vien.html\">Đăng ký tài khoản mua hàng</a>";
-											echo "<a href=\"" . base_url() . 'dang-nhap.html?backUrl=' . urlencode(current_url()). "\">Đăng nhập</a></div>";
+											echo "<a href=\"" . base_url() . 'dang-nhap.html?backUrl=' . urlencode(current_url()) . "\">Đăng nhập</a></div>";
 											echo "<label>Mua hàng không cần tài khoản</label>";
 										}
 										?>
@@ -93,19 +93,19 @@
 											<select class="form-control" onchange="changedDistrict()" required="">
 												<option value="number:0" label="Vui lòng chọn huyện" selected>Vui lòng chọn huyện</option>
 											</select>
-											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif" loading="lazy" data-src="<?=base_url()?>static/image/gif/loading.gif">
+											<img class="wait" src="<?= base_url() ?>static/image/gif/loading.gif" loading="lazy" data-src="<?= base_url() ?>static/image/gif/loading.gif">
 										</div>
 										<div class="form-group">
 											<select class="form-control" required="">
 												<option value="number:0" label="Vui lòng chọn xã/phường" selected>Vui lòng chọn xã/phường</option>
 											</select>
-											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif" loading="lazy" data-src="<?=base_url()?>static/image/gif/loading.gif">
+											<img class="wait" src="<?= base_url() ?>static/image/gif/loading.gif" loading="lazy" data-src="<?= base_url() ?>static/image/gif/loading.gif">
 										</div>
 										<?php
 										if (isset($info["Note"]) == false) {
 											echo '<textarea class="form-control" rows="4" placeholder="Ghi chú đơn hàng" styte="resize:none;"></textarea>';
 										} else {
-											echo '<textarea class="form-control" rows="4" placeholder="Ghi chú đơn hàng" styte="resize:none;">'. $info['Note'] .'</textarea>';
+											echo '<textarea class="form-control" rows="4" placeholder="Ghi chú đơn hàng" styte="resize:none;">' . $info['Note'] . '</textarea>';
 										}
 										?>
 									</div>
@@ -135,7 +135,7 @@
 											if (isset($info['products']) == true) {
 												$totalPrice = 0;
 												foreach ($info['products'] as $product) {
-													echo "<div class=\"cart-item clearfix\" pid=\"". $product['id_product'] ."\">";
+													echo "<div class=\"cart-item clearfix\" pid=\"" . $product['id_product'] . "\">";
 													echo "<span class=\"image pull-left\" style=\"margin-right:10px;\">";
 													echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">";
 													echo "<img src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" loading=\"lazy\" data-src=\"" . base_url() . "images/" . $product["DuongDan"] . "\" class=\"img-responsive\">";
@@ -143,7 +143,7 @@
 													echo "<div class=\"product-info pull-left\">";
 													echo "<span class=\"product-name\">";
 													echo "<a href=\"" . base_url() . "product/" . vn_to_str($product["name_product"] . "-" . substr("00000" . $product["id_product"], strlen("00000" . $product["id_product"]) - 5, 5)) . ".html\">" . $product["name_product"] . " x </a>";
-													echo "<span><input type=\"number\" value=\"". $product["count"] ."\" step=\"0.1\" min=\"0.5\" max=\"100\" oninput=\"changeQuantityPayment()\" style=\"width: 75px; padding: 3px 5px;\"/></span>";
+													echo "<span><input type=\"number\" value=\"" . $product["count"] . "\" step=\"0.1\" min=\"0.5\" max=\"100\" oninput=\"changeQuantityPayment()\" style=\"width: 75px; padding: 3px 5px;\"/></span>";
 													echo "</span></div>";
 													echo "<span class=\"price\">" . number_format((int) ($product["price"] * (100 - $product["discount"]) / 100)) . "₫</span></div>";
 													$totalPrice = (int) ($product["price"] * $product["count"] * (100 - $product["discount"])) / 100;
@@ -217,15 +217,11 @@
 
 			function sendData(event) {
 				event.preventDefault();
-				let selectElements = $('select');
-				for (let i = 0; i < selectElements.length; i++) {
-					let element = selectElements[i];
-					//Check if select element is selected?
-					if ($(element).val() == "number:0") {
-						alert("Vui lòng chọn nơi giao hàng và hình thức giao hàng");
-						$(element).focus();
-						return;
-					}
+				let selectElements = $('select')[3];
+				if ($(selectElements).val() == "number:0") {
+					alert("Vui lòng chọn nơi giao hàng và hình thức giao hàng");
+					$(element).focus();
+					return;
 				}
 				//Config and open modal notification
 				changeModalLabel("Đang cập nhật đơn hàng của bạn...");
@@ -236,7 +232,7 @@
 					url: "<?php echo base_url(); ?>order/chinh-sua-don-hang.html",
 					method: 'post',
 					data: {
-						oid  : <?=$oid?>,
+						oid: <?= $oid ?>,
 						data: packData()
 					},
 					success: res => {
@@ -270,9 +266,9 @@
 				let products = [];
 				items.each((index, value) => {
 					products.push({
-						'id_product'	: $(value).attr('pid'),
-						'amount'			: $($(value).find('input')[0]).val(),
-						'price'			: removeNumberFormat($($(value).find('.price')[0]).text())
+						'id_product': $(value).attr('pid'),
+						'amount': $($(value).find('input')[0]).val(),
+						'price': removeNumberFormat($($(value).find('.price')[0]).text())
 					});
 				});
 				return JSON.stringify({

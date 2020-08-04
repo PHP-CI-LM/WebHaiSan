@@ -14,7 +14,7 @@ function show_modal(label) {
     });
 }
 
-function showModal(label, enableClose) {
+function showModal(label = '', enableClose) {
     if (0 < label.length) {
         changeModalLabel(label);
     }
