@@ -12,10 +12,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config = array(
 	'default' => array(
-		'hostname' => 'mc5.c1.ap-southeast-2.ec2.memcachier.com',
+		'hostname' => '127.0.0.1',
 		'port'     => '11211',
-		'username' => '1E2BD7',
-		'password' => '68514DFFFE800670849AF9593F841CE6',
 		'weight'   => '1',
 	),
 );

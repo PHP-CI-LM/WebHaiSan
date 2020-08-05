@@ -7,7 +7,6 @@ class Product extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
     }
 
     public function index($uri_product)
@@ -70,13 +69,6 @@ class Product extends CI_Controller
         if ($keyword != null) {
             $this->load->model('Product_Model');
             $result = $this->Product_Model->getProductsWithName($keyword, 5, 0);
-            if ($this->cache->apc->is_supported()) {
-                echo 'Support apc';
-                die();
-            } else {
-                echo 'Not support apc';
-                die();
-            }
             if ($result) {
                 $x = [];
                 foreach ($result as $element) {
