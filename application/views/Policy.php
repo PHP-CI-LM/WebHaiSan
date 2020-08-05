@@ -4,12 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title><?php echo app_title()?> - Chính sách đổi trả</title>
+    <title><?php echo app_title() ?> - Chính sách đổi trả</title>
     <link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.min.css" data-minify="1" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/style.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/sheet.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleDialog.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/styleHome.min.css">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
@@ -37,7 +35,7 @@
         </div>
         <div class="row" style="width: 90%; margin: auto; margin-bottom: 5rem">
             <div class="col-sm-12 page-option">
-                <h1 class="title">
+                <h1 class="title" style="margin-top: 0px;">
                     <span>Giao hàng - Đổi trả</span>
                 </h1>
                 <div class="page-option-block">
@@ -56,7 +54,42 @@
                         Việc giao hàng sẽ được tiến hành ngay khi chúng tôi xác nhận được giao dịch với quý khách. Nếu trong đợt giao hàng đầu tiên người nhận hàng không có mặt, chúng tôi sẽ liên hệ đến quý khách để sắp xếp thời gian giao hàng khác thuận tiện hơn.</div>
                     <div style="margin: 0px; padding: 0px; color: rgb(68, 68, 68); font-family: arial, helvetica, sans-serif; line-height: 18.6000003814697px;">
                         <br style="margin: 0px; padding: 0px;">
-                        Đơn hàng được miễn phí vận chuyển trong nội thành Hồ Chí Minh và áp dụng phí vận chuyển từ 20.000 VNĐ đến 50.000 VNĐ (tùy vào khối lượng sản phẩm) các khu vực khác cho tất cả các đơn hàng</div>
+                        Chúng tôi hỗ trợ giao hàng trong nội thành thành phố Hồ Chí Minh và các tỉnh lân cận. Danh sách chi tiết và mức giá liên quan cho các khu vực như sau:
+                        <table class="tg" style="margin-top: 10px; width: 50%;">
+                            <thead>
+                                <tr>
+                                    <th class="tg-baqh">Tỉnh thành</th>
+                                    <th class="tg-baqh">Phí giao hàng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="tg-baqh">Thành Phố Hồ Chí Minh</td>
+                                    <td class="tg-baqh">21.000đ</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-baqh">Đồng Nai</td>
+                                    <td class="tg-baqh">42.000đ</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-baqh">Bình Dương</td>
+                                    <td class="tg-baqh">42.000đ</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-baqh">Bà Rịa Vũng Tàu</td>
+                                    <td class="tg-baqh">42.000đ</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-baqh">Long An</td>
+                                    <td class="tg-baqh">42.000đ</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-baqh">Tây Ninh</td>
+                                    <td class="tg-baqh">42.000đ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div style="margin: 0px; padding: 0px; color: rgb(68, 68, 68); font-family: arial, helvetica, sans-serif; line-height: 18.6000003814697px;">
                         <br style="margin: 0px; padding: 0px;">
                         Để kiểm tra lộ trình đơn hàng của mình, quý khách vui lòng chọn chức năng định vị đơn hàng của chúng tôi và tìm kiếm bằng mã đơn hàng chúng tôi đã cấp cho các bạn khi đặt hàng thành công. Chúng tôi sẽ chỉ cấp mã một lần duy nhất cho một đơn hàng nên quý khách lưu ý ghi nhớ cẩn thận để tiện theo dõi đơn hàng của mình.&nbsp;</div>

@@ -96,6 +96,7 @@
 												<option value="number:22" label="Đồng Nai">Đồng Nai</option>
 												<option value="number:12" label="Long An">Long An</option>
 												<option value="number:37" label="Tây Ninh">Tây Ninh</option>
+												<option value="number:37" label="Tây Ninh">Tây Ninh</option>
 											</select>
 										</div>
 										<div class="form-group">
