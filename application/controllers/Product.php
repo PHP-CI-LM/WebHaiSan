@@ -7,7 +7,6 @@ class Product extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->driver('cache');
     }
 
     public function index($uri_product)
@@ -69,12 +68,7 @@ class Product extends CI_Controller
         $keyword = $this->input->get('q');
         if ($keyword != null) {
             $this->load->model('Product_Model');
-            if (!$this->cache->file->get($keyword)) {
-                $result = $this->cache->file->get($keyword);
-            } else {
-                $result = $this->Product_Model->getProductsWithName($keyword, 5, 0);
-                $this->cache->file->save($keyword, $result, 120);
-            }
+            $result = $this->Product_Model->getProductsWithName($keyword, 5, 0);
             if ($result) {
                 $x = [];
                 foreach ($result as $element) {
