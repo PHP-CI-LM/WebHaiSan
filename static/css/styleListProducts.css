@@ -1,163 +1,173 @@
 @charset "UTF-8";
-
 .products-list {
-	display: flex;
-	flex-wrap: wrap;
-	align-self: stretch;
-	background-color: rgb(255, 255, 255);
-	font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: stretch;
+    background-color: rgb(255, 255, 255);
+    font-family: 'Roboto', sans-serif;
 }
 
 .product {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	-webkit-box-align: center;
-	align-items: center;
-	width: 100%;
-	height: 100%;
-	background-color: rgb(255, 255, 255);
-	padding: 16px;
-	width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 16px;
+    width: 100%;
 }
 
 .product:hover {
-	box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
-	z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
+    z-index: 1;
 }
 
 .product .thumbnail {
-	width: 210px;
-	height: 210px;
-	text-align: center;
-	margin-bottom: 12px;
+    width: 210px;
+    height: 210px;
+    text-align: center;
+    margin-bottom: 12px;
 }
 
 .product .thumbnail img {
-	width: auto;
-	height: 100%;
-	opacity: 1;
+    width: auto;
+    height: 100%;
+    opacity: 1;
+}
+
+.product.fast-delivery .title::before {
+    display: inline-block;
+    position: relative;
+    left: 0;
+    content: ' ';
+    background-image: url(../image/others/fast-delivery.webp);
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30px;
+    height: 14px;
+    margin-right: 3 px;
 }
 
 .product .title {
-	position: relative;
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
-	max-height: 40px;
-	width: 100%;
-	color: rgb(36, 36, 36);
-	font-size: 13px;
-	font-weight: 300;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: 1.54;
-	letter-spacing: 0.1px;
-	text-align: left;
-	text-overflow: ellipsis;
-	margin: 0px;
-	overflow: hidden;
+    position: relative;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    max-height: 40px;
+    width: 100%;
+    color: rgb(36, 36, 36);
+    font-size: 13px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.54;
+    letter-spacing: 0.1px;
+    text-align: left;
+    text-overflow: ellipsis;
+    margin: 0px;
+    overflow: hidden;
 }
 
 .product .price {
-	align-self: stretch;
-	color: rgb(36, 36, 36);
-	font-size: 16px;
-	font-weight: 500;
-	line-height: 1.6;
-	margin: 0px;
-	padding: 8px 0px 0px;
+    align-self: stretch;
+    color: rgb(36, 36, 36);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0px;
+    padding: 8px 0px 0px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.5),
 (-webkit-min-device-pixel-ratio: 2),
 (min-resolution: 192dpi) {
-	.product .price .percent.deal {
-		background-image: url(https://frontend.tikicdn.com/_desktop-next/static/img/icons/product/deal-tag@2x.png);
-	}
+    .product .price .percent.deal {
+        background-image: url(https://frontend.tikicdn.com/_desktop-next/static/img/icons/product/deal-tag@2x.png);
+    }
 }
 
 .product .price .percent.deal {
-	position: absolute;
-	top: 15px;
-	display: flex;
-	-webkit-box-pack: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	align-items: center;
-	padding-bottom: 4px;
-	color: rgb(255, 255, 255);
-	font-weight: 500;
-	width: 40px;
-	height: 36px;
-	background-image: url(https://frontend.tikicdn.com/_desktop-next/static/img/icons/product/deal-tag.png);
-	background-size: 40px 36px;
-	margin: 1px 0px 0px;
-	background-position: 0px 0px;
-	background-repeat: no-repeat;
+    position: absolute;
+    top: 15px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-bottom: 4px;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    width: 40px;
+    height: 36px;
+    background-image: url(https://frontend.tikicdn.com/_desktop-next/static/img/icons/product/deal-tag.png);
+    background-size: 40px 36px;
+    margin: 1px 0px 0px;
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
 }
 
 .product .price .percent {
-	margin-left: 8px;
-	color: rgb(120, 120, 120);
-	font-size: 13px;
-	font-weight: 300;
-	line-height: 1.6;
+    margin-left: 8px;
+    color: rgb(120, 120, 120);
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
 }
 
 .product .price .original.deal {
-	display: inline-block;
-	margin-left: 8px;
+    display: inline-block;
+    margin-left: 8px;
 }
 
 .product .price .original {
-	display: block;
-	margin-left: 0px;
-	color: rgb(120, 120, 120);
-	font-size: 13px;
-	font-weight: 300;
-	text-decoration: line-through;
+    display: block;
+    margin-left: 0px;
+    color: rgb(120, 120, 120);
+    font-size: 13px;
+    font-weight: 300;
+    text-decoration: line-through;
 }
 
 @media all and (min-width: 500px) {
-	.product {
-		width: 50%;
-	}	
-
-	.product .thumbnail {
-		width: 160px;
-		height: 160px;
-	}
-	.layout-2-column .product {
-		width: 50%;
-	}
+    .product {
+        width: 50%;
+    }
+    .product .thumbnail {
+        width: 160px;
+        height: 160px;
+    }
+    .layout-2-column .product {
+        width: 50%;
+    }
 }
 
 @media all and (min-width: 768px) {
-	.product {
-		width: 25%;
-	}
-
-	.product .thumbnail {
-		width: 140px;
-		height: 140px;
-	}
+    .product {
+        width: 25%;
+    }
+    .product .thumbnail {
+        width: 140px;
+        height: 140px;
+    }
 }
 
 @media all and (min-width: 992px) {
-	.product .thumbnail {
-		width: 170px;
-		height: 170px;
-	}
+    .product .thumbnail {
+        width: 170px;
+        height: 170px;
+    }
 }
 
 @media all and (min-width: 1200px) {
-	.product .thumbnail {
-		width: 200px;
-		height: 200px;
-	}
-
-	.layout-2-column .product {
-		width: 25% !important;
-	}
+    .product .thumbnail {
+        width: 200px;
+        height: 200px;
+    }
+    .layout-2-column .product {
+        width: 25% !important;
+    }
 }

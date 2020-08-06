@@ -64,7 +64,7 @@ class Product_Model extends CI_Model
 
     public function getProductOfCategory($idCategory, $limit = 0, $start = -1)
     {
-        $str = 'SELECT p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy, o.name_origin, p.size, u.name_unit
+        $str = 'SELECT p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy, o.name_origin, p.size, u.name_unit, p.isDeliveredInDay 
         FROM products As p, categories As c, units As u, origins As o
         WHERE p.id_category = c.id_category And p.id_origin = o.id And p.id_unit = u.id_unit And p.id_category = '.$idCategory;
         if ($limit !== 0 && $start != -1) {
@@ -82,7 +82,7 @@ class Product_Model extends CI_Model
         $str = 'SELECT `p`.`id_product` AS `id_product`, `p`.`name_product` AS `name_product`, `p`.`price` AS `price`,'
             .' `p`.`descript` AS `descript`, `p`.`importDate` AS `importDate`, `p`.`count_view` AS `count_view`,'
             .' `p`.`image_link` AS `DuongDan`, `c`.`name_category` AS `name_category`, `p`.`discount` AS `discount`,'
-            .' `p`.`count_buy` AS `count_buy`, `o`.`name_origin` AS `name_origin`, `p`.`size` AS `size`, `u`.`name_unit` AS `name_unit`'
+            .' `p`.`count_buy` AS `count_buy`, `o`.`name_origin` AS `name_origin`, `p`.`size` AS `size`, `u`.`name_unit` AS `name_unit`, `p`.`isDeliveredInDay`'
             .' FROM (((`products` `p` JOIN `categories` `c`) JOIN `origins` `o`) JOIN `units` `u`)'
             .' WHERE ((`p`.`id_category` = `c`.`id_category`) AND (`p`.`id_origin` = `o`.`id`) AND (`p`.`id_unit` = `u`.`id_unit`))'
             .' ORDER BY `p`.`count_buy` DESC , `p`.`count_view` DESC';

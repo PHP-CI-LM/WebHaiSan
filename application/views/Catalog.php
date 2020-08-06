@@ -59,13 +59,23 @@
 								$url_product = base_url() . 'product/' . vn_to_str($product['name_product'] . '-' . substr('00000' . $product["id_product"], strlen('00000' . $product["id_product"]) - 5, 5)) . '.html';
 								$url_thumbnail = base_url() . 'images/' . $product['DuongDan'];
 								$price = strval(intval($product['price'] * (100 - intval($product['discount'])) / 100));
-								echo '<a href="' . $url_product . '" title="' . $product["name_product"] . '" class="product ">';
+								if ($product['isDeliveredInDay']) {
+									echo '<a href="' . $url_product . '" title="' . $product['name_product'] . '" class="product fast-delivery">';
+								} else {
+									echo '<a href="' . $url_product . '" title="' . $product['name_product'] . '" class="product">';;
+								}
 								echo '<div class="thumbnail">';
 								echo '<img src="' . $url_thumbnail . '" loading="lazy" data-src="' . $url_thumbnail . '" alt="' . $product["name_product"] . '">';
 								echo '</div>';
-								echo '<p class="title">' . $product["name_product"] . '</p>';
+								if ($product['isDeliveredInDay']) {
+									echo '<p class="title">| ' . $product['name_product'] . '</p>';
+								} else {
+									echo '<p class="title">' . $product['name_product'] . '</p>';
+								}
 								echo '<p class="price">' . number_format($price) . 'đ/kg';
-								echo '<span class="percent deal">-' . $product['discount'] . '%</span>';
+								if (0 != $product["discount"]) {
+									echo '<span class="percent deal">-' . $product['discount'] . '%</span>';
+								}
 								echo '<span class="original deal">' . number_format($product['price']) . '</span>';
 								echo '</p>';
 								echo '</a>';
