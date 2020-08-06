@@ -40,7 +40,7 @@
                 </h1>
                 <div class="page-option-block">
                     <p style="margin: 0px 0px 1em; padding: 0px; color: rgb(68, 68, 68); font-family: arial, helvetica, sans-serif; line-height: 18.6000003814697px;">
-                        <strong style="margin: 0px; padding: 0px; font-size: medium;">Giao Hàng</strong></p>
+                        <strong style="margin: 0px; padding: 0px; font-size: medium;">Chính sách giao Hàng</strong></p>
                     <div style="margin: 0px; padding: 0px; color: rgb(68, 68, 68); font-family: arial, helvetica, sans-serif; line-height: 18.6000003814697px;">
                         Mỗi đơn hàng được đạt dự kiến sẽ giao hàng trong vòng 24h &nbsp;đối với các khu vực nội thành Hồ Chí Minh và trong vòng 2 - 3 ngày đối với các tỉnh thành lân cận, không kể ngày chủ nhật, ngày nghỉ lễ, và thời gian chậm chuyến do tai nạn, thiên tai dịch họa bất khả kháng...... Các khu vực xa trung tâm tỉnh, thành phố (căn cứ theo toàn trình tuyến của Bưu điện Việt Nam) sẽ có thời gian vận chuyển lâu hơn tùy thuộc địa điểm cụ thể.</div>
                     <div style="margin: 0px; padding: 0px; color: rgb(68, 68, 68); font-family: arial, helvetica, sans-serif; line-height: 18.6000003814697px;">
@@ -48,10 +48,11 @@
                         Bởi việc vận chuyển hàng hóa tới các tỉnh thành trên toàn quốc do các đơn vị cung cấp dịch vụ vận chuyển thực hiện, nên chúng tôi không bảo đảm chắc chắn và không chịu trách nhiệm về bất kỳ tổn thất, chi phí thiệt hại, hoặc bất cứ chi phí phát sinh nào khác do việc giao hàng chậm trễ gây ra.</div>
                     <div style="margin: 0px; padding: 0px; color: rgb(68, 68, 68); font-family: arial, helvetica, sans-serif; line-height: 18.6000003814697px;">
                         <br style="margin: 0px; padding: 0px;">
-                        Các đơn vị cung cấp dịch vụ vận chuyển làm việc theo nguyên tắc giao hàng và nhận thanh toán. Đây không phải là một bộ phận thuộc hệ thống Siêu Mua, vì vậy quý khách hàng vui lòng thanh toán khi sản phẩm giao tới còn nguyên đai, nguyên kiện, nguyên băng dính niêm phong, chưa có dấu hiệu bóc mở..., đầy đủ chứng từ hóa đơn của Siêu Mua. Trường hợp sau khi nhận sản phẩm nếu quý khách phát hiện giao nhầm, thiếu sản phẩm có lỗi xin vui lòng thông báo ngay với bộ phận CSKH của Siêu Mua, chúng tôi cam kết sẽ xử lý ngay lập tức theo yêu cầu hoàn trả, đổi sản phẩm của quý khách.Nếu quý khách vắng mặt ở nơi giao hàng, hoặc không thể liên hệ để giao hàng đơn hàng có thể sẽ bị hủy.</div>
+                        Việc giao hàng sẽ được tiến hành ngay khi chúng tôi xác nhận được giao dịch với quý khách sau khi quý khách đặt hàng ở website chúng tôi (tối thiểu trong 2h). Nếu trong đợt giao hàng đầu tiên người nhận hàng không có mặt, chúng tôi sẽ liên hệ đến quý khách để sắp xếp thời gian giao hàng khác thuận tiện hơn.</div>
                     <div style="margin: 0px; padding: 0px; color: rgb(68, 68, 68); font-family: arial, helvetica, sans-serif; line-height: 18.6000003814697px;">
                         <br style="margin: 0px; padding: 0px;">
-                        Việc giao hàng sẽ được tiến hành ngay khi chúng tôi xác nhận được giao dịch với quý khách. Nếu trong đợt giao hàng đầu tiên người nhận hàng không có mặt, chúng tôi sẽ liên hệ đến quý khách để sắp xếp thời gian giao hàng khác thuận tiện hơn.</div>
+                        Một số đơn hàng để đảm bảo sự tươi ngon của sản phẩm khi nhận, khi nhận đơn hàng của quý khách mà có sản phẩm bắt buột phải giao trong ngày thì đơn hàng của quý khách sẽ được hỗ trợ giao ngay trong 24h ở bất kỳ tỉnh thành nào mà cửa hàng hỗ trợ. Mức phí thêm vào sẽ tăng thêm 20% so với mức phí giao hàng truyền thống.
+                    </div>
                     <div style="margin: 0px; padding: 0px; color: rgb(68, 68, 68); font-family: arial, helvetica, sans-serif; line-height: 18.6000003814697px;">
                         <br style="margin: 0px; padding: 0px;">
                         Chúng tôi hỗ trợ giao hàng trong nội thành thành phố Hồ Chí Minh và các tỉnh lân cận. Danh sách chi tiết và mức giá liên quan cho các khu vực như sau:
@@ -60,32 +61,39 @@
                                 <tr>
                                     <th class="tg-baqh">Tỉnh thành</th>
                                     <th class="tg-baqh">Phí giao hàng</th>
+                                    <th class="tg-baqh">Phí giao nhanh</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="tg-baqh">Thành Phố Hồ Chí Minh</td>
                                     <td class="tg-baqh">21.000đ</td>
+                                    <td class="tg-baqh">26.000đ</td>
                                 </tr>
                                 <tr>
                                     <td class="tg-baqh">Đồng Nai</td>
                                     <td class="tg-baqh">42.000đ</td>
+                                    <td class="tg-baqh">50.000đ</td>
                                 </tr>
                                 <tr>
                                     <td class="tg-baqh">Bình Dương</td>
                                     <td class="tg-baqh">42.000đ</td>
+                                    <td class="tg-baqh">50.000đ</td>
                                 </tr>
                                 <tr>
                                     <td class="tg-baqh">Bà Rịa Vũng Tàu</td>
                                     <td class="tg-baqh">42.000đ</td>
+                                    <td class="tg-baqh">50.000đ</td>
                                 </tr>
                                 <tr>
                                     <td class="tg-baqh">Long An</td>
                                     <td class="tg-baqh">42.000đ</td>
+                                    <td class="tg-baqh">50.000đ</td>
                                 </tr>
                                 <tr>
                                     <td class="tg-baqh">Tây Ninh</td>
                                     <td class="tg-baqh">42.000đ</td>
+                                    <td class="tg-baqh">50.000đ</td>
                                 </tr>
                             </tbody>
                         </table>

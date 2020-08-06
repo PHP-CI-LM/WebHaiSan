@@ -30,7 +30,7 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 	echo '</span>';
 	echo '<span class="content">';
 	echo '<span class="info">';
-	echo '<span class="name">' . $comment['name'];
+	echo '<span class="name">' . $comment['name'] . ' - <';
 	echo '<span class="time">' . $comment['time'] . '</span></span>';
 	if ($user != null) {
 		if ($user == $comment['AccountID']) {
@@ -164,9 +164,15 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 										echo "Đang cập nhật nội dung";
 									echo "</span></div>";
 									echo "<div class=\"col-xs-12\">";
-									echo "<span>";
+									echo "<p style=\"display: block;\">";
 									echo "Trọng lượng: " . $product["size"] . " " . $product["name_unit"];
-									echo "</span></div></div></li>";
+									echo "</p>";
+									if ($product["isDeliveredInDay"]) {
+										echo "<p>";
+										echo "Sản phẩm được giao trong ngày cho mọi tỉnh thành!". "<a href=\"\" title=\"Xem chi tiết\" ></a>";
+										echo "</p>";
+									}
+									echo "</div></div></li>";
 								}
 								?>
 							</div>
