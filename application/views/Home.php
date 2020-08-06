@@ -148,7 +148,6 @@
 							echo '<a href="' . $url_product . '" title="' . $product['name_product'] . '" class="product">';
 							echo '<div class="thumbnail">';
 							echo '<img src="' . $url_thumbnail . '" loading="lazy" data-src="' . $url_thumbnail . '" alt="' . $product['name_product'] . '">';
-							echo '<img class="fast-delivery" src="'. base_url() .'static/image/others/24h.webp">';
 							echo '</div>';
 							echo '<p class="title">' . $product['name_product'] . '</p>';
 							echo '<p class="price">' . number_format($price) . 'đ/kg';
