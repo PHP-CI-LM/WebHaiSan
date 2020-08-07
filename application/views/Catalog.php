@@ -93,10 +93,11 @@
 				?>
 			</div>
 		</article>
+	</div>
 
-		<?php require_once("comp/Footer.php") ?>
+	<?php require_once("comp/Footer.php") ?>
 
-		<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url() ?>static/js/Action.min.js"></script>
 </body>
 
 </html>
