@@ -210,7 +210,7 @@
 										<tbody>
 											<tr>
 												<td class="label" style="width:60px;"><label for="filter_id">Mã đơn</label></td>
-												<td class="item"><input name="orther_id" value="<?php if (isset($arguments['id_order'])) echo $arguments['id_order'] ?>" id="filter_id" type="text" style="width:95px;" /></td>
+												<td class="item"><input name="order_id" value="<?php if (isset($arguments['id_order'])) echo $arguments['id_order'] ?>" id="filter_id" type="text" style="width:95px;" /></td>
 												<td class="label" style="width:60px;"><label for="filter_type">Sản phẩm</label></td>
 												<td class="item">
 													<select name="product_id" id="filter_product">
