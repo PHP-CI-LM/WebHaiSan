@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title><?php echo app_title()?> - Chỉnh sửa đơn hàng</title>
+		<title><?php echo app_title() ?> - Chỉnh sửa đơn hàng</title>
 		<link rel="icon" type="image/png" href="<?php echo base_url() ?>static/image/LOGO.ico" />
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>static/css/stylesheet.min.css" />
@@ -57,7 +57,7 @@
 										<?php
 										if (isset($info) == false) {
 											echo "<div class=\"user-login\"><a href=\"" . base_url() . "dang-ky-thanh-vien.html\">Đăng ký tài khoản mua hàng</a>";
-											echo "<a href=\"" . base_url() . 'dang-nhap.html?backUrl=' . urlencode(current_url()). "\">Đăng nhập</a></div>";
+											echo "<a href=\"" . base_url() . 'dang-nhap.html?backUrl=' . urlencode(current_url()) . "\">Đăng nhập</a></div>";
 											echo "<label>Mua hàng không cần tài khoản</label>";
 										}
 										?>
@@ -103,13 +103,13 @@
 											<select class="form-control" onchange="changedDistrict()" required="">
 												<option value="number:0" label="Vui lòng chọn huyện" selected>Vui lòng chọn huyện</option>
 											</select>
-											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif" loading="lazy" data-src="<?=base_url()?>static/image/gif/loading.gif">
+											<img class="wait" src="<?= base_url() ?>static/image/gif/loading.gif" loading="lazy" data-src="<?= base_url() ?>static/image/gif/loading.gif">
 										</div>
 										<div class="form-group">
 											<select class="form-control" required="">
 												<option value="number:0" label="Vui lòng chọn xã/phường" selected>Vui lòng chọn xã/phường</option>
 											</select>
-											<img class="wait" src="<?=base_url()?>static/image/gif/loading.gif" loading="lazy" data-src="<?=base_url()?>static/image/gif/loading.gif">
+											<img class="wait" src="<?= base_url() ?>static/image/gif/loading.gif" loading="lazy" data-src="<?= base_url() ?>static/image/gif/loading.gif">
 										</div>
 										<textarea class="form-control" rows="4" placeholder="Ghi chú đơn hàng" styte="resize:none;"></textarea>
 									</div>
@@ -402,7 +402,7 @@
 				function getRecipients() {
 					let selected = $($('select')[0]).val();
 					if (selected.split(":")[1] !== "0") {
-						let sendTo = "hcm";
+						let sendTo = 4;
 						if (selected.split(":")[1] !== "4") {
 							sendTo = 300;
 						}
@@ -412,21 +412,28 @@
 				}
 
 				function getShipmentInformation(sendFrom, sendTo, weight, callback) {
-					let info = [];
-					if (sendTo == 300) {
-						info["price"] = "45000";
-						info["time_delivery"] = "24h-48h";
-					} else {
-						info["price"] = "21000";
-						info["time_delivery"] = "8h-12h";
-					}
-					callback(info);
+					$.ajax({
+						'url': '<?= base_url() ?>payment/get-delivery-charge.html',
+						'type': 'post',
+						'data': {
+							'idProvince': sendTo
+						},
+						'success': res => {
+							let data = JSON.parse(JSON.stringify(res));
+							if (typeof data == 'string' || data instanceof String) {
+								data = JSON.parse(res);
+							}
+							if (true == data['status']) {
+								callback(data['data']);
+							}
+						}
+					})
 				}
 			}
 
 			function changeShipmentInfomation(info) {
 				//Change price
-				let price_delivery = info["price"].split(/(((\d+),)+)(\d+)\sđ/);
+				let price_delivery = info["price"];
 				let price_products = <?php echo $totalPrice ?>;
 				$(".shiping-price label").text(formatNumber(price_delivery) + "đ");
 				//Change time delivery

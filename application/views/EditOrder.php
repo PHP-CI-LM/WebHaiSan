@@ -379,7 +379,7 @@
 				function getRecipients() {
 					let selected = $($('select')[0]).val();
 					if (selected.split(":")[1] !== "0") {
-						let sendTo = "hcm";
+						let sendTo = 4;
 						if (selected.split(":")[1] !== "4") {
 							sendTo = 300;
 						}
@@ -389,21 +389,28 @@
 				}
 
 				function getShipmentInformation(sendFrom, sendTo, weight, callback) {
-					let info = [];
-					if (sendTo == 300) {
-						info["price"] = "45000";
-						info["time_delivery"] = "24h-48h";
-					} else {
-						info["price"] = "21000";
-						info["time_delivery"] = "8h-12h";
-					}
-					callback(info);
+					$.ajax({
+						'url': '<?= base_url() ?>payment/get-delivery-charge.html',
+						'type': 'post',
+						'data': {
+							'idProvince': sendTo
+						},
+						'success': res => {
+							let data = JSON.parse(JSON.stringify(res));
+							if (typeof data == 'string' || data instanceof String) {
+								data = JSON.parse(res);
+							}
+							if (true == data['status']) {
+								callback(data['data']);
+							}
+						}
+					})
 				}
 			}
 
 			function changeShipmentInfomation(info) {
 				//Change price
-				let price_delivery = info["price"].split(/(((\d+),)+)(\d+)\sđ/);
+				let price_delivery = info["price"];
 				let price_products = getTotalPay();
 				$(".shiping-price label").text(formatNumber(price_delivery) + "đ");
 				//Change time delivery

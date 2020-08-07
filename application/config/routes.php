@@ -98,6 +98,7 @@ $route['comments']['GET'] = 'Comment/getListcomment';
 $route['order/huy-don-hang.html']['GET'] = 'Order/delete';
 $route['order/chinh-sua-don-hang.html']['GET'] = 'Order/edit';
 $route['order/chinh-sua-don-hang.html']['POST'] = 'Order/edit';
+$route['payment/get-delivery-charge.html']['POST'] = 'Payment/getDeliveryCharges';
 $route['search-word-key.html']['GET'] = 'Product/enterWordsearch';
 $route['comment/edit-comment']['POST'] = 'Comment/editComment';
 $route['comment/remove-comment']['POST'] = 'comment/removeComment';

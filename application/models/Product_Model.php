@@ -30,13 +30,16 @@ class Product_Model extends CI_Model
         );
     }
 
-    public function getProductOfId($idProduct, $limit = 0)
+    public function getProductOfId($idProduct, $limit = 0, $isDeliveredInDay = 0)
     {
         $this->db->trans_start();
         $this->db->query('UPDATE products SET count_view=count_view+1 WHERE id_product='.$idProduct);
         $str = 'SELECT p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy, o.name_origin, p.size, u.name_unit, p.isDeliveredInDay 
                 FROM products As p, categories As c, units As u, origins As o
                 WHERE p.id_category = c.id_category And p.id_origin = o.id And p.id_unit = u.id_unit And p.id_product = '.$idProduct;
+        if ($isDeliveredInDay !== 0) {
+            $str = $str.' And p.isDeliveredInDay = 1 ';
+        }
         if ($limit !== 0) {
             $str = $str.' LIMIT '.$limit;
         }

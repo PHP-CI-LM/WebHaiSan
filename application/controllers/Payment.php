@@ -160,6 +160,43 @@ class Payment extends CI_Controller
         ]);
     }
 
+    public function getDeliveryCharges()
+    {
+        validateSession();
+        if ($this->input->post('idProvince') != null) {
+            $products = $this->getProducts();
+            $this->load->model('Product_Model');
+            $idProvince = $this->input->post('idProvince');
+            $charge = 0;
+            $time_delivery = '';
+            if ($idProvince == 4) {
+                $charge = 21000;
+                $time_delivery = '8h-12h';
+            } else {
+                $charge = 42000;
+                $time_delivery = '24h-48h';
+            }
+            foreach ($products as $product) {
+                $detail = $this->Product_Model->getProductOfId($product['id'], 0, 1);
+                if ($detail) {
+                    if ($idProvince == 4) {
+                        $charge = 26000;
+                    } else {
+                        $charge = 50000;
+                    }
+                    $time_delivery = '8h-24h';
+                    break;
+                }
+            }
+            sendResponse(1, "Get delivery charges success!", [
+                "price"         => $charge,
+                "time_delivery" => $time_delivery
+            ]);
+            return;
+        }
+        sendResponse(0, "Get delivery charges fail!");
+    }
+
     private function cleanInput($array)
     {
         $result = array();
