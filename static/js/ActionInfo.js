@@ -73,8 +73,13 @@ $(document).ready(function() {
         // Start process save
         if (true == isUpdateInformation && false == isUploadAvatar) {
             // Update information of user
-            var data = $(inputs).serializeArray();
             var customerID = $('.cid').val();
+            var data = {
+                'customerName': $(inputs[0]).val(),
+                'sex': $(inputs[1]).val(),
+                'address': $(inputs[2]).val(),
+                'phone': $(inputs[3]).val()
+            }
             sendRequest('user/thong-tin-tai-khoan.html/' + customerID, 'post', data, (response, text) => {
                 // Hidden all input and update information of span following with value in input element
                 $(detailBlock).find('.input').each((index, element) => {
