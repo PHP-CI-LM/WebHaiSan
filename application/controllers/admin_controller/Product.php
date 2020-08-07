@@ -28,11 +28,11 @@ class product extends CI_Controller
             $paging_links = $this->pagination->create_links();
 
             // Lấy danh sách sp
-            $start = ($page_num - 1)*$limit_per_page;
+            $start = ($page_num - 1) * $limit_per_page;
             $data = $this->Product_Model->getAllProducts($limit_per_page, $start);
             $this->load->view('admin/product', [
-                "data"          => $data, 
-                "data_category" => $data_category, 
+                "data"          => $data,
+                "data_category" => $data_category,
                 "nums_row"      => $count,
                 "paging_links"  => $paging_links
             ]);
@@ -265,9 +265,22 @@ class product extends CI_Controller
         $this->load->library('upload', $config);
 
         if ($this->upload->do_upload('img')) {
+            $fullPath = $this->upload->data()['full_path'];
+            $this->resizeImage($fullPath, 500, 500);
             return $this->upload->data()['file_name'];
         } else {
             return false;
         }
+    }
+
+    private function resizeImage($path, $width, $height)
+    {
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = $path;
+        $config['maintain_ratio'] = FALSE;
+        $config['width']         = $width;
+        $config['height']       = $height;
+        $this->load->library('image_lib', $config);
+        return $this->image_lib->resize();
     }
 }

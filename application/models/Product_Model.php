@@ -136,7 +136,7 @@ class Product_Model extends CI_Model
     {
         $this->db->trans_start();
         $strsave = 'insert into products(name_product,price,descript,importDate,count_view,image_link,id_category,discount,count_buy,id_origin,size,id_unit, isDeliveredInDay) '.
-            "values('".$name_product."', ".$price.",'".$descript."','".$importDate."',0,'".$image_link."',".$id_category.','.$discount.',0,'.$id_origin.",'".$size."',".$id_unit."',".$isDeliveredInDay.')';
+            "values('".$name_product."', ".$price.",'".$descript."','".$importDate."',0,'".$image_link."',".$id_category.','.$discount.',0,'.$id_origin.",'".$size."',".$id_unit.",".$isDeliveredInDay.')';
         $strgetid = "select id_product from products where name_product='".$name_product."' limit 1";
         $this->db->query($strsave);
         $query = $this->db->query($strgetid)->row();
