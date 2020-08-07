@@ -280,7 +280,9 @@ class product extends CI_Controller
         $config['maintain_ratio'] = FALSE;
         $config['width']         = $width;
         $config['height']       = $height;
-        $this->load->library('image_lib', $config);
+        $this->load->library('image_lib');
+        $this->image_lib->initialize($config);
+        $this->image_lib->clear();
         return $this->image_lib->resize();
     }
 }
