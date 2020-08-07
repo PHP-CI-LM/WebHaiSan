@@ -74,6 +74,8 @@
                                     echo '<a class="item" href="' . base_url() . 'dang-ky-thanh-vien.html">Đăng ký tài khoản</a>';
                                 } else {
                                     echo '<a class="item" href="' . base_url() . 'user/thong-tin-tai-khoan.html' . '">Thông tin tài khoản</a>';
+                                    echo '<a class="item" href="' . base_url() . 'order/lich-su-mua-hang.html' . '">Lịch sử mua hàng</a>';
+                                    echo '<a class="item" href="' . base_url() . 'user/doi-mat-khau.html' . '">Đổi mật khẩu</a>';
                                     echo '<a class="item" href="' . base_url() . 'dang-xuat.html">Đăng xuất</a>';
                                 }
                                 ?>
@@ -131,7 +133,8 @@
                                     echo '<a href="' . base_url() . 'dang-ky-thanh-vien.html" title="Đăng ký thành viên"><i class="fa fa-user-plus "></i></a>';
                                     echo '<a href="' . base_url() . 'gio-hang.html" title="Giỏ hàng"><i class="fa fa-shopping-cart"></i></a>';
                                 } else {
-                                    echo '<a href="' . base_url() . 'user/thong-tin-tai-khoan.html" title="Thông tin tài khoản"><i class="fa fa-user-plus "></i></a>';
+                                    echo '<a href="' . base_url() . 'user/thong-tin-tai-khoan.html" title="Thông tin tài khoản"><i class="fa fa-info-circle"></i></a>';
+                                    echo '<a href="' . base_url() . 'order/lich-su-mua-hang.html" title="Lịch sử mua hàng"><i class="fa fa-history"></i></a>';
                                     echo '<a href="' . base_url() . 'dang-xuat.html" title="Đăng xuất"><i class="fa fa-sign-out"></i></a>';
                                     echo '<a href="' . base_url() . 'gio-hang.html" title="Giỏ hàng"><i class="fa fa-shopping-cart "></i></a>';
                                 }
@@ -140,7 +143,7 @@
                             <?php
                             echo "<a class=\"toggle-item\" href=\"" . base_url() . "\">Trang chủ</a>";
                             echo "<a class=\"toggle-item\" href=\"" . base_url() . "chinh-sach.html\">Chính sách</a>";
-                            echo "<a class=\"toggle-item\" href=\"" . base_url() . "kiem-tra-don-hang.html\">Kiểm tra đơn hàng</a>";
+                            echo "<a class=\"toggle-item\" href=\"" . base_url() . "kiem-tra-don-hang.html\">Tra cứu đơn hàng</a>";
                             ?>
                             <span class="toggle-content toggle-item has-child">Danh mục sản phẩm
                                 <a class="toggle-item" href="<?php echo base_url() ?>category/ca-bien.html">

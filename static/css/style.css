@@ -332,6 +332,7 @@ header nav .active a {
     text-decoration: none;
     display: block !important;
     line-height: 30px;
+    font-size: 13px;
 }
 
 .right-dropdown-content .item:hover {
