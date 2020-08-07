@@ -110,13 +110,17 @@
 
 					<a href="<?php echo base_url() ?>ci-admin/product.html" class=" exp">
 						<span>Sản phẩm</span>
-						<strong>1</strong>
+						<strong>2</strong>
 					</a>
 
 					<ul class="sub">
 						<li>
 							<a href="<?php echo base_url() ?>ci-admin/product.html">
-								Sản phẩm </a>
+								Danh sách sản phẩm </a>
+						</li>
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/add-product.html">
+								Thêm sản phẩm mới</a>
 						</li>
 					</ul>
 

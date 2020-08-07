@@ -111,13 +111,17 @@
 
 					<a href="<?php echo base_url() ?>ci-admin/product.html" class="active exp">
 						<span>Sản phẩm</span>
-						<strong>1</strong>
+						<strong>2</strong>
 					</a>
 
 					<ul class="sub">
 						<li>
 							<a href="<?php echo base_url() ?>ci-admin/product.html">
-								Sản phẩm </a>
+								Danh sách sản phẩm </a>
+						</li>
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/add-product.html">
+								Thêm sản phẩm mới</a>
 						</li>
 					</ul>
 
@@ -168,7 +172,7 @@
 
 		<!-- Account panel top -->
 
-		<?php require("comp/topNav.php")?>
+		<?php require("comp/topNav.php") ?>
 
 		<!-- Main content -->
 
@@ -262,7 +266,7 @@
 											<?php
 											if ($data_origin !== null && isset($data_origin) && sizeof($data_origin) > 0)
 												foreach ($data_origin as $row) {
-													?>
+											?>
 												<option value="<?php echo $row["id"] ?>">
 													<?php echo $row["name_origin"] ?> </option>
 											<?php } ?>
@@ -331,7 +335,26 @@
 									</div>
 									<div class="clear"></div>
 								</div>
-								
+
+								<!-- Fast Delivery -->
+								<div class="formRow">
+									<label class="formLeft" for="param_price">
+										Giao hàng nhanh :
+										<span class="req">*</span>
+									</label>
+									<div class="formRight">
+										<span class="oneTwo">
+											<select name="isDeliveredInDay" _autocheck="true" id='param_fastDelivery' class="left">
+												<option value="0">Có</option>
+												<option value="1" selected>Không</option>
+											</select>
+										</span>
+										<span name="price_autocheck" class="autocheck"></span>
+										<div name="price_error" class="clear error"></div>
+									</div>
+									<div class="clear"></div>
+								</div>
+
 								<!-- Category -->
 								<div class="formRow">
 									<label class="formLeft" for="param_cat">Thể loại:<span class="req">*</span></label>
@@ -340,7 +363,7 @@
 											<?php
 											if ($data_category !== null && isset($data_category) && sizeof($data_category) > 0)
 												foreach ($data_category as $row) {
-													?>
+											?>
 												<option value="<?php echo $row["id_category"] ?>">
 													<?php echo $row["name_category"] ?> </option>
 											<?php } ?>
@@ -356,7 +379,7 @@
 								<div class="formRow hidden" id="add-category">
 									<label class="formLeft" for="param_cat">Thêm loại mới:<span class="req">*</span></label>
 									<div class="formRight">
-										<span class="oneTwo"><input name="new_category" id="param_name" _autocheck="true" type="text" autocomplete="off"/></span>
+										<span class="oneTwo"><input name="new_category" id="param_name" _autocheck="true" type="text" autocomplete="off" /></span>
 										<span name="cat_autocheck" class="autocheck"></span>
 										<div name="cat_error" class="clear error"></div>
 									</div>
@@ -371,7 +394,7 @@
 											<?php
 											if ($data_unit !== null && isset($data_unit) && sizeof($data_unit) > 0)
 												foreach ($data_unit as $row) {
-													?>
+											?>
 												<option value="<?php echo $row["id_unit"] ?>">
 													<?php echo $row["name_unit"] ?> </option>
 											<?php } ?>
@@ -386,13 +409,13 @@
 								<div class="formRow">
 									<label class="formLeft" for="param_name">Kích thước:<span class="req">*</span></label>
 									<div class="formRight">
-										<span class="oneTwo"><input type="number" step="0.1" name="size" id="param_name" _autocheck="true" type="text" autocomplete="off" required style="width: 50px;" value="1.0"/></span>
+										<span class="oneTwo"><input type="number" step="0.1" name="size" id="param_name" _autocheck="true" type="text" autocomplete="off" required style="width: 50px;" value="1.0" /></span>
 										<span name="name_autocheck" class="autocheck"></span>
 										<div name="name_error" class="clear error"></div>
 									</div>
 									<div class="clear"></div>
 								</div>
-								
+
 								<!-- Description -->
 								<div class="formRow">
 									<label class="formLeft">Mô tả:</label>

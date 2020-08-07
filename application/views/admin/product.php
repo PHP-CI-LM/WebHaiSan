@@ -13,7 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo public_url() ?>/css/css.css" media="screen" />
 
 	<script type="text/javascript" src="<?php echo public_url() ?>/js/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo public_url() ?>	/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="<?php echo public_url() ?>/js/jquery/jquery-ui.min.js"></script>
 
 	<script type="text/javascript" src="<?php echo public_url() ?>/crown/js/plugins/spinner/jquery.mousewheel.js"></script>
 	<script type="text/javascript" src="<?php echo public_url() ?>/crown/js/plugins/forms/uniform.js"></script>
@@ -102,13 +102,17 @@
 
 					<a href="<?php echo base_url() ?>ci-admin/product.html" class="active exp">
 						<span>Sản phẩm</span>
-						<strong>1</strong>
+						<strong>2</strong>
 					</a>
 
 					<ul class="sub">
 						<li>
 							<a href="<?php echo base_url() ?>ci-admin/product.html">
-								Sản phẩm </a>
+								Danh sách sản phẩm </a>
+						</li>
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/add-product.html">
+								Thêm sản phẩm mới</a>
 						</li>
 					</ul>
 
@@ -212,7 +216,7 @@
 			<div class="wrapper">
 				<div class="pageTitle">
 					<h5>Sản phẩm</h5>
-					<span>Quản lý sản phẩm</span>
+					<span>Quản lý danh sách sản phẩm</span>
 				</div>
 
 				<div class="horControlB menu_action">
@@ -260,7 +264,7 @@
 
 					<thead class="filter">
 						<tr>
-							<td colspan="8">
+							<td colspan="9">
 								<form class="list_filter form" action="ci-admin/product.html" method="get">
 									<table cellpadding="0" cellspacing="0" width="80%">
 										<tbody>
@@ -301,7 +305,8 @@
 							<td style="width:21px;"><img src="<?php echo public_url() ?>/images/icons/tableArrows.png" /></td>
 							<td style="width:60px;">Mã số</td>
 							<td>Tên</td>
-							<td>Giá</td>
+							<td style="width:75px;">Giá</td>
+							<td style="width:85px;">Giao hàng nhanh</td>
 							<td style="width:50px;">Lượt xem</td>
 							<td style="width:50px;">Lượt bán</td>
 							<td style="width:75px;">Ngày tạo</td>
@@ -311,7 +316,7 @@
 
 					<tfoot class="auto_check_pages">
 						<tr>
-							<td colspan="8">
+							<td colspan="9">
 								<div class="list_action itemActions">
 									<!-- <a href="#submit" id="submit" class="button blueB" url="admin/product/del_all.html">
 										<span style='color:white;'>Xóa hết</span>
@@ -330,9 +335,14 @@
 								echo "<td><input type=\"checkbox\" name=\"id[]\" value=\"" . $row["id_product"] . "\" /></td>";
 								echo "<td class=\"textC\">" . $row["id_product"] . "</td>";
 								echo "<td><div class=\"image_thumb\"><img src=\"" . base_url() . "images/" . $row['image_link'] . "\" height=\"50\"><div class=\"clear\"></div></div>";
-								echo "<a href=\"" . base_url() . "ci-admin/update-product.html/" . $row["id_product"] . "\" class=\"tipS\" title=\"\" target=\"_blank\"><b>" . $row["name_product"] . "</b></a>";
+								echo "<a href=\"" . base_url() . "ci-admin/update-product.html/" . $row["id_product"] . "\" class=\"tipS\" title=\"\"><b>" . $row["name_product"] . "</b></a>";
 								echo "<div class=\"f11\">Đã bán: " . $row["count_buy"] . " | Xem: " . $row["count_view"] . " </div></td>";
 								echo "<td class=\"textR\">" . number_format($row["price"]) . " đ</td>";
+								if (1 == $row["isDeliveredInDay"]) {
+									echo "<td class=\"textC\">Có</td>";
+								} else {
+									echo "<td class=\"textC\">Không</td>";
+								}
 								echo "<td class=\"textC\">" . $row["count_view"] . "</td>";
 								echo "<td class=\"textC\">" . $row["count_buy"] . "</td>";
 								echo "<td class=\"textC\">" . toDatetime($row["importDate"]) . "</td>";
@@ -410,13 +420,21 @@
 						//Set result into table
 						$("tbody.list_item tr").remove();
 						result["data"]["products"].forEach(product => {
+							var fasrDelivery = "Có";
+							if (0 == product['isDeliveredInDay']) {
+								fasrDelivery = "Không";
+							}
 							$("tbody.list_item").append(
 								'<tr class="row_9">' +
 								'<td><div class="checker" id="uniform-undefined"><span><input type="checkbox" name="id[]" value="' + product["id_product"] + '" style="opacity: 0;"></span></div></td>' +
 								'<td class="textC">' + product["id_product"] + '</td>' +
 								'<td><div class="image_thumb"><img src="<?php echo base_url() . "images/" ?>' + product["image_link"] + '" height="50"><div class="clear"></div></div>' +
-								'<a href="<?php echo base_url() ?>ci-admin/update-product.html/' + product["id_product"] + '" class="tipS" target="_blank" original-title=""><b>' + product["name_product"] + '</b></a><div class="f11">Đã bán: ' + product["count_buy"] + ' | Xem: ' + product["count_view"] + ' </div></td>' +
-								'<td class="textR">265,000 đ</td><td class="textC">' + product["importDate"] + '</td>' +
+								'<a href="<?php echo base_url() ?>ci-admin/update-product.html/' + product["id_product"] + '" class="tipS" " original-title=""><b>' + product["name_product"] + '</b></a><div class="f11">Đã bán: ' + product["count_buy"] + ' | Xem: ' + product["count_view"] + ' </div></td>' +
+								'<td class="textR">'+ formatNumber(product["price"]) +' đ</td>'+
+								'<td class="textC">'+ fasrDelivery +'</td>' +
+								'<td class="textC">'+ product['count_view'] +'</td>' +
+								'<td class="textC">'+ product['count_buy'] +'</td>' +
+								'<td class="textC">' + toDatetime(product["importDate"]) + '</td>' +
 								'<td class="option textC">' +
 								'<a href="<?php echo base_url() ?>ci-dmin/update-product.html/' + product["id_product"] + '" title="Chỉnh sửa" class="tipS">' +
 								'<img src="<?php echo public_url() ?>/images/icons/color/edit.png" />' +
@@ -434,6 +452,15 @@
 					}
 				}
 			});
+		}
+
+		function formatNumber(num) {
+			return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+		}
+
+		function toDatetime(timestamp = 0) {
+			var timestamp = new Date(timestamp*1000);
+			return timestamp.getDate() + '-' + (timestamp.getMonth() + 1) + '-' + timestamp.getFullYear();
 		}
 	</script>
 </body>

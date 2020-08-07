@@ -111,13 +111,17 @@
 
 					<a href="<?php echo base_url() ?>ci-admin/product.html" class="active exp">
 						<span>Sản phẩm</span>
-						<strong>1</strong>
+						<strong>2</strong>
 					</a>
 
 					<ul class="sub">
 						<li>
 							<a href="<?php echo base_url() ?>ci-admin/product.html">
-								Sản phẩm </a>
+								Danh sách sản phẩm </a>
+						</li>
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/add-product.html">
+								Thêm sản phẩm mới</a>
 						</li>
 					</ul>
 
@@ -244,6 +248,7 @@
 
 						<div class="tab_container">
 							<div id='tab1' class="tab_content pd0">
+								<!-- Name -->
 								<div class="formRow">
 									<label class="formLeft" for="param_name">Tên:<span class="req">*</span></label>
 									<div class="formRight">
@@ -253,6 +258,8 @@
 									</div>
 									<div class="clear"></div>
 								</div>
+
+								<!-- Origin -->
 								<div class="formRow">
 									<label class="formLeft" for="param_name">Nguồn gốc:<span class="req">*</span></label>
 									<div class="formRight">
@@ -274,7 +281,10 @@
 										<span name="cat_autocheck" class="autocheck"></span>
 										<div name="cat_error" class="clear error"></div>
 									</div>
+									<div class="clear"></div>
 								</div>
+
+								<!-- Thumbnail -->
 								<div class="formRow">
 									<label class="formLeft" for="param_name">Link hình ảnh:<span class="req">*</span></label>
 									<div class="formRight">
@@ -303,7 +313,7 @@
 									<div class="clear"></div>
 								</div>
 
-								<!-- Price -->
+								<!-- Promotion -->
 								<div class="formRow">
 									<label class="formLeft" for="param_discount">
 										Giảm giá (%)
@@ -319,14 +329,32 @@
 									</div>
 									<div class="clear"></div>
 								</div>
+
+								<!-- Fast Delivery -->
+								<div class="formRow">
+									<label class="formLeft" for="param_price">
+										Giao hàng nhanh :
+										<span class="req">*</span>
+									</label>
+									<div class="formRight">
+										<span class="oneTwo">
+											<select name="isDeliveredInDay" _autocheck="true" id='param_fastDelivery' class="left">
+												<option value="1" <?php if (1 == $data_product["isDeliveredInDay"]) echo "selected"?>>Có</option>
+												<option value="0" <?php if (0 == $data_product["isDeliveredInDay"]) echo "selected"?>>Không</option>
+											</select>
+										</span>
+										<span name="price_autocheck" class="autocheck"></span>
+										<div name="price_error" class="clear error"></div>
+									</div>
+									<div class="clear"></div>
+								</div>
+
+								<!-- Category -->
 								<div class="formRow">
 									<label class="formLeft" for="param_cat">Thể loại:<span class="req">*</span></label>
 									<div class="formRight">
 										<select name="cat" _autocheck="true" id='param_cat' class="left">
-
 											<!-- kiem tra danh muc co danh muc con hay khong -->
-
-
 											<?php
 											if ($data_category !== null && isset($data_category) && sizeof($data_category) > 0) {
 												foreach ($data_category as $row) {
@@ -343,6 +371,8 @@
 									</div>
 									<div class="clear"></div>
 								</div>
+
+								<!-- Size -->
 								<div class="formRow">
 									<label class="formLeft" for="param_name">Kích thước:<span class="req">*</span></label>
 									<div class="formRight">
@@ -352,13 +382,13 @@
 									</div>
 									<div class="clear"></div>
 								</div>
+
+								<!-- Unit -->
 								<div class="formRow">
 									<label class="formLeft" for="param_cat">Đơn vị:<span class="req">*</span></label>
 									<div class="formRight">
 										<select name="unit" _autocheck="true" id='param_cat' class="left">
-
 											<!-- kiem tra danh muc co danh muc con hay khong -->
-
 											<?php
 											if ($data_unit !== null && isset($data_unit) && sizeof($data_unit) > 0) {
 												foreach ($data_unit as $row) {
@@ -376,6 +406,8 @@
 									</div>
 									<div class="clear"></div>
 								</div>
+
+								<!-- Descript -->
 								<div class="formRow">
 									<label class="formLeft">Mô tả:</label>
 									<div class="formRight">

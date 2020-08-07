@@ -110,13 +110,17 @@
 
 					<a href="<?php echo base_url() ?>ci-admin/product.html" class=" exp">
 						<span>Sản phẩm</span>
-						<strong>1</strong>
+						<strong>2</strong>
 					</a>
 
 					<ul class="sub">
 						<li>
 							<a href="<?php echo base_url() ?>ci-admin/product.html">
-								Sản phẩm </a>
+								Danh sách sản phẩm </a>
+						</li>
+						<li>
+							<a href="<?php echo base_url() ?>ci-admin/add-product.html">
+								Thêm sản phẩm mới</a>
 						</li>
 					</ul>
 
@@ -279,19 +283,19 @@
 									<td class="textL"><?php echo number_format($row["Price"]) . " đ" ?></td>
 									<td class="textL"><?php echo $row["Status"] ?></td>
 									<td class="status textL"><?php echo $row["OrderDate"] ?></td>
-									<td class="textC"><a href="<?=base_url()?>ci-admin/order-detail.html/filter?order_id=<?=$row["OrderID"]?>" title="Xem chi tiết"><i class="fa fa-info" style="font-size: 16px !important;"></i></a></td>
+									<td class="textC"><a href="<?= base_url() ?>ci-admin/order-detail.html/filter?order_id=<?= $row["OrderID"] ?>" title="Xem chi tiết" class="tipS"><i class="fa fa-info" style="font-size: 16px !important;"></i></a></td>
 									<?php
-											if (1 == $row['StatusCode']) {
-												echo '<td class="textC"><a href="javascript:void(0)" title="Hủy đơn hàng" onclick="cancel_order(\'' . $row["OrderID"] . '\')"><i class="fa fa-trash" style="font-size: 16px !important;"></i></a></td>';
-												echo '<td class="textC"><a href="javascript:void(0)" title="Bàn giao vận chuyển" onclick="switch_stage(\'' . $row["OrderID"] . '\', \'2\')"><i class="fa fa-car" style="font-size: 16px !important;"></i></a></td>';
-											} else if (2 == $row['StatusCode']) {
-												echo '<td class="textC"></td>';
-												echo '<td class="textC"><a href="javascript:void(0)" title="Xác nhận giao hàng" onclick="switch_stage(\'' . $row["OrderID"] . '\', \'3\')"><i class="fa fa-check" style="font-size: 16px !important;"></i></a></td>';
-											} else {
-												echo '<td class="textC"></td>';
-												echo '<td class="textC"></td>';
-											}
-											?>
+									if (1 == $row['StatusCode']) {
+										echo '<td class="textC"><a href="javascript:void(0)" class="tipS" title="Hủy đơn hàng" onclick="cancel_order(\'' . $row["OrderID"] . '\')"><i class="fa fa-trash" style="font-size: 16px !important;"></i></a></td>';
+										echo '<td class="textC"><a href="javascript:void(0)" class="tipS" title="Bàn giao vận chuyển" onclick="switch_stage(\'' . $row["OrderID"] . '\', \'2\')"><i class="fa fa-car" style="font-size: 16px !important;"></i></a></td>';
+									} else if (2 == $row['StatusCode']) {
+										echo '<td class="textC"></td>';
+										echo '<td class="textC"><a href="javascript:void(0)" class="tipS" title="Xác nhận giao hàng" onclick="switch_stage(\'' . $row["OrderID"] . '\', \'3\')"><i class="fa fa-check" style="font-size: 16px !important;"></i></a></td>';
+									} else {
+										echo '<td class="textC"></td>';
+										echo '<td class="textC"></td>';
+									}
+									?>
 								</tr>
 						<?php }
 						} ?>
