@@ -17,10 +17,12 @@ class Home extends CI_Controller {
 		$result = $this->BangTin_Model->getAllBangTin();
 		$categories = $this->Category_Model->getCategories();
 		$sellingProducts = $this->Product_Model->getProductsSelling(4);
+		$fastDeliveryProducts = $this->Product_Model->getFastDeiveryProducts(4);
 		$classifiedProducts = $this->listAllProduct();
 		$this->load->view('Home', [
 			'bangTin' => $result, 
 			'sellingProducts' => $sellingProducts,
+			'fastDeliveryProducts' => $fastDeliveryProducts,
 			'products' => $classifiedProducts,
 			'categories' => $categories,
 			'page' => 'Home'

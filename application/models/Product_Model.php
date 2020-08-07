@@ -99,6 +99,24 @@ class Product_Model extends CI_Model
         return $query->result_array();
     }
 
+    public function getFastDeiveryProducts($limit = 0, $start = -1)
+    {
+        $str = 'SELECT `p`.`id_product` AS `id_product`, `p`.`name_product` AS `name_product`, `p`.`price` AS `price`,'
+            .' `p`.`descript` AS `descript`, `p`.`importDate` AS `importDate`, `p`.`count_view` AS `count_view`,'
+            .' `p`.`image_link` AS `DuongDan`, `c`.`name_category` AS `name_category`, `p`.`discount` AS `discount`,'
+            .' `p`.`count_buy` AS `count_buy`, `o`.`name_origin` AS `name_origin`, `p`.`size` AS `size`, `u`.`name_unit` AS `name_unit`, `p`.`isDeliveredInDay`'
+            .' FROM (((`products` `p` JOIN `categories` `c`) JOIN `origins` `o`) JOIN `units` `u`)'
+            .' WHERE ((`p`.`id_category` = `c`.`id_category`) AND (`p`.`id_origin` = `o`.`id`) AND (`p`.`id_unit` = `u`.`id_unit`)) AND (`p`.`isDeliveredInDay` = 1)';
+        if ($limit !== 0 && $start != -1) {
+            $str = $str.' LIMIT '. $start . ', ' . $limit;
+        } else if ($limit != 0) {
+            $str = $str.' LIMIT '. $limit;
+        }
+        $query = $this->db->query($str);
+
+        return $query->result_array();
+    }
+
     public function getProductsWithName($name, $limit = 0, $start = -1)
     {
         $query = "SELECT p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy, o.name_origin, p.size, u.name_unit,p.count_view

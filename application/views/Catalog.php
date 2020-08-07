@@ -45,9 +45,6 @@
 						<a class="title none-detail" href="<?php echo base_url() ?>catalog/san-pham-hot-00002.html" title="Xem chi tiết" style="padding-right:0; clip-path: none; color: #333 !important; background: transparent;">Sản phẩm bán chạy</a>
 					</div>
 					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-4">
-						<div class="view-detail">
-							<a href="<?php echo base_url() ?>catalog/san-pham-hot-00002.html" title="Xem chi tiết">Xem chi tiết >></a>
-						</div>
 					</div>
 				</div>
 				<div class="row products-list">

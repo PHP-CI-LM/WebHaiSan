@@ -126,14 +126,15 @@
 			</div>
 		</section>
 		<article class="container">
+			<!--Hot products-->
 			<div class="bookshelf" style="margin: 1rem 2.85rem 1rem 1.05rem;">
-				<div class="row descrip" href="<?php echo base_url(); ?>catalog/san-pham-hot-00002.html" title="Xem chi tiết">
+				<div class="row descrip" href="<?php echo base_url(); ?>catalog/san-pham-hot.html" title="Xem chi tiết">
 					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-8" style="padding-left: 0;">
-						<a class="title" href="<?php echo base_url(); ?>catalog/san-pham-hot-00002.html" title="Xem chi tiết">Sản phẩm bán chạy</a>
+						<a class="title" href="<?php echo base_url(); ?>catalog/san-pham-hot.html" title="Xem chi tiết">Sản phẩm bán chạy</a>
 					</div>
 					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-4">
 						<div class="view-detail">
-							<a href="<?php echo base_url(); ?>catalog/san-pham-hot-00002.html" title="Xem chi tiết">Xem chi tiết >></a>
+							<a href="<?php echo base_url(); ?>catalog/san-pham-hot.html" title="Xem chi tiết">Xem chi tiết >></a>
 						</div>
 					</div>
 				</div>
@@ -170,6 +171,54 @@
 					?>
 				</div>
 			</div>
+
+			<!--Fast deliverey products-->
+			<div class="bookshelf" style="margin: 1rem 2.85rem 1rem 1.05rem;">
+				<div class="row descrip" href="<?php echo base_url(); ?>catalog/san-pham-giao-trong-ngay.html" title="Xem chi tiết">
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-8" style="padding-left: 0;">
+						<a class="title" href="<?php echo base_url(); ?>catalog/san-pham-giao-trong-ngay.html" title="Xem chi tiết">Sản phẩm giao trong ngày</a>
+					</div>
+					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-4">
+						<div class="view-detail">
+							<a href="<?php echo base_url(); ?>catalog/san-pham-giao-trong-ngay.html" title="Xem chi tiết">Xem chi tiết >></a>
+						</div>
+					</div>
+				</div>
+				<div class="products-list">
+					<?php
+					if ($fastDeliveryProducts !== null && sizeof($fastDeliveryProducts) > 0) {
+						for ($i = 0; $i < sizeof($fastDeliveryProducts); ++$i) {
+							$product = $fastDeliveryProducts[$i];
+							$url_product = base_url() . 'product/' . vn_to_str($product['name_product'] . '-' . substr('00000' . $product['id_product'], strlen('00000' . $product['id_product']) - 5, 5)) . '.html';
+							$url_thumbnail = base_url() . 'images/' . $product['DuongDan'];
+							$price = strval(intval($product['price'] * (100 - intval($product['discount'])) / 100));
+							if ($product['isDeliveredInDay']) {
+								echo '<a href="' . $url_product . '" title="' . $product['name_product'] . '" class="product fast-delivery">';
+							} else {
+								echo '<a href="' . $url_product . '" title="' . $product['name_product'] . '" class="product">';;
+							}
+							echo '<div class="thumbnail">';
+							echo '<img src="' . $url_thumbnail . '" loading="lazy" data-src="' . $url_thumbnail . '" alt="' . $product['name_product'] . '">';
+							echo '</div>';
+							if ($product['isDeliveredInDay']) {
+								echo '<p class="title">| ' . $product['name_product'] . '</p>';
+							} else {
+								echo '<p class="title">' . $product['name_product'] . '</p>';
+							}
+							echo '<p class="price">' . number_format($price) . 'đ/kg';
+							if (0 != $product["discount"]) {
+								echo '<span class="percent deal">-' . $product['discount'] . '%</span>';
+							}
+							echo '<span class="original deal">' . number_format($product['price']) . '</span>';
+							echo '</p>';
+							echo '</a>';
+						}
+					}
+					?>
+				</div>
+			</div>
+
+			<!--List products by category-->
 			<?php
 			foreach ($products as $classifiedProducts) {
 				//Check size of list item in every classified products

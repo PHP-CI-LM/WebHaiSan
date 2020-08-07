@@ -12,28 +12,50 @@ class Catalog extends CI_Controller
 
     public function index($page_num, $name)
     {
+        return false;
+    }
+
+    public function fastDeliveryProducts($page_num)
+    {
         validateSession();
-        $idFilterType = substr($name, strlen($name) - 5, 5); //Tách id của kiểu fillter từ chuỗi
-        $data = null; //Dữ liệu gửi về view
+        $limit_per_page = 8;
+        $start = 0;
         $this->load->model("Product_Model"); //Gọi lớp model để lấy dữ liệu
 
-        if ($idFilterType === "00002") {
-            $count = $this->Product_Model->getTotal();
-            // Paginate page
-            $limit_per_page = 8;
-            $paging_links = generatePagingLinks($count, $limit_per_page);
-            $start = 0;
-            if ($page_num != -1) {
-                $start = ($page_num - 1) * $limit_per_page;
-            }
-            $data = $this->Product_Model->getProductsSelling($limit_per_page, $start);
-            $this->load->view("Catalog", [
-                "name" => "Hàng bán chạy",
-                "products" => $data,
-                "paging_links"  => $paging_links
-            ]);
-        } else {
-            $this->load->model("errors/html/error_404");
+        $count = sizeof($this->Product_Model->getFastDeiveryProducts());
+        // Paginate page
+        $paging_links = generatePagingLinks($count, $limit_per_page);
+        $data = $this->Product_Model->getFastDeiveryProducts($limit_per_page, $start);
+        if ($page_num != -1) {
+            $start = ($page_num - 1) * $limit_per_page;
         }
+        
+        $this->load->view("Catalog", [
+            "name" => "Hàng giao liền trong ngày",
+            "products" => $data,
+            "paging_links"  => $paging_links
+        ]);
+    }
+
+    public function hotProducts($page_num)
+    {
+        validateSession();
+        $limit_per_page = 8;
+        $start = 0;
+        $this->load->model("Product_Model"); //Gọi lớp model để lấy dữ liệu
+
+        $data = $this->Product_Model->getProductsSelling($limit_per_page, $start);
+        $count = $this->Product_Model->getTotal();
+        // Paginate page
+        $paging_links = generatePagingLinks($count, $limit_per_page);
+        if ($page_num != -1) {
+            $start = ($page_num - 1) * $limit_per_page;
+        }
+        
+        $this->load->view("Catalog", [
+            "name" => "Hàng bán chạy",
+            "products" => $data,
+            "paging_links"  => $paging_links
+        ]);
     }
 }
