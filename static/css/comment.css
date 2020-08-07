@@ -83,11 +83,12 @@
 
 .comment-info .info .detail ul {
     position: absolute;
-    background: #FFF;
-    border: 1px solid #DDD;
+    background: #fff;
+    border: 1px solid #ddd;
     top: 20px;
-    right: 0px;
+    right: 0;
     width: 100px;
+    z-index: 10;
 }
 
 .comment-info .info .detail ul li {
@@ -190,12 +191,14 @@
     margin-right: 40px;
     padding: 0.5rem 1rem;
     box-shadow: none !important;
+    padding-right: 50px;
 }
 
 .reply-input input[type="text"] {
     margin-right: 15%;
     padding: 3px 5px;
     width: 100%;
+    padding-right: 60px;
 }
 
 .comment-all input[type="submit"] {

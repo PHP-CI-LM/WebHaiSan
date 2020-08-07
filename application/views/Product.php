@@ -11,7 +11,7 @@ function findChildren($comments, $nodeId = null)
 	return $children;
 }
 
-function drawTree($user, $comments, $comment, $product, $isReply)
+function drawTree($user, $comments, $comment, $product, $isReply, $level = 0)
 {
 	// Start tree
 	if ($isReply == false) {
@@ -19,6 +19,7 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 	} else {
 		echo '<ul class="comments-list comment-reply">';
 	}
+	$level += 1;
 	echo '<li class="comment" product-id="' . $product['id_product'] . '">';
 	echo '<div class="comment-info">';
 	echo '<span class="avatar">';
@@ -30,7 +31,7 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 	echo '</span>';
 	echo '<span class="content">';
 	echo '<span class="info">';
-	echo '<span class="name">' . $comment['name'] . ' - <';
+	echo '<span class="name">' . $comment['name'];
 	echo '<span class="time">' . $comment['time'] . '</span></span>';
 	if ($user != null) {
 		if ($user == $comment['AccountID']) {
@@ -47,16 +48,20 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 	echo $comment['content'];
 	echo '" disabled/>';
 	echo '</span>';
-	echo '<span class="feedback">';
-	echo '<span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>';
-	echo '</span>';
-	echo '</span>';
+	if ($level < 2) {
+		echo '<span class="feedback">';
+		echo '<span class="reply"><a href="javascript:void(0)" onclick="showInput(this)">Trả lời</a></span>';
+		echo '</span>';
+		echo '</span>';
+	}
 	echo '</div>';
 	// Draw children
-	$children = findChildren($comments, $comment['id']);
-	$sizeChildren = sizeof($children);
-	for ($i = 0; $i < $sizeChildren; $i++) {
-		drawTree($user, $comments, $children[$i], $product, true);
+	if ($level < 2) {
+		$children = findChildren($comments, $comment['id']);
+		$sizeChildren = sizeof($children);
+		for ($i = 0; $i < $sizeChildren; $i++) {
+			drawTree($user, $comments, $children[$i], $product, true, $level);
+		}
 	}
 	// End tree
 	echo '</li>';
