@@ -75,7 +75,7 @@
 										</div>
 										<div class="login-action">
 											<input type="submit" value="Đăng nhập" class="btn btn-primary" id="btn-search">
-											<a class="forget-password" href="<?=base_url()?>user/quen-mat-khau.html" title="Quên mật khẩu?"><span>Quên mật khẩu?</span></a>
+											<a class="forget-password" href="<?= base_url() ?>user/quen-mat-khau.html" title="Quên mật khẩu?"><span>Quên mật khẩu?</span></a>
 										</div>
 									</form>
 								</div>
@@ -95,8 +95,8 @@
 				</div>
 			</div>
 		</section>
-
-		<?php require_once("comp/Footer.php") ?>
+	</div>
+	<?php require_once("comp/Footer.php") ?>
 </body>
 
 </html>

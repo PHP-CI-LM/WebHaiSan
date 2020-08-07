@@ -169,7 +169,7 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 									echo "</p>";
 									if ($product["isDeliveredInDay"]) {
 										echo "<p>";
-										echo "Sản phẩm được giao trong ngày cho mọi tỉnh thành!". "<a href=\"\" title=\"Xem chi tiết\" ></a>";
+										echo "Sản phẩm được giao trong ngày cho mọi tỉnh thành!" . "<a href=\"\" title=\"Xem chi tiết\" ></a>";
 										echo "</p>";
 									}
 									echo "</div></div></li>";
@@ -267,177 +267,178 @@ function drawTree($user, $comments, $comment, $product, $isReply)
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<?php require_once("comp/Footer.php") ?>
-		<script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionModal.min.js"></script>
+	<?php require_once("comp/Footer.php") ?>
+	<script type="text/javascript" src="<?php echo base_url() ?>static/js/ActionModal.min.js"></script>
 
-		<script type="text/javascript">
-			var inputFocused = null;
-			var isEdited = false;
+	<script type="text/javascript">
+		var inputFocused = null;
+		var isEdited = false;
 
-			function editComment(idComment, content) {
-				showModal('Đang cập nhật bình luận');
-				$.ajax({
-					url: '<?= base_url() ?>comment/edit-comment',
-					method: 'post',
-					data: {
-						'id_comment': idComment,
-						'content': content
-					},
-					success: res => {
-						let data = JSON.parse(JSON.stringify(res));
-						if (typeof data == 'string' || data instanceof String) {
-							data = JSON.parse(res);
-						}
-						if (true == data['status']) {
-							alert('Chỉnh sửa bình luận thành công');
-							window.location.reload();
-						} else {
-							hideModal();
-							alert(data['message']);
-						}
+		function editComment(idComment, content) {
+			showModal('Đang cập nhật bình luận');
+			$.ajax({
+				url: '<?= base_url() ?>comment/edit-comment',
+				method: 'post',
+				data: {
+					'id_comment': idComment,
+					'content': content
+				},
+				success: res => {
+					let data = JSON.parse(JSON.stringify(res));
+					if (typeof data == 'string' || data instanceof String) {
+						data = JSON.parse(res);
 					}
-				});
-			}
-
-			function deleteComment(idComment) {
-				showModal('Đang xóa bình luận');
-				$.ajax({
-					url: '<?= base_url() ?>comment/remove-comment',
-					method: 'post',
-					data: {
-						'id_comment': idComment
-					},
-					success: res => {
-						let data = JSON.parse(JSON.stringify(res));
-						if (typeof data == 'string' || data instanceof String) {
-							data = JSON.parse(res);
-						}
-						if (true == data['status']) {
-							alert('Xoá bình luận thành công');
-							window.location.reload();
-						} else {
-							hideModal();
-							alert(data['message']);
-						}
+					if (true == data['status']) {
+						alert('Chỉnh sửa bình luận thành công');
+						window.location.reload();
+					} else {
+						hideModal();
+						alert(data['message']);
 					}
-				});
-			}
-
-			function toggleDetailComment(element) {
-				if ($(element).siblings('ul').length > 0) {
-					var detail = $(element).siblings('ul');
-					$(detail).toggleClass('hidden');
 				}
+			});
+		}
+
+		function deleteComment(idComment) {
+			showModal('Đang xóa bình luận');
+			$.ajax({
+				url: '<?= base_url() ?>comment/remove-comment',
+				method: 'post',
+				data: {
+					'id_comment': idComment
+				},
+				success: res => {
+					let data = JSON.parse(JSON.stringify(res));
+					if (typeof data == 'string' || data instanceof String) {
+						data = JSON.parse(res);
+					}
+					if (true == data['status']) {
+						alert('Xoá bình luận thành công');
+						window.location.reload();
+					} else {
+						hideModal();
+						alert(data['message']);
+					}
+				}
+			});
+		}
+
+		function toggleDetailComment(element) {
+			if ($(element).siblings('ul').length > 0) {
+				var detail = $(element).siblings('ul');
+				$(detail).toggleClass('hidden');
 			}
+		}
 
-			$(document).ready(function() {
-				let max_height = $('.board').height() - 2 * $('.board .title').height();
+		$(document).ready(function() {
+			let max_height = $('.board').height() - 2 * $('.board .title').height();
 
-				$('.board ul.content').css({
-					"max-height": max_height
-				});
+			$('.board ul.content').css({
+				"max-height": max_height
+			});
 
 
-				$('body').on('click', event => {
-					if (isEdited == true) {
-						if (inputFocused != null) {
-							var cmid = $(inputFocused).attr('cmid');
-							var content = $(inputFocused).val();
-							editComment(cmid, content);
-							$(inputFocused).prop('disabled', 'true');
-						}
-						isEdited = false;
-					}
-				});
-
-				$('.comment-info .info .detail ul li').on('click', event => {
-					if ($(event.target).parents('.list-detail').hasClass('hidden') == false) {
-						$(event.target).parents('.list-detail').addClass('hidden');
-					}
-				});
-
-				$('.comment-info .info .detail ul li a').on('click', event => {
-					event.preventDefault();
-					var id = $(event.target).attr('id');
-					if (id == 'editComment') {
-						var content = $($(event.target).parents('.content')[0]).find('.comment-content')[0];
-						var input = $(content).find('input')[0];
-						var value = $(input).val();
-						if (null != inputFocused) {
-							$(inputFocused).attr('disabled', true);
-						}
-						$(input).attr('disabled', false);
-						$(input).focus();
-						$(input).val('');
-						$(input).val(value);
-						inputFocused = input;
-					} else if (id == 'deleteComment') {
-						var content = $($(event.target).parents('.content')[0]).find('.comment-content')[0];
-						var input = $(content).find('input')[0];
-						var id = $(input).attr('cmid');
-						deleteComment(id);
-					}
-				})
-
-				$('.edit-input').on('keydown', event => {
-					isEdited = true;
-					if (event.which == 13) {
-						var cmid = $(event.target).attr('cmid');
-						var content = $(event.target).val();
+			$('body').on('click', event => {
+				if (isEdited == true) {
+					if (inputFocused != null) {
+						var cmid = $(inputFocused).attr('cmid');
+						var content = $(inputFocused).val();
 						editComment(cmid, content);
 						$(inputFocused).prop('disabled', 'true');
 					}
-				});
-
-				$('.comment-form').submit(function(event) {
-					event.preventDefault();
-					// List all input in comment box
-					var id = $($('form')[1]).attr('product-id');
-					var content = $('span.focus input[type="text"]').val();
-					var replyId = $('span.focus input[type="text"]').attr('reply-id');
-					if (content == undefined) {
-						content = $('.comment-all input[type="text"]').val();
-						replyId = $('.comment-all input[type="text"]').attr('reply-id');
-					}
-					if (content.length > 0) {
-						showModal("Đang thêm bình luận");
-						$.ajax($('.base_url').val() + '/comment', {
-							type: 'post',
-							data: {
-								'content': content,
-								'product-id': id,
-								'reply-id': replyId
-							},
-							success: function(res, textStatus, xhr) {
-								if (xhr.status == 200) { // Request success
-									$('.comment-form').load(window.location.href + ' .comments-container, .comment-all');
-									hideModal();
-									alert(res.message);
-								}
-							}
-						});
-					}
-				});
+					isEdited = false;
+				}
 			});
 
-			function getNumberBuy() {
-				return $('input[type="number"]').val();
-			}
+			$('.comment-info .info .detail ul li').on('click', event => {
+				if ($(event.target).parents('.list-detail').hasClass('hidden') == false) {
+					$(event.target).parents('.list-detail').addClass('hidden');
+				}
+			});
 
-			function showInput(element) {
-				if ($('span.focus').length > 0) {
-					$('span.focus').removeClass('focus');
+			$('.comment-info .info .detail ul li a').on('click', event => {
+				event.preventDefault();
+				var id = $(event.target).attr('id');
+				if (id == 'editComment') {
+					var content = $($(event.target).parents('.content')[0]).find('.comment-content')[0];
+					var input = $(content).find('input')[0];
+					var value = $(input).val();
+					if (null != inputFocused) {
+						$(inputFocused).attr('disabled', true);
+					}
+					$(input).attr('disabled', false);
+					$(input).focus();
+					$(input).val('');
+					$(input).val(value);
+					inputFocused = input;
+				} else if (id == 'deleteComment') {
+					var content = $($(event.target).parents('.content')[0]).find('.comment-content')[0];
+					var input = $(content).find('input')[0];
+					var id = $(input).attr('cmid');
+					deleteComment(id);
 				}
-				$($($(element).parents('li.comment')[0]).siblings('.reply-input')[0]).addClass('focus');
-				if ($('span.focus').hasClass('hidden')) {
-					$('.comments-container li.comment').siblings('.reply-input').addClass('hidden');
-					$('span.focus').removeClass('hidden');
-				} else {
-					$('.comments-container li.comment').siblings('.reply-input').addClass('hidden');
+			})
+
+			$('.edit-input').on('keydown', event => {
+				isEdited = true;
+				if (event.which == 13) {
+					var cmid = $(event.target).attr('cmid');
+					var content = $(event.target).val();
+					editComment(cmid, content);
+					$(inputFocused).prop('disabled', 'true');
 				}
+			});
+
+			$('.comment-form').submit(function(event) {
+				event.preventDefault();
+				// List all input in comment box
+				var id = $($('form')[1]).attr('product-id');
+				var content = $('span.focus input[type="text"]').val();
+				var replyId = $('span.focus input[type="text"]').attr('reply-id');
+				if (content == undefined) {
+					content = $('.comment-all input[type="text"]').val();
+					replyId = $('.comment-all input[type="text"]').attr('reply-id');
+				}
+				if (content.length > 0) {
+					showModal("Đang thêm bình luận");
+					$.ajax($('.base_url').val() + '/comment', {
+						type: 'post',
+						data: {
+							'content': content,
+							'product-id': id,
+							'reply-id': replyId
+						},
+						success: function(res, textStatus, xhr) {
+							if (xhr.status == 200) { // Request success
+								$('.comment-form').load(window.location.href + ' .comments-container, .comment-all');
+								hideModal();
+								alert(res.message);
+							}
+						}
+					});
+				}
+			});
+		});
+
+		function getNumberBuy() {
+			return $('input[type="number"]').val();
+		}
+
+		function showInput(element) {
+			if ($('span.focus').length > 0) {
+				$('span.focus').removeClass('focus');
 			}
-		</script>
-		</ul>
+			$($($(element).parents('li.comment')[0]).siblings('.reply-input')[0]).addClass('focus');
+			if ($('span.focus').hasClass('hidden')) {
+				$('.comments-container li.comment').siblings('.reply-input').addClass('hidden');
+				$('span.focus').removeClass('hidden');
+			} else {
+				$('.comments-container li.comment').siblings('.reply-input').addClass('hidden');
+			}
+		}
+	</script>
+	</ul>
 
 </html>
