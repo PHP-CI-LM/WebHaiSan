@@ -179,11 +179,6 @@ class Payment extends CI_Controller
             foreach ($products as $product) {
                 $detail = $this->Product_Model->getProductOfId($product['id'], 0, 1);
                 if ($detail) {
-                    if ($idProvince == 4) {
-                        $charge = 26000;
-                    } else {
-                        $charge = 50000;
-                    }
                     $time_delivery = '8h-24h';
                     break;
                 }

@@ -51,7 +51,7 @@
                         Việc giao hàng sẽ được tiến hành ngay khi chúng tôi xác nhận được giao dịch với quý khách sau khi quý khách đặt hàng ở website chúng tôi (tối thiểu trong 2h). Nếu trong đợt giao hàng đầu tiên người nhận hàng không có mặt, chúng tôi sẽ liên hệ đến quý khách để sắp xếp thời gian giao hàng khác thuận tiện hơn.</div>
                     <div style="margin: 0px; padding: 0px; color: rgb(68, 68, 68); font-family: arial, helvetica, sans-serif; line-height: 18.6000003814697px;">
                         <br style="margin: 0px; padding: 0px;">
-                        Một số đơn hàng để đảm bảo sự tươi ngon của sản phẩm khi nhận, khi nhận đơn hàng của quý khách mà có sản phẩm bắt buột phải giao trong ngày thì đơn hàng của quý khách sẽ được hỗ trợ giao ngay trong ngày ở bất kỳ tỉnh thành nào mà cửa hàng hỗ trợ. Nếu thời gian quá trễ hoặc không thể giao ngay, chúng tôi sẽ giao cho bạn vào ngày hôm sau. Mức phí thêm vào sẽ tăng thêm 20% so với mức phí giao hàng truyền thống.
+                        Một số đơn hàng để đảm bảo sự tươi ngon của sản phẩm khi nhận, khi nhận đơn hàng của quý khách mà có sản phẩm bắt buột phải giao trong ngày thì đơn hàng của quý khách sẽ được hỗ trợ giao ngay trong ngày ở bất kỳ tỉnh thành nào mà cửa hàng hỗ trợ. Nếu thời gian quá trễ hoặc không thể giao ngay, chúng tôi sẽ giao cho bạn vào ngày hôm sau.
                     </div>
                     <div style="margin: 0px; padding: 0px; color: rgb(68, 68, 68); font-family: arial, helvetica, sans-serif; line-height: 18.6000003814697px;">
                         <br style="margin: 0px; padding: 0px;">
@@ -61,39 +61,32 @@
                                 <tr>
                                     <th class="tg-baqh">Tỉnh thành</th>
                                     <th class="tg-baqh">Phí giao hàng</th>
-                                    <th class="tg-baqh">Phí giao nhanh</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="tg-baqh">Thành Phố Hồ Chí Minh</td>
                                     <td class="tg-baqh">21.000đ</td>
-                                    <td class="tg-baqh">26.000đ</td>
                                 </tr>
                                 <tr>
                                     <td class="tg-baqh">Đồng Nai</td>
                                     <td class="tg-baqh">42.000đ</td>
-                                    <td class="tg-baqh">50.000đ</td>
                                 </tr>
                                 <tr>
                                     <td class="tg-baqh">Bình Dương</td>
                                     <td class="tg-baqh">42.000đ</td>
-                                    <td class="tg-baqh">50.000đ</td>
                                 </tr>
                                 <tr>
                                     <td class="tg-baqh">Bà Rịa Vũng Tàu</td>
                                     <td class="tg-baqh">42.000đ</td>
-                                    <td class="tg-baqh">50.000đ</td>
                                 </tr>
                                 <tr>
                                     <td class="tg-baqh">Long An</td>
                                     <td class="tg-baqh">42.000đ</td>
-                                    <td class="tg-baqh">50.000đ</td>
                                 </tr>
                                 <tr>
                                     <td class="tg-baqh">Tây Ninh</td>
                                     <td class="tg-baqh">42.000đ</td>
-                                    <td class="tg-baqh">50.000đ</td>
                                 </tr>
                             </tbody>
                         </table>
