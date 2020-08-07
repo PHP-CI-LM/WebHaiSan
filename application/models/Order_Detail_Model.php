@@ -47,8 +47,8 @@ class Order_Detail_Model extends CI_Model
         $this->db->delete('orders_detail', array('OrderID' => $orderID));
         return $this->db->affected_rows();
     }
-    public function get_order_detail($order_id='',$product_id=''){
-       
+    public function get_order_detail($order_id='',$product_id='')
+    {   
         if(!empty($order_id)){
             $this->db->where('orders.OrderID', $order_id);
         }   

@@ -92,7 +92,6 @@ class Order_Model extends CI_Model {
     }
     public function filter_order($id_order,$from_date,$to_date,$stage)
     {
-        
         if(!empty($id_order)){
             $this->db->where('OrderID', $id_order);
         }

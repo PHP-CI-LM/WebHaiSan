@@ -205,16 +205,16 @@
 					<thead class="filter">
 						<tr>
 							<td colspan="9">
-								<form class="list_filter form" action="<?= base_url() ?>ci-admin/order.html/filter" method="post">
+								<form class="list_filter form" action="" method="post">
 									<table cellpadding="0" cellspacing="0" width="100%">
 										<tbody>
 											<tr>
 												<td class="label" style="width:60px;"><label for="filter_id">Mã đơn</label></td>
-												<td class="item"><input name="id" value="<?php if (isset($arguments['id_order'])) echo $arguments['id_order'] ?>" id="filter_id" type="text" style="width:95px;" /></td>
+												<td class="item"><input name="idOrder" value="<?php if (isset($arguments['id_order'])) echo $arguments['id_order'] ?>" id="filter_id" type="text" style="width:95px;" /></td>
 												<td class="label" style="width:60px;"><label for="filter_type">Đơn hàng</label></td>
 												<td class="item">
 													<select name="status" id="filter_status">
-														<option value="">Chọn trạng thái</option>
+														<option value="">Tất cả trạng thái</option>
 														<?php
 														if (isset($list_stage)) {
 															foreach ($list_stage as $stage) {
@@ -318,24 +318,6 @@
 	<div class="clear"></div>
 
 	<script>
-		$(document).ready(function() {
-			$('.list_filter').submit(event => {
-				event.preventDefault();
-
-				var url = $('form').prop('action');
-				var id_order = $('#filter_id').val();
-				var status = $('#filter_status option:selected').val();
-				var fromDate = $('#filter_created').val().split('-').join('/');
-				var toDate = $('#filter_ended').val().split('-').join('/');
-
-				$('.widget').load(url + ' .title, #checkAll', {
-					'idOrder': id_order,
-					'status': status,
-					'fromDate': fromDate,
-					'toDate': toDate
-				})
-			});
-		});
 
 		function switch_stage(id_order, new_stage) {
 			$.ajax({

@@ -205,16 +205,16 @@
 					<thead class="filter">
 						<tr>
 							<td colspan="5">
-								<form class="list_filter form" action="<?= base_url() ?>ci-admin/order-detail.html/filter" method="post">
+								<form class="list_filter form" action="" method="post">
 									<table cellpadding="0" cellspacing="0" width="70%">
 										<tbody>
 											<tr>
 												<td class="label" style="width:60px;"><label for="filter_id">Mã đơn</label></td>
-												<td class="item"><input name="id" value="<?php if (isset($arguments['id_order'])) echo $arguments['id_order'] ?>" id="filter_id" type="text" style="width:95px;" /></td>
+												<td class="item"><input name="orther_id" value="<?php if (isset($arguments['id_order'])) echo $arguments['id_order'] ?>" id="filter_id" type="text" style="width:95px;" /></td>
 												<td class="label" style="width:60px;"><label for="filter_type">Sản phẩm</label></td>
 												<td class="item">
-													<select name="status" id="filter_status">
-														<option value="">Chọn sản phẩm</option>
+													<select name="product_id" id="filter_product">
+														<option value="">Tất cả sản phẩm</option>
 														<?php
 														if (isset($products)) {
 															foreach ($products as $product) {
@@ -288,23 +288,6 @@
 		</div>
 	</div>
 	<div class="clear"></div>
-
-	<script>
-		$(document).ready(function() {
-			$('.list_filter').submit(event => {
-				event.preventDefault();
-
-				var url = $('form').prop('action');
-				var id_order = $('#filter_id').val();
-				var id_product = $('#filter_status option:selected').val();
-
-				$('.widget').load(url + ' .title, #checkAll', {
-					'order_id': id_order,
-					'product_id': id_product,
-				})
-			});
-		});
-	</script>
 </body>
 
 </html>

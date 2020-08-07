@@ -20,18 +20,16 @@ class order_detail extends CI_Controller
             $this->load->view('admin/order_detail', ['data' => $result, 'products'  => $products]);
         }
     }
-    public function filter_order_detail(){
+
+    public function filter_order_detail()
+    {
        if ($this->session->tempdata('admin') != null) {
             $order_id = $this->input->post_get('order_id');
             $product_id = $this->input->post_get('product_id');
             $this->load->model('Order_Detail_Model');
             $this->load->model('Product_Model');
             $data=[];
-            $data['data'] = [];
-            if(!((empty($order_id) && empty($product_id)))){
-                $result = $this->Order_Detail_Model->get_order_detail($order_id,$product_id);
-                $data['data'] = $result;
-            }
+            $data['data']  = $this->Order_Detail_Model->get_order_detail($order_id,$product_id);
             $data['arguments'] = [
                 'id_order' => $order_id,
                 'id_product' => $product_id
