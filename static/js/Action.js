@@ -245,7 +245,7 @@ function setProductInfo(index, info) {
 
 //Update amount of product in cookie by index of it in cookie
 function setProductCount(cookie_name, maSanPham, soLuong, gia = 0) {
-    var newInfo = "id:" + maSanPham + "-" + "count:" + soLuong + "price:" + gia;
+    var newInfo = "id:" + maSanPham + "-" + "count:" + soLuong + "-" + "price:" + gia;
     var count = getCookie("countProduct");
 
     // alert(cookie_name);
