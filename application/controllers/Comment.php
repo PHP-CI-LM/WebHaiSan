@@ -133,28 +133,31 @@ class Comment extends CI_Controller
                         $idReply = 'null';
                     }
                 }
-
                 // Filter comment before saving into database
-                // 
-                $this->load->model('Comment_Model');
-                if (true === $this->filter_comment($this->input->post('content'))['validate']) {
-                    // Load model and save data
-                    $this->Comment_Model->addComment($idProduct, $idAccount, $content, $time, $idReply);
-                    $result = $this->generateNotifyResult(true, CREATE_SUCCESS);
-                } else {
-                    // print('da');
-                    // die();  
-                    $comment = $this->input->post('content');
-                    $wordFileter = $this->filter_comment($this->input->post('content'))['keyViolate'];
-                    foreach($wordFileter as $key=>$word){
-                        $comment = preg_replace_callback("~\b$word\b~i", function($matches) use ($word) {
-                            return str_ireplace($word, str_repeat('*', mb_strlen($word)), $matches[0]);
-                        }, $comment);
+                $this->load->model('Filter_Comment');  
+                $array_filter = $this->Filter_Comment->get_filter_comment();
+                
+                $comment = $this->input->post('content');
+                $lastPos = 0;
+                $lower_comment = strtolower($comment);
+                foreach($array_filter as $key=>$word){
+                    while (($lastPos = strpos($lower_comment, $word['key_word']))!== false) {
+                        $sub_string = substr($comment,$lastPos,strlen($word['key_word']));
+                        $slipt_array = explode(' ', $sub_string);
                         
+                        foreach($slipt_array as $key=>$element){
+                            $comment = preg_replace_callback("~\b$element\b~i", function($matches) use ($element) {
+                                return str_ireplace($element, str_repeat('*', mb_strlen($element)), $matches[0]);
+                            }, $comment);
+                            $lower_comment = preg_replace_callback("~\b$element\b~i", function($matches) use ($element) {
+                                return str_ireplace($element, str_repeat('*', mb_strlen($element)), $matches[0]);
+                            }, $lower_comment);
+                        }
                     }
-                    $this->Comment_Model->addComment($idProduct, $idAccount, $comment, $time, $idReply);
-                    $result = $this->generateNotifyResult(true, CREATE_SUCCESS);
                 }
+                $this->load->model('Comment_Model');
+                $this->Comment_Model->addComment($idProduct, $idAccount, $comment, $time, $idReply);
+                $result = $this->generateNotifyResult(true, CREATE_SUCCESS);
             } else {
                 $result = $this->generateNotifyResult(false, INPUT_REQUIRED);
             }
