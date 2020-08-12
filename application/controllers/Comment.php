@@ -104,13 +104,11 @@ class Comment extends CI_Controller
         foreach ($listComment as $row) {
             $listSubComment = $this->Comment_Model->getListSubComment($row['id'], $id_product);
             $row['subComments'] = $listSubComment;
-
             array_push($fullCommetForProduceId, $row);
         }
         $fullCommetForProduceId['name_product'] = $name_procduct[0]['name_product'];
         print_r(json_encode($fullCommetForProduceId));
     }
-
     public function add()
     {
         validateSession();
@@ -138,6 +136,7 @@ class Comment extends CI_Controller
                 $array_filter = $this->Filter_Comment->get_filter_comment();
                 
                 $comment = $this->input->post('content');
+                $comment = preg_replace('/( )+/', ' ', $comment);
                 $lastPos = 0;
                 $lower_comment = strtolower($comment);
                 foreach($array_filter as $key=>$word){
