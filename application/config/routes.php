@@ -126,6 +126,6 @@ $route['ci-admin/update-product.html/(:any)/save'] = 'admin_controller/product/U
 $route['ci-admin/delete-product.html/save']['post'] = 'admin_controller/product/DeleteProduct';
 $route['ci-admin/fill-product.html']['post'] = 'admin_controller/product/FillProduct';
 $route['ci-admin/comment.html'] = 'admin_controller/comment';
-$route['ci-admin/comment/filter.html']['get'] = 'admin_controller/comment/filter';
+$route['ci-admin/comment/filter.html'] = 'admin_controller/comment/filter';
 $route['ci-admin/comment/filter.html/add']['get'] = 'admin_controller/comment/addFilter';
 $route['ci-admin/comment/filter.html/remove']['get'] = 'admin_controller/comment/removeFilter';

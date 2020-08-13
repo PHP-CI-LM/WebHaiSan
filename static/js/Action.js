@@ -113,7 +113,6 @@ function refreshRowProduct(inputQuantity) {
     var cookie_name = $(row).attr('c-name');
     var id_product = $(row).attr('id');
     var amount = $(inputQuantity).val();
-    var price = getPrice(row);
     if (amount < 0.5) {
         amount = 0.5;
         $(inputQuantity).val(amount);
@@ -121,6 +120,7 @@ function refreshRowProduct(inputQuantity) {
         amount = 100;
         $(inputQuantity).val(amount);
     }
+    var price = getPrice(row);
     setProductCount(cookie_name, id_product, amount, price);
     updateTotalPrice(row)
 }

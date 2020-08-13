@@ -162,8 +162,6 @@ var sendRequest = function(url, method, data, success, error) {
     $.ajax({
         url: base_url + url,
         method: method,
-        contentType: false,
-        processData: false,
         data: data,
         success: success,
         error: error
