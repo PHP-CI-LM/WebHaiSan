@@ -89,6 +89,7 @@ function refreshPricePayment() {
 function refreshTotalPricePayment() {
     var totalPrice = getTotalPay();
     var delivery = getDeliveryCharge();
+    $('.total-price label').text(totalPrice.format() + 'đ');
     $('.total-payment span').text((totalPrice + delivery).format() + 'đ');
 }
 
@@ -101,7 +102,8 @@ function refreshTotalPrice() {
         $('#button-confirm').find('a').remove();
         $('#button-confirm').append('<a><i class=\"fa fa-money\"></i> <span class=\"content-inner\">Thanh toán</span></a>');
     }
-    $("#bill").load(document.URL + " #label, #totalPrice");
+    $($("#bill").find('#totalPrice')[0]).text(totalPrice.format() + 'đ');
+    // $("#bill").load(document.URL + " #label, #totalPrice");
 }
 
 
@@ -112,8 +114,15 @@ function refreshRowProduct(inputQuantity) {
     var id_product = $(row).attr('id');
     var amount = $(inputQuantity).val();
     var price = getPrice(row);
+    if (amount < 0.5) {
+        amount = 0.5;
+        $(inputQuantity).val(amount);
+    } else if (amount > 100)  {
+        amount = 100;
+        $(inputQuantity).val(amount);
+    }
     setProductCount(cookie_name, id_product, amount, price);
-    $($(row).parents('.cart-info')).load(document.URL + " table.table");
+    updateTotalPrice(row)
 }
 
 
@@ -121,6 +130,14 @@ function refreshRowProduct(inputQuantity) {
 function refreshHeaderButtonCart(count) {
     var button = $('.cart-count')[0];
     $(button).find('#number').text(count);
+}
+
+
+//Update price of product in row of cart page
+function updateTotalPrice(row) {
+    var newPrice = getPrice(row);
+    console.log($(row).find('.amount')[0]);
+    $($(row).find('.amount')[0]).text(newPrice.format() + 'đ')
 }
 
 
