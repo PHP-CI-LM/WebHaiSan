@@ -89,10 +89,9 @@ class Payment extends CI_Controller
                     //Check if the transaction is error or none, then notify result
                     if ($id == false) {
                         $status = false;
-                    }
-                    else {
+                    } else {
                         $status = true;
-                        $oid = str_replace("/", "", $data["OrderDate"]).$id;
+                        $oid = str_replace("/", "", $data["OrderDate"]) . $id;
                     }
                 }
             } else {
@@ -102,7 +101,7 @@ class Payment extends CI_Controller
         //Set content type in header and echo result
         header("Content-Type: Application/Json");
         echo json_encode(array(
-            "status" => $status, 
+            "status" => $status,
             "data" => [
                 "oid" => $oid
             ]
@@ -176,11 +175,13 @@ class Payment extends CI_Controller
                 $charge = 42000;
                 $time_delivery = '24h-48h';
             }
-            foreach ($products as $product) {
-                $detail = $this->Product_Model->getProductOfId($product['id'], 0, 1);
-                if ($detail) {
-                    $time_delivery = '8h-24h';
-                    break;
+            if ($products != null && 0 < sizeof($products)) {
+                foreach ($products as $product) {
+                    $detail = $this->Product_Model->getProductOfId($product['id'], 0, 1);
+                    if ($detail) {
+                        $time_delivery = '8h-24h';
+                        break;
+                    }
                 }
             }
             sendResponse(1, "Get delivery charges success!", [

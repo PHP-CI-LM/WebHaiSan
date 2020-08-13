@@ -100,8 +100,13 @@ class Order extends CI_Controller
                 $this->load->model('Order_Detail_Model');
                 $data["AccountID"] = $this->session->tempdata("user");
                 $update_order = $this->Order_Model->updateOrder($this->input->post('oid'), $data);
-                if($update_order){
-                    $update_order_detail = $this->Order_Detail_Model->updateOrderDetail($this->input->post('oid'), json_decode(json_encode($data['products']), true));
+                if ($update_order) {
+                    $products = json_decode(json_encode($data['products']), true);
+                    $update_order_detail = false;
+                    foreach ($products as $product) {
+                        $update_order_detail = $this->Order_Detail_Model->updateOrderDetail($this->input->post('oid'), $product);
+                        if ($update_order_detail == false) break;
+                    }
                     if($update_order_detail){
                         sendResponse(1, 'Update order successfully!');
                         return;

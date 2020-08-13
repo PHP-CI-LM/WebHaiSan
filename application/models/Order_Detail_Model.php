@@ -27,17 +27,16 @@ class Order_Detail_Model extends CI_Model
         }
     }
 
-    public function updateOrderDetail($idOrder = null, $data = array())
+    public function updateOrderDetail($idOrder = null, $product = array())
     {
-        if ($idOrder == null || $data == null || sizeof($data) == 0) return false;
+        if ($idOrder == null || $product == null || sizeof($product) == 0) return false;
         else {
-            foreach ($data as $product) {
+            $this->db->trans_start();
                 $this->db->set('ProductID', $product['id_product']);
                 $this->db->set('Price', $product['price']);
                 $this->db->set('Amount', $product['amount']);
                 $this->db->where('OrderID', $idOrder);
                 $this->db->update('orders_detail');
-            }
             return true;
         }
     }
