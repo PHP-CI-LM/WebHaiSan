@@ -27,6 +27,37 @@ class comment extends CI_Controller
         }
     }
 
+    public function filterComment()
+    {
+        if ($this->session->tempdata('admin') == null) {
+            redirect(base_url() . 'ci-admin/login.html', 'auto');
+        } else {
+            $id = null;
+            $this->load->model('Product_Model', 'product');
+            $this->load->model('Comment_Model', 'comment');
+            $products = $this->product->getAllProducts();
+            if ($this->input->get('id') != null) {
+                $id = $this->input->get('id');
+                $data = $this->comment->getAllComments(-1, 0, $id);
+                $paging_links = '';
+                $this->load->view('admin/comment', [
+                    'idProduct'    => $id,
+                    'data'          => $data,
+                    'paging_links'  => $paging_links,
+                    'products'      => $products
+                ]);
+            } else {
+                $data = $this->comment->getAllComments();
+                $paging_links = '';
+                $this->load->view('admin/comment', [
+                    'data'          => $data,
+                    'paging_links'  => $paging_links,
+                    'products'      => $products
+                ]);
+            }
+        }
+    }
+
     public function filter()
     {
         if ($this->session->tempdata('admin') == null) {
@@ -78,7 +109,7 @@ class comment extends CI_Controller
         echo json_encode($result);
     }
 
-     /*
+    /*
     * Remove filter comment item
     * @return string
     */

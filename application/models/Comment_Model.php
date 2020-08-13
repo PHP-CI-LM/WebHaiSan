@@ -26,10 +26,13 @@ class Comment_Model extends CI_Model
      *
      * @return array
      */
-    public function getAllComments($limit = -1, $start = 0)
+    public function getAllComments($limit = -1, $start = 0, $id_product = -1)
     {
         $this->db->select('comments.id, comments.id_account, comments.id_product, comments.comment_time, comments.content, comments.id_reply, accounts.UserName, products.name_product');
         $this->db->from('comments');
+        if (-1 != $id_product) {
+            $this->db->where('comments.id_product', $id_product);
+        }
         $this->db->join('accounts', 'accounts.AccountID = comments.id_account');
         $this->db->join('products', 'products.id_product = comments.id_product');
         $this->db->order_by('comments.id');
