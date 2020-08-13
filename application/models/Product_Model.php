@@ -69,7 +69,7 @@ class Product_Model extends CI_Model
     {
         $str = 'SELECT p.id_product, p.name_product, p.price, p.descript, p.importDate, p.count_view, p.image_link As DuongDan, c.name_category, p.discount, p.count_buy, o.name_origin, p.size, u.name_unit, p.isDeliveredInDay 
         FROM products As p, categories As c, units As u, origins As o
-        WHERE p.id_category = c.id_category And p.id_origin = o.id And p.id_unit = u.id_unit And p.id_category = '.$idCategory;
+        WHERE p.id_category = c.id_category And p.id_origin = o.id And p.id_unit = u.id_unit And p.id_category = '. $idCategory .' Order By p.count_view desc';
         if ($limit !== 0 && $start != -1) {
             $str = $str.' LIMIT '. $start . ', ' . $limit;
         } else if ($limit != 0) {
@@ -106,7 +106,7 @@ class Product_Model extends CI_Model
             .' `p`.`image_link` AS `DuongDan`, `c`.`name_category` AS `name_category`, `p`.`discount` AS `discount`,'
             .' `p`.`count_buy` AS `count_buy`, `o`.`name_origin` AS `name_origin`, `p`.`size` AS `size`, `u`.`name_unit` AS `name_unit`, `p`.`isDeliveredInDay`'
             .' FROM (((`products` `p` JOIN `categories` `c`) JOIN `origins` `o`) JOIN `units` `u`)'
-            .' WHERE ((`p`.`id_category` = `c`.`id_category`) AND (`p`.`id_origin` = `o`.`id`) AND (`p`.`id_unit` = `u`.`id_unit`)) AND (`p`.`isDeliveredInDay` = 1)';
+            .' WHERE ((`p`.`id_category` = `c`.`id_category`) AND (`p`.`id_origin` = `o`.`id`) AND (`p`.`id_unit` = `u`.`id_unit`)) AND (`p`.`isDeliveredInDay` = 1) Order By p.count_view desc';
         if ($limit !== 0 && $start != -1) {
             $str = $str.' LIMIT '. $start . ', ' . $limit;
         } else if ($limit != 0) {

@@ -32,7 +32,7 @@
 						</a> <span><i class="fa fa-angle-right"></i></span>
 						<meta itemprop="position" content="1">
 					</li>
-					<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name">Sản phẩm hot</strong></a>
+					<li itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemprop="item" href="javascript:void(0)"> <strong itemprop="name"><?=$name?></strong></a>
 						<meta itemprop="position" content="3">
 					</li>
 				</ul>
@@ -40,9 +40,9 @@
 		</div>
 		<article class="container" style="padding: 10px 20px;">
 			<div class="bookshelf" style="margin: 1rem 2.85rem 1rem 1.05rem;">
-				<div class="row descrip" href="<?php echo base_url() ?>catalog/san-pham-hot-00002.html" title="Xem chi tiết">
+				<div class="row descrip">
 					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-8" style="padding-left: 0;">
-						<a class="title none-detail" href="<?php echo base_url() ?>catalog/san-pham-hot-00002.html" title="Xem chi tiết" style="padding-right:0; clip-path: none; color: #333 !important; background: transparent;">Sản phẩm bán chạy</a>
+						<span class="title none-detail" style="padding-right:0; clip-path: none; color: #333 !important; background: transparent;"><?=$name?></span>
 					</div>
 					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-4">
 					</div>

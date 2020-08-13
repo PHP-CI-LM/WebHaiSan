@@ -31,7 +31,7 @@ class Catalog extends CI_Controller
         }
         
         $this->load->view("Catalog", [
-            "name" => "Hàng giao liền trong ngày",
+            "name" => "Sản phẩm giao trong ngày",
             "products" => $data,
             "paging_links"  => $paging_links
         ]);
@@ -53,7 +53,7 @@ class Catalog extends CI_Controller
         }
         
         $this->load->view("Catalog", [
-            "name" => "Hàng bán chạy",
+            "name" => "Sản phẩm bán chạy",
             "products" => $data,
             "paging_links"  => $paging_links
         ]);
