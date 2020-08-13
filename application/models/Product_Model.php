@@ -196,9 +196,9 @@ class Product_Model extends CI_Model
             $query .= (' && id_product = '.$id);
         }
         if ($name !== '') {
-            $query .= (" && name_product = '".$name."'");
+            $query .= (" && name_product Like '%".$name."%'");
         }
-        if ($theloai !== '' && $theloai !== '0') {
+        if ($theloai !== '' && $theloai != 0) {
             $query .= (' && id_category = '.$theloai);
         }
         $str = $this->db->query($query);
