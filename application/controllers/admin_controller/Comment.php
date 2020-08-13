@@ -9,15 +9,24 @@ class comment extends CI_Controller
         parent::__construct();
     }
 
-    public function index()
+    public function index($page_num = -1)
     {
         if ($this->session->tempdata('admin') == null) {
             redirect(base_url() . 'ci-admin/login.html', 'auto');
         } else {
             $this->load->model('Product_Model', 'product');
             $this->load->model('Comment_Model', 'comment');
-            $data = $this->comment->getAllComments();
-            $paging_links = '';
+
+            // Paginate page
+            $this->load->library('pagination');
+            $limit_per_page = 10;
+            $data = [];
+            if (-1 == $page_num) {
+                $data = $this->comment->getAllComments($limit_per_page, 0);
+            } else {
+                $data = $this->comment->getAllComments($limit_per_page, ($page_num - 1)*$limit_per_page);
+            }
+            $paging_links = generatePagingLinks(sizeof($data), $limit_per_page, false, 3, '', '', base_url('ci-admin/comment.html'));
             $products = $this->product->getAllProducts();
             $this->load->view('admin/comment', [
                 'data'          => $data,

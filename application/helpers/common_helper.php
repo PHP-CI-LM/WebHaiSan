@@ -79,11 +79,13 @@ function getBaseURL($current_url = '', $query = null)
 /**
  * Generate pagination link.
  */
-function generatePagingLinks($total_rows, $limit_per_page = 10, $use_query_string = false, $uri_segment = 3, $prefix = '', $suffix = '')
+function generatePagingLinks($total_rows, $limit_per_page = 10, $use_query_string = false, $uri_segment = 3, $prefix = '', $suffix = '', $baseURL = null)
 {
     $CI = &get_instance();
     $limit_per_page = 8;
-    $baseURL = getBaseURL(current_url(), $CI->input->get(null, true));
+    if ($baseURL == null) {
+        $baseURL = getBaseURL(current_url(), $CI->input->get(null, true));
+    }
     $config = generateConfigPagination($total_rows, $limit_per_page, $baseURL, $uri_segment, $prefix, $suffix, $use_query_string);
     $CI->pagination->initialize($config);
 
